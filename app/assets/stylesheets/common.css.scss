@@ -1,0 +1,113 @@
+
+
+header {
+  .container {position: relative; padding-top: 30px;}
+  h1 {
+    float: left;
+    font-weight: bold;
+    font-size: 100%;
+  }
+}
+
+
+nav {
+  float: left;
+  margin-bottom: 20px;
+  
+  &.menu {
+    position: absolute;
+    top: 10px;
+    right: 0;
+  }
+  
+  ul {
+    list-style: none;
+    margin-right: -20px;
+    
+    li {
+      float: left;
+      margin-left: 0px;
+      margin-right: 20px;
+      
+      a {
+        background: none;
+        padding: 0;
+      }
+    }
+  }
+}
+
+/*--- forms*/
+
+.field {
+  margin-bottom: 20px;
+  
+  input[type=text],
+  input[type=password],
+  input[type=email],
+  textarea {
+    background: white;
+    color: black;
+    padding: 5px;
+    border: none;
+    width: 350px;
+    font-size: 13px;
+    border: 1px solid #999;
+  }
+  
+  textarea {
+    height: 50px;
+  }
+}
+
+.fields {
+  margin-bottom: 60px;
+}
+
+
+#composer {
+  margin-bottom: 20px;
+}
+
+.channels, .videos {
+  padding: 0;
+  
+  li {
+    margin: 0 0 10px 0;
+    list-style: none;
+  }
+  
+  margin-bottom: 20px;
+}
+
+.tag,
+.user {
+  float: left;
+  width: 20%;
+  
+  
+  &a {
+    color: #999;
+  }
+}
+
+.like {
+  margin-right: 20px;
+  float: left;
+}
+.body {
+  overflow: hidden;
+}
+
+.username {
+  font-size: .85em;
+  color:#ccc;
+  a {
+    color:#ccc;
+    font-weight: bold;
+  }
+}
+
+
+
+

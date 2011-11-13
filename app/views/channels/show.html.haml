@@ -1,0 +1,15 @@
+.full-col
+  = link_to 'new video', new_channel_video_path(@channel)
+  %ul.videos
+    .title= @current.title
+    .player= sanitize @current.body, :tags => %w(embed iframe p), :attributes => %w(src width height frameborder)
+    .actions
+      = link_to 'back', channel_path(@channel, :playing => @previous_id)
+      = link_to 'next', channel_path(@channel, :playing => @next_id)
+      
+    / - @channel.videos.each do |v|
+    /   %li
+    /     .title= v.title
+    /     .player= sanitize v.body, :tags => %w(embed iframe p), :attributes => %w(src width height frameborder)
+    /     .actions
+    /       = link_to 'delete', [@channel, v], :method => :delete

@@ -1,0 +1,11 @@
+.full-col
+  %h2 Add a Video
+  = form_for [@channel, @video], :url => channel_videos_path(@channel) do |f|
+    .field
+      = f.label :title
+      = f.text_field :title
+    .field
+      = f.label :body
+      = f.text_area :body
+    .actions
+      = f.submit

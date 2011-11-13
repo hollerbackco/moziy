@@ -1,0 +1,28 @@
+body {
+  min-width: 960px;
+}
+
+.container {
+  margin-left: auto;
+	margin-right: auto;
+	width: 960px;
+}
+
+.one-col, .two-col, .full-col {
+  display: inline;
+	float: left;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.one-col {
+  width: 300px;
+}
+
+.two-col {
+  width: 620px;
+}
+
+.full-col {
+  width: 940px;
+}
