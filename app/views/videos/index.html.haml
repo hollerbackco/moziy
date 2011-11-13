@@ -1,0 +1,10 @@
+.full-col
+  = link_to 'new video', new_channel_video_path(@channel)
+  = link_to 'show', @channel
+  %ul.videos
+    - @channel.videos.each do |v|
+      %li
+        .title= v.title
+        .actions
+          = link_to 'edit', edit_channel_video_path(@channel, v)
+          = link_to 'delete', [@channel, v], :method => :delete

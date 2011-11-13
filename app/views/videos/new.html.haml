@@ -1,11 +1,9 @@
 .full-col
-  %h2 Add a Video
   = form_for [@channel, @video], :url => channel_videos_path(@channel) do |f|
     .field
-      = f.label :title
-      = f.text_field :title
-    .field
-      = f.label :body
-      = f.text_area :body
+      = label_tag :links
+      %p Enter a comma separated list of links
+      = text_area_tag :links
     .actions
       = f.submit
+      = link_to 'cancel', @channel

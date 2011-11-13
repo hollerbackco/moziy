@@ -11,6 +11,7 @@ gem 'sqlite3'
 gem 'haml'
 gem 'jquery-rails'
 
+gem 'embedly'
 
 # Authentication
 gem 'sorcery'

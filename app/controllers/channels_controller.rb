@@ -34,12 +34,22 @@ class ChannelsController < ApplicationController
   end
 
   def edit
+    @channel = Channel.find(params[:id])
   end
 
   def update
+    @channel = Channel.find(params[:id])
+    
+    if @channel.update_attributes(params[:channel])
+      redirect_to edit_channel_path(@channel)
+    else
+      render :action => :edit
+    end
   end
 
   def destroy
+    Channel.find(params[:id]).destroy
+    redirect_to :back
   end
   
   

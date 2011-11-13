@@ -20,7 +20,7 @@ Puretv::Application.routes.draw do
   end
   
   resources :channels do
-    resources :videos, :only => [:new, :show, :create, :destroy]
+    resources :videos, :only => [:new, :edit, :update, :show, :create, :destroy]
     resources :memberships, :only => [:create, :destroy]
   end
   

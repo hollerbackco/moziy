@@ -1,0 +1,17 @@
+.full-col
+  %h2= @video.title
+  = form_for [@channel, @video] do |f|
+    .field
+      = f.label :title
+      %br
+      = f.text_field :title
+    .field
+      = f.label :body
+      %br
+      = f.text_area :body
+    .field
+      = f.label :description
+      %br
+      = f.text_area :description
+    .actions
+      = f.submit
