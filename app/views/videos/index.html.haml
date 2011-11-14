@@ -3,7 +3,7 @@
   %br
   %ul.videos
     - @channel.airings.each do |a|
-      %li.video{:id => "video_#{a.video.id.to_s}"}
+      %li.video{:id => "video_#{a.video_id.to_s}"}
         .title= a.video.title
         .actions
           = link_to 'edit', edit_channel_video_path(@channel, a.video)
