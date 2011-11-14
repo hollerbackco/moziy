@@ -4,6 +4,7 @@
     - index = 0
     - @channels.each do |c|
       %li.channel
+        %span.count= c.subscriptions.count
         = link_to c.title, c, :class => "color#{index % 3}"
       - index += 1
           
