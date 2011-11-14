@@ -1,5 +1,9 @@
 Puretv::Application.routes.draw do
 
+  get "subscription/create"
+
+  get "subscription/destroy"
+
   root :to => "pages#home"
   
   # login
@@ -20,11 +24,16 @@ Puretv::Application.routes.draw do
   end
   
   resources :channels do
+    member do 
+      match :subscribe
+      match :unsubscribe
+    end
     resources :videos do
       collection do
         put :sort
       end
     end
+    resources :subscriptions, :only => [:create, :destroy]
     resources :memberships, :only => [:create, :destroy]
   end
   

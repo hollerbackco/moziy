@@ -6,4 +6,9 @@ class Channel < ActiveRecord::Base
   
   validates :title, :uniqueness => true, :presence => true
   
+  def subscribed_by?(user)
+    ! Subscription.find_by_user_id_and_channel_id(user.id, self.id).nil?
+  end
+  
+
 end
