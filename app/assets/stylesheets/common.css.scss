@@ -96,6 +96,24 @@ nav {
   margin-bottom: 20px;
 }
 
+.channels {
+  li {
+    margin: 0;
+    
+    a {
+      display: inline-block;
+      padding: 2px 5px;
+      color: white;
+      &.color0 { background: #333;}
+      &.color1 { background: #666;}
+      &.color2 { background: #999;}
+      
+    }
+  }
+  
+  
+}
+
 
 .player {
   position: absolute;

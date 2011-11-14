@@ -1,7 +1,9 @@
 .full-col
   = link_to 'new channel', new_channel_path
   %ul.channels
+    - index = 0
     - @channels.each do |c|
       %li.channel
-        .title= link_to c.title, c
+        = link_to c.title, c, :class => "color#{index % 3}"
+      - index += 1
           
