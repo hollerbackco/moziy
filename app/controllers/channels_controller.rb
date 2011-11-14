@@ -10,14 +10,13 @@ class ChannelsController < ApplicationController
   
   def show
     
-    @channel = Channel.find(params[:id])
+    @channel = Channel.includes(:airings => :video).find(params[:id])
     
     unless @channel.videos.count > 0
       redirect_to new_channel_video_path(@channel)
       return
     end
-    
-    @channel = Channel.find(params[:id])
+
     @current = params[:playing] ? @channel.videos[params[:playing].to_i] : @channel.videos.first
     @previous_id = (params[:playing].to_i - 1) % @channel.videos.count
     @next_id = (params[:playing].to_i + 1) % @channel.videos.count
