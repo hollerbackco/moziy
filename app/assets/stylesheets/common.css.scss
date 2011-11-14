@@ -79,14 +79,23 @@ nav {
   margin-bottom: 20px;
 }
 
-.tag,
-.user {
-  float: left;
-  width: 20%;
-  
-  
-  &a {
-    color: #999;
+
+.player {
+  position: absolute;
+  top: 40px;
+  left: 0px;
+  right: 0px;
+  bottom: 20px;
+}
+.info {
+  position: absolute;
+  height: 20px;
+  padding: 0 10px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  .actions {
+    float: right;
   }
 }
 

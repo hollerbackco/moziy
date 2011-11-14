@@ -8,7 +8,7 @@
   %body{:id => body_id}
     %header
       .container
-        .full-col
+        .full-col.clearfix
           %h1= link_to "pure.tv", channels_path
           %nav.menu
             %ul
@@ -17,6 +17,8 @@
               - else
                 %li= link_to 'login', login_path
                 %li= link_to 'join', register_path
+          - if @channel && !@channel.new_record?
+            = render :partial => "channels/menu"
                 
                 
     %section
