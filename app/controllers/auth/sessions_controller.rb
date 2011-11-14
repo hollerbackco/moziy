@@ -10,10 +10,10 @@ class Auth::SessionsController < ApplicationController
   def create
     respond_to do |format|
       if @user = login(params[:username],params[:password],params[:remember])
-        format.html { redirect_back_or_to(me_home_path, :notice => 'Login successful.') }
+        format.html { redirect_back_or_to(root_path, :notice => 'Login successful.') }
         format.xml { render :xml => @user, :status => :created, :location => @user }
       else
-        format.html { flash.now[:alert] = "Log in failed."; render :layout => "plainjane", :action => "new" }
+        format.html { flash.now[:alert] = "Log in failed."; render :action => "new" }
         format.xml { render :xml => @user.errors, :status => :unprocessable_entity }
       end
     end
