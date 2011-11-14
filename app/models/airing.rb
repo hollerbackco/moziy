@@ -2,6 +2,7 @@ class Airing < ActiveRecord::Base
   belongs_to :video #, :counter_cache => true
   belongs_to :channel
   
+  validates :video_id, :presence => true
   validates :channel_id, :presence => true, :uniqueness => {:scope => [:video_id]}
   
   def self.sort(ids)

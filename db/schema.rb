@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111114074439) do
+ActiveRecord::Schema.define(:version => 20111114094535) do
 
   create_table "airings", :force => true do |t|
     t.integer  "video_id"
@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(:version => 20111114074439) do
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "subscriptions_count"
+    t.integer  "subscriptions_count", :default => 0
   end
 
   create_table "memberships", :force => true do |t|

@@ -9,9 +9,10 @@
     %header
       .container
         .full-col.clearfix
-          %h1= link_to "mosey", channels_path
+          %h1= link_to "mosey", root_path
           %nav.menu
             %ul
+              %li= link_to 'rankings', explore_path
               - if logged_in?
                 %li= link_to 'logout', logout_path 
               - else

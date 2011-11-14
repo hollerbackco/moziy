@@ -1,10 +1,7 @@
 Puretv::Application.routes.draw do
-
-  get "subscription/create"
-
-  get "subscription/destroy"
-
+  
   root :to => "pages#home"
+  match :explore, :to => "channels#index"
   
   # login
   scope :module => :auth do
@@ -22,6 +19,8 @@ Puretv::Application.routes.draw do
     end
     
   end
+  
+  
   
   resources :channels do
     member do 

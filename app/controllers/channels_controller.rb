@@ -1,5 +1,5 @@
 class ChannelsController < ApplicationController
-  before_filter :require_login, :except => [:show]
+  before_filter :require_login, :except => [:index, :show]
   
   def index
     @channels = Channel.find(:all, :order => "subscriptions_count DESC, updated_at DESC")

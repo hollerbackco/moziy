@@ -18,7 +18,6 @@ class VideosController < ApplicationController
     
       objs = embedly.oembed(
                 :urls => videos,
-                :maxWidth => 450,
                 :wmode => 'transparent',
                 :method => 'after',
                 :autoplay => 'true'
@@ -28,7 +27,7 @@ class VideosController < ApplicationController
         Video.transaction do
           v = Video.create(:title => o.title, :body => o.html, :description => o.description, :owner_id => current_user.id)
           Airing.create(:video => v, :channel => @channel)
-        end
+        end if o.html
       end
       redirect_to @channel
     else
