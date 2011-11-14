@@ -1,5 +1,8 @@
 .menu
-  %strong= link_to @channel.title, @channel
+  %strong
+    - if is_top?(@channel)
+      TOP CHANNEL:
+    = link_to @channel.title, @channel
   - if logged_in?
     - if current_user.owns?(@channel)
       = link_to 'add video', new_channel_video_path(@channel)
