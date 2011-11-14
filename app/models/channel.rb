@@ -5,4 +5,5 @@ class Channel < ActiveRecord::Base
   has_many :videos, :through => :airings, :dependent => :destroy
   
   validates :title, :uniqueness => true, :presence => true
+  
 end
