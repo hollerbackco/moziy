@@ -1,6 +1,7 @@
-
 .menu
   %strong= link_to @channel.title, @channel
-  = link_to 'add video', new_channel_video_path(@channel)
-  = link_to 'edit', channel_videos_path(@channel)
-  
+  - if logged_in? and @current_user.owns?(@channel)
+    = link_to 'add video', new_channel_video_path(@channel)
+    = link_to 'edit', channel_videos_path(@channel)
+  - else
+    
