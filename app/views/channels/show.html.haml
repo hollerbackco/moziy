@@ -1,9 +1,8 @@
 .full-col
-  = link_to 'new video', new_channel_video_path(@channel)
-  = link_to 'settings', edit_channel_path(@channel)
+  = render :partial => 'menu'
   %ul.videos
-    .title= @current.title
     .player= sanitize @current.body, :tags => %w(embed iframe p), :attributes => %w(src width height frameborder)
+    .title= @current.title
     .actions
       = link_to 'back', channel_path(@channel, :playing => @previous_id)
       = link_to 'next', channel_path(@channel, :playing => @next_id)

@@ -20,7 +20,8 @@ class VideosController < ApplicationController
                 :urls => videos,
                 :maxWidth => 450,
                 :wmode => 'transparent',
-                :method => 'after'
+                :method => 'after',
+                :autoplay => 'true'
               )
             
       objs.each do |o|

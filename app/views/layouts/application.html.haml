@@ -9,11 +9,10 @@
     %header
       .container
         .full-col
-          %h1= link_to "pure.tv", root_path
+          %h1= link_to "pure.tv", channels_path
           %nav.menu
             %ul
               - if logged_in?
-                %li= link_to 'channels', channels_path
                 %li= link_to 'logout', logout_path 
               - else
                 %li= link_to 'login', login_path

@@ -1,6 +1,6 @@
 .full-col
-  = link_to 'new video', new_channel_video_path(@channel)
-  = link_to 'show', @channel
+  = render :partial => 'channels/menu'
+  %br
   %ul.videos
     - @channel.videos.each do |v|
       %li

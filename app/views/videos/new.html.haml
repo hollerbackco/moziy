@@ -1,8 +1,11 @@
 .full-col
+  = render :partial => 'channels/menu'
+  %br
   = form_for [@channel, @video], :url => channel_videos_path(@channel) do |f|
     .field
-      = label_tag :links
-      %p Enter a comma separated list of links
+      %strong Add Videos
+      = label_tag :links, 'Enter a comma separated list of links'
+      %br
       = text_area_tag :links
     .actions
       = f.submit

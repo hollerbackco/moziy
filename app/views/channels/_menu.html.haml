@@ -1,0 +1,6 @@
+
+.menu
+  %strong= link_to @channel.title, @channel
+  = link_to 'new video', new_channel_video_path(@channel)
+  = link_to 'edit playlist', channel_videos_path(@channel)
+  = link_to 'settings', edit_channel_path(@channel)

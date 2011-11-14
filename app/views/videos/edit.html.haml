@@ -1,5 +1,6 @@
 .full-col
-  %h2= @video.title
+  = render :partial => 'channels/menu'
+  %br
   = form_for [@channel, @video] do |f|
     .field
       = f.label :title

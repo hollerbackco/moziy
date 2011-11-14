@@ -1,7 +1,10 @@
 .full-col
+  = render :partial => 'menu'
+  %br
   = form_for @channel do |f|
     .field
       = f.label :title
+      %br
       = f.text_field :title
     .actions
       = f.submit
