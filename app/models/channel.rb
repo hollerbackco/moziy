@@ -12,5 +12,13 @@ class Channel < ActiveRecord::Base
     ! Subscription.find_by_user_id_and_channel_id(user.id, self.id).nil?
   end
   
+  def now_playing
+    airings.first.video
+  end
+  
+  def has_airings?
+    airings.count > 0
+  end
+  
 
 end

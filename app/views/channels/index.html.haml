@@ -3,8 +3,10 @@
   %ul.channels
     - index = 0
     - @channels.each do |c|
-      %li.channel
-        %span.count= "+#{c.subscriptions.count}"
-        = link_to "#{c.title}", c, :class => "color#{index % 3}"
-      - index += 1
+      - if c.has_airings?
+        %li.channel
+          %span.count= "+#{c.subscriptions.count}"
+          = link_to "#{c.title}", c, :class => "color#{index % 3}"
+          %span.nowplaying= "Now Playing: #{c.now_playing.title}"
+        - index += 1
           
