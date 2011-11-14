@@ -1,4 +1,6 @@
 .full-col
+  = link_to 'settings', edit_channel_path(@channel)
+  %br
   %ul.videos
     - @channel.airings.each do |a|
       %li.video{:id => "video_#{a.video_id.to_s}"}

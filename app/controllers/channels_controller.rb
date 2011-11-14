@@ -23,7 +23,7 @@ class ChannelsController < ApplicationController
   end
 
   def create
-    @channel = Channel.new(params[:channel].merge(:owner => current_user))
+    @channel = Channel.new(params[:channel].merge(:creator => current_user))
     
     if @channel.save
       redirect_to @channel
