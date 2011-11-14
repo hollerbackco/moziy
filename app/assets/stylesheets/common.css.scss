@@ -28,6 +28,7 @@ nav {
   margin-bottom: 20px;
   
   &.menu {
+   
     float: right;
   }
   
@@ -46,6 +47,10 @@ nav {
       }
     }
   }
+}
+
+.menu {
+   padding-top: 2px;
 }
 
 /*--- forms*/
