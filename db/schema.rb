@@ -11,13 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111113134918) do
+ActiveRecord::Schema.define(:version => 20111114003437) do
 
   create_table "airings", :force => true do |t|
     t.integer  "video_id"
     t.integer  "channel_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "position"
   end
 
   create_table "authentications", :force => true do |t|

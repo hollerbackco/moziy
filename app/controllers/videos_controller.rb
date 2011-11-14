@@ -52,9 +52,15 @@ class VideosController < ApplicationController
   
   def destroy
     @video = Video.destroy(params[:id])
-    redirect_to edit_channel_path(@channel)
+    redirect_to channel_videos_path(@channel)
   end
-
+  
+  def sort
+    order = params[:video]
+    Airing.sort(order)
+    render :text => true
+  end
+  
   private
   
     def set_channel

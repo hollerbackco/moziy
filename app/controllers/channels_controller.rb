@@ -51,7 +51,6 @@ class ChannelsController < ApplicationController
     Channel.find(params[:id]).destroy
     redirect_to :back
   end
-  
-  
 
+  
 end

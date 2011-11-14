@@ -3,8 +3,13 @@
   %br
   %ul.videos
     - @channel.videos.each do |v|
-      %li
+      %li.video{:id => "video_#{v.id.to_s}"}
         .title= v.title
         .actions
           = link_to 'edit', edit_channel_video_path(@channel, v)
           = link_to 'delete', [@channel, v], :method => :delete
+:javascript
+  $(".videos").sortable({items: ".video", axis: "y", cursor: "move", 
+    update: function() {
+      $.post("/channels/#{@channel.id}/videos/sort", "_method=put&"+ $(this).sortable("serialize"))
+    }})
