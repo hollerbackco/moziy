@@ -2,7 +2,7 @@ class ChannelsController < ApplicationController
   before_filter :require_login, :except => [:show]
   
   def index
-    @channels = Channel.all(:order => "subscriptions_count DESC, updated_at DESC")
+    @channels = Channel.all(:order => "subscriptions_count DESC")
   end
   
   def new
