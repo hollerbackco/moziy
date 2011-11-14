@@ -3,4 +3,7 @@ class User < ActiveRecord::Base
   
   has_and_belongs_to_many :channels
   
+  def owns?(obj)
+    self == obj.owner
+  end
 end

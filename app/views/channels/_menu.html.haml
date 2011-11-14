@@ -4,3 +4,4 @@
   = link_to 'new video', new_channel_video_path(@channel)
   = link_to 'edit playlist', channel_videos_path(@channel)
   = link_to 'settings', edit_channel_path(@channel)
+  = link_to 'delete', @channel, :method => :delete if logged_in? && current_user.owns? @channel
