@@ -21,6 +21,8 @@ class ChannelsController < ApplicationController
     @current = params[:playing] ? @channel.airings[params[:playing].to_i].video : @channel.airings.first.video
     @previous_id = (params[:playing].to_i - 1) % @channel.airings.count
     @next_id = (params[:playing].to_i + 1) % @channel.airings.count
+    
+    render :layout => "player"
   end
 
   def create

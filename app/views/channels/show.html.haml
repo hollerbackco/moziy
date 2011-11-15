@@ -1,11 +1,35 @@
-.player
-  = sanitize @current.body, :tags => %w(embed iframe p), :attributes => %w(src width height frameborder)
-.info
-  
+#player
+  .player
+    = sanitize @current.body, :tags => %w(embed iframe p), :attributes => %w(src width height frameborder)
+#main-menu
+  .container
+    .full-col.clearfix
+      %h1= link_to "mosey", root_path
+      - if logged_in?
+        %nav.menu
+          %ul.channels
+            - index = 0
+            - @channel_list.each do |c|
+              - if c.has_airings?
+                %li.channel
+                  = link_to "#{c.title}", c, :class => "color#{index % 3}"
+                  %span.nowplaying= "Now Playing: #{c.now_playing.title}"
+                - index += 1
+      / %nav.menu
+      /   %ul
+      /     %li= link_to 'rankings', explore_path
+      /     - if logged_in?
+      /       %li= link_to 'logout', logout_path 
+      /     - else
+      /       %li= link_to 'login', login_path
+      /       %li= link_to 'join', register_path
+#actions
+  - if @channel && !@channel.new_record?
+    = render :partial => "channels/menu"
+#info
   %strong Now Playing
   = @current.title
   .actions
-    = link_to 'back', channel_path(@channel, :playing => @previous_id)
     = link_to 'next', channel_path(@channel, :playing => @next_id)
   / - @channel.videos.each do |v|
   /   %li
