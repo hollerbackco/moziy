@@ -37,29 +37,19 @@ class ChannelsController < ApplicationController
     channel = Channel.find(params[:id])
     
     if channel.subscribed_by?(current_user)
-      redirect_to :back
+      Subscription.find_by_channel_id_and_user_id(channel.id, current_user.id).destroy
+      
+      flash[:success] = "You've removed " + channel.title
+      
+      redirect_to channel
     else
       current_user.subscriptions.create(:channel => channel)
       
       flash[:success] = "You have subscribed to this channel. "
-      redirect_to :back
+      redirect_to channel
     end
   end
   
-  def unsubscribe
-    
-     channel = Channel.find(params[:id]) 
-     
-    if channel.subscribed_by?(current_user)
-      Subscription.find_by_channel_id_and_user_id(channel.id, current_user.id).destroy
-      
-      flash[:success] = "You've removed " + channel.title
-
-      redirect_to :back
-    else
-      redirect_to :back
-    end
-  end
   
   def edit
     @channel = Channel.find(params[:id])

@@ -25,15 +25,14 @@ header {
 
 nav {
   float: left;
-  margin-bottom: 20px;
   
   &.menu {
    
-    float: right;
   }
   
   ul {
     margin: 0;
+    padding: 0;
     list-style: none;
     
     li {
@@ -49,8 +48,9 @@ nav {
   }
 }
 
-.menu {
-   padding-top: 2px;
+.menu.channel-menu {
+   float: right;
+
 }
 
 /*--- forms*/

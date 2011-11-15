@@ -1,17 +1,14 @@
-.menu
-  %strong
-    - if is_top?(@channel)
-      TOP CHANNEL:
-    = link_to @channel.title, @channel
+.menu.channel-menu
+  %strong= @channel.title
   - if logged_in?
     - if current_user.owns?(@channel)
       = link_to 'add video', new_channel_video_path(@channel)
       = link_to 'edit', channel_videos_path(@channel)
     - else
       - if @channel.subscribed_by?(current_user)
-        = link_to 'unsubscribe', unsubscribe_channel_path(@channel)
+        = link_to 'remove', unsubscribe_channel_path(@channel)
       - else
-        = link_to 'subscribe', subscribe_channel_path(@channel)
+        = link_to '+ add', subscribe_channel_path(@channel)
         
   - else
-    = link_to 'subscribe', subscribe_channel_path(@channel)
+    = link_to '+ add', subscribe_channel_path(@channel)

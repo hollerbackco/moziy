@@ -10,14 +10,19 @@
       .container
         .full-col.clearfix
           %h1= link_to "mosey", root_path
-          %nav.menu
-            %ul
-              %li= link_to 'rankings', explore_path
-              - if logged_in?
-                %li= link_to 'logout', logout_path 
-              - else
-                %li= link_to 'login', login_path
-                %li= link_to 'join', register_path
+          - if logged_in?
+            %nav.menu
+              %ul.clearfix
+                - @channel_list.each do |channel|
+                  %li= link_to channel.title, channel
+          / %nav.menu
+          /   %ul
+          /     %li= link_to 'rankings', explore_path
+          /     - if logged_in?
+          /       %li= link_to 'logout', logout_path 
+          /     - else
+          /       %li= link_to 'login', login_path
+          /       %li= link_to 'join', register_path
           - if @channel && !@channel.new_record?
             = render :partial => "channels/menu"
                 

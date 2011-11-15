@@ -1,8 +1,8 @@
 = form_tag login_path, :method => :post do
   .field
-    = label_tag :username
+    = label_tag :username, "Username or Email"
     %br/
-    = text_field_tag :username, "", :placeholder => "Username"
+    = text_field_tag :username, "", :placeholder => "Username or email"
   .field
     = label_tag :password
     %br/

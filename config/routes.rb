@@ -1,6 +1,7 @@
 Puretv::Application.routes.draw do
   
-  root :to => "pages#home"
+  root :to => "channels#index"
+  
   match :explore, :to => "channels#index"
   
   # login
@@ -25,7 +26,7 @@ Puretv::Application.routes.draw do
   resources :channels do
     member do 
       match :subscribe
-      match :unsubscribe
+      match :unsubscribe, :to => "channels#subscribe"
     end
     resources :videos do
       collection do
