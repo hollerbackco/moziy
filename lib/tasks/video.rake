@@ -19,14 +19,14 @@ namespace :video do
         source = ['vimeo', $1, "http://vimeo.com/#{$1}"]
       else
         puts "#{v.id} nofit #{v.body}"
-        break
       end
       
-      if source
+      unless source.nil?
         v.update_attributes(:source_name => source[0], :source_id => source[1], :source_url => source[2])
     
         puts "#{v.id} #{source[0]} #{source[1]} #{source[2]}"
       end
+      
     end
   end
   
