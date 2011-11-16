@@ -22,9 +22,11 @@ namespace :video do
         break
       end
       
-      v.update_attributes(:source_name => source[0], :source_id => source[1], :source_url => source[2])
-      
-      puts "#{v.id} #{source[0]} #{source[1]} #{source[2]}"
+      if source
+        v.update_attributes(:source_name => source[0], :source_id => source[1], :source_url => source[2])
+    
+        puts "#{v.id} #{source[0]} #{source[1]} #{source[2]}"
+      end
     end
   end
   

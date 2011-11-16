@@ -90,6 +90,7 @@ ActiveRecord::Schema.define(:version => 20111115125404) do
     t.datetime "updated_at"
     t.string   "source_name"
     t.string   "source_id"
+    t.string   "source_url"
   end
 
 end
