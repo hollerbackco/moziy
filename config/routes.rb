@@ -32,6 +32,9 @@ Puretv::Application.routes.draw do
       collection do
         put :sort
       end
+      member do
+        get :next
+      end
     end
     resources :subscriptions, :only => [:create, :destroy]
     resources :memberships, :only => [:create, :destroy]

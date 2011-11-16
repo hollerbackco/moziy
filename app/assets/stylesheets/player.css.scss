@@ -1,3 +1,37 @@
+
+
+#header {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  padding: 10px;
+  height: 25px;
+  z-index: 1;
+  background: white;
+  
+  .container {position: relative; padding: 0;}
+  h1 {
+    float: left;
+    font-weight: bold;
+    font-size: 100%;
+    margin: 0;
+    margin-right: 20px;
+    
+    
+    a {
+      text-indent: -9999px;
+      display: block;
+      width: 93px;
+      padding-right: 0;
+      height: 25px;
+      background: image-url('mosey-logo.png');
+    }
+    
+  }
+}
+
+
 #player, .player {
   position: absolute;
   top: 0px;
@@ -14,13 +48,17 @@
   left: 0px;
   width: 400px;
   bottom: 0px;
-  z-index: 1;
 }
 
 #info {
   position: absolute;
+  background: #ffffff;
+  padding: 5px 10px;
   bottom: 0;
   left: 0;
   right: 0;
-  height: 30px;
+
+  .actions {
+    float: right;
+  }
 }

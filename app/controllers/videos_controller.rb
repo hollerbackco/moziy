@@ -62,6 +62,27 @@ class VideosController < ApplicationController
     render :text => true
   end
   
+  
+  def next
+    
+    video_ids = @channel.videos.map do |v|
+      v.id
+    end
+    
+    current_index = video_ids.index params[:id].to_i
+    next_index = (current_index + 1) % @channel.videos.count
+    
+    video = Video.find(video_ids[next_index])
+  
+    re = {
+       :id => video.id,
+       :source_name => video.source_name,
+       :source_id => video.source_id
+      }
+      
+    render :json => re
+  end
+  
   private
     def check_regex(s)
       embedly_re = Regexp.new(/((http:\/\/(.*youtube\.com\/watch.*|.*\.youtube\.com\/v\/.*|youtu\.be\/.*|.*\.youtube\.com\/user\/.*|.*\.youtube\.com\/.*#.*\/.*|m\.youtube\.com\/watch.*|m\.youtube\.com\/index.*|.*\.youtube\.com\/profile.*|.*\.youtube\.com\/view_play_list.*|.*\.youtube\.com\/playlist.*|www\.vimeo\.com\/groups\/.*\/videos\/.*|www\.vimeo\.com\/.*|vimeo\.com\/groups\/.*\/videos\/.*|vimeo\.com\/.*|vimeo\.com\/m\/#\/.*))|(https:\/\/(.*youtube\.com\/watch.*|.*\.youtube\.com\/v\/.*)))/i)

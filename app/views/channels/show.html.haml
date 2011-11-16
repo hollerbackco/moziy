@@ -1,20 +1,19 @@
 #player
-  .player
-    = sanitize @current.body, :tags => %w(embed iframe p), :attributes => %w(src width height frameborder)
-#main-menu
-  .container
-    .full-col.clearfix
-      %h1= link_to "mosey", root_path
-      - if logged_in?
-        %nav.menu
-          %ul.channels
-            - index = 0
-            - @channel_list.each do |c|
-              - if c.has_airings?
-                %li.channel
-                  = link_to "#{c.title}", c, :class => "color#{index % 3}"
-                  %span.nowplaying= "Now Playing: #{c.now_playing.title}"
-                - index += 1
+  #youtube-player.player
+  #vimeo-player.player
+  /= sanitize @current.body, :tags => %w(embed iframe p), :attributes => %w(src width height frameborder)
+#main-menu.clearfix
+  %h1= link_to "mosey", root_path
+  - if logged_in?
+    %nav.menu
+      %ul.channels
+        - index = 0
+        - @channel_list.each do |c|
+          - if c.has_airings?
+            %li.channel
+              = link_to "#{c.title}", c, :class => "color#{index % 3}"
+              %span.nowplaying= "Now Playing: #{c.now_playing.title}"
+            - index += 1
       / %nav.menu
       /   %ul
       /     %li= link_to 'rankings', explore_path
@@ -26,7 +25,7 @@
 #actions
   - if @channel && !@channel.new_record?
     = render :partial => "channels/menu"
-#info
+#info.clearfix
   %strong Now Playing
   = @current.title
   .actions
@@ -37,3 +36,12 @@
   /     .player= sanitize v.body, :tags => %w(embed iframe p), :attributes => %w(src width height frameborder)
   /     .actions
   /       = link_to 'delete', [@channel, v], :method => :delete
+:javascript
+  var App = {};
+  var video = {
+    'id': '#{@current.id}',
+    'source_name': '#{@current.source_name}',
+    'source_id': '#{@current.source_id}'
+  };
+  App.playerManager = new PlayerManager(video, '#{@channel.id}');
+  

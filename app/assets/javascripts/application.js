@@ -9,4 +9,5 @@
 //= require jquery_ujs
 //= require underscore-min
 //= require backbone-min
+//= require jquery.hoverIntent.min
 //= require_tree .

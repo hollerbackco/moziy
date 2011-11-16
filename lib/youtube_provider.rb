@@ -1,0 +1,3 @@
+class YoutubeProvider < VideoProvider
+  
+end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111114094535) do
+ActiveRecord::Schema.define(:version => 20111115125404) do
 
   create_table "airings", :force => true do |t|
     t.integer  "video_id"
@@ -88,6 +88,8 @@ ActiveRecord::Schema.define(:version => 20111114094535) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "source_name"
+    t.string   "source_id"
   end
 
 end
