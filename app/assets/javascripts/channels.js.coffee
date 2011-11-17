@@ -11,11 +11,13 @@ $ ->
       mainMenu: ->
         $("#main-menu").hoverIntent
           over: ->
-            $(".channels").show().addClass("hover")
-          sensitivity: 9
-          timeout: 500
+            $(this).addClass("hover")
+            $(".channels").show()
+          sensitivity: 11
+          timeout: 100
           out: ->
-            $(".channels").hide().removeClass("hover")
+            $(this).removeClass("hover")
+            $(".channels").hide()
             
       channelMenu: ->
         $("#channel-menu").hoverIntent
