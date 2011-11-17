@@ -24,12 +24,12 @@
       /     - else
       /       %li= link_to 'login', login_path
       /       %li= link_to 'join', register_path
-#actions
+
+#info.clearfix
   - if @channel && !@channel.new_record?
     = render :partial => "channels/menu"
-#info.clearfix
   .title
-    %strong Now Playing
+    %strong#channel= @channel.title
     %span#now-playing= @current.title
 :javascript
   $(document).ready(function() {

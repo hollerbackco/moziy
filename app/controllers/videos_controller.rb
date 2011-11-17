@@ -89,8 +89,8 @@ class VideosController < ApplicationController
   
   def next
     
-    video_ids = @channel.videos.map do |v|
-      v.id
+    video_ids = @channel.airings.map do |v|
+      v.video.id
     end
     
     current_index = video_ids.index params[:id].to_i

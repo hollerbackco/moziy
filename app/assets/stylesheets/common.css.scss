@@ -48,11 +48,6 @@ nav {
   }
 }
 
-.menu.channel-menu {
-   float: right;
-
-}
-
 /*--- forms*/
 
 .field {
@@ -110,8 +105,8 @@ nav {
       padding: 2px 5px;
       color: white;
       &.color0 { background: #333;}
-      &.color1 { background: #666;}
-      &.color2 { background: #999;}
+      &.color1 { background: #333;}
+      &.color2 { background: #333;}
       
     }
   }

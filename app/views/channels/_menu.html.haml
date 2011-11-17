@@ -1,14 +1,13 @@
-.menu.channel-menu
-  %strong= @channel.title
+#channel-menu
   - if logged_in?
     - if current_user.owns?(@channel)
-      = link_to 'add video', new_channel_video_path(@channel)
       = link_to 'edit', channel_videos_path(@channel)
     - else
       - if @channel.subscribed_by?(current_user)
-        = link_to 'remove', unsubscribe_channel_path(@channel)
+        = link_to unsubscribe_channel_path(@channel) do
+          &#9996;
       - else
-        = link_to '+ add', subscribe_channel_path(@channel)
+        = link_to '+', subscribe_channel_path(@channel)
         
   - else
-    = link_to '+ add', subscribe_channel_path(@channel)
+    = link_to '+', subscribe_channel_path(@channel)
