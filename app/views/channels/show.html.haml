@@ -1,6 +1,8 @@
 #player
   #youtube-player.player
+    .mask
   #vimeo-player.player
+    .mask
   /= sanitize @current.body, :tags => %w(embed iframe p), :attributes => %w(src width height frameborder)
 #main-menu.clearfix
   %h1= link_to "mosey", root_path
@@ -26,16 +28,9 @@
   - if @channel && !@channel.new_record?
     = render :partial => "channels/menu"
 #info.clearfix
-  %strong Now Playing
-  = @current.title
-  .actions
-    = link_to 'next', channel_path(@channel, :playing => @next_id)
-  / - @channel.videos.each do |v|
-  /   %li
-  /     .title= v.title
-  /     .player= sanitize v.body, :tags => %w(embed iframe p), :attributes => %w(src width height frameborder)
-  /     .actions
-  /       = link_to 'delete', [@channel, v], :method => :delete
+  .title
+    %strong Now Playing
+    %span#now-playing= @current.title
 :javascript
   var App = {};
   var video = {

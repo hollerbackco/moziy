@@ -11,24 +11,35 @@ class VideosController < ApplicationController
 
   # accepts a list of comma separated links
   def create
-    embedly = Embedly::API.new :key => '584b1c340e4811e186fe4040d3dc5c07',
-            :user_agent => 'Mozilla/5.0 (compatible; puretv/1.0; jnoh12388@gmail.com)'
+    
     
     if (videos = params[:links].split(',').map{|r| r.strip.gsub(/\n/,"")}.select{|r| check_regex r }) && videos.length > 0
-      logger.info videos
-      objs = embedly.oembed(
-                :urls => videos,
-                :wmode => 'transparent',
-                :method => 'after',
-                :autoplay => 'true'
-              )
-            
-      objs.each do |o|
+      # embedly = Embedly::API.new :key => '584b1c340e4811e186fe4040d3dc5c07',
+      #         :user_agent => 'Mozilla/5.0 (compatible; puretv/1.0; jnoh12388@gmail.com)'
+      # logger.info videos
+      # objs = embedly.oembed(
+      #           :urls => videos,
+      #           :wmode => 'transparent',
+      #           :method => 'after',
+      #           :autoplay => 'true'
+      #         )
+      #       
+      # objs.each do |o|
+      #   Video.transaction do
+      #     v = Video.create(:title => o.title, :body => o.html, :description => o.description, :owner_id => current_user.id)
+      #     Airing.create(:video => v, :channel => @channel)
+      #   end if o.html
+      # end
+      
+      vp = VideoProvider.new videos
+      
+      vp.get.each do |v_params|
         Video.transaction do
-          v = Video.create(:title => o.title, :body => o.html, :description => o.description, :owner_id => current_user.id)
-          Airing.create(:video => v, :channel => @channel)
-        end if o.html
+          v = Video.create(v_params)
+          Airing.create :video => v, :channel => @channel
+        end if v_params.delete(:success)
       end
+        
       redirect_to @channel
     else
       
@@ -77,7 +88,8 @@ class VideosController < ApplicationController
     re = {
        :id => video.id,
        :source_name => video.source_name,
-       :source_id => video.source_id
+       :source_id => video.source_id,
+       :title => video.title
       }
       
     render :json => re

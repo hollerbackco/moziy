@@ -14,12 +14,10 @@ class YouTubePlayer
       @_hide()
       
   _hide: ->
-    $(@divId).css
-      'display': 'none'
+    $("##{@divId}").css 'display', 'none'
       
   _show: ->
-    $(@divId).css
-      'display': 'block'
+    $("##{@divId}").css 'display', 'block'
     
   play: (video_id) ->
     @state = 1
@@ -82,6 +80,7 @@ class YouTubePlayer
 window.onYouTubePlayerAPIReady = ->
   App.playerManager.youtubePlayer.onAPIReady()
   
+
 class VimeoPlayer
   # @state
     # 0 = stopped
@@ -96,12 +95,10 @@ class VimeoPlayer
       @_hide()
 
   _hide: ->
-    $(@divId).css
-      'display': 'none'
+    $("##{@divId}").css 'display', 'none'
 
   _show: ->
-    $(@divId).css
-      'display': 'block'
+    $("##{@divId}").css 'display', 'block'
 
   play: (video_id) ->
     @state = 1
@@ -110,7 +107,7 @@ class VimeoPlayer
     unless @_player?
       @_bootstrap()
     else
-      @_player.loadVideoById @current_playing_id
+      @_player.api 'loadVideo', @current_playing_id
 
   error: (error) ->
     alert error
@@ -133,37 +130,35 @@ class VimeoPlayer
     App.playerManager.next()
 
   _onReady: ->
-
+    alert 'hello'
   onAPIReady: ->
-    @_player = new YT.Player @divId, {
-      height: '100%',
-      width: '100%',
-      videoId: @current_playing_id,
-      playerVars: 
-        'rel': 0,
-        'controls': 0,
-        'disablekb': 1, 
-        'enablejsapi': 1,
-        'wmode': 'transparent',
-        'autoplay': 1,
-        'showinfo': 0,
-        'modestbranding': 1,
-        'origin': window.location.host
-      events:
-        'onReady': @_onReady,
-        'onStateChange': @_onStateChange,
-        'onError': @_onError
-    }
+    src = "http://player.vimeo.com/video/#{@current_playing_id}?" +
+      "title=0&" +
+      "byline=0&" +
+      "portrait=0&" +
+      "color=000000&" +
+      "autoplay=1&" +
+      "api=1"
+
+    player = $('<iframe>').attr('src', src)
+      .attr('height', '100%')
+      .attr('width', '100%')
+      .attr('frameborder', 0)
+      .load ->
+        self._player = $f(this)
+        self._player.addEvent('ready', self._onReady)
+        self._player.addEvent('finish', self._onEnd)
+        
+    $("##{@divId}").append(player)
 
   _bootstrap: ->
     tag = document.createElement('script')
-    tag.src = "http://www.youtube.com/player_api"
+    tag.src = "/assets/vimeo.min.js"
     firstScriptTag = document.getElementsByTagName('script')[0]
     firstScriptTag.parentNode.insertBefore tag, firstScriptTag
 
-window.onYouTubePlayerAPIReady = ->
-  App.playerManager.youtubePlayer.onAPIReady()
-
+window.onVimeoPlayerAPIReady = ->
+  App.playerManager.vimeoPlayer.onAPIReady()
       
 
 class window.PlayerManager
@@ -192,7 +187,10 @@ class window.PlayerManager
       when 'youtube' then @youtubePlayer.play(video.source_id)
       when 'vimeo' then @vimeoPlayer.play(video.source_id)
       else @next()
-      
+    
+    # set the title
+    @_setNowPlaying video.title
+    
     # hide or show the right players
     @_notifyPlayers()
     
@@ -202,6 +200,9 @@ class window.PlayerManager
   _notifyPlayers: ->
     @youtubePlayer.update()
     @vimeoPlayer.update()
+  
+  _setNowPlaying: (title) ->
+    $("#now-playing").text title
     
   _queue: ->
     
@@ -210,7 +211,6 @@ class window.PlayerManager
     $.ajax
       url: "/channels/#{@channel_id}/videos/#{@current_video.id}/next",
       success: (video) ->
-        console.log video
         self._shiftQueue(video)
     
   _shiftQueue: (video) ->
