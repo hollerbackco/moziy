@@ -8,6 +8,19 @@ class VideosController < ApplicationController
   def new
     @video = Video.new
   end
+  
+  def show
+    video = Video.find(params[:id])
+  
+    re = {
+       :id => video.id,
+       :source_name => video.source_name,
+       :source_id => video.source_id,
+       :title => video.title
+      }
+      
+    render :json => re
+  end
 
   # accepts a list of comma separated links
   def create

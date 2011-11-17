@@ -32,11 +32,11 @@
     %strong Now Playing
     %span#now-playing= @current.title
 :javascript
-  var App = {};
-  var video = {
-    'id': '#{@current.id}',
-    'source_name': '#{@current.source_name}',
-    'source_id': '#{@current.source_id}'
-  };
-  App.playerManager = new PlayerManager(video, '#{@channel.id}');
+  $(document).ready(function() {
+    var cookie_video_id = window.App.cookie.get('channel-' + '#{@channel.id}');
+    $.extend(window.App,{
+      playerManager: new PlayerManager(cookie_video_id == "" ? '#{@current.id}' : cookie_video_id, '#{@channel.id}')
+    })
+  });
+  
   
