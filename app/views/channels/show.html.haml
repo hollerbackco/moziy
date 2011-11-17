@@ -14,7 +14,6 @@
           - if c.has_airings?
             %li.channel
               = link_to "#{c.title}", c, :class => "color#{index % 3}"
-              %span.nowplaying= "Now Playing: #{c.now_playing.title}"
             - index += 1
       / %nav.menu
       /   %ul

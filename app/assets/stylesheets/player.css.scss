@@ -1,4 +1,6 @@
-
+body {
+  overflow: hidden;
+}
 
 #header {
   position: absolute;
@@ -11,24 +13,7 @@
   background: white;
   
   .container {position: relative; padding: 0;}
-  h1 {
-    float: left;
-    font-weight: bold;
-    font-size: 100%;
-    margin: 0;
-    margin-right: 20px;
-    
-    
-    a {
-      text-indent: -9999px;
-      display: block;
-      width: 93px;
-      padding-right: 0;
-      height: 25px;
-      background: image-url('mosey-logo.png');
-    }
-    
-  }
+  
 }
 
 
@@ -53,8 +38,49 @@
   position: absolute;
   top: 0px;
   left: 0px;
-  width: 400px;
+  width: 150px;
   bottom: 0px;
+
+  h1 {
+    float: left;
+    font-weight: bold;
+    font-size: 100%;
+    margin: 0;
+    margin-right: 20px;
+    
+    
+    a {
+      padding: 5px 10px;
+      text-indent: -9999px;
+      display: block;
+      width: 93px;
+      padding-right: 0;
+      height: 25px;
+      background: image-url('mosey-logo.png') rgba(255,255,255, 1) center center no-repeat;
+    }
+    
+  }
+  
+  .channels {
+    display: none;
+    
+    li {
+      float: none;
+      margin: 0;
+      .count {
+        color: #999;
+      }
+      a {
+        display: block;
+        padding: 2px 5px;
+        color: white;
+        &.color0 { background: #333;}
+        &.color1 { background: #333;}
+        &.color2 { background: #333;}
+
+      }
+    }
+  }
 }
 
 #info {
@@ -64,31 +90,38 @@
   left: 0;
   right: 0;
   z-index: 5;
+  overflow: hidden;
   
   .title {
     display: block;
     display: none;
     float: left;
     background: #ffffff;
-    padding: 5px 10px;
+    padding: 3px 10px;
+    height: 19px;
+    margin-left: 10px;
   }
   
   #channel-menu {
     display: block;
     float: left;
+    
     a {
       display: block;
       float: left;
       padding: 0 15px;
       background: white;
       color: black;
-      font-size: 18px;
+      height: 25px;
+      font-size: 16px;
       text-decoration: none;
+      
+      &.hover {
+        background: black;
+        color: white;
+      }
     }
-    a:hover {
-      background: black;
-      color: white;
-    }
+    
   }
 
   .actions {
