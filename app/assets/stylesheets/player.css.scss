@@ -41,6 +41,7 @@
     left: 0px;
     width: 150px;
     bottom: 0px;
+    
 
     .channels-container {
       display: none;
@@ -49,7 +50,8 @@
 
     &.hover {
       background: white;
-
+      border-right: 1px solid #ccc;
+      
       .channels-container {
         display: block;
       }
@@ -57,14 +59,13 @@
 
 
     h1 {
-      float: left;
+      
       font-weight: bold;
       font-size: 100%;
       margin: 5px;
-      
-
 
       a {
+        float: left;
         padding: 5px 10px;
         text-indent: -9999px;
         display: block;
@@ -81,6 +82,15 @@
       font-size: 13px;
       font-weight: bold;
       margin-bottom: 5px;
+    }
+    
+    #new-channel {
+      a {
+        display: block;
+        padding: 10px;
+        background: #333; 
+        color: white;
+      }
     }
 
     .channels {
@@ -155,17 +165,19 @@
 
   #now-playing {
     position: absolute;
-    height: 100px;
+    border-top: 1px solid #ccc;
+    background: #efefef;
+    color: black;
+    height: 45px;
     bottom: 0px;
     left: 0px;
     right: 0px;
+    padding: 10px 0px;
 
     .title {
       font-size: 11px;
       height: 19px;
       margin: 0 10px;
-      color: black;
-      background: white;
     }
 
     #channel-title {font-weight: bold;}
