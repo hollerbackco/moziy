@@ -1,7 +1,5 @@
 #stage {
-  body {
-    overflow: hidden;
-  }
+  overflow: hidden;
 
   #header {
     position: absolute;
@@ -25,6 +23,7 @@
     right: 0px;
     bottom: 0px;
     z-index: 0;
+    overflow:hidden;
   }
 
   .player {
