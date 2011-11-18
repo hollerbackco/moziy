@@ -6,9 +6,9 @@
   /= sanitize @current.body, :tags => %w(embed iframe p), :attributes => %w(src width height frameborder)
 #main-menu.clearfix
   %h1= link_to "mosey", root_path
-  - if logged_in?
-    %nav.menu.channels-container
-      %h2 Channel List
+  %nav.menu.channels-container
+    - if logged_in?
+      %h2 Favorites
       %ul.channels
         - @channel_list.each do |c|
           - if c.has_airings?
@@ -17,15 +17,24 @@
         %li= link_to "find more", root_path
       %h2 My Channels
       %ul.channels
-        - if logged_in?
-          - current_user.channels.each do |c|
-            - if c.has_airings?
-              %li.channel
-                = link_to "#{c.title}", c
-      #now-playing
-        %h2 Now Playing
-        #channel-title.title= @channel.title
-        #video-title.title= truncate(@current.title, :length => 18, :omission => '...')
+        - current_user.channels.each do |c|
+          - if c.has_airings?
+            %li.channel
+              = link_to "#{c.title}", c
+    - else
+      %h2 Top Channels
+      %ul.channels
+        - @top.each do |c|
+          - if c.has_airings?
+            %li.channel
+              = link_to "#{c.title}", c
+      %h2 My Channels
+      %ul.channels
+        %li= link_to "create a channel", new_manage_channel_path
+    #now-playing
+      %h2 Now Playing
+      #channel-title.title= @channel.title
+      #video-title.title= truncate(@current.title, :length => 18, :omission => '...')
 #actions.clearfix
   - if @channel && !@channel.new_record?
     .mark +

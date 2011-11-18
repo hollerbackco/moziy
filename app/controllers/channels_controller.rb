@@ -13,7 +13,11 @@ class ChannelsController < ApplicationController
       redirect_to new_manage_channel_video_path(@channel)
       return
     end
-
+    
+    unless logged_in?
+      @top = Channel.all(:order => "subscriptions_count DESC, updated_at DESC") 
+    end
+    
     @current = params[:playing] ? @channel.airings[params[:playing].to_i].video : @channel.airings.first.video
     @previous_id = (params[:playing].to_i - 1) % @channel.airings.count
     @next_id = (params[:playing].to_i + 1) % @channel.airings.count
