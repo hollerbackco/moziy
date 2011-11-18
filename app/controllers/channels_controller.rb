@@ -1,12 +1,8 @@
 class ChannelsController < ApplicationController
-  before_filter :require_login, :except => [:index, :show]
+  before_filter :require_login, :only => [:subscribe]
   
   def index
     @channels = Channel.all(:order => "subscriptions_count DESC, updated_at DESC")
-  end
-  
-  def new
-    @channel = Channel.new
   end
   
   def show
@@ -14,7 +10,7 @@ class ChannelsController < ApplicationController
     @channel = Channel.includes(:airings => :video).find(params[:id])
     
     unless @channel.airings.count > 0
-      redirect_to new_channel_video_path(@channel)
+      redirect_to new_manage_channel_video_path(@channel)
       return
     end
 
@@ -22,19 +18,26 @@ class ChannelsController < ApplicationController
     @previous_id = (params[:playing].to_i - 1) % @channel.airings.count
     @next_id = (params[:playing].to_i + 1) % @channel.airings.count
     
+    set_title @channel.title
     render :layout => "player"
   end
 
-  def create
-    @channel = Channel.new(params[:channel].merge(:creator => current_user))
+  def show_chromeless
+    @channel = Channel.includes(:airings => :video).find(params[:id])
     
-    if @channel.save
-      redirect_to @channel
-    else
-      render :action => :new
+    unless @channel.airings.count > 0
+      redirect_to new_manage_channel_video_path(@channel)
+      return
     end
-  end
 
+    @current = params[:playing] ? @channel.airings[params[:playing].to_i].video : @channel.airings.first.video
+    @previous_id = (params[:playing].to_i - 1) % @channel.airings.count
+    @next_id = (params[:playing].to_i + 1) % @channel.airings.count
+    
+    set_title @channel.title
+    render :layout => "player"
+  end
+  
   def subscribe
     channel = Channel.find(params[:id])
     
@@ -52,25 +55,6 @@ class ChannelsController < ApplicationController
     end
   end
   
-  
-  def edit
-    @channel = Channel.find(params[:id])
-  end
-
-  def update
-    @channel = Channel.find(params[:id])
-    
-    if @channel.update_attributes(params[:channel])
-      redirect_to edit_channel_path(@channel)
-    else
-      render :action => :edit
-    end
-  end
-
-  def destroy
-    Channel.find(params[:id]).destroy
-    redirect_to :back
-  end
 
   
 end

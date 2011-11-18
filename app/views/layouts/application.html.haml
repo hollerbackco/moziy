@@ -5,32 +5,26 @@
     = stylesheet_link_tag    "application"
     = javascript_include_tag "application"
     = csrf_meta_tags
-  %body{:id => body_id}
+  %body#flipside{:class => body_id}
     %header
-      .container
-        .full-col.clearfix
-          %h1= link_to "mosey", root_path
+      %h1= link_to "mosey", root_path
+      - if logged_in?
+        %nav.menu
+          %ul.clearfix
+            %li{:class => current_page?(explore_path) ? "active" : "" }= link_to "all channels", explore_path
+            %li{:class => current_page?(manage_channels_path) ? "active" : "" }= link_to "manage", manage_channels_path
+            %li{:class => current_page?(new_manage_channel_path) ? "active" : "" }= link_to 'new channel', new_manage_channel_path
+      %nav.session
+        %ul
           - if logged_in?
-            %nav.menu
-              %ul.clearfix
-                - @channel_list.each do |channel|
-                  %li= link_to channel.title, channel
-          / %nav.menu
-          /   %ul
-          /     %li= link_to 'rankings', explore_path
-          /     - if logged_in?
-          /       %li= link_to 'logout', logout_path 
-          /     - else
-          /       %li= link_to 'login', login_path
-          /       %li= link_to 'join', register_path
-          - if @channel && !@channel.new_record?
-            = render :partial => "channels/menu"
-                
-                
-    %section
-      #content
-        .container
-          = yield
+            %li= link_to 'logout', logout_path 
+          - else
+            %li= link_to 'login', login_path
+            %li= link_to 'join', register_path
+      - if @channel && !@channel.new_record?
+        = render :partial => "channels/menu"
+    %section#content
+      = yield
     %footer
       .container
         .full-col

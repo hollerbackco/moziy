@@ -1,58 +1,10 @@
 
 
-header {
-  .container {position: relative; padding: 0;}
-  h1 {
-    float: left;
-    font-weight: bold;
-    font-size: 100%;
-    margin: 0;
-    margin-right: 20px;
-    
-    
-    a {
-      text-indent: -9999px;
-      display: block;
-      width: 93px;
-      padding-right: 0;
-      height: 25px;
-      background: image-url('mosey-logo.png');
-    }
-    
-  }
-}
-
-
-nav {
-  float: left;
-  
-  &.menu {
-   
-  }
-  
-  ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    
-    li {
-      float: left;
-      margin-left: 0px;
-      margin-right: 20px;
-      
-      a {
-        background: none;
-        padding: 0;
-      }
-    }
-  }
-}
-
 /*--- forms*/
 
 .field {
   margin-bottom: 20px;
-  
+
   input[type=text],
   input[type=password],
   input[type=email],
@@ -65,7 +17,7 @@ nav {
     font-size: 13px;
     border: 1px solid #999;
   }
-  
+
   textarea {
     height: 50px;
   }
@@ -78,40 +30,6 @@ nav {
 
 #composer {
   margin-bottom: 20px;
-}
-
-.channels, .videos {
-  padding: 0;
-  
-  li {
-    margin: 0 0 10px 0;
-    list-style: none;
-  }
-  
-  margin-bottom: 20px;
-}
-
-.channels {
-  li {
-    margin: 0;
-    .count {
-      color: #999;
-    }
-    .nowplaying {
-      color: #999;
-    }
-    a {
-      display: inline-block;
-      padding: 2px 5px;
-      color: white;
-      &.color0 { background: #333;}
-      &.color1 { background: #333;}
-      &.color2 { background: #333;}
-      
-    }
-  }
-  
-  
 }
 
 
@@ -127,10 +45,6 @@ nav {
   }
 }
 
-.like {
-  margin-right: 20px;
-  float: left;
-}
 .body {
   overflow: hidden;
 }
@@ -143,7 +57,4 @@ nav {
     font-weight: bold;
   }
 }
-
-
-
 

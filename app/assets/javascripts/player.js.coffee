@@ -209,7 +209,7 @@ class window.PlayerManager
     @vimeoPlayer.update()
   
   _setNowPlaying: (title) ->
-    $("#now-playing").text title
+    $("#video-title").text title
     
   _queue: ->
     

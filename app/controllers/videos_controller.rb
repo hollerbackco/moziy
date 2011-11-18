@@ -1,14 +1,6 @@
 class VideosController < ApplicationController
   before_filter :set_channel
   
-  def index
-    @videos = @channel.videos
-  end
-  
-  def new
-    @video = Video.new
-  end
-  
   def show
     video = Video.find(params[:id])
   
@@ -21,74 +13,9 @@ class VideosController < ApplicationController
       
     render :json => re
   end
-
-  # accepts a list of comma separated links
-  def create
-    
-    
-    if (videos = params[:links].split(',').map{|r| r.strip.gsub(/\n/,"")}.select{|r| check_regex r }) && videos.length > 0
-      # embedly = Embedly::API.new :key => '584b1c340e4811e186fe4040d3dc5c07',
-      #         :user_agent => 'Mozilla/5.0 (compatible; puretv/1.0; jnoh12388@gmail.com)'
-      # logger.info videos
-      # objs = embedly.oembed(
-      #           :urls => videos,
-      #           :wmode => 'transparent',
-      #           :method => 'after',
-      #           :autoplay => 'true'
-      #         )
-      #       
-      # objs.each do |o|
-      #   Video.transaction do
-      #     v = Video.create(:title => o.title, :body => o.html, :description => o.description, :owner_id => current_user.id)
-      #     Airing.create(:video => v, :channel => @channel)
-      #   end if o.html
-      # end
-      
-      vp = VideoProvider.new videos
-      
-      vp.get.each do |v_params|
-        Video.transaction do
-          v = Video.create(v_params)
-          Airing.create :video => v, :channel => @channel
-        end if v_params.delete(:success)
-      end
-        
-      redirect_to @channel
-    else
-      
-      @video = Video.new
-      render 'new'
-    end
-  end
-  
-  def edit
-    @video = Video.find(params[:id])
-  end
-  
-  def update
-    @video = Video.find(params[:id])
-    
-    if @video.update_attributes(params[:video])
-      redirect_to edit_channel_video_path(@channel, @video)
-    else
-      render :action => :edit
-    end
-  end
-  
-  def destroy
-    @video = Video.destroy(params[:id])
-    redirect_to channel_videos_path(@channel)
-  end
-  
-  def sort
-    order = params[:video]
-    Airing.sort(order)
-    render :text => true
-  end
-  
   
   def next
-    
+    logger.info @channel.inspect
     video_ids = @channel.airings.map do |v|
       v.video.id
     end

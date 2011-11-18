@@ -1,150 +1,175 @@
-body {
-  overflow: hidden;
-}
-
-#header {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  padding: 10px;
-  height: 25px;
-  z-index: 5;
-  background: white;
-  
-  .container {position: relative; padding: 0;}
-  
-}
-
-
-#player, .player, .mask {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-  z-index: 0;
-}
-
-.player {
-  display: none;
-}
-
-.mask {
-  z-index: 1;
-}
-
-#main-menu {
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  width: 150px;
-  bottom: 0px;
-  
-  .channels-container {
-    display: none;
+#stage {
+  body {
+    overflow: hidden;
   }
-  
-  
-  &.hover {
+
+  #header {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    padding: 10px;
+    height: 25px;
+    z-index: 5;
     background: white;
-    
+
+    .container {position: relative; padding: 0;}
+
+  }
+
+
+  #player, .player, .mask {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    z-index: 0;
+  }
+
+  .player {
+    display: none;
+  }
+
+  .mask {
+    z-index: 1;
+  }
+
+  #main-menu {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 150px;
+    bottom: 0px;
+
     .channels-container {
-      display: block;
+      display: none;
     }
-  }
 
-  
-  h1 {
-    float: left;
-    font-weight: bold;
-    font-size: 100%;
-    margin: 5px;
-    
-    
-    a {
-      padding: 5px 10px;
-      text-indent: -9999px;
-      display: block;
-      width: 93px;
-      padding-right: 0;
-      height: 23px;
-      background: image-url('mosey-logo.png') transparent center center no-repeat;
-    }
-    
-  }
-  h2 {
-    padding: 0 10px;
-    font-size: 13px;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
-  .channels {
-    margin-bottom: 20px;
-    display: none;
-    
-    li {
-      float: none;
-      margin: 0;
-      .count {
-        color: #999;
-      }
-      a {
+
+    &.hover {
+      background: white;
+
+      .channels-container {
         display: block;
-        padding: 2px 10px;
-        color: #000;
-        &.color0 { background: #333;}
-        &.color1 { background: #333;}
-        &.color2 { background: #333;}
+      }
+    }
 
+
+    h1 {
+      float: left;
+      font-weight: bold;
+      font-size: 100%;
+      margin: 5px;
+
+
+      a {
+        padding: 5px 10px;
+        text-indent: -9999px;
+        display: block;
+        width: 93px;
+        padding-right: 0;
+        height: 23px;
+        background: image-url('mosey-logo.png') transparent center center no-repeat;
+      }
+
+    }
+    h2 {
+      padding: 0 10px;
+      font-size: 13px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .channels {
+      margin-top: 0px;
+      margin-bottom: 20px;
+      padding: 0;
+      display: none;
+
+      li {
+        list-style: none;
+        
+        float: none;
+        margin: 0;
+        .count {
+          color: #999;
+        }
+        a {
+          display: block;
+          padding: 2px 10px;
+          color: #000;
+          font-size: 11px;
+          &.color0 { background: #333;}
+          &.color1 { background: #333;}
+          &.color2 { background: #333;}
+
+        }
       }
     }
   }
-}
 
-#info {
-  position: absolute;
-  
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 5;
-  overflow: hidden;
-  
-  .title {
-    display: block;
-    display: none;
-    float: left;
-    background: #ffffff;
-    padding: 3px 10px;
-    height: 19px;
-    margin-left: 10px;
-  }
-  
-  #channel-menu {
-    display: block;
-    float: left;
-    
+  #actions {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    z-index: 5;
+    text-align: right;
+
+    .mark {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      font-size: 20px;
+      line-height: 20px;
+      padding: 3px 18px;
+      font-weight: bold;
+      color: #999;
+    }
+
+    .buttons {
+      display: none;
+    }
+
     a {
       display: block;
-      float: left;
+      float: right;
       padding: 0 15px;
       background: white;
       color: black;
       height: 25px;
       font-size: 16px;
       text-decoration: none;
-      
+
       &.hover {
         background: black;
         color: white;
       }
     }
-    
+
   }
 
-  .actions {
-    float: right;
+  #now-playing {
+    position: absolute;
+    height: 100px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+
+    .title {
+      font-size: 11px;
+      height: 19px;
+      margin: 0 10px;
+      color: black;
+      background: white;
+    }
+
+    #channel-title {font-weight: bold;}
+    .actions {
+      float: right;
+    }
   }
+  
 }

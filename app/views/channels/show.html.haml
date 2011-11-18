@@ -14,6 +14,7 @@
           - if c.has_airings?
             %li.channel
               = link_to "#{c.title}", c
+        %li= link_to "find more", root_path
       %h2 My Channels
       %ul.channels
         - if logged_in?
@@ -21,22 +22,26 @@
             - if c.has_airings?
               %li.channel
                 = link_to "#{c.title}", c
-        
-      / %nav.menu
-      /   %ul
-      /     %li= link_to 'rankings', explore_path
-      /     - if logged_in?
-      /       %li= link_to 'logout', logout_path 
-      /     - else
-      /       %li= link_to 'login', login_path
-      /       %li= link_to 'join', register_path
-
-#info.clearfix
+      #now-playing
+        %h2 Now Playing
+        #channel-title.title= @channel.title
+        #video-title.title= truncate(@current.title, :length => 18, :omission => '...')
+#actions.clearfix
   - if @channel && !@channel.new_record?
-    = render :partial => "channels/menu"
-  .title
-    %strong#channel= @channel.title
-    %span#now-playing= @current.title
+    .mark +
+    .buttons
+      - if logged_in?
+        - if current_user.owns?(@channel)
+          = link_to 'edit', manage_channel_videos_path(@channel)
+        - else
+          - if @channel.subscribed_by?(current_user)
+            = link_to unsubscribe_channel_path(@channel) do
+              &#9996;
+          - else
+            = link_to '+', subscribe_channel_path(@channel)
+      - else
+        = link_to '+', subscribe_channel_path(@channel)
+  
 :javascript
   $(document).ready(function() {
     var cookie_video_id = window.App.cookie.get('channel-' + '#{@channel.id}');

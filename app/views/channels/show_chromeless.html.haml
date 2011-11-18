@@ -1,0 +1,13 @@
+#player
+  #youtube-player.player
+    .mask
+  #vimeo-player.player
+    .mask
+:javascript
+  $(document).ready(function() {
+    var cookie_video_id = window.App.cookie.get('channel-' + '#{@channel.id}');
+    $.extend(window.App,{
+      playerManager: new PlayerManager(cookie_video_id == "" ? '#{@current.id}' : cookie_video_id, '#{@channel.id}')
+    })
+  });
+  

@@ -1,7 +1,7 @@
 #channel-menu
   - if logged_in?
     - if current_user.owns?(@channel)
-      = link_to 'edit', channel_videos_path(@channel)
+      = link_to 'edit', manage_channel_videos_path(@channel)
     - else
       - if @channel.subscribed_by?(current_user)
         = link_to unsubscribe_channel_path(@channel) do

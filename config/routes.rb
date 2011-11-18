@@ -1,8 +1,20 @@
 Puretv::Application.routes.draw do
   
+  get "videos/new"
+
+  get "videos/create"
+
+  get "videos/edit"
+
+  get "videos/update"
+
+  get "videos/destroy"
+
+  get "videos/show"
+
   root :to => "channels#index"
   
-  match :explore, :to => "channels#index"
+  
   
   # login
   scope :module => :auth do
@@ -18,28 +30,34 @@ Puretv::Application.routes.draw do
         match :confirmation
       end
     end
-    
   end
   
+  # channel management
+  scope "/manage", :module => :manage, :as => :manage do
+    resources :channels do
+      resources :videos do 
+        collection do
+          put :sort
+        end
+      end
+    end
+    
+    resources :memberships, :only => [:create, :destroy]
+  end
   
-  
-  resources :channels do
+  # channel non-management
+  match :explore, :to => "channels#index"
+  resources :channels, :only => [:index, :show] do
     member do 
+      match :chromeless, :to => "channels#show_chromeless"
       match :subscribe
       match :unsubscribe, :to => "channels#subscribe"
     end
-    resources :videos do
-      collection do
-        put :sort
-      end
+    resources :videos, :only => [:show] do
       member do
         get :next
       end
     end
-    resources :subscriptions, :only => [:create, :destroy]
-    resources :memberships, :only => [:create, :destroy]
   end
-  
-  
-  
+
 end

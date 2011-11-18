@@ -13,17 +13,20 @@ $ ->
           over: ->
             $(this).addClass("hover")
             $(".channels").show()
-          sensitivity: 11
+          sensitivity: 12
           timeout: 100
           out: ->
             $(this).removeClass("hover")
             $(".channels").hide()
             
       channelMenu: ->
-        $("#channel-menu").hoverIntent
+        $("#actions").hoverIntent
           over: ->
-            $("#info .title").show().addClass("hover")
-          timeout: 500
+            $(".buttons", this).show().addClass("hover")
+            $(".mark", this).hide()
+          sensitivity: 13
+          timeout: 100
           out: ->
-            $("#info .title").hide().removeClass("hover")
+            $(".buttons", this).hide().removeClass("hover")
+            $(".mark", this).show()
   window.App.effects.instantiate()

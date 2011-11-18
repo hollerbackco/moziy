@@ -1,5 +1,5 @@
 .full-col
-  = form_for @channel do |f|
+  = form_for ['manage', @channel] do |f|
     .field
       = f.label :title
       = f.text_field :title

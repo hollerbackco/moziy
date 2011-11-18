@@ -20,5 +20,9 @@ class Channel < ActiveRecord::Base
     airings.count > 0
   end
   
+  def favorited?(user)
+    ! subscriptions.find(:first, :conditions => [ "user_id = ?", user.id]).nil?
+  end
+  
 
 end

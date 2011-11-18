@@ -4,7 +4,7 @@ module ApplicationHelper
     base_title = t 'common.title_prefix'
     page_title = @title[0] ? t(@title[1]) : @title[1]
     separator  = t 'common.title_separator'
-    "#{base_title}#{separator}#{page_title}"
+    "#{page_title}#{separator}#{base_title}"
   end
   
   def body_id
