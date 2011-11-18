@@ -1,21 +1,7 @@
 Puretv::Application.routes.draw do
   
-  get "videos/new"
-
-  get "videos/create"
-
-  get "videos/edit"
-
-  get "videos/update"
-
-  get "videos/destroy"
-
-  get "videos/show"
-
   root :to => "channels#index"
-  
-  
-  
+    
   # login
   scope :module => :auth do
     get   :login,   :to => "sessions#new"

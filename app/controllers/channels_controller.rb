@@ -2,7 +2,18 @@ class ChannelsController < ApplicationController
   before_filter :require_login, :only => [:subscribe]
   
   def index
-    @channels = Channel.all(:order => "subscriptions_count DESC, updated_at DESC")
+    case params[:sort]
+    when nil
+      @channels = Channel.all(:order => "subscriptions_count DESC, updated_at DESC")
+    when 'tastemakers'
+      @channels = Channel.all
+    when 'favorites'
+      if logged_in?
+        @channels = current_user.channels
+      else
+        @channels = Channel.all(:order => "subscriptions_count DESC, updated_at DESC")
+      end
+    end
   end
   
   def show

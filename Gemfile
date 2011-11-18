@@ -13,6 +13,8 @@ gem 'jquery-rails'
 
 gem 'embedly'
 
+gem 'state_machine'
+
 # Authentication
 gem 'sorcery'
 

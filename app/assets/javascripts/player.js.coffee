@@ -190,19 +190,26 @@ class window.PlayerManager
     # set the current video
     @current_video = video
     
-    switch video.source_name
-      when 'youtube' then @youtubePlayer.play(video.source_id)
-      when 'vimeo' then @vimeoPlayer.play(video.source_id)
-      else @next()
-    
-    # set the title
-    @_setNowPlaying video.title
-    
-    # hide or show the right players
-    @_notifyPlayers()
-    
     # queue up the next next video
     @_queue()
+    
+    try
+      switch video.source_name
+        when 'youtube' then @youtubePlayer.play(video.source_id)
+        when 'vimeo' then @vimeoPlayer.play(video.source_id)
+        else @next()
+    catch
+      @next()
+    finally
+      # set the title
+      @_setNowPlaying video.title
+    
+      # hide or show the right players
+      @_notifyPlayers()
+    
+    
+  
+  _skip: ->
 
   _notifyPlayers: ->
     @youtubePlayer.update()

@@ -1,8 +1,8 @@
 #channel-list
   %ul#secondary-menu.clearfix
     %li= link_to "# of watchers", root_path
-    %li= link_to "tastemakers", root_path
-    %li= link_to "favorites", root_path
+    %li= link_to "tastemakers", root_path(:sort => "tastemakers")
+    %li= link_to "favorites", root_path(:sort => "favorites")
   %ul.channels
     - index = 0
     - @channels.each do |c|
