@@ -1,5 +1,5 @@
 .full-col
-  = form_for ['manage', @channel, @video], :url => channel_videos_path(@channel) do |f|
+  = form_for ['manage', @channel, @video] do |f|
     .field
       %strong Add Videos
       = label_tag :links, 'Enter a comma separated list of links'
