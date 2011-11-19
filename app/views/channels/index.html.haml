@@ -10,6 +10,7 @@
         - if c.has_airings?
           %li.channel{:class => "color#{index % 2 }"}
             %span.count= "+#{c.subscriptions.count}"
+            .cover_art= image_tag(@channel.cover_art_url(:thumb_list)) if @channel.cover_art?
             = link_to "#{c.title}", c
             - if logged_in?
               - if current_user.owns?(c)
