@@ -169,7 +169,7 @@ class window.PlayerManager
     @_playFromId @starting_video_id
 
 
-  next: ->
+  next: =>
     # todo: what happens if the queue fails
     @_play @next_video
 
@@ -186,7 +186,7 @@ class window.PlayerManager
         self._play video
         
     
-  _play: (video) ->
+  _play: (video) =>
     # set the current video
     @current_video = video
     self = this
@@ -225,7 +225,7 @@ class window.PlayerManager
       url: "/channels/#{@channel_id}/videos/#{@current_video.id}/next",
       success: (video) ->
         self._shiftQueue(video)
-        callback()
+        callback() if callback?
     
   _shiftQueue: (video) ->
     @next_video = video
