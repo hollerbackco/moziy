@@ -5,6 +5,10 @@
     %br
     = f.text_field :title
   .field
+    = f.label :description
+    %br
+    = f.text_area :description
+  .field
     = image_tag(@channel.cover_art_url(:thumb_player)) if @channel.cover_art?
     %br
     = f.label :cover_art
