@@ -1,4 +1,18 @@
 
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+
+::-webkit-scrollbar-track-piece {
+  background-color: #eee;
+  -webkit-border-radius: 0;
+  -webkit-border-bottom-right-radius: 8px;
+  -webkit-border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px 8px;
+  border-bottom-left-radius: 8px 8px;
+}
+
 /*--- forms*/
 
 .field {

@@ -4,6 +4,10 @@
     = f.label :title
     %br
     = f.text_field :title
+  .field
+    = f.label :cover_art
+    = f.file_field :cover_art
+    = f.hidden_field :cover_art_cache
   .actions
     = f.submit
     - unless f.object.new_record?

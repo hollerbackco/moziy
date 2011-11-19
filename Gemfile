@@ -15,6 +15,14 @@ gem 'embedly'
 
 gem 'state_machine'
 
+
+# Image Uploader
+gem 'mini_magick'
+gem 'fog'
+gem 'carrierwave'
+
+gem 'kaminari' #paginate
+
 # Authentication
 gem 'sorcery'
 
