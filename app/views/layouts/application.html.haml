@@ -21,8 +21,6 @@
           - else
             %li= link_to 'login', login_path
             %li= link_to 'join', register_path
-      - if @channel && !@channel.new_record?
-        = render :partial => "channels/menu"
     %section#content
       = yield
     %footer
