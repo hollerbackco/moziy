@@ -151,6 +151,7 @@
       
       a {
         color: white;
+        margin-right: 15px;
       }
      }
      
@@ -190,6 +191,7 @@
           overflow: hidden;
           
           .title { font-weight:bold;}
+          .description {color: #666;}
           .user {color: #999; font-weight: 300;}
           
         }
@@ -210,10 +212,6 @@
         
         .star {
           float: right;
-        }
-        
-        a {
-          padding: 2px 5px;
         }
       }
     }
