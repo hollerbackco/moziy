@@ -8,7 +8,7 @@
   %h1.clearfix= link_to "mosey", root_path
   
   %nav.menu.channels-container
-    
+    #new-channel= link_to "create a channel", new_manage_channel_path
     - if logged_in?
       %h2 Favorites
       %ul.channels
@@ -24,7 +24,6 @@
             %li.channel
               = link_to "#{c.title}", c
     - else
-      #new-channel= link_to "create a channel", new_manage_channel_path
       %h2 Top Channels
       %ul.channels
         - @top.each do |c|
