@@ -1,11 +1,12 @@
 
 ::-webkit-scrollbar {
+  background-color: #eee;
   width: 9px;
   height: 9px;
 }
 
 ::-webkit-scrollbar-track-piece {
-  background-color: #eee;
+  background-color: #efefef;
   -webkit-border-radius: 0;
   -webkit-border-bottom-right-radius: 8px;
   -webkit-border-bottom-left-radius: 8px;
