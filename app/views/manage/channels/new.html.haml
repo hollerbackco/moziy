@@ -1,5 +1,6 @@
 .full-col
   = form_for ['manage', @channel] do |f|
+    = render "common/errors", :object => f.object
     .field
       = f.label :title
       = f.text_field :title
