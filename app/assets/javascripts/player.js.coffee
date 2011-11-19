@@ -206,9 +206,9 @@ class window.PlayerManager
           @_queue()
           
         #when 'vimeo' then @vimeoPlayer.play(video.source_id)
-        else @queue self.next
+        else @_queue self.next
     catch error
-      @queue self.next
+      @_queue self.next
       
   _notifyPlayers: ->
     @youtubePlayer.update()
