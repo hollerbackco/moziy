@@ -2,7 +2,8 @@
 %html
   %head
     %title= title
-    = stylesheet_link_tag    "application"
+    %link{ :rel => "shortcut icon", :href => "/assets/fallback/thumb_favicon_default.jpg", :type => "image/x-icon"}
+    = stylesheet_link_tag "application"
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body#flipside{:class => body_id}

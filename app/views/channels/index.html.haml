@@ -9,7 +9,7 @@
       - @channels.each do |c|
         - if c.has_airings?
           %li.channel.clearfix{:class => "color#{index % 2 }"}
-            .coverart= image_tag(c.cover_art_url(:thumb_list)) if c.cover_art?
+            .coverart= image_tag(c.cover_art_url(:thumb_list))
             .content
               .title
                 = link_to "#{c.title}", c

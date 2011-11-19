@@ -17,7 +17,7 @@ class CoverArtUploader < CarrierWave::Uploader::Base
   end
   
   def default_url
-    "/assets/fallback/" + [version_name, "default.png"].compact.join('_')
+    "/assets/fallback/" + [version_name, "default.jpg"].compact.join('_')
   end
   
 
