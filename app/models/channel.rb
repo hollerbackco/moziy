@@ -24,5 +24,9 @@ class Channel < ActiveRecord::Base
     ! subscriptions.find(:first, :conditions => [ "user_id = ?", user.id]).nil?
   end
   
+  def subscribed_by(user)
+    Subscription.create()
+  end
+  
 
 end

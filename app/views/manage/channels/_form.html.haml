@@ -2,6 +2,10 @@
   = render "common/errors", :object => f.object
   .field
     = f.label :title
+    %br
     = f.text_field :title
   .actions
-    = f.submit 
+    = f.submit
+    - unless f.object.new_record?
+      = link_to 'cancel', manage_channel_videos_path(@channel)
+      = link_to 'delete', manage_channel_videos_path(@channel), :method => :delete, :confirm => "Are you sure?"

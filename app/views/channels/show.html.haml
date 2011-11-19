@@ -8,16 +8,15 @@
   %h1.clearfix= link_to "mosey", root_path
   
   %nav.menu.channels-container
-    #new-channel= link_to "create a channel", new_manage_channel_path
+    #new-channel.main-action= link_to "build a channel", new_manage_channel_path
     - if logged_in?
-      %h2 Favorites
+      %h2 My Channels
       %ul.channels
         - @channel_list.each do |c|
           - if c.has_airings?
             %li.channel
               = link_to "#{c.title}", c
         %li= link_to "find more", root_path
-      %h2 My Channels
       %ul.channels
         - current_user.channels.each do |c|
           - if c.has_airings?

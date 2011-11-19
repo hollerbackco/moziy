@@ -13,7 +13,7 @@
           %ul.clearfix
             %li{:class => current_page?(explore_path) ? "active" : "" }= link_to "all channels", explore_path
             %li{:class => current_page?(manage_channels_path) ? "active" : "" }= link_to "manage", manage_channels_path
-            %li{:class => current_page?(new_manage_channel_path) ? "active" : "" }= link_to 'new channel', new_manage_channel_path
+            %li{:class => current_page?(new_manage_channel_path) ? "active" : "" }= link_to 'build a channel', new_manage_channel_path
       %nav.session
         %ul
           - if logged_in?

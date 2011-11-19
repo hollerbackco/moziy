@@ -1,16 +1,22 @@
-.full-col
-  = form_for ['manage', @channel, @video] do |f|
-    .field
-      = f.label :title
-      %br
-      = f.text_field :title
-    .field
-      = f.label :body
-      %br
-      = f.text_area :body
-    .field
-      = f.label :description
-      %br
-      = f.text_area :description
-    .actions
-      = f.submit
+#video-manage
+  #viewer
+  #main-content
+    %ul#secondary-menu.clearfix
+      %li= link_to 'videos', manage_channel_videos_path(@channel)
+      %li= link_to 'add', new_manage_channel_video_path(@channel)
+      %li= link_to 'settings', edit_manage_channel_path(@channel)
+    = form_for ['manage', @channel, @video] do |f|
+      .field
+        = f.label :title
+        %br
+        = f.text_field :title
+      .field
+        = f.label :body
+        %br
+        = f.text_area :body
+      .field
+        = f.label :description
+        %br
+        = f.text_area :description
+      .actions
+        = f.submit
