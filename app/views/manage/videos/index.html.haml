@@ -2,7 +2,6 @@
   %ul#secondary-menu.clearfix
     %li= link_to 'add videos', new_manage_channel_video_path(@channel)
     %li= link_to 'settings', edit_manage_channel_path(@channel)
-  %br
   %ul.videos
     - @channel.airings.each do |a|
       %li.video{:id => "video_#{a.video_id.to_s}"}
