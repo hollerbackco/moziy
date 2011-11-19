@@ -5,30 +5,30 @@
     .mask
   /= sanitize @current.body, :tags => %w(embed iframe p), :attributes => %w(src width height frameborder)
 #main-menu.clearfix
-  %h1.clearfix= link_to "mosey", root_path
-  
-  %nav.menu.channels-container
+  %h1#mosey.clearfix= link_to "mosey", root_path
+  %nav.menu
     #new-channel.main-action= link_to "build a channel", new_manage_channel_path
-    - if logged_in?
-      %h2 My Channels
-      %ul.channels
-        - @channel_list.each do |c|
-          - if c.has_airings?
-            %li.channel
-              = link_to "#{c.title}", c
-        %li= link_to "find more", root_path
-      %ul.channels
-        - current_user.channels.each do |c|
-          - if c.has_airings?
-            %li.channel
-              = link_to "#{c.title}", c
-    - else
-      %h2 Top Channels
-      %ul.channels
-        - @top.each do |c|
-          - if c.has_airings?
-            %li.channel
-              = link_to "#{c.title}", c
+    #channels-container
+      - if logged_in?
+        %h2 My Channels
+        %ul.channels
+          - @channel_list.each do |c|
+            - if c.has_airings?
+              %li.channel
+                = link_to "#{c.title}", c
+          %li= link_to "find more", root_path
+        %ul.channels
+          - current_user.channels.each do |c|
+            - if c.has_airings?
+              %li.channel
+                = link_to "#{c.title}", c
+      - else
+        %h2 Top Channels
+        %ul.channels
+          - @top.each do |c|
+            - if c.has_airings?
+              %li.channel
+                = link_to "#{c.title}", c
     #now-playing
       #coverart= image_tag(@channel.cover_art_url(:thumb_player))
       #channel-info

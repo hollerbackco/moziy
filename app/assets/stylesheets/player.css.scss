@@ -41,24 +41,8 @@
     width: 175px;
     bottom: 0px;
     
-
-    .channels-container {
-      display: none;
-    }
-
-
-    &.hover {
-      background: white;
-      border-right: 1px solid #ccc;
-      
-      .channels-container {
-        display: block;
-      }
-    }
-
-
-    h1 {
-      
+    
+    #mosey {
       font-weight: bold;
       font-size: 100%;
       margin: 5px;
@@ -75,6 +59,33 @@
       }
 
     }
+    
+    
+    nav.menu {
+      display: none;
+    }
+
+    
+    #channels-container {
+      position: absolute;
+      top: 77px;
+      left: 0;
+      right: 0;
+      bottom: 220px;
+      overflow-y:scroll;
+    }
+    
+    &.hover {
+      background: white;
+      border-right: 1px solid #ccc;
+      
+      nav.menu {
+        display: block;
+      }
+    }
+
+
+    
     h2 {
       clear: both;
       padding: 0 10px;
@@ -105,9 +116,11 @@
         
         float: none;
         margin: 0;
+        
         .count {
           color: #999;
         }
+        
         a {
           display: block;
           padding: 2px 10px;
@@ -178,6 +191,7 @@
       left: 0;
       right: 0;
       height: 175px;
+      border-top: 1px solid #ccc;
     }
     
     #channel-info {
