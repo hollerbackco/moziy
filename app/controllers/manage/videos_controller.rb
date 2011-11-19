@@ -24,7 +24,7 @@ class Manage::VideosController < ApplicationController
         end if v_params.delete(:success)
       end
         
-      redirect_to show_manage_channel_path(@channel)
+      redirect_to manage_channel_path(@channel)
     else
       
       @video = Video.new
