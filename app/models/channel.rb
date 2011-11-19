@@ -30,5 +30,14 @@ class Channel < ActiveRecord::Base
     Subscription.create()
   end
   
+  def gen_random_string
+    if random_string.nil?
+      chars = ("a".."z").to_a + ("A".."Z").to_a + ("0".."9").to_a
+      string = ""
+      1.upto(10) { |i| string << chars[rand(chars.size-1)] }
+      self.random_string = string
+    end
+    random_string
+  end
 
 end
