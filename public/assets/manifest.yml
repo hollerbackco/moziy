@@ -1,4 +1,8 @@
 ---
+fallback/default.jpg: fallback/default-a5fcd7e51608f0837c1ac8712c0d295f.jpg
+fallback/thumb_favicon_default.jpg: fallback/thumb_favicon_default-74e3b538f0736369d323378c21515323.jpg
+fallback/thumb_list_default.jpg: fallback/thumb_list_default-8032018cb4631b7322830b8c691094cc.jpg
+fallback/thumb_player_default.jpg: fallback/thumb_player_default-69e2f9a47290295c819b308c1f777061.jpg
 mosey-logo.png: mosey-logo-ef8663683ad8cab9f1ace03524c81389.png
 rails.png: rails-e4b51606cd77fda2615e7439907bfc92.png
 application.js: application-80059be21e977792244efd587f17b556.js
