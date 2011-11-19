@@ -16,4 +16,4 @@ stage:
 production:
   aws_access_key: AKIAJ4QHZ36HNIK4F76A
   aws_secret: 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
-  s3_bucket_name: mosey.production
+  s3_bucket_name: mosey

@@ -8,10 +8,10 @@
       - index = 0
       - @channels.each do |c|
         - if c.has_airings?
-          %li.channel{:class => "color#{index % 2 }"}
-            %span.count= "+#{c.subscriptions.count}"
-            .cover_art= image_tag(c.cover_art_url(:thumb_list)) if c.cover_art?
+          %li.channel.clearfix{:class => "color#{index % 2 }"}
+            .coverart= image_tag(c.cover_art_url(:thumb_list)) if c.cover_art?
             = link_to "#{c.title}", c
+            %span.count= "+#{c.subscriptions.count}"
             - if logged_in?
               - if current_user.owns?(c)
                 .star mine
