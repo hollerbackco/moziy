@@ -189,28 +189,27 @@ class window.PlayerManager
   _play: (video) ->
     # set the current video
     @current_video = video
-    
-    # queue up the next next video
-    @_queue()
+    self = this
     
     try
       switch video.source_name
-        when 'youtube' then @youtubePlayer.play(video.source_id)
-        when 'vimeo' then @vimeoPlayer.play(video.source_id)
-        else @next()
-    catch
-      @next()
-    finally
-      # set the title
-      @_setNowPlaying video.title
-    
-      # hide or show the right players
-      @_notifyPlayers()
-    
-    
-  
-  _skip: ->
+        when 'youtube'
+          @youtubePlayer.play(video.source_id)
+          
+          # set the title
+          @_setNowPlaying video.title
 
+          # hide or show the right players
+          @_notifyPlayers()
+          
+          # queue up the next next video
+          @_queue()
+          
+        #when 'vimeo' then @vimeoPlayer.play(video.source_id)
+        else @queue self.next
+    catch error
+      @queue self.next
+      
   _notifyPlayers: ->
     @youtubePlayer.update()
     @vimeoPlayer.update()
@@ -218,7 +217,7 @@ class window.PlayerManager
   _setNowPlaying: (title) ->
     $("#video-title").text title
     
-  _queue: ->
+  _queue: (callback) ->
     
     self = this
     
@@ -226,6 +225,7 @@ class window.PlayerManager
       url: "/channels/#{@channel_id}/videos/#{@current_video.id}/next",
       success: (video) ->
         self._shiftQueue(video)
+        callback()
     
   _shiftQueue: (video) ->
     @next_video = video
