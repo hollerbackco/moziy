@@ -179,8 +179,18 @@
         &:hover {
          background: #efefef; 
         }
+        
         .coverart {
+          width: 48px;
+          height: 48px;
           float: left;
+          padding-right: 10px;
+        }
+        .content {
+          
+          .title { font-weight:bold;}
+          .user {color: #999; font-weight: 300;}
+          
         }
         .count {
           color: #999;
