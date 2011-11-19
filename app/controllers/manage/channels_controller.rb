@@ -10,14 +10,14 @@ class Manage::ChannelsController < ApplicationController
   end
   
   def show
-    @channel = Channel.includes(:airings => :video).find(params[:id])
+    @channel = Channel.find(params[:id])
   end
 
   def create
     @channel = Channel.new(params[:channel].merge(:creator => current_user))
     
     if @channel.save
-      redirect_to new_manage_channel_videos_path(@channel)
+      redirect_to new_manage_channel_video_path(@channel)
     else
       render :action => :new
     end
