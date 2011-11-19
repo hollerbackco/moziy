@@ -166,15 +166,30 @@
 
   #now-playing {
     position: absolute;
-    border-top: 1px solid #ccc;
-    background: #efefef;
     color: black;
-    height: 45px;
+    height: 220px;
     bottom: 0px;
     left: 0px;
     right: 0px;
-    padding: 10px 0px;
-
+  
+    #coverart {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 175px;
+    }
+    
+    #channel-info {
+      position: absolute;
+      border-top: 1px solid #ccc;
+      background: #efefef;
+      height: 45px;
+      bottom: 0px;
+      left: 0px;
+      right: 0px;
+      padding: 10px 0px;
+    }
     .title {
       font-size: 11px;
       height: 19px;
@@ -182,9 +197,6 @@
     }
 
     #channel-title {font-weight: bold;}
-    .actions {
-      float: right;
-    }
   }
   
 }

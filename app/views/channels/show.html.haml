@@ -30,8 +30,10 @@
             %li.channel
               = link_to "#{c.title}", c
     #now-playing
-      #channel-title.title= truncate(@channel.title, :length => 20, :omission => '...')
-      #video-title.title= truncate(@current.title, :length => 18, :omission => '...')
+      #coverart= image_tag(@channel.cover_art_url(:thumb_player))
+      #channel-info
+        #channel-title.title= truncate(@channel.title, :length => 20, :omission => '...')
+        #video-title.title= truncate(@current.title, :length => 18, :omission => '...')
 #actions.clearfix
   - if @channel && !@channel.new_record?
     .mark +
