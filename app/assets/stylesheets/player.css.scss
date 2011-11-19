@@ -1,6 +1,20 @@
 #stage {
   overflow: hidden;
 
+  ::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+  }
+  
+  ::-webkit-scrollbar-track-piece {
+    background-color: #FAFAFA;
+    -webkit-border-radius: 0;
+    -webkit-border-bottom-right-radius: 8px;
+    -webkit-border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px 8px;
+    border-bottom-left-radius: 8px 8px;
+  }
+  
   #header {
     position: absolute;
     top: 0px;
@@ -38,7 +52,7 @@
     position: absolute;
     top: 0px;
     left: 0px;
-    width: 150px;
+    width: 175px;
     bottom: 0px;
     
 
