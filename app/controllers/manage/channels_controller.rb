@@ -17,7 +17,7 @@ class Manage::ChannelsController < ApplicationController
     @channel = Channel.new(params[:channel].merge(:creator => current_user))
     
     if @channel.save
-      redirect_to show_manage_channel_path(@channel)
+      redirect_to manage_channel_path(@channel)
     else
       render :action => :new
     end
