@@ -13,13 +13,14 @@ class CoverArtUploader < CarrierWave::Uploader::Base
   end
 
   def filename
-    model.gen_random_string + model.id.to_s + File.extname(@filename) if @filename
+    model.gen_random_string + File.extname(@filename) if @filename
   end
   
   def default_url
     "/assets/fallback/" + [version_name, "default.png"].compact.join('_')
   end
-   
+  
+
   process :convert => 'jpg'
   process :resize_to_fill => [512,512]
   
