@@ -4,7 +4,7 @@
       = f.label :title
       %br
       = f.text_field :title
-    .actions
-      = f.submit
-      = link_to 'cancel', manage_channel_path(@channel)
-      = link_to 'delete', manage_channel_path(@channel), :method => :delete, :confirm => "Are you sure?"
+  .actions
+    = f.submit
+    = link_to 'cancel', manage_channel_path(@channel)
+    = link_to 'delete', manage_channel_path(@channel), :method => :delete, :confirm => "Are you sure?"
