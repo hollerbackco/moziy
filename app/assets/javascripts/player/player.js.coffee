@@ -159,7 +159,7 @@ class VimeoPlayer
 
 window.onVimeoPlayerAPIReady = ->
   App.playerManager.vimeoPlayer.onAPIReady()
-      
+
 
 class window.PlayerManager
   youtubePlayer: new YouTubePlayer('youtube-player')  
@@ -172,8 +172,13 @@ class window.PlayerManager
   next: =>
     # todo: what happens if the queue fails
     @_play @next_video
-
-  
+    
+  getCurrentChannelID: ->
+    @channel_id
+    
+  getCurrentVideoID: ->
+    @current_video.id
+    
   _isNew: (video) ->
     @next_video.id != video.id
   

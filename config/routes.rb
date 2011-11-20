@@ -21,6 +21,7 @@ Puretv::Application.routes.draw do
   # channel management
   scope "/manage", :module => :manage, :as => :manage do
     resources :channels do
+      resources :airings, :only => [:create, :destroy]
       resources :videos do 
         collection do
           put :sort

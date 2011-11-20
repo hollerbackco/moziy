@@ -21,7 +21,9 @@ class VideosController < ApplicationController
     end
     
     current_index = video_ids.index params[:id].to_i
-    next_index = (current_index + 1) % @channel.videos.count
+    
+    logger.info "current_indx #{current_index}"
+    next_index = current_index ? ((current_index + 1) % @channel.videos.count) : 0
     
     video = Video.find(video_ids[next_index])
   

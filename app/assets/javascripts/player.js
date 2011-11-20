@@ -9,4 +9,4 @@
 //= require jquery_ujs
 //= require jquery.hoverIntent.min
 //= require cookie
-//= require_tree .
+//= require_tree ./player

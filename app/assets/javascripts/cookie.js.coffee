@@ -3,7 +3,6 @@ if typeof(window.App) == "undefined" then window.App = {}
 $.extend window.App, 
   cookie: 
     set: (name, value, expiredays) ->
-      console.log("#{name} = #{value}")
       expiration = new Date()
       expiration.setDate expiration.getDate() + expiredays
       document.cookie = name + "=" + escape(value) +

@@ -18,7 +18,7 @@ class ChannelsController < ApplicationController
   
   def show
     
-    @channel = Channel.includes(:airings => :video).find(params[:id])
+    @channel = Channel.find(params[:id])
     
     unless @channel.airings.count > 0
       redirect_to new_manage_channel_video_path(@channel)
@@ -38,7 +38,7 @@ class ChannelsController < ApplicationController
   end
 
   def show_chromeless
-    @channel = Channel.includes(:airings => :video).find(params[:id])
+    @channel = Channel.find(params[:id])
     
     unless @channel.airings.count > 0
       redirect_to new_manage_channel_video_path(@channel)

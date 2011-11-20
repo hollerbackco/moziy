@@ -39,6 +39,10 @@
     .mark +
     .buttons
       - if logged_in?
+        - current_user.channels.each do |c|
+          %li.channel.reair{"data-channel-id" => c.id.to_s}
+            = link_to "#{c.title}", c
+      - if logged_in?
         - if current_user.owns?(@channel)
           = link_to 'edit', manage_channel_videos_path(@channel)
         - else
@@ -53,6 +57,7 @@
 :javascript
   $(document).ready(function() {
     var cookie_video_id = window.App.cookie.get('channel-' + '#{@channel.id}');
+    console.log(cookie_video_id)
     $.extend(window.App,{
       playerManager: new PlayerManager(cookie_video_id == "" ? '#{@current.id}' : cookie_video_id, '#{@channel.id}')
     })
