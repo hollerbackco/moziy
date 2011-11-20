@@ -4,14 +4,14 @@ class ChannelsController < ApplicationController
   def index
     case params[:sort]
     when nil
-      @channels = Channel.all(:order => "subscriptions_count DESC, updated_at DESC")
+      @channels = Channel.publik.all(:order => "subscriptions_count DESC, updated_at DESC")
     when 'tastemakers'
-      @channels = Channel.all
+      @channels = Channel.publik
     when 'favorites'
       if logged_in?
         @channels = current_user.channels
       else
-        @channels = Channel.all(:order => "subscriptions_count DESC, updated_at DESC")
+        @channels = Channel.publik.all(:order => "subscriptions_count DESC, updated_at DESC")
       end
     end
   end
@@ -26,7 +26,7 @@ class ChannelsController < ApplicationController
     end
     
     unless logged_in?
-      @top = Channel.all(:order => "subscriptions_count DESC, updated_at DESC") 
+      @top = Channel.publik.all(:order => "subscriptions_count DESC, updated_at DESC") 
     end
     
     @current = params[:playing] ? @channel.airings[params[:playing].to_i].video : @channel.airings.first.video

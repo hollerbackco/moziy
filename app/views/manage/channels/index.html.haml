@@ -1,6 +1,9 @@
 #channel-manage
   #main-content.channel-list.list
     %ul.channels
+      - if current_user.facebook_channel?
+        %li.channel.facebook-channel= link_to "facebook channel", manage_channel_videos_path(current_user.facebook_channel)
+        
       - index = 0
       - @channels.each do |c|
         - if c.has_airings?
