@@ -218,13 +218,13 @@ Rails.application.config.sorcery.configure do |config|
 
   config.twitter.key = "kdS4VwxPOmL64MgX2qpHnw"
   config.twitter.secret = "O2W0a3sJnDX4s4p3orDxEsDcYfQ77Nj6IFrJrkDY2x8"
-  config.twitter.callback_url = "http://lvh.me:3000/oauth/callback?provider=twitter"
+  config.twitter.callback_url = "http://outlaw.mosey.tv/oauth/callback?provider=twitter"
   config.twitter.user_info_mapping = {:username => "screen_name"}
 
   config.facebook.key = "304863259537484"
   config.facebook.secret = "30e8702ae5e99484e998cbcfc840eff0"
   config.facebook.scope = "email,read_stream,publish_stream"
-  config.facebook.callback_url = "http://lvh.me:3000/oauth/callback?provider=facebook"
+  config.facebook.callback_url = "http://outlaw.mosey.tv/oauth/callback?provider=facebook"
   config.facebook.user_info_mapping = {:username => "username", :token => "access_token"}
     
   # This line must come after the 'user config' block.
