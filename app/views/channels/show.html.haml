@@ -15,20 +15,20 @@
           - @channel_list.each do |c|
             - if c.has_airings?
               %li.channel
-                = link_to "#{c.title}", c
+                = link_to "#{c.title}", channel_path(c)
           %li= link_to "find more", root_path
         %ul.channels
           - current_user.channels.each do |c|
             - if c.has_airings?
               %li.channel
-                = link_to "#{c.title}", c
+                = link_to "#{c.title}", channel_path(c)
       - else
         %h2 Top Channels
         %ul.channels
           - @top.each do |c|
             - if c.has_airings?
               %li.channel
-                = link_to "#{c.title}", c
+                = link_to "#{c.title}", channel_path(c)
     #now-playing
       #coverart= image_tag(@channel.cover_art_url(:thumb_player))
       #channel-info
@@ -41,7 +41,7 @@
       - if logged_in?
         - current_user.channels.each do |c|
           %li.channel.reair{"data-channel-id" => c.id.to_s}
-            = link_to "#{c.title}", c
+            = link_to "#{c.title}", channel_path(c)
       - if logged_in?
         - if current_user.owns?(@channel)
           = link_to 'edit', manage_channel_videos_path(@channel)

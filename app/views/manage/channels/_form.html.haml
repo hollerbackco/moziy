@@ -19,3 +19,7 @@
     - unless f.object.new_record?
       = link_to 'cancel', manage_channel_videos_path(@channel)
       = link_to 'delete', manage_channel_videos_path(@channel), :method => :delete, :confirm => "Are you sure?"
+  .social-push
+    %h2 Post to Friends
+    = current_user.facebook? ? "fb connected" : (link_to 'Post to Facebook', auth_at_provider_path(:provider => :facebook)) 
+    = current_user.twitter? ? "t connected" : (link_to 'Post to Twitter', auth_at_provider_path(:provider => :twitter)) 

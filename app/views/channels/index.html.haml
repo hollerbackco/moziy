@@ -9,10 +9,10 @@
       - @channels.each do |c|
         - if c.has_airings?
           %li.channel.clearfix{:class => "color#{index % 2 }"}
-            .coverart= link_to image_tag(c.cover_art_url(:thumb_list)), c
+            .coverart= link_to image_tag(c.cover_art_url(:thumb_list)), channel_path(c)
             .content
               .title
-                = link_to "#{c.title}", c
+                = link_to "#{c.title}", channel_path(c)
                 %span.user= c.creator.username if c.creator
               .description= c.description
               %span.count= "+#{c.subscriptions.count}"

@@ -12,6 +12,8 @@ gem 'haml'
 gem 'jquery-rails'
 
 gem 'embedly'
+gem 'mini_fb'
+
 
 gem 'state_machine'
 

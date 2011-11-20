@@ -10,6 +10,8 @@ class Channel < ActiveRecord::Base
   
   mount_uploader :cover_art, CoverArtUploader
   
+  default_scope where("private IS NULL")
+  
   def subscribed_by?(user)
     ! Subscription.find_by_user_id_and_channel_id(user.id, self.id).nil?
   end

@@ -4,5 +4,7 @@ class Video < ActiveRecord::Base
   
   validates :title, :presence => true
   validates :body, :presence => true
+  validates :source_name, :presence => true, :uniqueness => {:scope => [:source_id]}
+  validates :source_id, :presence => true
   
 end

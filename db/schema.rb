@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111119125001) do
+ActiveRecord::Schema.define(:version => 20111120113727) do
 
   create_table "airings", :force => true do |t|
     t.integer  "video_id"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(:version => 20111119125001) do
     t.string   "uid",        :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "token"
   end
 
   create_table "channels", :force => true do |t|
@@ -39,6 +40,9 @@ ActiveRecord::Schema.define(:version => 20111119125001) do
     t.integer  "subscriptions_count", :default => 0
     t.string   "cover_art"
     t.string   "random_string"
+    t.string   "type"
+    t.boolean  "private"
+    t.integer  "score"
   end
 
   create_table "memberships", :force => true do |t|
@@ -94,6 +98,15 @@ ActiveRecord::Schema.define(:version => 20111119125001) do
     t.string   "source_name"
     t.string   "source_id"
     t.string   "source_url"
+    t.string   "source_author_name"
+    t.string   "provider_object_id"
+    t.string   "provider_user_name"
+    t.string   "provider_user_image"
+    t.string   "provider_user_nick"
+    t.string   "provider_user_id"
+    t.string   "provider_thumbnail_url"
+    t.integer  "provider_thumbnail_width"
+    t.integer  "provider_thumbnail_height"
   end
 
 end
