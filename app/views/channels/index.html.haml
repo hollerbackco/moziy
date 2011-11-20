@@ -6,7 +6,7 @@
       %li= link_to "my channels", root_path(:sort => "favorites")
     %ul.channels
       - if logged_in? and current_user.facebook_channel?
-        %li.channel.facebook-channel= link_to "facebook channel", channels_path(current_user.facebook_channel)
+        %li.channel.facebook-channel= link_to "facebook channel", channel_path(current_user.facebook_channel)
       - index = 0
       - @channels.each do |c|
         - if c.has_airings?
