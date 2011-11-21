@@ -20,6 +20,26 @@
                 .star= link_to "edit", manage_channel_videos_path(@mosey_channel)
               - else
                 .star= link_to c.favorited?(current_user) ? "yes" : "no", subscribe_channel_path(@mosey_channel)
+      = form_for(User.new, :url => register_path) do |f|
+        - if @user.errors.any?
+          #error_explanation
+            %ul
+              - @user.errors.full_messages.each do |msg|
+                %li= msg
+        .field
+          = f.label :username
+          %br/
+          = f.text_field :username
+        .field
+          = f.label :email
+          %br/
+          = f.text_field :email
+        .field
+          = f.label :password
+          %br/
+          = f.password_field :password
+        .actions
+          = f.submit :register, :class => "btn primary"
     - else
       %ul.channels
         - if @sort == "favorites" and logged_in?          
