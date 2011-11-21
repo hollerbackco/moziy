@@ -53,7 +53,7 @@
         %li.reair-actions 
           .reair-button reair
           %ul.reair-list
-            - current_user.channels.each do |c|
+            - current_user.channels.publik.each do |c|
               %li.channel.reair{"data-channel-id" => c.id.to_s}
                 = link_to "#{c.title}", channel_path(c)
       - else
