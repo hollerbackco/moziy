@@ -25,6 +25,7 @@ $ ->
 
       @previewHover()
       @subscribeBindings()
+      $(".channel").first().click()
       
     previewHover: ->
       $(".channel").click ->
