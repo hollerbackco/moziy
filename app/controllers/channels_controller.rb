@@ -23,7 +23,7 @@ class ChannelsController < ApplicationController
     
     begin
       
-      @channel.crawl if @channel.facebook?
+      @channel.crawl(50) if @channel.facebook?
       unless @channel.airings.count > 0
         redirect_to new_manage_channel_video_path(@channel)
         return

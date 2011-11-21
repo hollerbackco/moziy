@@ -1,4 +1,4 @@
-= form_for ['manage', @channel], :url => manage_channel_path(@channel), :html => { :multipart => true} do |f|
+= form_for ['manage', @channel], :url => (@channel.new_record? ? manage_channels_path : manage_channel_path(@channel)), :html => { :multipart => true} do |f|
   = render "common/errors", :object => f.object
   .field
     = f.label :title

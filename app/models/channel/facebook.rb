@@ -1,11 +1,11 @@
 class Channel::Facebook < Channel
   
-  def get_recent
-    MiniFB.fql(creator.facebook.token, "SELECT attachment, message, post_id, actor_id FROM stream WHERE filter_key in (SELECT filter_key FROM stream_filter WHERE uid=me() AND type='newsfeed') AND strpos(attachment.href, 'youtube') > 0 AND created_time > 1262196000 LIMIT 200") 
+  def get_recent(number)
+    MiniFB.fql(creator.facebook.token, "SELECT attachment, message, post_id, actor_id FROM stream WHERE filter_key in (SELECT filter_key FROM stream_filter WHERE uid=me() AND type='newsfeed') AND strpos(attachment.href, 'youtube') > 0 AND created_time > 1262196000 LIMIT #{number}") 
   end
   
-  def crawl
-    recently = get_recent
+  def crawl(number)
+    recently = get_recent(number)
     
     recently.each do |fbvid|
       vp = VideoProvider.new [fbvid.attachment.href]

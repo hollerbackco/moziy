@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
         logger.info "facebook"
         # todo: do this in a backround task
         channel = create_facebook_channel(:title => "#{self.facebook_channel_title}", :private => true) if facebook_channel.nil?
-        channel.crawl
+        channel.crawl(200)
       when :twitter
         # todo: do this in a backround task
         create_twitter_channel(:title => "personal", :private => true) if twitter_channel.nil?
@@ -64,7 +64,7 @@ class User < ActiveRecord::Base
         
         logger.info "facebook"
         # crawl it
-        facebook_channel.crawl
+        facebook_channel.crawl(50)
       end
     when :twitter
       if twitter.update_attributes(params)

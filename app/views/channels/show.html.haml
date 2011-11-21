@@ -39,9 +39,12 @@
     .mark +
     .buttons
       - if logged_in?
-        - current_user.channels.each do |c|
-          %li.channel.reair{"data-channel-id" => c.id.to_s}
-            = link_to "#{c.title}", channel_path(c)
+        %li.reair-actions 
+          .reair-button reair
+          %ul.reair-list
+            - current_user.channels.each do |c|
+              %li.channel.reair{"data-channel-id" => c.id.to_s}
+                = link_to "#{c.title}", channel_path(c)
       - if logged_in?
         - if current_user.owns?(@channel)
           = link_to 'edit', manage_channel_videos_path(@channel)
