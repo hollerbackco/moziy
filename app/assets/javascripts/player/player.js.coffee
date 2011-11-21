@@ -64,7 +64,8 @@ class App.PlayerManager
           
         else @_queue self.next
     catch error
-      @_queue self.next
+      console.log "error"
+      self.next()
       
   _notifyPlayers: ->
     @youtubePlayer.update()

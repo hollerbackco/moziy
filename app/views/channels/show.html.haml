@@ -2,7 +2,9 @@
   #youtube-player.player
     .mask
   #vimeo-player.player
+    
     .mask
+    #vimeo-dummy
   /= sanitize @current.body, :tags => %w(embed iframe p), :attributes => %w(src width height frameborder)
 #main-menu.clearfix
   %h1#mosey.clearfix= link_to "mosey", root_path

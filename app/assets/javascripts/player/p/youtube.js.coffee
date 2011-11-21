@@ -15,7 +15,7 @@ class App.YouTubePlayer
       
   _hide: ->
     $("##{@divId}").css 'display', 'none'
-      
+
   _show: ->
     $("##{@divId}").css 'display', 'block'
     
