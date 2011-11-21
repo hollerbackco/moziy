@@ -9,11 +9,13 @@
   %body#flipside{:class => body_id}
     %header
       %h1= link_to "mosey", root_path
-      - if logged_in?
-        %nav.menu
-          %ul.clearfix
+      %nav.menu
+        %ul.clearfix
+          - if logged_in?
             %li{:class => current_page?(explore_path) ? "active" : "" }= link_to "All Channels", explore_path
             %li{:class => current_page?(manage_channels_path) ? "active" : "" }= link_to "Manage", manage_channels_path
+            %li{:class => current_page?(new_manage_channel_path) ? "active" : "" }= link_to 'Build a Channel', new_manage_channel_path, :class => "button"
+          - else
             %li{:class => current_page?(new_manage_channel_path) ? "active" : "" }= link_to 'Build a Channel', new_manage_channel_path, :class => "button"
       %nav.session
         %ul

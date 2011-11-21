@@ -11,9 +11,15 @@ class Manage::AiringsController < ApplicationController
        airing.go_live
     end
     
-    re = {
-       :success => ! airing.nil?
+    if airing.nil?
+      re = {:success => false}
+    else
+      re = {
+        :success => true,
+        :channel_title => channel.title 
       }
+    end
+      
       
     render :json => re
   end

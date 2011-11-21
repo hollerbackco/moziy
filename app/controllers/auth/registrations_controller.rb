@@ -18,6 +18,7 @@ class Auth::RegistrationsController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        Channel.default.subscribed_by(@user)
         auto_login(@user)
         format.html { redirect_to(root_path, :notice => 'Registration successful. Check your email for activation instructions.') }
         format.xml { render :xml => @user, :status => :created, :location => @user }

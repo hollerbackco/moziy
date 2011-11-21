@@ -61,7 +61,7 @@
         - index = 0
         - @channels.each do |c|
           - if c.has_airings?
-            %li.channel.clearfix{:class => "color#{index % 2 }"}
+            %li.channel.clearfix{:class => (logged_in? and c.favorited?(current_user)) ? "favorited": "", :id => "channel_#{c.id.to_s}", "data-channel-id" => c.id.to_s}
               .coverart= link_to image_tag(c.cover_art_url(:thumb_list)), channel_path(c)
               .content
                 .title
@@ -71,9 +71,11 @@
                 %span.count= "+#{c.subscriptions.count}"
                 - if logged_in?
                   - if current_user.owns?(c)
-                    .star= link_to "edit", manage_channel_videos_path(c)
+                    = link_to manage_channel_videos_path(c) do
+                      .action.edit
                   - else
-                    .star= link_to c.favorited?(current_user) ? "yes" : "no", subscribe_channel_path(c)
+                    = link_to subscribe_channel_path(c) do
+                      .action.star
             - index += 1
   #viewer
     - if @channels

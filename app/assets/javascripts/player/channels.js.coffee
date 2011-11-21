@@ -2,12 +2,15 @@ $ ->
 
   $.extend window.App,
     channels:
+      _notice: (msg) ->
+        alert(msg)
       _reairVideo: (channel_id) ->
         $.ajax
           url: "/manage/channels/#{channel_id}/airings?video_id=#{window.App.playerManager.getCurrentVideoID()}",
           type: "POST"
-          success: (msg) ->
-            console.log msg
+          success: (msg) =>
+            alert_message = "Reaired to #{msg.channel_title}"
+            @_notice(alert_message)
             
     effects:
       instantiate: ->

@@ -9,6 +9,35 @@
     padding: 10px;
   }
   
+  #register {
+    form {
+      margin: 50px auto 0;
+      width: 230px;
+      
+      h2 {
+        font-weight: bold;
+      }
+      input[type=text],
+      input[type=password],
+      input[type=email] {        
+        display: inline-block;
+        width: 210px;
+        height: 18px;
+        padding: 4px;
+        font-size: 13px;
+        line-height: 18px;
+        color: gray;
+        border: 1px solid #CCC;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        border-radius: 3px;
+      }
+      .actions {
+        text-align: center;
+      }
+    }
+  }
+  
   .session {
     float: right;
     
@@ -186,7 +215,16 @@
     .channels, .videos {
       margin: 0px;
       
+      .action {cursor:pointer;position: absolute; top: 20px; right:10px; width: 30px; text-align: center; opacity:.5;}
+      .action {height:24px; width:24px; display:inline-block; background-repeat: no-repeat;}
+      .action.edit {background: image-url("icons/cog_24.png");}
+      .load .action {background: image-url("icons/ajax-loader.gif") center center no-repeat !important}
+      .favorited .action {background: image-url("icons/star_fav_24.png"); opacity: 1;}
+      .action {background: image-url("icons/star_fav_empty_24.png");}
+      .action:hover {opacity: 1;}
+      
       li {
+        position: relative;
         margin: 0;
         padding: 10px;
         border-bottom: 1px solid #E6E6E6;
@@ -206,20 +244,18 @@
         }
         .content {
           overflow: hidden;
+          margin-right: 30px;
           
           .title { font-weight:bold;}
           .description {color: #666;}
           .user {color: #999; font-weight: 300;}
           
         }
-        .count {
+        .count, .nowplaying {
           color: #999;
         }
-        .nowplaying {
-          color: #999;
-        }
-        
         .actions {
+          
           a {
             color: #999;
             padding: 0;

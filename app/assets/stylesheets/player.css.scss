@@ -1,6 +1,7 @@
 #stage {
   overflow: hidden;
-  background: image-url('mosey-logo.png') black no-repeat center center;
+  padding: 0px;
+  margin: 0px;
   
   #header {
     position: absolute;
@@ -16,7 +17,9 @@
 
   }
 
-
+  #player {
+    background: image-url('mosey-logo.png') black no-repeat center center;
+  }
   #player, .player, .mask {
     position: absolute;
     top: 0px;
@@ -25,6 +28,7 @@
     bottom: 0px;
     z-index: 0;
     overflow:hidden;
+    
   }
 
   .player {
@@ -143,8 +147,8 @@
     width: 100px;
     height: 100px;
     z-index: 5;
-    text-align: right;
-
+    
+    
     .mark {
       position: absolute;
       top: 0px;
@@ -155,41 +159,68 @@
       font-weight: bold;
       color: #999;
     }
-
+    
+    
+    
     .buttons {
       display: none;
+      list-style: none;
+      padding: 0px;
+      margin: 0px;
       
-      ul {
-        text-align: left;
-        list-style: none;
+      li {
         margin: 0;
-        padding: 0;
-        li {
-          display: block;
-          a {
-            display: block;
-            background: white;
-            color: black;
-            float: none;
-          }
+        background: white;
+        
+      }
+      
+      a, .reair-button {
+        display: block;
+        padding: 5px 10px;
+        text-decoration: none;
+        color: black;
+        &:hover {
+          background: black;
+          color: white;
         }
       }
-    }
+      
+      .reair-actions {
+        margin: 0px;
+        padding: 0px;
+        list-style: none;
+        
+        &:hover {
+          .reair-button {
+            background: black;
+            color: white;
+          }
+        }
+        
+        ul {
+          display: none;
+          position: absolute;
+          right: 100px;
+          top: 0px;
+          width: 100px;
+          list-style: none;
+          margin: 0;
+          padding: 0;
+          border-right: 1px solid #999;
+          
+          li {
+            display: block;
+            margin: 0px;
+          }
+        }
+        
+        &:hover {
+          ul {display: block;}
+        }
 
-    a {
-      display: block;
-      float: right;
-      padding: 0 15px;
-      background: white;
-      color: black;
-      height: 25px;
-      font-size: 16px;
-      text-decoration: none;
-
-      &.hover {
-        background: black;
-        color: white;
       }
+      
+      
     }
 
   }
