@@ -11,12 +11,16 @@ class Auth::OauthsController < ApplicationController
     
     if @user = current_user
       create_auth(provider)
-      begin
-        
-        # NOTE: this is the place to add '@user.activate!' if you are using user_activation submodule
-        redirect_to root_path, :notice => "Logged in from #{provider.titleize}!"
-      rescue
-        redirect_to root_path, :alert => "Failed to login from #{provider.titleize}!"
+      if back = sessions["from_#{provider}_return_to".to_sym]
+        redirect_to back
+        sessions["from_#{provider}_return_to".to_sym] = nil
+      else
+        begin
+          # NOTE: this is the place to add '@user.activate!' if you are using user_activation submodule
+          redirect_to root_path, :notice => "Logged in from #{provider.titleize}!"
+        rescue
+          redirect_to root_path, :alert => "Failed to login from #{provider.titleize}!"
+        end
       end
     end
   end
@@ -30,14 +34,9 @@ class Auth::OauthsController < ApplicationController
       @token = @provider.process_callback(params,session).token
       @user_hash = @provider.get_user_hash
       
-      
-      
-      if @user.has_social?(provider.to_s)
-        logger.info " token #{@token}"
+      if @user.authentications.connected?(provider.to_s)
         @user.update_social({:uid => @user_hash[:uid], :token => @token, :provider => provider})
-        
       else
-        
         @user.add_social({
           :provider => provider, 
           :uid => @user_hash[:uid],

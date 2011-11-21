@@ -25,7 +25,7 @@ class Channel::Facebook < Channel
     end
   end
   
-  def facebook?
+  def needs_crawl?
     true
   end
   

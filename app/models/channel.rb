@@ -12,6 +12,10 @@ class Channel < ActiveRecord::Base
   
   scope :publik, where("private IS NULL")
   
+  def self.default
+    find(11)
+  end
+  
   def subscribed_by?(user)
     ! Subscription.find_by_user_id_and_channel_id(user.id, self.id).nil?
   end
@@ -43,7 +47,7 @@ class Channel < ActiveRecord::Base
   end
   
   
-  def facebook?
+  def needs_crawl?
     false
   end
     
@@ -59,4 +63,6 @@ class Channel < ActiveRecord::Base
     # give the next video or the first if current_index not set.
     @current_index ? Video.find(@video_ids[next_index]) : Video.find(@video_ids.first)
   end
+  
+  
 end

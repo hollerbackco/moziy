@@ -18,12 +18,14 @@ class Manage::VideosController < ApplicationController
       vp = VideoProvider.new videos
       
       vp.get.each do |v_params|
-        Video.transaction do
-          v = Video.create(v_params)
-          Airing.create :video => v, :channel => @channel
-        end if v_params.delete(:success)
+        if v_params.delete(:success)
+          unless v = Video.find_by_source_name_and_source_id(v_params[:source_name], v_params[:source_id])
+            v = Video.create(v_params)
+          end
+          @channel.airings.create :video_id => v.id
+        end
       end
-        
+
       redirect_to manage_channel_videos_path(@channel)
     else
       

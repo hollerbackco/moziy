@@ -5,15 +5,14 @@ class ChannelsController < ApplicationController
     @sort = params[:sort]
     case @sort
     when nil
-      @channels = Channel.publik.all(:order => "subscriptions_count DESC, updated_at DESC")
-    when 'tastemakers'
-      @channels = Channel.publik
-    when 'favorites'
       if logged_in?
         @channels = current_user.channels
-      else
-        @channels = Channel.publik.all(:order => "subscriptions_count DESC, updated_at DESC")
       end
+      @mosey_channel = Channel.default
+    when 'tastemakers'
+      @channels = Channel.publik
+    when 'watchers'
+      @channels = Channel.publik.all(:order => "subscriptions_count DESC, updated_at DESC")
     end
   end
   
@@ -22,8 +21,8 @@ class ChannelsController < ApplicationController
     @channel = Channel.find(params[:id])
     
     begin
+      @channel.crawl(50) if @channel.needs_crawl?
       
-      @channel.crawl(50) if @channel.facebook?
       unless @channel.airings.count > 0
         redirect_to new_manage_channel_video_path(@channel)
         return
@@ -39,11 +38,11 @@ class ChannelsController < ApplicationController
 
       set_title @channel.title
       render :layout => "player"
+      
     rescue MiniFB::FaceBookError
+      session[:from_facebook_return_to] = request.referer
       login_at("facebook")
     end
-    
-    
   end
 
   def show_chromeless

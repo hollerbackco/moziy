@@ -5,7 +5,15 @@ class User < ActiveRecord::Base
     config.authentications_class = Authentication
   end
 
-  has_many :authentications, :dependent => :destroy
+  has_many :authentications, :dependent => :destroy do
+    def find_by_provider(provider)
+      find(:first, :conditions => {:provider => provider})
+    end
+    
+    def connected?(provider)
+      exists?({:provider => provider})
+    end
+  end
   
   accepts_nested_attributes_for :authentications
   
@@ -20,31 +28,17 @@ class User < ActiveRecord::Base
   def owns?(obj)
     self.id == obj.creator_id
   end
-  
-  def facebook
-    authentications.find(:first, :conditions => {:provider => "facebook"})
-  end
-  
-  def facebook?
-    ! facebook.nil?
-  end
-  
-  def twitter?
-    authentications.find(:first, :conditions => {:provider => "twitter"})
-  end
+
   
   def add_social(params)
     if authentications.create(params)
-      logger.info params[:provider]
+
       case params[:provider]
       when :facebook
-        logger.info "facebook"
+        
         # todo: do this in a backround task
         channel = create_facebook_channel(:title => "#{self.facebook_channel_title}", :private => true) if facebook_channel.nil?
         channel.crawl(200)
-      when :twitter
-        # todo: do this in a backround task
-        create_twitter_channel(:title => "personal", :private => true) if twitter_channel.nil?
       end
     end
   end
@@ -53,36 +47,27 @@ class User < ActiveRecord::Base
 
     case params.delete(:provider)
     when :facebook
-      if facebook.update_attributes(params)
-        
-        # todo: do this in a backround task
+      if authentications.find_by_provider("facebook").update_attributes(params)
       
         # create the facebook channel if it doesn't exist
         create_facebook_channel({
           :title => facebook_channel_title, 
           :private => true}) unless facebook_channel?
-        
-        logger.info "facebook"
+          
+        # todo: do this in a background task
         # crawl it
         facebook_channel.crawl(50)
-      end
-    when :twitter
-      if twitter.update_attributes(params)
-        # todo: do this in a backround task
-        create_twitter_channel(:title => "personal", :private => true) if twitter_channel.nil?
       end
     end
   end
     
-  def has_social?(provider)
+  def social_channel?(provider)
     case provider
-      when "facebook" then facebook?
-      when "twitter" then twitter?
+      when :twitter
+        
+      when :facebook
+        ! facebook_channel.nil?
     end
-  end
-  
-  def facebook_channel?
-   ! facebook_channel.nil?
   end
   
   def facebook_channel_title
