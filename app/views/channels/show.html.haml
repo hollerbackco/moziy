@@ -57,7 +57,7 @@
               %li.channel.reair{"data-channel-id" => c.id.to_s}
                 = link_to "#{c.title}", channel_path(c)
       - else
-        %li= link_to '+', subscribe_channel_path(@channel)
+        %li= link_to 'follow', subscribe_channel_path(@channel)
   
 :javascript
   $(document).ready(function() {
