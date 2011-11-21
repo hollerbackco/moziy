@@ -2,7 +2,8 @@ class ChannelsController < ApplicationController
   before_filter :require_login, :only => [:subscribe]
   
   def index
-    case params[:sort]
+    @sort = params[:sort]
+    case @sort
     when nil
       @channels = Channel.publik.all(:order => "subscriptions_count DESC, updated_at DESC")
     when 'tastemakers'
@@ -20,21 +21,29 @@ class ChannelsController < ApplicationController
     
     @channel = Channel.find(params[:id])
     
-    unless @channel.airings.count > 0
-      redirect_to new_manage_channel_video_path(@channel)
-      return
+    begin
+      
+      @channel.crawl if @channel.facebook?
+      unless @channel.airings.count > 0
+        redirect_to new_manage_channel_video_path(@channel)
+        return
+      end
+
+      unless logged_in?
+        @top = Channel.publik.all(:order => "subscriptions_count DESC, updated_at DESC") 
+      end
+
+      @current = params[:playing] ? @channel.airings[params[:playing].to_i].video : @channel.airings.first.video
+      @previous_id = (params[:playing].to_i - 1) % @channel.airings.count
+      @next_id = (params[:playing].to_i + 1) % @channel.airings.count
+
+      set_title @channel.title
+      render :layout => "player"
+    rescue MiniFB::FaceBookError
+      login_at("facebook")
     end
     
-    unless logged_in?
-      @top = Channel.publik.all(:order => "subscriptions_count DESC, updated_at DESC") 
-    end
     
-    @current = params[:playing] ? @channel.airings[params[:playing].to_i].video : @channel.airings.first.video
-    @previous_id = (params[:playing].to_i - 1) % @channel.airings.count
-    @next_id = (params[:playing].to_i + 1) % @channel.airings.count
-    
-    set_title @channel.title
-    render :layout => "player"
   end
 
   def show_chromeless

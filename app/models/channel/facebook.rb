@@ -25,4 +25,8 @@ class Channel::Facebook < Channel
     end
   end
   
+  def facebook?
+    true
+  end
+  
 end

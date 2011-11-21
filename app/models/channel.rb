@@ -41,5 +41,9 @@ class Channel < ActiveRecord::Base
     end
     random_string
   end
-
+  
+  
+  def facebook?
+    false
+  end
 end

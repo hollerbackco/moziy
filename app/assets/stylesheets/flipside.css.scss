@@ -62,14 +62,11 @@
           float: left;
           margin-left: 0px;
           margin-right: 20px;
-
-          a {
-            padding: 0;
-            
-          }
           
-          &.active {
-            font-weight: bold;
+          .button {
+            position: relative;
+            top: -4px;
+            text-decoration: none;
           }
         }
       }
