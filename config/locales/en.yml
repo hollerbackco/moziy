@@ -5,3 +5,10 @@ en:
   common:
     title_prefix:    "Mosey"
     title_separator: " | "
+  channels:
+    index:
+      title:  "Channels"
+    edit:
+      title:  "Edit"
+    new:
+      title:  "Build a Channel"

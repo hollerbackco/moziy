@@ -1,10 +1,7 @@
 #video-manage
   #viewer
   #main-content
-    %ul#secondary-menu.clearfix
-      %li= link_to 'videos', manage_channel_videos_path(@channel)
-      %li= link_to 'add', new_manage_channel_video_path(@channel)
-      %li= link_to 'settings', edit_manage_channel_path(@channel)
+    = render :partial => 'channel_menu'
     = render 'form'
     
       

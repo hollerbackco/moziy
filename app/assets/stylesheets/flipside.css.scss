@@ -136,22 +136,32 @@
       padding: 10px;
     }
     
+    #secondary-title {
+      list-style: none;
+      padding: 10px 10px;
+      margin: 0;
+      background: #222;
+      border-bottom: 1px solid black;
+      color: #eee;
+      font-size: 1.3em;
+    }
+    
     #secondary-menu {
-     list-style: none;
-     padding: 10px 10px;
-     margin: 0;
-     background: #333;
+      border-top: 1px solid #333;
+      list-style: none;
+      padding: 8px 10px;
+      margin: 0;
+      background: #222;
      
-     li {
-      float: left;
-      margin: 0px 10px 0 0;
-      
-      a {
-        color: white;
-        margin-right: 15px;
+      li {
+        float: left;
+        margin: 0px 10px 0 0;
+
+        a {
+          color: #eee;
+          margin-right: 15px;
+        }
       }
-     }
-     
     }
     
     .channels, .videos {

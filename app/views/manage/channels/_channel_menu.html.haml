@@ -1,0 +1,6 @@
+#secondary-title.clearfix
+  .title= @channel.title
+%ul#secondary-menu.clearfix
+  %li= link_to 'Videos', manage_channel_videos_path(@channel)
+  %li= link_to 'Add', new_manage_channel_video_path(@channel)
+  %li= link_to 'Settings', edit_manage_channel_path(@channel)
