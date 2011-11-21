@@ -47,9 +47,9 @@
           - if @channel.subscribed_by?(current_user)
             %li
               = link_to unsubscribe_channel_path(@channel) do
-                &#9996;
+                unfollow
           - else
-            %li= link_to '+', subscribe_channel_path(@channel)
+            %li= link_to 'follow', subscribe_channel_path(@channel)
         %li.reair-actions 
           .reair-button reair
           %ul.reair-list
