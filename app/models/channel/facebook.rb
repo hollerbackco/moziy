@@ -1,7 +1,7 @@
 class Channel::Facebook < Channel
   
   def get_recent(number)
-    MiniFB.fql(creator.facebook.token, "SELECT attachment, message, post_id, actor_id FROM stream WHERE filter_key in (SELECT filter_key FROM stream_filter WHERE uid=me() AND type='newsfeed') AND strpos(attachment.href, 'youtube') > 0 AND created_time > 1262196000 LIMIT #{number}") 
+    MiniFB.fql(creator.authentications.find_by_provider("facebook").token, "SELECT attachment, message, post_id, actor_id FROM stream WHERE filter_key in (SELECT filter_key FROM stream_filter WHERE uid=me() AND type='newsfeed') AND strpos(attachment.href, 'youtube') > 0 AND created_time > 1262196000 LIMIT #{number}") 
   end
   
   def crawl(number)

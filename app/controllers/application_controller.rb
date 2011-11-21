@@ -20,6 +20,6 @@ class ApplicationController < ActionController::Base
   end
   
   def channel_list
-    @channel_list = current_user.channel_list if logged_in?
+    @channel_list = current_user.channel_list.publik if logged_in?
   end
 end

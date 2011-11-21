@@ -55,7 +55,7 @@ class User < ActiveRecord::Base
         # create the facebook channel if it doesn't exist
         create_facebook_channel({
           :title => facebook_channel_title, 
-          :private => true}) unless facebook_channel?
+          :private => true}) unless social_channel?(:facebook)
           
         # todo: do this in a background task
         # crawl it

@@ -11,10 +11,10 @@ class Auth::OauthsController < ApplicationController
     
     if @user = current_user
       create_auth(provider)
-      if back = sessions["from_#{provider}_return_to".to_sym]
+      if back = session["from_#{provider}_return_to".to_sym]
         console.log back
         redirect_to back
-        sessions["from_#{provider}_return_to".to_sym] = nil
+        session["from_#{provider}_return_to".to_sym] = nil
       else
         begin
           redirect_to @user.facebook_channel, :notice => "Logged in from #{provider.titleize}!"

@@ -2,7 +2,7 @@ class Manage::ChannelsController < ApplicationController
   before_filter :require_login, :except => [:index, :show]
   
   def index
-    @channels = current_user.channels
+    @channels = current_user.channels.publik
   end
   
   def new
