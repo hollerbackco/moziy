@@ -5,6 +5,7 @@ class ChannelsController < ApplicationController
     @sort = params[:sort]
     case @sort
     when nil
+      @user = User.new
       if logged_in?
         @channels = current_user.channels
       end
