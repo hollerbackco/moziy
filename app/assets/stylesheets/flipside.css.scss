@@ -138,9 +138,9 @@
     
     #secondary-title {
       list-style: none;
-      padding: 10px 10px;
+      padding: 12px 10px 8px;
       margin: 0;
-      background: #333;
+      background: #444;
       border-bottom: 1px solid #2D2D2D;
       color: #eee;
       font-size: 1.3em;
@@ -156,13 +156,13 @@
       li {
         float: left;
         margin: 0;
-
+        position: relative;
+        top: -1px;
         a {
           display: block;
           color: #fff;
           padding: 10px 15px;
           text-decoration:none;
-          
         }
       }
       
