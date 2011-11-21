@@ -140,26 +140,35 @@
       list-style: none;
       padding: 10px 10px;
       margin: 0;
-      background: #222;
-      border-bottom: 1px solid black;
+      background: #333;
+      border-bottom: 1px solid #2D2D2D;
       color: #eee;
       font-size: 1.3em;
     }
     
     #secondary-menu {
-      border-top: 1px solid #333;
+      border-top: 1px solid #444;
       list-style: none;
-      padding: 8px 10px;
       margin: 0;
-      background: #222;
+      background: #333;
+      padding: 0;
      
       li {
         float: left;
-        margin: 0px 10px 0 0;
+        margin: 0;
 
         a {
-          color: #eee;
-          margin-right: 15px;
+          display: block;
+          color: #fff;
+          padding: 10px 15px;
+          text-decoration:none;
+          
+        }
+      }
+      
+      li.active {
+       a {
+          background: #282828;
         }
       }
     }

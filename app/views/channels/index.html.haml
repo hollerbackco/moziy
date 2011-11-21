@@ -1,9 +1,9 @@
 #channel-manage
   #main-content.channel-list.list
     %ul#secondary-menu.clearfix
-      %li= link_to "My Channels", root_path
-      %li= link_to "# of Watchers", root_path(:sort => "watchers")
-      %li= link_to "Tastemakers", root_path(:sort => "tastemakers")
+      %li{:class => @sort.nil? ? "active" : "" }= link_to "My Channels", root_path
+      %li{:class => @sort == "watchers" ? "active" : "" }= link_to "# of Watchers", root_path(:sort => "watchers")
+      %li{:class => @sort == "tastemakers" ? "active" : "" }= link_to "Tastemakers", root_path(:sort => "tastemakers")
     
     - if @sort.nil? and ! logged_in?
       %ul.channels
