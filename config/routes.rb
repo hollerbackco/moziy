@@ -18,7 +18,6 @@ Puretv::Application.routes.draw do
     match "oauth/callback" => "oauths#callback"
     match "oauth/:provider" => "oauths#oauth", :as => :auth_at_provider
     
-    
     resources :password_resets do
       collection do
         match :confirmation
