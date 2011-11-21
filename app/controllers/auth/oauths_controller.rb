@@ -12,12 +12,12 @@ class Auth::OauthsController < ApplicationController
     if @user = current_user
       create_auth(provider)
       if back = sessions["from_#{provider}_return_to".to_sym]
+        console.log back
         redirect_to back
         sessions["from_#{provider}_return_to".to_sym] = nil
       else
         begin
-          # NOTE: this is the place to add '@user.activate!' if you are using user_activation submodule
-          redirect_to root_path, :notice => "Logged in from #{provider.titleize}!"
+          redirect_to @user.facebook_channel, :notice => "Logged in from #{provider.titleize}!"
         rescue
           redirect_to root_path, :alert => "Failed to login from #{provider.titleize}!"
         end

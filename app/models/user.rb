@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :username, :password, :password_confirmation, :authentications_attributes
   
+  validates :email, :presence => true, :uniqueness => true
+  validates :username, :presence => true, :uniqueness => true
+  
   authenticates_with_sorcery! do |config|
     config.authentications_class = Authentication
   end

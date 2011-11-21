@@ -4,17 +4,18 @@
       %ul
         - @user.errors.full_messages.each do |msg|
           %li= msg
+  %h2 Sign up
   .field
     = f.label :username
-    %br/
+    %br
     = f.text_field :username
   .field
     = f.label :email
-    %br/
+    %br
     = f.text_field :email
   .field
     = f.label :password
-    %br/
+    %br
     = f.password_field :password
   .actions
     = f.submit :register, :class => "btn primary"

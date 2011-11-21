@@ -7,7 +7,7 @@ class ChannelsController < ApplicationController
     when nil
       @user = User.new
       if logged_in?
-        @channels = current_user.channels
+        @channels = current_user.channel_list
       end
       @mosey_channel = Channel.default
     when 'tastemakers'

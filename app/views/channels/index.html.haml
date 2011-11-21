@@ -43,13 +43,14 @@
             = f.submit :register, :class => "btn primary"
     - else
       %ul.channels
-        - if @sort == "favorites" and logged_in?          
+        - if @sort.nil? and logged_in?          
           - if current_user.social_channel?(:facebook)
             %li.channel.facebook
               = link_to channel_path(current_user.facebook_channel) do
                 My Facebook Channel
           - else
-            = link_to ""
+            %li.channel.facebook
+              = link_to "My Facebook Channel", auth_at_provider_path(:facebook)
           - if current_user.social_channel?(:twitter)
             %li.channel.twitter
               = link_to channel_path(current_user.facebook_channel) do
@@ -79,4 +80,4 @@
             - index += 1
   #viewer
     - if @channels
-      %iframe{:width => "100%", :height => "100%", :frameborder => 0, :src => chromeless_channel_path(@channels.first) }
+      %iframe{:width => "100%", :height => "100%", :frameborder => 0, :src => chromeless_channel_path(Channel.default) }

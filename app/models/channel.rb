@@ -33,7 +33,7 @@ class Channel < ActiveRecord::Base
   end
   
   def subscribed_by(user)
-    Subscription.create()
+    subscriptions.create(:user_id => user.id)
   end
   
   def gen_random_string
