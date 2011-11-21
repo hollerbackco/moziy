@@ -14,10 +14,23 @@ $ ->
           success: (msg) =>
             dom_item.removeClass("load")
             dom_item.toggleClass("favorited")
+      preview: (channel_id, list_item) ->
+        $(".channel").removeClass("previewing")
+        $(list_item).addClass("previewing")
+        url = "/channels/#{channel_id}/chromeless"
+        $("#viewer-iframe").attr("src", url)
+        
             
     instantiate: ->
 
+      @previewHover()
       @subscribeBindings()
+      
+    previewHover: ->
+      $(".channel").click ->
+        channel_id = $(this).attr("data-channel-id")
+        console.log channel_id
+        window.App.channels.preview channel_id, this
       
     subscribeBindings: ->
       $(".star").click (e) ->
