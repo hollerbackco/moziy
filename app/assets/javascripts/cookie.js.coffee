@@ -1,12 +1,15 @@
 if typeof(window.App) == "undefined" then window.App = {}
 
 $.extend window.App, 
-  cookie: 
+  cookie:
     set: (name, value, expiredays) ->
+      console.log "Set cookie: #{name} = #{value}"
       expiration = new Date()
       expiration.setDate expiration.getDate() + expiredays
       document.cookie = name + "=" + escape(value) +
-        if expiredays? then "" else ";expires=" + expiration.toUTCString()
+        (if expiredays? then "" else ";expires=" + expiration.toUTCString()) +
+        '; path=/'
+        
     get: (name) ->
       if document.cookie.length > 0
         start = document.cookie.indexOf name + "="

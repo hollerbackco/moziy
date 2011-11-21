@@ -1,5 +1,7 @@
 #channel-manage
   #main-content.channel-list.list
+    #secondary-menu.clearfix
+      .title Manage Channels
     %ul.channels
       - if current_user.facebook_channel?
         %li.channel.facebook-channel= link_to "My Facebook Channel", manage_channel_videos_path(current_user.facebook_channel)

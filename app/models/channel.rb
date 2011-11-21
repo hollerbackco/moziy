@@ -46,4 +46,17 @@ class Channel < ActiveRecord::Base
   def facebook?
     false
   end
+    
+  # gets the next video in the order.  accepts an id.
+  def next_video(current_id)
+    @video_ids = airings.map {|a| a.video_id }
+    logger.info @video_ids
+    
+    @current_index = @video_ids.index current_id.to_i
+
+    next_index = (@current_index + 1) % self.videos.count
+    
+    # give the next video or the first if current_index not set.
+    @current_index ? Video.find(@video_ids[next_index]) : Video.find(@video_ids.first)
+  end
 end

@@ -2,7 +2,9 @@ class VideosController < ApplicationController
   before_filter :set_channel
   
   def show
-    video = Video.find(params[:id])
+    # grab the video only if it still exists in the player
+    # else send the first video in the channel
+    video = @channel.videos.exists?(params[:id]) ? @channel.videos.find(params[:id]) : @channel.airings.first.video
   
     re = {
        :id => video.id,
@@ -15,17 +17,7 @@ class VideosController < ApplicationController
   end
   
   def next
-    logger.info @channel.inspect
-    video_ids = @channel.airings.map do |v|
-      v.video.id
-    end
-    
-    current_index = video_ids.index params[:id].to_i
-    
-    logger.info "current_indx #{current_index}"
-    next_index = current_index ? ((current_index + 1) % @channel.videos.count) : 0
-    
-    video = Video.find(video_ids[next_index])
+    video = @channel.next_video(params[:id])
   
     re = {
        :id => video.id,

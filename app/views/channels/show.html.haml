@@ -59,7 +59,7 @@
     var cookie_video_id = window.App.cookie.get('channel-' + '#{@channel.id}');
     console.log(cookie_video_id)
     $.extend(window.App,{
-      playerManager: new PlayerManager(cookie_video_id == "" ? '#{@current.id}' : cookie_video_id, '#{@channel.id}')
+      playerManager: new App.PlayerManager(cookie_video_id == "" ? '#{@current.id}' : cookie_video_id, '#{@channel.id}')
     })
   });
   

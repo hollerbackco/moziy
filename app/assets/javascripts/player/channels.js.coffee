@@ -1,6 +1,4 @@
 $ ->
-  
-  if typeof(window.App) == "undefined" then window.App = {}
 
   $.extend window.App,
     channels:
