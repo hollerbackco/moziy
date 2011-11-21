@@ -1,13 +1,13 @@
 #channel-manage
   #main-content.channel-list.list
     %ul#secondary-menu.clearfix
-      %li= link_to "# of watchers", root_path
-      %li= link_to "tastemakers", root_path(:sort => "tastemakers")
+      %li= link_to "# of Watchers", root_path
+      %li= link_to "Tastemakers", root_path(:sort => "tastemakers")
       - if logged_in?
-        %li= link_to "my channels", root_path(:sort => "favorites")
+        %li= link_to "My Channels", root_path(:sort => "favorites")
     %ul.channels
       - if @sort == "favorites" and logged_in? and current_user.facebook_channel?
-        %li.channel.facebook-channel= link_to "facebook channel", channel_path(current_user.facebook_channel)
+        %li.channel.facebook-channel= link_to "My Facebook Channel", channel_path(current_user.facebook_channel)
       - index = 0
       - @channels.each do |c|
         - if c.has_airings?

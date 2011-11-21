@@ -12,16 +12,16 @@
       - if logged_in?
         %nav.menu
           %ul.clearfix
-            %li{:class => current_page?(explore_path) ? "active" : "" }= link_to "all channels", explore_path
-            %li{:class => current_page?(manage_channels_path) ? "active" : "" }= link_to "manage", manage_channels_path
-            %li{:class => current_page?(new_manage_channel_path) ? "active" : "" }= link_to 'build a channel', new_manage_channel_path, :class => "button"
+            %li{:class => current_page?(explore_path) ? "active" : "" }= link_to "All Channels", explore_path
+            %li{:class => current_page?(manage_channels_path) ? "active" : "" }= link_to "Manage", manage_channels_path
+            %li{:class => current_page?(new_manage_channel_path) ? "active" : "" }= link_to 'Build a Channel', new_manage_channel_path, :class => "button"
       %nav.session
         %ul
           - if logged_in?
-            %li= link_to 'logout', logout_path 
+            %li= link_to 'Log out', logout_path 
           - else
-            %li= link_to 'login', login_path
-            %li= link_to 'join', register_path
+            %li= link_to 'Log in', login_path
+            %li= link_to 'Join', register_path
     %section#content
       = yield
     %footer
