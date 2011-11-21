@@ -12,7 +12,6 @@ class Auth::OauthsController < ApplicationController
     if @user = current_user
       create_auth(provider)
       if back = session["from_#{provider}_return_to".to_sym]
-        console.log back
         redirect_to back
         session["from_#{provider}_return_to".to_sym] = nil
       else
