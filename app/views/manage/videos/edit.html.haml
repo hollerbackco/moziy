@@ -5,7 +5,7 @@
       %li= link_to 'videos', manage_channel_videos_path(@channel)
       %li= link_to 'add', new_manage_channel_video_path(@channel)
       %li= link_to 'settings', edit_manage_channel_path(@channel)
-    = form_for ['manage', @channel, @video] do |f|
+    = form_for ['manage', @channel, @video], :url => edit_manage_channel_video_path(@channel, @video) do |f|
       .field
         = f.label :title
         %br
