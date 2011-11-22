@@ -50,7 +50,7 @@
           - else
             %li= link_to 'follow', subscribe_channel_path(@channel)
         %li.reair-actions 
-          .reair-button reair
+          .reair-button Rechannel
           %ul.reair-list
             - current_user.channels.publik.each do |c|
               %li.channel.reair{"data-channel-id" => c.id.to_s}

@@ -232,19 +232,31 @@
         }
       }
       
+      #channel-manage .channel a .action {float: right;}
       .action {cursor:pointer; width: 25px; text-align: center;}
       .action {height:24px; width:24px; display:inline-block; background-repeat: no-repeat;}
-      .action {background: image-url("icons/star_fav_empty.png") center center no-repeat;}
-      .action:hover {background: image-url("icons/star_fav_prompt.png") center center no-repeat;}
+      .action.star {background: image-url("icons/star_fav_empty.png") center center no-repeat;}
+      .action.star:hover {background: image-url("icons/star_fav_prompt.png") center center no-repeat;}
       .action.edit, .favorited .action.edit, .load .action.edit {background: image-url("icons/cog.png") center center no-repeat !important; opacity: .5;}
       .action.edit:hover, .favorited .action.edit:hover {opacity: 1;}
-      .load .action {background: image-url("icons/ajax-loader.gif") center center no-repeat !important}
-      .favorited .action {background: image-url("icons/star_fav.png") center center no-repeat;}
-      .favorited .action:hover {background: image-url("icons/star_fav_warn.png") center center no-repeat;}
+      .load .action.star {background: image-url("icons/ajax-loader.gif") center center no-repeat !important}
+      .favorited .action.star {background: image-url("icons/star_fav.png") center center no-repeat;}
+      .favorited .action.star:hover {background: image-url("icons/star_fav_warn.png") center center no-repeat;}
+      .action.expand {background: image-url("icons/expand.png") center center no-repeat; opacity: .6;}
+      .action.expand:hover {opacity: 1;}
+      .action.trash {background: image-url("icons/star_fav_warn.png") center center no-repeat;}
       
       
+      .video, .video:hover {
+        padding: 10px 10px 10px 36px;
+        background: image-url("icons/cursor_drag_arrow.png") 10px center no-repeat;
+        border-bottom: 1px solid #E6E6E6;
+        position: relative;
+        margin-bottom: 0px;
+        cursor: move;
+      }
       
-      li {
+      li.channel {
         position: relative;
         margin: 0;
         padding: 10px;
@@ -282,6 +294,8 @@
         .watch {
           float: right;
         }
+        
+        
       
       }
     }

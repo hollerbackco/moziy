@@ -71,7 +71,7 @@
                 - if logged_in?
                   .actions
                     = link_to subscribe_channel_path(c) do
-                      .action.star
+                      .action.star.subscribe
                     - if current_user.owns?(c)
                       = link_to manage_channel_videos_path(c) do
                         .action.edit

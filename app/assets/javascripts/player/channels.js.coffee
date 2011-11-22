@@ -9,7 +9,7 @@ $ ->
           url: "/manage/channels/#{channel_id}/airings?video_id=#{window.App.playerManager.getCurrentVideoID()}",
           type: "POST"
           success: (msg) =>
-            alert_message = "Reaired to #{msg.channel_title}"
+            alert_message = "Rechanneled to #{msg.channel_title}"
             @_notice(alert_message)
             
     effects:

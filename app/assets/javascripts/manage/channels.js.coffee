@@ -34,7 +34,7 @@ $ ->
         
       
     subscribeBindings: ->
-      $(".action").not(".edit").click (e) ->
+      $(".action.subscribe").click (e) ->
         li = $(this).parents(".channel")
         unless li.hasClass("load")
           channel_id = li.attr("data-channel-id")
