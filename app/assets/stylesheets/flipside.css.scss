@@ -217,14 +217,14 @@
       
       .action {cursor:pointer;position: absolute; top: 20px; right:10px; width: 30px; text-align: center; opacity:.5;}
       .action {height:24px; width:24px; display:inline-block; background-repeat: no-repeat;}
-      .action.edit {background: image-url("icons/cog_24.png");}
+      .action.edit {background: image-url("icons/cog_24.png") center center no-repeat;}
       
       .load .action {background: image-url("icons/ajax-loader.gif") center center no-repeat !important}
       .favorited .action {background: image-url("icons/star_fav_24.png") center center no-repeat; opacity: 1;}
-      .previewing .action {background: image-url("icons/playback_play_24.png"); opacity: 1;}
-      .previewing .action:hover {background: image-url("icons/star_fav_empty_24.png") !important;}
-      .previewing.favorited .action:hover {background: image-url("icons/star_fav_24.png") !important;}
-      .action {background: image-url("icons/star_fav_empty_24.png");}
+      .previewing .action {background: image-url("icons/playback_play_24.png") center center no-repeat; opacity: 1;}
+      .previewing .action:hover {background: image-url("icons/star_fav_empty_24.png") center center no-repeat !important;}
+      .previewing.favorited .action:hover {background: image-url("icons/star_fav_24.png") center center no-repeat !important;}
+      .action {background: image-url("icons/star_fav_empty_24.png") center center no-repeat;}
       .action:hover {opacity: 1;}
       
       

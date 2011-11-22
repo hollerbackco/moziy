@@ -8,6 +8,8 @@
           %li.channel.clearfix{:class => (logged_in? and c.favorited?(current_user)) ? "favorited": "", :id => "channel_#{c.id.to_s}", "data-channel-id" => c.id.to_s}
             = link_to "#{c.title}", manage_channel_videos_path(c)
             %span.count= "+#{c.subscriptions.count}"
+            = link_to channel_path(c) do
+              = image_tag "eye_16.png"
   #viewer
     - if @channels
       %iframe#viewer-iframe{:width => "100%", :height => "100%", :frameborder => 0, :src => chromeless_channel_path(Channel.default) }
