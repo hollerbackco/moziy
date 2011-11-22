@@ -9,8 +9,9 @@ icons/eye.png: icons/eye-746ec248052678b322a485efd47368c8.png
 icons/playback_play.png: icons/playback_play-b65d15d4cbebfb3abba66ec911f3581b.png
 icons/star_fav.png: icons/star_fav-7fd3d363a0b9454792a5eaa2d91626af.png
 icons/star_fav_empty.png: icons/star_fav_empty-3dd69891022d74243c805aa0d9bdf89b.png
+icons/star_fav_warn.png: icons/star_fav_warn-21a4f6a611b41f931aac9e4962f00a7c.png
 mosey-logo.png: mosey-logo-ef8663683ad8cab9f1ace03524c81389.png
 rails.png: rails-e4b51606cd77fda2615e7439907bfc92.png
 application.js: application-61f5fad2bc249bc64c944536326d6422.js
 player.js: player-cf8687d158947dd31fbe0f7f2971b06b.js
-application.css: application-8d9d2ce01fc4c44d14b6e3aefee72ba0.css
+application.css: application-19b0df20065e840f3c1066b58f44e6bd.css
