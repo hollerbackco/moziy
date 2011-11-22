@@ -220,7 +220,7 @@
       .action.edit {background: image-url("icons/cog_24.png");}
       
       .load .action {background: image-url("icons/ajax-loader.gif") center center no-repeat !important}
-      .favorited .action {background: image-url("icons/star_fav_24.png"); opacity: 1;}
+      .favorited .action {background: image-url("icons/star_fav_24.png") center center no-repeat; opacity: 1;}
       .previewing .action {background: image-url("icons/playback_play_24.png"); opacity: 1;}
       .previewing .action:hover {background: image-url("icons/star_fav_empty_24.png") !important;}
       .previewing.favorited .action:hover {background: image-url("icons/star_fav_24.png") !important;}
