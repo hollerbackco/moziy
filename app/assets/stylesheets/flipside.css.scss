@@ -221,8 +221,8 @@
       
       .load .action {background: image-url("icons/ajax-loader.gif") center center no-repeat !important}
       .favorited .action {background: image-url("icons/star_fav_24.png") center center no-repeat; opacity: 1;}
-      .previewing .action {background: image-url("icons/playback_play_24.png") center center no-repeat; opacity: 1;}
-      .previewing .action:hover {background: image-url("icons/star_fav_empty_24.png") center center no-repeat !important;}
+/*      .previewing .action {background: image-url("icons/playback_play_24.png") center center no-repeat; opacity: 1;}
+      .previewing .action:hover {background: image-url("icons/star_fav_empty_24.png") center center no-repeat !important;}*/
       .previewing.favorited .action:hover {background: image-url("icons/star_fav_24.png") center center no-repeat !important;}
       .action {background: image-url("icons/star_fav_empty_24.png") center center no-repeat;}
       .action:hover {opacity: 1;}
@@ -239,6 +239,10 @@
         
         &:hover {
          background: #efefef; 
+        }
+        
+        &.previewing {
+          background: #eaeaea;
         }
         
         .coverart {
