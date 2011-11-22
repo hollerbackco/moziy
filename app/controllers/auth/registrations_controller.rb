@@ -19,6 +19,7 @@ class Auth::RegistrationsController < ApplicationController
     respond_to do |format|
       if @user.save
         Channel.default.subscribed_by(@user)
+        @user.channels.create(:title => "#{@user.username}'s channel")
         auto_login(@user)
         format.html { redirect_to(root_path(:sort => "watchers"), :notice => 'Registration successful. Check your email for activation instructions.') }
         format.xml { render :xml => @user, :status => :created, :location => @user }
