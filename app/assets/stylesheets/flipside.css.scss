@@ -200,7 +200,7 @@
         }
       }
       
-      li.active {
+      li.active, li:hover {
        a {
           background: #282828;
         }
