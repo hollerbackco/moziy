@@ -28,10 +28,10 @@ $ ->
       $(".channel").not(".facebook, .twitter").first().click()
       
     previewHover: ->
-      $(".channel").click ->
+      $(".channel").click (e) ->
         channel_id = $(this).attr("data-channel-id")
-        console.log channel_id
         window.App.channels.preview channel_id, this
+        e.stopPropagation()
       
     subscribeBindings: ->
       $(".action").not(".edit").click (e) ->
