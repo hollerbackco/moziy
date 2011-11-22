@@ -1,11 +1,11 @@
 Puretv::Application.routes.draw do
-  
-  get "oauths/oauth"
-
-  get "oauths/callback"
 
   root :to => "channels#index"
     
+  match :terms, :to => "pages#terms"
+  match :terms, :to => "pages#privacy"
+  
+  
   # login
   scope :module => :auth do
     get   :login,   :to => "sessions#new"

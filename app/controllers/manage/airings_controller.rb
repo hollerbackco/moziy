@@ -1,4 +1,5 @@
 class Manage::AiringsController < ApplicationController
+  before_filter :require_login
   
   def create
     
