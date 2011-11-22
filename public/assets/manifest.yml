@@ -5,11 +5,12 @@ fallback/thumb_list_default.jpg: fallback/thumb_list_default-ce3a74180b461d03080
 fallback/thumb_player_default.jpg: fallback/thumb_player_default-69e2f9a47290295c819b308c1f777061.jpg
 icons/ajax-loader.gif: icons/ajax-loader-376ad78a3c6a4731a4d08e6a7a958a08.gif
 icons/cog_24.png: icons/cog_24-8c9f5ba3e949b136f0a9e30beb0acc67.png
+icons/eye_16.png: icons/eye_16-746ec248052678b322a485efd47368c8.png
 icons/playback_play_24.png: icons/playback_play_24-b65d15d4cbebfb3abba66ec911f3581b.png
-icons/star_fav_24.png: icons/star_fav_24-c0e8045251a7c3b0e5c2e48513374e77.png
-icons/star_fav_empty_24.png: icons/star_fav_empty_24-7492864898bdf657e989b397a76a3569.png
+icons/star_fav_24.png: icons/star_fav_24-199451ee678b212ac87a2dc5631a9b7d.png
+icons/star_fav_empty_24.png: icons/star_fav_empty_24-57c8dd49e3e99d80d3d493f3fd4fb092.png
 mosey-logo.png: mosey-logo-ef8663683ad8cab9f1ace03524c81389.png
 rails.png: rails-e4b51606cd77fda2615e7439907bfc92.png
 application.js: application-61f5fad2bc249bc64c944536326d6422.js
 player.js: player-cf8687d158947dd31fbe0f7f2971b06b.js
-application.css: application-21a146d8b491b5eef45384dbbfe4015a.css
+application.css: application-11e31a6d0c71dead4a4988e89d1d78c0.css
