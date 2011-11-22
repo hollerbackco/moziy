@@ -21,6 +21,7 @@
               - else
                 .star= link_to c.favorited?(current_user) ? "yes" : "no", subscribe_channel_path(@mosey_channel)
       #register
+        %h2 Join mosey.tv to watch the best video channels online. It’s absolutely free.
         = form_for(@user, :url => register_path) do |f|
           - if @user.errors.any?
             #error_explanation
