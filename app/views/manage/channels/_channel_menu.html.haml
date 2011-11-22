@@ -7,3 +7,5 @@
     = link_to 'Add', new_manage_channel_video_path(@channel)
   %li{:class => current_page?(edit_manage_channel_path(@channel)) ? "active" : "" }
     = link_to 'Settings', edit_manage_channel_path(@channel)
+  %li
+    = link_to 'Watch', channel_path(@channel)
