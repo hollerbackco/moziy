@@ -15,11 +15,7 @@
               %span.user= @mosey_channel.creator.username if @mosey_channel.creator
             .description= @mosey_channel.description
             %span.count= "+#{@mosey_channel.subscriptions.count}"
-            - if logged_in?
-              - if current_user.owns?(@mosey_channel)
-                .star= link_to "edit", manage_channel_videos_path(@mosey_channel)
-              - else
-                .star= link_to c.favorited?(current_user) ? "yes" : "no", subscribe_channel_path(@mosey_channel)
+
       #register
         %h2 Join mosey.tv to watch the best video channels online. It’s absolutely free.
         = form_for(@user, :url => register_path) do |f|
@@ -73,12 +69,13 @@
                 .description= c.description
                 %span.count= "+#{c.subscriptions.count}"
                 - if logged_in?
-                  - if current_user.owns?(c)
-                    = link_to manage_channel_videos_path(c) do
-                      .action.edit
-                  - else
+                  .actions
                     = link_to subscribe_channel_path(c) do
                       .action.star
+                    - if current_user.owns?(c)
+                      = link_to manage_channel_videos_path(c) do
+                        .action.edit
+                    
             - index += 1
   #viewer
     - if @channels
