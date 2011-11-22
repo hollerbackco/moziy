@@ -223,13 +223,11 @@
       .action {cursor:pointer;position: absolute; top: 10px; right:10px; width: 30px; text-align: center;}
       .action {height:24px; width:24px; display:inline-block; background-repeat: no-repeat;}
       .action.edit {background: image-url("icons/cog.png") center center no-repeat; opacity: .6;}
-      .action.edit {opacity: 1;}
-      
+      .action.edit:hover {opacity: 1;}
       .load .action {background: image-url("icons/ajax-loader.gif") center center no-repeat !important}
-      .favorited .action {background: image-url("icons/star_fav.png") center center no-repeat; opacity: 1;}
-      
+      .favorited .action {background: image-url("icons/star_fav.png") center center no-repeat;}
+      .favorited .action:hover {background: image-url("icons/star_fav_warn.png") center center no-repeat;}
       .action {background: image-url("icons/star_fav_empty.png") center center no-repeat;}
-      .action:hover {opacity: 1;}
       
       
       li {
