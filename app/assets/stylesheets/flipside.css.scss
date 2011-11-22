@@ -13,12 +13,13 @@
     margin: 50px auto 0;
     h2 {
       text-align: center;
+      font-weight: bold;
     }
     form {
       margin: 20px auto 0;
       width: 230px;
       
-      h2 {
+      label {
         font-weight: bold;
       }
       input[type=text],
@@ -219,16 +220,15 @@
     .channels, .videos {
       margin: 0px;
       
-      .action {cursor:pointer;position: absolute; top: 20px; right:10px; width: 30px; text-align: center; opacity:.5;}
+      .action {cursor:pointer;position: absolute; top: 10px; right:10px; width: 30px; text-align: center;}
       .action {height:24px; width:24px; display:inline-block; background-repeat: no-repeat;}
-      .action.edit {background: image-url("icons/cog_24.png") center center no-repeat;}
+      .action.edit {background: image-url("icons/cog.png") center center no-repeat; opacity: .6;}
+      .action.edit {opacity: 1;}
       
       .load .action {background: image-url("icons/ajax-loader.gif") center center no-repeat !important}
-      .favorited .action {background: image-url("icons/star_fav_24.png") center center no-repeat; opacity: 1;}
-/*      .previewing .action {background: image-url("icons/playback_play_24.png") center center no-repeat; opacity: 1;}
-      .previewing .action:hover {background: image-url("icons/star_fav_empty_24.png") center center no-repeat !important;}*/
-      .previewing.favorited .action:hover {background: image-url("icons/star_fav_24.png") center center no-repeat !important;}
-      .action {background: image-url("icons/star_fav_empty_24.png") center center no-repeat;}
+      .favorited .action {background: image-url("icons/star_fav.png") center center no-repeat; opacity: 1;}
+      
+      .action {background: image-url("icons/star_fav_empty.png") center center no-repeat;}
       .action:hover {opacity: 1;}
       
       

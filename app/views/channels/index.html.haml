@@ -41,7 +41,7 @@
             %br/
             = f.password_field :password
           .actions
-            = f.submit :register, :class => "btn primary"
+            = f.submit "Sign Up", :class => "button primary"
     - else
       %ul.channels
         - if @sort.nil? and logged_in?          
