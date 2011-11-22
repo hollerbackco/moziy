@@ -8,7 +8,7 @@
           %li.channel.clearfix{:class => (logged_in? and c.favorited?(current_user)) ? "favorited": "", :id => "channel_#{c.id.to_s}", "data-channel-id" => c.id.to_s}
             = link_to "#{c.title}", manage_channel_videos_path(c)
             %span.count= "+#{c.subscriptions.count}"
-            = link_to channel_path(c) do
+            = link_to channel_path(c), :class => "watch" do
               = image_tag "icons/eye_16.png"
   #viewer
     - if @channels
