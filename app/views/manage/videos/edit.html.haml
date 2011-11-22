@@ -9,12 +9,10 @@
         %br
         = f.text_field :title
       .field
-        = f.label :body
-        %br
-        = f.text_area :body
-      .field
         = f.label :description
         %br
         = f.text_area :description
       .actions
         = f.submit
+:javascript
+  $("iframe").attr("width", "100%").attr("height", "100%")
