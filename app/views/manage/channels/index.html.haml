@@ -6,7 +6,7 @@
       - index = 0
       - @channels.each do |c|
         - if c.has_airings?
-          %li.channel
+          %li.channel.clearfix{:class => (logged_in? and c.favorited?(current_user)) ? "favorited": "", :id => "channel_#{c.id.to_s}", "data-channel-id" => c.id.to_s}
             %span.count= "+#{c.subscriptions.count}"
             = link_to "#{c.title}", manage_channel_videos_path(c), :class => "color#{index % 3}"
           - index += 1

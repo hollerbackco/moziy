@@ -25,7 +25,7 @@ $ ->
 
       @previewHover()
       @subscribeBindings()
-      $(".channel").first().click()
+      $(".channel").not(".facebook, .twitter").first().click()
       
     previewHover: ->
       $(".channel").click ->

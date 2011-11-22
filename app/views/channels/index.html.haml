@@ -7,7 +7,7 @@
     
     - if @sort.nil? and ! logged_in?
       %ul.channels
-        %li.channel.clearfix{:class => "color1"}
+        %li.channel.clearfix{:class => (logged_in? and @mosey_channel.favorited?(current_user)) ? "favorited": "", :id => "channel_#{@mosey_channel.id.to_s}", "data-channel-id" => @mosey_channel.id.to_s}
           .coverart= link_to image_tag(@mosey_channel.cover_art_url(:thumb_list)), channel_path(@mosey_channel)
           .content
             .title
