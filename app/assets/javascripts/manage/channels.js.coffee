@@ -31,7 +31,7 @@ $ ->
       $(".channel").click (e) ->
         channel_id = $(this).attr("data-channel-id")
         window.App.channels.preview channel_id, this
-        e.stopPropagation()
+        
       
     subscribeBindings: ->
       $(".action").not(".edit").click (e) ->
@@ -39,6 +39,6 @@ $ ->
         unless li.hasClass("load")
           channel_id = li.attr("data-channel-id")
           window.App.channels._subscribe channel_id, li
-
+        e.stopPropagation()
         e.preventDefault()
   window.App.instantiate()
