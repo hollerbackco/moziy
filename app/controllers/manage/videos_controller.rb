@@ -1,5 +1,8 @@
 class Manage::VideosController < ApplicationController
+  before_filter :require_login
   before_filter :set_channel
+  before_filter :set_default_title
+  before_filter :check_ownership
   
   def index
     @videos = @channel.videos
@@ -61,6 +64,14 @@ class Manage::VideosController < ApplicationController
   
   
   private
+  
+    def check_ownership
+      current_user.owns?(@channel)
+    end
+    
+    def set_default_title
+      set_title(@channel.title)
+    end
   
     def check_regex(s)
       embedly_re = Regexp.new(/((http:\/\/(.*youtube\.com\/watch.*|.*\.youtube\.com\/v\/.*|youtu\.be\/.*|.*\.youtube\.com\/user\/.*|.*\.youtube\.com\/.*#.*\/.*|m\.youtube\.com\/watch.*|m\.youtube\.com\/index.*|.*\.youtube\.com\/profile.*|.*\.youtube\.com\/view_play_list.*|.*\.youtube\.com\/playlist.*|www\.vimeo\.com\/groups\/.*\/videos\/.*|www\.vimeo\.com\/.*|vimeo\.com\/groups\/.*\/videos\/.*|vimeo\.com\/.*|vimeo\.com\/m\/#\/.*))|(https:\/\/(.*youtube\.com\/watch.*|.*\.youtube\.com\/v\/.*)))/i)

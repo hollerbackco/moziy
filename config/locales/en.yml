@@ -12,4 +12,9 @@ en:
       title:  "Edit"
     new:
       title:  "Build a Channel"
-    
+  sessions:
+    new:
+      title:  "Sign in"
+  registrations:
+    new:
+      title: "Join"
