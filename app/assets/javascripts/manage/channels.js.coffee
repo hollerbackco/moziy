@@ -34,7 +34,7 @@ $ ->
         window.App.channels.preview channel_id, this
       
     subscribeBindings: ->
-      $(".star").click (e) ->
+      $(".star").not(".edit").click (e) ->
         li = $(this).parents(".channel")
         unless li.hasClass("load")
           channel_id = li.attr("data-channel-id")
