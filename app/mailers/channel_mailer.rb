@@ -1,9 +1,7 @@
 class ChannelMailer < ApplicationMailer
-  default :from => "do-not-reply@mosey.tv"
   
   def reaired(to, from, video_title)
     @your_channel = from
-    logger.info from
     @user = from.creator
     
     @their_name = to.creator.username

@@ -1,9 +1,7 @@
 class UserMailer < ApplicationMailer
-  default :from => "mosey@mosey.tv"
-  
   def registration(user)
     @user = user
-    mail :to => "jnoh12388@gmail.com",
+    mail :to => @user.email,
          :subject => "Welcome to mosey.tv"
   end
   

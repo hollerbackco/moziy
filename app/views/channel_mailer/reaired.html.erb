@@ -6,7 +6,7 @@
   <body>
     <p>Hello <%= @user.username %>,</p>
     
-    <p><%= @their_name %> just reChanneled your video <%= @video_title %> from <%= @your_channel.title %> to <%= link_to @their_channel.title, channel_url(@their_channel) %>. </p>
+    <p><%= link_to @their_name, channel_url(@their_channel) %> just reChanneled your video <%= @video_title %> from <strong><%= @your_channel.title %></strong>. </p>
 
     <p>Keep posting the goodness.</p>
 
