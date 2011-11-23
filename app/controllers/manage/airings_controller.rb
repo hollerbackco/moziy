@@ -13,7 +13,7 @@ class Manage::AiringsController < ApplicationController
         airing = Airing.create(:channel_id => @channel.id, :video_id => video.id, :parent_id => from.id)
         airing.go_live
         
-        ChannelMailer.reaired(@channel, from.channel, video.title)
+        ChannelMailer.reaired(@channel, from.channel, video.title).deliver
 
         re = {
           :success => true,
