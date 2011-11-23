@@ -2,11 +2,19 @@ $ ->
 
   $.extend window.App,
     channels:
+      change: (channel_id, list_item) ->
+        $(".channel").removeClass("previewing")
+        $(list_item).addClass("previewing")
+        url = "/channels/#{channel_id}/chromeless"
+        $("#viewer-iframe").attr("src", url)
+        
       _notice: (msg) ->
         alert(msg)
       _reairVideo: (channel_id) ->
+        video_id = window.App.playerManager.getCurrentVideoID()
+        channel_id = window.App.playerManager.getCurrentChannelID()
         $.ajax
-          url: "/manage/channels/#{channel_id}/airings?video_id=#{window.App.playerManager.getCurrentVideoID()}",
+          url: "/manage/channels/#{channel_id}/airings?video_id=#{video_id}&from_id=#{channel_id}",
           type: "POST"
           success: (msg) =>
             alert_message = "Rechanneled to #{msg.channel_title}"
@@ -28,7 +36,10 @@ $ ->
           out: ->
             $(this).removeClass("hover")
             $(".channels").hide()
-      
+      changeBindings: ->
+        $(".channel").click (e) ->
+          channel_id = $(this).attr("data-channel-id")
+          window.App.channels.change channel_id, this
       channelMenu: ->
         $("#actions").hoverIntent
           over: ->

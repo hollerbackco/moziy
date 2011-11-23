@@ -9,5 +9,11 @@
 //= require jquery_ujs
 //= require jquery.hoverIntent.min
 //= require cookie
+//= require underscore-min
+//= require backbone-min
 //= require swfobject
-//= require_tree ./player
+//= require player/p/base_player
+//= require player/p/vimeo
+//= require player/p/youtube
+//= require player/player
+//= require player/channels

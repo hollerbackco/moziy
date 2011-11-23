@@ -6,7 +6,8 @@ class App.PlayerManager
 
   constructor: (@starting_video_id, @channel_id) ->
     @_playFromId @starting_video_id
-
+    Backbone.Events.bind("player:finished", @next, this)
+    
   next: =>
     # todo: what happens if the queue fails
     @_play @next_video
@@ -31,9 +32,8 @@ class App.PlayerManager
     
   _play: (video) =>
     # set the current video
+
     @current_video = video
-    self = this
-    
     console.log("currently playing: #{@current_video.id}")
     
     try
@@ -62,14 +62,13 @@ class App.PlayerManager
           # queue up the next next video
           @_queue()
           
-        else @_queue self.next
+        else @_queue @next
     catch error
       console.log "error"
-      self.next()
+      @next()
       
   _notifyPlayers: ->
-    @youtubePlayer.update()
-    @vimeoPlayer.update()
+    Backbone.Events.trigger("player:update")
   
   _setNowPlaying: (title) ->
     $("#video-title").text title

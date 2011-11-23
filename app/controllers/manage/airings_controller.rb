@@ -5,10 +5,12 @@ class Manage::AiringsController < ApplicationController
     
     channel = Channel.find(params[:channel_id])
     
+    from = Airing.find_by_channel_id_and_video_id(params[:from_id], params[:video_id])
+    
     if params[:video_id] && 
        (video = Video.find(params[:video_id])) &&
        current_user.owns?(channel) &&
-       (airing = Airing.create(:channel_id => channel.id, :video_id => video.id)) &&
+       (airing = Airing.create(:channel_id => channel.id, :video_id => video.id, :parent_id => from.id)) &&
        airing.go_live
     end
     
@@ -19,9 +21,9 @@ class Manage::AiringsController < ApplicationController
         :success => true,
         :channel_title => channel.title 
       }
+      ChannelMailer.reaired(airing.channel, from.channel, video.title)
     end
-      
-      
+
     render :json => re
   end
   

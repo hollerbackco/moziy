@@ -1,4 +1,8 @@
 class Airing < ActiveRecord::Base
+  acts_as_nested_set
+  
+  attr_accessible :video, :channel, :video_id, :channel_id, :parent_id
+  
   belongs_to :video #, :counter_cache => true
   belongs_to :channel
   

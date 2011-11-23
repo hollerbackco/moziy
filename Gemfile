@@ -18,6 +18,10 @@ gem 'mini_fb'
 gem 'state_machine'
 
 
+
+gem 'awesome_nested_set'
+
+
 # Image Uploader
 gem 'mini_magick'
 gem 'fog'

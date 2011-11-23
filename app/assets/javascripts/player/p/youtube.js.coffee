@@ -1,35 +1,15 @@
 if typeof(window.App) == "undefined" then window.App = {}
 
-class App.YouTubePlayer
+class App.YouTubePlayer extends App.Player
   # @state
     # 0 = stopped
     # 1 = playing
   constructor: (@divId) ->
-    @state = 0 #stopped
-  
-  update: ->
-    if @state
-      @_show()
-    else
-      @_hide()
-      
-  _hide: ->
-    $("##{@divId}").css 'display', 'none'
+    Backbone.Events.bind("player:update", @update, this)
+    super()
 
-  _show: ->
-    $("##{@divId}").css 'display', 'block'
-    
-  play: (video_id) ->
-    @state = 1
-    @current_playing_id = video_id
-    
-    unless @_player?
-      @_bootstrap()
-    else
-      @_player.loadVideoById @current_playing_id
-
-  error: (error) ->
-    alert error
+  _loadVideo: ->
+    @_player.loadVideoById @current_playing_id
   
   _onStateChange: (event) =>
     switch event.data
@@ -41,13 +21,7 @@ class App.YouTubePlayer
       when 5 then break #YT.PlayerState.CUED
       else
         break
-  _onError: (event) ->
-    @error(event)
-
-  _onEnd: ->
-    @state = 0
-    App.playerManager.next()
-  
+        
   _onReady: ->
     
   onAPIReady: ->

@@ -2,8 +2,8 @@
   #main-content.channel-list.list
     %ul#secondary-menu.clearfix
       %li{:class => @sort.nil? ? "active" : "" }= link_to "My Channels", root_path
-      %li{:class => @sort == "watchers" ? "active" : "" }= link_to "# of Watchers", root_path(:sort => "watchers")
-      %li{:class => @sort == "tastemakers" ? "active" : "" }= link_to "Tastemakers", root_path(:sort => "tastemakers")
+      %li{:class => @sort == "watchers" ? "active" : "" }= link_to "Popular", root_path(:sort => "watchers")
+      %li{:class => @sort == "social" ? "active" : "" }= link_to "Social", root_path(:sort => "social")
     
     - if @sort.nil? and ! logged_in?
       %ul.channels
@@ -38,6 +38,7 @@
             = f.password_field :password
           .actions
             = f.submit "Sign Up", :class => "button primary"
+    - elsif @sort 
     - else
       %ul.channels
         - if @sort.nil? and logged_in?          

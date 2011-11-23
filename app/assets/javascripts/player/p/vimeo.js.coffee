@@ -1,17 +1,12 @@
 if typeof(window.App) == "undefined" then window.App = {}
 
-class App.VimeoPlayer
+class App.VimeoPlayer extends App.Player
   # @state
     # 0 = stopped
     # 1 = playing
   constructor: (@divId) ->
-    @state = 0 #stopped
-
-  update: ->
-    if @state
-      @_show()
-    else
-      @_hide()
+    Backbone.Events.bind("player:update", @update, this)
+    super()
 
   _hide: ->
     $("#vimeo-dummy").remove()
@@ -20,31 +15,14 @@ class App.VimeoPlayer
 
   _show: ->
     $("##{@divId}").css 'display', 'block'
-
-  play: (video_id) ->
-    @state = 1
-    @current_playing_id = video_id
-
-    unless @_player?
-      @_bootstrap()
-    else
-      @_player.api_loadVideo @current_playing_id
-
-  error: (error) ->
-    alert error
-
-  _onError: (event) ->
-    @error(event)
-
-  _onEnd: ->
-    @state = 0
-    App.playerManager.next()
+      
+  _loadVideo: ->
+    @_player.api_loadVideo @current_playing_id
 
   _onReady: =>
     @_player = $("#vimeo-dummy")[0]
     @_player.api_addEventListener 'onFinish', "function(){App.playerManager.vimeoPlayer._onEnd()}"
     
-
   _bootstrap: ->
     params = 
       allowScriptAccess: "always"

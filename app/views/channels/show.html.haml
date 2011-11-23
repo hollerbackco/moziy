@@ -18,11 +18,6 @@
               %li.channel
                 = link_to "#{c.title}", channel_path(c)
           %li= link_to "find more", root_path
-        %ul.channels
-          - current_user.channels.publik.each do |c|
-            - if c.has_airings?
-              %li.channel
-                = link_to "#{c.title}", channel_path(c)
       - else
         %h2 Top Channels
         %ul.channels
