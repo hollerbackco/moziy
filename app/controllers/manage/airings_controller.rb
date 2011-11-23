@@ -4,18 +4,16 @@ class Manage::AiringsController < ApplicationController
   
   def create
     
-    if params[:video_id] && params[:channel_id] && params[:from_id]
+    if params[:video_id] && params[:from_id]
 
       from = Airing.find_by_channel_id_and_video_id(params[:from_id], params[:video_id])
       video = Video.find(params[:video_id])
       logger.info from
       logger.info video
       
-      unless Airing.exists?(:channel_id => @channel.id, :video_id => video.id) &&
-        ! Airing.create(:channel_id => @channel.id, :video_id => video.id, :parent_id => from.id).go_live
-        
-        logger.info from.channel.creator
-        logger.info from.channel.inspect
+      if ! Airing.exists?(:channel_id => @channel.id, :video_id => video.id) &&
+        Airing.create(:channel_id => @channel.id, :video_id => video.id, :parent_id => from.id).go_live
+
         ChannelMailer.reaired(@channel, from.channel, video.title).deliver
 
         re = {
