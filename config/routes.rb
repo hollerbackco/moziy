@@ -47,7 +47,7 @@ Puretv::Application.routes.draw do
       match :subscribe
       match :unsubscribe, :to => "channels#subscribe"
     end
-    resources :videos, :only => [:show] do
+    resources :videos, :only => [:show, :destroy] do
       member do
         get :next
       end

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <h3>Hello <%= @user.first_name %>,</h3>
+    <p><%= @their_name %> just reChanneled your video <%= @video_title %> from <%= @your_channel.title %> to <%= link_to @their_channel.title, channel_url(@their_channel) %>. </p>
+
+    <p>Keep posting the goodness.</p>
+
+    <a href="http://mosey.tv">mosey.tv</a>
+  </body>
+</html>

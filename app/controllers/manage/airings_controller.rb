@@ -32,6 +32,10 @@ class Manage::AiringsController < ApplicationController
     render :json => re
   end
   
+  def destroy
+    Airing.destroy(params[:id])
+    redirect_to :back
+  end
   
   private
     
