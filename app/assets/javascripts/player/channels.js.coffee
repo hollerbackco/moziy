@@ -23,7 +23,13 @@ $ ->
         @channelMenu()
         @mainMenu()
         @reairBindings()
-        
+        @muteButton()
+      
+      muteButton: ->
+        $("#mute").click ->
+          $(this).toggleClass("on")
+          window.App.playerManager.toggleMute()
+          
       mainMenu: ->
         $("#main-menu").hoverIntent
           over: ->

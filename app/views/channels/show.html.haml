@@ -35,6 +35,7 @@
   - if @channel && !@channel.new_record?
     .mark +
     %ul.buttons
+      #mute.on
       - if logged_in?
         - if current_user.owns?(@channel)
           %li= link_to 'edit', manage_channel_videos_path(@channel)

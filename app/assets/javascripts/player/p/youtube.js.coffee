@@ -6,6 +6,8 @@ class App.YouTubePlayer extends App.Player
     # 1 = playing
   constructor: (@divId) ->
     Backbone.Events.bind("player:update", @update, this)
+    Backbone.Events.bind("player:mute", @_mute, this)
+    Backbone.Events.bind("player:unMute", @_unMute, this)
     super()
 
   _loadVideo: ->
@@ -21,8 +23,17 @@ class App.YouTubePlayer extends App.Player
       when 5 then break #YT.PlayerState.CUED
       else
         break
-        
-  _onReady: ->
+  
+  _unMute: ->
+    @_player.unMute() if @_player?
+    super()
+    
+  _mute: ->
+    @_player.mute() if @_player?
+    super()
+    
+  _onReady: =>
+    @_player.mute() unless @volumeState
     
   onAPIReady: ->
     @_player = new YT.Player @divId, {
@@ -44,7 +55,7 @@ class App.YouTubePlayer extends App.Player
         'onStateChange': @_onStateChange,
         'onError': @_onError
     }
-  
+    
   _bootstrap: ->
     tag = document.createElement('script')
     tag.src = "http://www.youtube.com/player_api"

@@ -6,11 +6,20 @@ class App.PlayerManager
 
   constructor: (@starting_video_id, @channel_id) ->
     @_playFromId @starting_video_id
+    @volumeState = 1
     Backbone.Events.bind("player:finished", @next, this)
     
   next: =>
     # todo: what happens if the queue fails
     @_play @next_video
+  
+  toggleMute: ->
+    if @volumeState
+      @volumeState = 0
+      Backbone.Events.trigger("player:mute")
+    else
+      @volumeState = 1
+      Backbone.Events.trigger("player:unMute")
     
   getCurrentChannelID: ->
     @channel_id

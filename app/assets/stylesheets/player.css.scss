@@ -16,7 +16,23 @@
     .container {position: relative; padding: 0;}
 
   }
-
+  
+  #mute {
+    position: absolute;
+    top: 35px;
+    right: 10px;
+    width: 24px;
+    height: 24px;
+    z-index: 10;
+    background: image-url('icons/sound_mute.png') transparent no-repeat center center;
+    
+    &.on {
+      background: image-url('icons/sound_on.png') transparent no-repeat center center;
+    }
+    &.chromeless {
+      top: 15px;
+    }
+  }
   #player {
     background: image-url('mosey-logo.png') black no-repeat center center;
   }

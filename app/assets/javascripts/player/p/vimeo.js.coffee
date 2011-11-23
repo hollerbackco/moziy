@@ -6,8 +6,18 @@ class App.VimeoPlayer extends App.Player
     # 1 = playing
   constructor: (@divId) ->
     Backbone.Events.bind("player:update", @update, this)
+    Backbone.Events.bind("player:mute", @_mute, this)
+    Backbone.Events.bind("player:unMute", @_unMute, this)
     super()
 
+  _mute: ->
+    @_player.api_setVolume(0) if @_player?
+    super()
+    
+  _unMute: ->
+    @_player.api_setVolume(1) if @_player?
+    super()
+    
   _hide: ->
     $("#vimeo-dummy").remove()
     $("##{@divId}").append("<div id='vimeo-dummy'></div>")
@@ -21,6 +31,7 @@ class App.VimeoPlayer extends App.Player
 
   _onReady: =>
     @_player = $("#vimeo-dummy")[0]
+    @_mute unless @volumeState
     @_player.api_addEventListener 'onFinish', "function(){App.playerManager.vimeoPlayer._onEnd()}"
     
   _bootstrap: ->
