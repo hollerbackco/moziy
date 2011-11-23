@@ -9,7 +9,7 @@ class ChannelMailer < ApplicationMailer
     @video_title = video_title
     
     
-    mail :to => "jnoh12388@gmail.com",
+    mail :to => @user.email,
          :subject => "Your video just went viral."
   end
   
@@ -21,7 +21,7 @@ class ChannelMailer < ApplicationMailer
     @subscriber = subscriber
     
     if @user != @subscriber
-      mail :to => "jnoh12388@gmail.com",
+      mail :to => @user.email,
            :subject => "You are now famouser."
     end
   end
