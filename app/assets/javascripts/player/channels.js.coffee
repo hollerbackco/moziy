@@ -13,9 +13,9 @@ $ ->
         
       _reairVideo: (channel_id) ->
         video_id = window.App.playerManager.getCurrentVideoID()
-        channel_id = window.App.playerManager.getCurrentChannelID()
+        from_id = window.App.playerManager.getCurrentChannelID()
         $.ajax
-          url: "/manage/channels/#{channel_id}/airings?video_id=#{video_id}&from_id=#{channel_id}",
+          url: "/manage/channels/#{channel_id}/airings?video_id=#{video_id}&from_id=#{from_id}",
           type: "POST"
           success: (msg) =>
             if msg.success
