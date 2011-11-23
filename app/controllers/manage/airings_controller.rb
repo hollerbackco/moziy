@@ -8,11 +8,14 @@ class Manage::AiringsController < ApplicationController
 
       from = Airing.find_by_channel_id_and_video_id(params[:from_id], params[:video_id])
       video = Video.find(params[:video_id])
+      logger.info from
+      logger.info video
       
-      unless Airing.exists?(:channel_id => @channel.id, :video_id => video.id)
-        airing = Airing.create(:channel_id => @channel.id, :video_id => video.id, :parent_id => from.id)
-        airing.go_live
+      unless Airing.exists?(:channel_id => @channel.id, :video_id => video.id) &&
+        ! Airing.create(:channel_id => @channel.id, :video_id => video.id, :parent_id => from.id).go_live
         
+        logger.info from.channel.creator
+        logger.info from.channel.inspect
         ChannelMailer.reaired(@channel, from.channel, video.title).deliver
 
         re = {
