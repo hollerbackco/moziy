@@ -1,13 +1,15 @@
 class ChannelMailer < ApplicationMailer
   default :from => "do-not-reply@mosey.tv"
   
-  def reaired(channel, source, video_title)
-    @your_channel = source
-    @their_name = channel.creator.username
-    @their_channel = channel
+  def reaired(to, from, video_title)
+    @your_channel = from
+    @user = from.creator
+    
+    @their_name = to.creator.username
+    @their_channel = to
     @video_title = video_title
     
-    @user = channel.creator
+    
     mail :to => "jnoh12388@gmail.com",
          :subject => "Your video just went viral."
   end

@@ -10,6 +10,7 @@ $ ->
         
       _notice: (msg) ->
         alert(msg)
+        
       _reairVideo: (channel_id) ->
         video_id = window.App.playerManager.getCurrentVideoID()
         channel_id = window.App.playerManager.getCurrentChannelID()
@@ -17,8 +18,10 @@ $ ->
           url: "/manage/channels/#{channel_id}/airings?video_id=#{video_id}&from_id=#{channel_id}",
           type: "POST"
           success: (msg) =>
-            alert_message = "Rechanneled to #{msg.channel_title}"
-            @_notice(alert_message)
+            if msg.success
+              alert_message = "Rechanneled to #{msg.channel_title}"
+            else
+              @_notice(msg.msg)
             
     effects:
       instantiate: ->
