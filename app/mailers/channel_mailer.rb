@@ -14,14 +14,16 @@ class ChannelMailer < ApplicationMailer
   end
   
   def subscribed(receiver_channel, subscriber)
-    
+    logger.info "subscribe"
     @channel = receiver_channel
     @user = receiver_channel.creator
     
     @subscriber = subscriber
-
-    mail :to => "jnoh12388@gmail.com",
-         :subject => "You are now famouser."
+    
+    if @user != @subscriber
+      mail :to => "jnoh12388@gmail.com",
+           :subject => "You are now famouser."
+    end
   end
   
 end

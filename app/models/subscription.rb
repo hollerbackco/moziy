@@ -4,6 +4,4 @@ class Subscription < ActiveRecord::Base
   
   validates :channel_id, :uniqueness => {:scope => [:user_id]}
   
-  
-  
 end
