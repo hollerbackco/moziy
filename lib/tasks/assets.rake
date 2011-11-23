@@ -30,7 +30,7 @@ namespace :assets do
     end
 
     def push
-      run "git push heroku master"
+      run "git push"
     end
 
     private
