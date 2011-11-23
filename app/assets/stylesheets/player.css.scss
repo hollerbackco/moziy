@@ -134,7 +134,8 @@
         }
         
         .title {
-          white-space:nowrap;
+          white-space:nowrap; 
+          text-overflow: ellipsis;
           margin-left: 21px;
         }
         
@@ -274,12 +275,18 @@
       padding: 10px 0px;
     }
     .title {
+      
       font-size: 11px;
       height: 19px;
       margin: 0 10px;
     }
 
-    #channel-title {font-weight: bold;}
+    #channel-title {
+      font-weight: bold;
+      white-space:nowrap; 
+      text-overflow: ellipsis;
+      margin-left: 21px;
+    }
   }
   
 }

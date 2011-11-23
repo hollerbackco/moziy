@@ -16,7 +16,7 @@
             - if c.has_airings?
               %li.channel
                 .icon= link_to image_tag(c.cover_art_url(:thumb_favicon)), channel_path(c)
-                .title= link_to "#{truncate(c.title, :length => 25, :omission => '…')}", channel_path(c)
+                .title= link_to c.title, channel_path(c)
           %li= link_to "find more", root_path
       - else
         %h2 Top Channels
@@ -29,8 +29,8 @@
     #now-playing
       #coverart= image_tag(@channel.cover_art_url(:thumb_player))
       #channel-info
-        #channel-title.title= truncate(@channel.title, :length => 20, :omission => '...')
-        #video-title.title= truncate(@current.title, :length => 18, :omission => '...')
+        #channel-title.title= @channel.title
+        #video-title.title= truncate(@current.title, :length => 30, :omission => '...')
 #actions.clearfix
   - if @channel && !@channel.new_record?
     .mark +
