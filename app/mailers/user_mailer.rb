@@ -1,6 +1,5 @@
 class UserMailer < ApplicationMailer
-  
-  default :from => "do-not-reply@mosey.tv"
+  default :from => "mosey@mosey.tv"
   
   def registration(user)
     @user = user
