@@ -1,7 +1,7 @@
 class Airing < ActiveRecord::Base
   acts_as_nested_set
   
-  attr_accessible :video, :channel, :video_id, :channel_id, :parent_id
+  attr_accessible :video, :channel, :video_id, :channel_id, :parent_id, :state
   
   belongs_to :video #, :counter_cache => true
   belongs_to :channel
@@ -9,10 +9,12 @@ class Airing < ActiveRecord::Base
   validates :video_id, :presence => true
   validates :channel_id, :presence => true, :uniqueness => {:scope => [:video_id]}
   
+  
+  
   state_machine :initial => :suggestion do
     
       after_transition any => :suggestion do |transition|
-        self.seatbelt = 'off' # self is the record
+
       end
       
       

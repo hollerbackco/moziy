@@ -2,12 +2,6 @@ $ ->
 
   $.extend window.App,
     channels:
-      change: (channel_id, list_item) ->
-        $(".channel").removeClass("previewing")
-        $(list_item).addClass("previewing")
-        url = "/channels/#{channel_id}/chromeless"
-        $("#viewer-iframe").attr("src", url)
-        
       _notice: (msg) ->
         alert(msg)
         
@@ -20,6 +14,7 @@ $ ->
           success: (msg) =>
             if msg.success
               alert_message = "Rechanneled to #{msg.channel_title}"
+              alert alert_message
             else
               @_notice(msg.msg)
             
@@ -39,10 +34,7 @@ $ ->
           out: ->
             $(this).removeClass("hover")
             $(".channels").hide()
-      changeBindings: ->
-        $(".channel").click (e) ->
-          channel_id = $(this).attr("data-channel-id")
-          window.App.channels.change channel_id, this
+
       channelMenu: ->
         $("#actions").hoverIntent
           over: ->

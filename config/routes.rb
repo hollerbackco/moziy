@@ -28,7 +28,7 @@ Puretv::Application.routes.draw do
   # channel management
   scope "/manage", :module => :manage, :as => :manage do
     resources :channels do
-      resources :airings, :only => [:create]
+      resources :airings, :only => [:create, :destroy]
       resources :videos do 
         collection do
           put :sort
@@ -47,7 +47,7 @@ Puretv::Application.routes.draw do
       match :subscribe
       match :unsubscribe, :to => "channels#subscribe"
     end
-    resources :videos, :only => [:show, :destroy] do
+    resources :videos, :only => [:show] do
       member do
         get :next
       end

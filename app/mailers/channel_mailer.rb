@@ -3,6 +3,7 @@ class ChannelMailer < ApplicationMailer
   
   def reaired(to, from, video_title)
     @your_channel = from
+    logger.info from
     @user = from.creator
     
     @their_name = to.creator.username

@@ -58,10 +58,13 @@ class Channel < ActiveRecord::Base
     
     @current_index = @video_ids.index current_id.to_i
 
-    next_index = (@current_index + 1) % self.videos.count
-    
+    if @current_index
+      next_index = (@current_index + 1) % self.videos.count
+      Video.find(@video_ids[next_index])
+    else
     # give the next video or the first if current_index not set.
-    @current_index ? Video.find(@video_ids[next_index]) : Video.find(@video_ids.first)
+      Video.find(@video_ids[rand(self.videos.count)])
+    end
   end
   
   
