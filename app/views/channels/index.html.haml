@@ -38,8 +38,7 @@
             = f.password_field :password
           .actions
             = f.submit "Sign Up", :class => "button primary"
-    - elsif @sort 
-    - else
+    - elsif @sort == "social"
       %ul.channels
         - if @sort.nil? and logged_in?          
           - if current_user.social_channel?(:facebook)
@@ -56,8 +55,9 @@
                 My Twitter Channel
           - else
             = link_to ""
-          
-    
+      
+    - else
+      %ul.channels
         - index = 0
         - @channels.each do |c|
           - if c.has_airings?
