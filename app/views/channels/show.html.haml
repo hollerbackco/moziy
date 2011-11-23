@@ -11,12 +11,12 @@
     #new-channel.main-action= link_to "Build a Channel", new_manage_channel_path
     #channels-container
       - if logged_in?
-        %h2 My Channels
         %ul.channels
           - @channel_list.each do |c|
             - if c.has_airings?
               %li.channel
-                = link_to "#{c.title}", channel_path(c)
+                .icon= link_to image_tag(c.cover_art_url(:thumb_favicon)), channel_path(c)
+                .title= link_to "#{truncate(c.title, :length => 25, :omission => '…')}", channel_path(c)
           %li= link_to "find more", root_path
       - else
         %h2 Top Channels
@@ -24,7 +24,8 @@
           - @top.each do |c|
             - if c.has_airings?
               %li.channel
-                = link_to "#{c.title}", channel_path(c)
+                .icon= link_to image_tag(c.cover_art_url(:thumb_favicon)), channel_path(c)
+                .title= link_to "#{c.title}", channel_path(c)
     #now-playing
       #coverart= image_tag(@channel.cover_art_url(:thumb_player))
       #channel-info
