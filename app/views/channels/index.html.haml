@@ -1,7 +1,7 @@
 #channel-manage
   #main-content.channel-list.list
     %ul#secondary-menu.clearfix
-      %li{:class => @sort.nil? ? "active" : "" }= link_to "My Channels", root_path
+      %li{:class => @sort.nil? ? "active" : "" }= link_to "Following", root_path
       %li{:class => @sort == "watchers" ? "active" : "" }= link_to "Popular", root_path(:sort => "watchers")
       %li{:class => @sort == "social" ? "active" : "" }= link_to "Social", root_path(:sort => "social")
     
