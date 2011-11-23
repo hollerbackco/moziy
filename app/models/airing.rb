@@ -13,23 +13,18 @@ class Airing < ActiveRecord::Base
   
   state_machine :initial => :suggestion do
     
-      after_transition any => :suggestion do |transition|
-
-      end
-      
-      
-      event :go_live do
-        transition :any => :live
-      end
-      
-      event :archive do
-        transition :any => :archive
-      end
-
-      state :suggestion
-      state :live
-      state :archived
+    event :go_live do
+      transition :suggestion => :live
     end
+    
+    event :archive do
+      transition :any => :archive
+    end
+
+    state :suggestion
+    state :live
+    state :archived
+  end
     
   def self.sort(ids)
     update_all(
