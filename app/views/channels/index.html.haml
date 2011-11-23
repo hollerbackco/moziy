@@ -38,23 +38,22 @@
             = f.password_field :password
           .actions
             = f.submit "Sign Up", :class => "button primary"
-    - elsif @sort == "social"
-      %ul.channels
-        - if @sort.nil? and logged_in?          
-          - if current_user.social_channel?(:facebook)
-            %li.channel.facebook
-              = link_to channel_path(current_user.facebook_channel) do
-                My Facebook Channel
-          - else
-            %li.channel.facebook
-              = link_to "My Facebook Channel", 
-              auth_at_provider_path(:facebook)
-          - if current_user.social_channel?(:twitter)
-            %li.channel.twitter
-              = link_to channel_path(current_user.facebook_channel) do
-                My Twitter Channel
-          - else
-            = link_to ""
+    - elsif @sort == "social" and logged_in? 
+      %ul.channels      
+        - if current_user.social_channel?(:facebook)
+          %li.channel.facebook
+            = link_to channel_path(current_user.facebook_channel) do
+              My Facebook Channel
+        - else
+          %li.channel.facebook
+            = link_to "My Facebook Channel", 
+            auth_at_provider_path(:facebook)
+        - if current_user.social_channel?(:twitter)
+          %li.channel.twitter
+            = link_to channel_path(current_user.facebook_channel) do
+              My Twitter Channel
+        - else
+          = link_to ""
       
     - else
       %ul.channels
