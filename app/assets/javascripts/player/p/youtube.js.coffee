@@ -17,13 +17,16 @@ class App.YouTubePlayer extends App.Player
     switch event.data
       when 0 #YT.PlayerState.ENDED
         @_onEnd()
-        break
       when 1 then break #YT.PlayerState.PLAYING
+      when 2 #YT.PlayerState.PAUSED
+        @_onPause()
       when 3 then break #YT.PlayerState.BUFFERING
       when 5 then break #YT.PlayerState.CUED
-      else
-        break
+
   
+  _onPause: ->
+    @_player.playVideo() if @_player?
+    
   _unMute: ->
     @_player.unMute() if @_player?
     super()
@@ -49,6 +52,7 @@ class App.YouTubePlayer extends App.Player
         'autoplay': 1,
         'showinfo': 0,
         'modestbranding': 1,
+        'fs': 0,
         'origin': window.location.host
       events:
         'onReady': @_onReady,
