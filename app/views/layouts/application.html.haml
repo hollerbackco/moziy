@@ -14,9 +14,9 @@
           - if logged_in?
             %li{:class => current_page?(explore_path) ? "active" : "" }= link_to "Explore", explore_path(:sort => "watchers")
             %li{:class => current_page?(manage_channels_path) ? "active" : "" }= link_to "Manage", manage_channels_path
-            %li{:class => current_page?(new_manage_channel_path) ? "active" : "" }= link_to 'Build a Channel', new_manage_channel_path, :class => "button"
+            %li{:class => current_page?(new_manage_channel_path) ? "active" : "" }= link_to 'Build a Channel', new_manage_channel_path, :class => "button bold"
           - else
-            %li{:class => current_page?(new_manage_channel_path) ? "active" : "" }= link_to 'Build a Channel', new_manage_channel_path, :class => "button"
+            %li{:class => current_page?(new_manage_channel_path) ? "active" : "" }= link_to 'Build a Channel', new_manage_channel_path, :class => "button bold"
       %nav.session
         %ul
           - if logged_in?
