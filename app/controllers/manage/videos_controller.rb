@@ -66,7 +66,7 @@ class Manage::VideosController < ApplicationController
   private
   
     def check_ownership
-      current_user.owns?(@channel)
+      redirect_to root_path unless current_user.owns?(@channel)
     end
     
     def set_default_title

@@ -1,5 +1,6 @@
 class Manage::ChannelsController < ApplicationController
   before_filter :require_login, :except => [:index, :show]
+  before_filter :check_ownership, :except => [:index, :new, :create]
   
   def index
     @channels = current_user.channels.publik
@@ -10,7 +11,6 @@ class Manage::ChannelsController < ApplicationController
   end
   
   def show
-    @channel = Channel.find(params[:id])
   end
 
   def create
@@ -24,12 +24,9 @@ class Manage::ChannelsController < ApplicationController
   end
   
   def edit
-    @channel = Channel.find(params[:id])
   end
 
   def update
-    @channel = Channel.find(params[:id])
-    
     if @channel.update_attributes(params[:channel])
       redirect_to edit_manage_channel_path(@channel)
     else
@@ -38,8 +35,15 @@ class Manage::ChannelsController < ApplicationController
   end
 
   def destroy
-    Channel.find(params[:id]).destroy
+    @channel.destroy
     redirect_to :back
   end
+  
+  private
+    
+    def check_ownership
+      @channel = Channel.find(params[:id])
+      redirect_to root_path unless current_user.owns? @channel
+    end
   
 end
