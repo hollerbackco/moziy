@@ -4,7 +4,7 @@ class Channel < ActiveRecord::Base
   has_many :airings, :order => "position ASC, video_id DESC", :dependent => :destroy
   has_many :videos, :through => :airings
   
-  has_many :subscriptions
+  has_many :subscriptions, :dependent => :destroy
   
   validates :title, :uniqueness => true, :presence => true
   
