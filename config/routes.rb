@@ -36,7 +36,6 @@ Puretv::Application.routes.draw do
       end
       resources :videos do 
         collection do
-          
           match :archived
           put :sort
         end

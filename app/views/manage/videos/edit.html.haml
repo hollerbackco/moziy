@@ -3,7 +3,7 @@
     .holder{:style => "margin: 0 auto"}= sanitize @video.body, :tags => %w(embed iframe p), :attributes => %w(src width height frameborder)
   #main-content
     = render :partial => 'manage/channels/channel_menu'
-    = form_for ['manage', @channel, @video], :url => edit_manage_channel_video_path(@channel, @video) do |f|
+    = form_for ['manage', @channel, @video] do |f|
       .field
         = f.label :title
         %br
