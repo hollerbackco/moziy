@@ -36,8 +36,9 @@ class Manage::ChannelsController < ApplicationController
 
   def destroy
     @channel.destroy
-    redirect_to :back
+    redirect_to manage_channels_path
   end
+
   
   private
     

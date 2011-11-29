@@ -3,11 +3,11 @@
   #main-content.video-list.list
     = render :partial => 'manage/channels/channel_menu'
     %ul.videos
-      - @channel.airings.each do |a|
+      - @channel.archived_airings.each do |a|
         %li.video{:id => "video_#{a.video_id.to_s}"}
           .title= link_to a.video.title, edit_manage_channel_video_path(@channel, a.video)
           .actions
-            = button_to "archive", archive_manage_channel_airing_path(@channel, a), :method => :put
+            = button_to "unarchive", archive_manage_channel_airing_path(@channel, a), :method => :put
             / = link_to manage_channel_airing_path(@channel, a), :method => :delete, :confirm => "Are you sure you want to delete #{a.video.title}?" do
             /   .action.trash
 :javascript

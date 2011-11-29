@@ -35,8 +35,15 @@ class Manage::AiringsController < ApplicationController
     render :json => re
   end
   
+  def archive
+    @airing = Airing.find(params[:id])
+    @airing.toggle_archive
+    redirect_to :back
+  end
+  
+  
   def destroy
-    Airing.destroy(params[:id])
+    @channel.airings.destroy(params[:id])
     redirect_to :back
   end
   
@@ -44,7 +51,7 @@ class Manage::AiringsController < ApplicationController
     
     def verify_ownership
       @channel = Channel.find(params[:channel_id])
-      current_user.owns?(@channel) 
+      redirect_to root_path unless current_user.owns?(@channel) 
     end
     
 end

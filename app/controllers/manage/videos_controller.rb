@@ -8,6 +8,10 @@ class Manage::VideosController < ApplicationController
     @videos = @channel.videos
   end
   
+  def archived
+    @videos = @channel.archived_videos
+  end
+  
   def new
     @video = Video.new
   end
@@ -51,10 +55,10 @@ class Manage::VideosController < ApplicationController
     end
   end
   
-  def destroy
-    @video = Video.destroy(params[:id])
-    redirect_to manage_channel_videos_path(@channel)
-  end
+  # def destroy
+  #   @video = Video.destroy(params[:id])
+  #   redirect_to manage_channel_videos_path(@channel)
+  # end
   
   def sort
     order = params[:video]

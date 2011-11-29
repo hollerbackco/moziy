@@ -3,6 +3,8 @@
 %ul#secondary-menu.clearfix
   %li{:class => current_page?(manage_channel_videos_path(@channel)) ? "active" : "" }
     = link_to 'Videos', manage_channel_videos_path(@channel)
+  %li{:class => current_page?(archived_manage_channel_videos_path(@channel)) ? "active" : "" }
+    = link_to 'Archived', archived_manage_channel_videos_path(@channel)
   %li{:class => current_page?(new_manage_channel_video_path(@channel)) ? "active" : "" }
     = link_to 'Add', new_manage_channel_video_path(@channel)
   %li{:class => current_page?(edit_manage_channel_path(@channel)) ? "active" : "" }

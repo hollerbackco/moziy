@@ -9,14 +9,16 @@ class Airing < ActiveRecord::Base
   validates :video_id, :presence => true
   validates :channel_id, :presence => true, :uniqueness => {:scope => [:video_id]}
   
+  
   state_machine :initial => :suggestion do
     
     event :go_live do
-      transition :suggestion => :live
+      transition all => :live
     end
     
-    event :archive do
-      transition :any => :archive
+    event :toggle_archive do
+      transition :archived => :live
+      transition all - :archived => :archived
     end
 
     state :suggestion

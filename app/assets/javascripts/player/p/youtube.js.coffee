@@ -18,12 +18,11 @@ class App.YouTubePlayer extends App.Player
       when 0 #YT.PlayerState.ENDED
         @_onEnd()
       when 1 then break #YT.PlayerState.PLAYING
-      when 2 #YT.PlayerState.PAUSED
-        @_onPause()
+      when 2 then break #YT.PlayerState.PAUSED
+       # @_onPause()
       when 3 then break #YT.PlayerState.BUFFERING
       when 5 then break #YT.PlayerState.CUED
 
-  
   _onPause: ->
     @_player.playVideo() if @_player?
     
