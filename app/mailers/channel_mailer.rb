@@ -1,4 +1,5 @@
 class ChannelMailer < ApplicationMailer
+  default :from => "\"mosey.tv\" <moses@mosey.tv>"
   
   def reaired(to, from, video_title)
     @your_channel = from
