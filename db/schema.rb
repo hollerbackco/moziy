@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111123070400) do
+ActiveRecord::Schema.define(:version => 20121231085639) do
 
   create_table "airings", :force => true do |t|
     t.integer  "video_id"
@@ -25,6 +25,9 @@ ActiveRecord::Schema.define(:version => 20111123070400) do
     t.integer  "rgt"
   end
 
+  add_index "airings", ["channel_id"], :name => "index_airings_on_channel_id"
+  add_index "airings", ["position"], :name => "index_airings_on_position"
+
   create_table "authentications", :force => true do |t|
     t.integer  "user_id",    :null => false
     t.string   "provider",   :null => false
@@ -33,6 +36,8 @@ ActiveRecord::Schema.define(:version => 20111123070400) do
     t.datetime "updated_at"
     t.string   "token"
   end
+
+  add_index "authentications", ["user_id"], :name => "index_authentications_on_user_id"
 
   create_table "channels", :force => true do |t|
     t.integer  "creator_id"
@@ -48,6 +53,19 @@ ActiveRecord::Schema.define(:version => 20111123070400) do
     t.integer  "score"
   end
 
+  add_index "channels", ["creator_id"], :name => "index_channels_on_creator_id"
+
+  create_table "likes", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "likeable_id"
+    t.string   "likeable_type"
+    t.boolean  "like_flag"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  add_index "likes", ["likeable_id", "likeable_type"], :name => "index_likes_on_likeable_id_and_likeable_type"
+
   create_table "memberships", :force => true do |t|
     t.integer  "user_id"
     t.integer  "channel_id"
@@ -62,6 +80,8 @@ ActiveRecord::Schema.define(:version => 20111123070400) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "subscriptions", ["user_id"], :name => "index_subscriptions_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "username",                        :null => false

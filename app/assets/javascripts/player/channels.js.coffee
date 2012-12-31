@@ -4,7 +4,17 @@ $ ->
     channels:
       _notice: (msg) ->
         alert(msg)
-        
+
+      _likeVideo: ->
+        video_id = window.App.playerManager.getCurrentVideoID()
+        from_id = window.App.playerManager.getCurrentChannelID()
+        $.ajax
+          url: "/channels/#{from_id}/likes?video_id=#{video_id}",
+          type: "POST"
+          success: (msg) =>
+            alert_message = "Liked to #{msg.video_title}"
+            alert alert_message
+
       _reairVideo: (channel_id) ->
         video_id = window.App.playerManager.getCurrentVideoID()
         from_id = window.App.playerManager.getCurrentChannelID()
@@ -17,19 +27,19 @@ $ ->
               alert alert_message
             else
               @_notice(msg.msg)
-            
+
     effects:
       instantiate: ->
         @channelMenu()
         @mainMenu()
         @reairBindings()
         @muteButton()
-      
+
       muteButton: ->
         $("#mute").click ->
           $(this).toggleClass("on")
           window.App.playerManager.toggleMute()
-          
+
       mainMenu: ->
         $("#main-menu").hoverIntent
           over: ->
@@ -56,4 +66,8 @@ $ ->
           channel_id = $(this).attr("data-channel-id")
           window.App.channels._reairVideo channel_id
           e.preventDefault()
+        $(".like").click (e) ->
+          window.App.channels._likeVideo()
+          e.preventDefault()
+
   window.App.effects.instantiate()
