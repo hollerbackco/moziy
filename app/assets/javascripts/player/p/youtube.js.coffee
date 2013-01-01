@@ -12,7 +12,7 @@ class App.YouTubePlayer extends App.Player
 
   _loadVideo: ->
     @_player.loadVideoById @current_playing_id
-  
+
   _onStateChange: (event) =>
     switch event.data
       when 0 #YT.PlayerState.ENDED
@@ -25,18 +25,18 @@ class App.YouTubePlayer extends App.Player
 
   _onPause: ->
     @_player.playVideo() if @_player?
-    
+
   _unMute: ->
     @_player.unMute() if @_player?
     super()
-    
+
   _mute: ->
     @_player.mute() if @_player?
     super()
-    
+
   _onReady: =>
     @_player.mute() unless @volumeState
-    
+
   onAPIReady: ->
     @_player = new YT.Player @divId, {
       height: '100%',
@@ -58,7 +58,7 @@ class App.YouTubePlayer extends App.Player
         'onStateChange': @_onStateChange,
         'onError': @_onError
     }
-    
+
   _bootstrap: ->
     tag = document.createElement('script')
     tag.src = "http://www.youtube.com/player_api"

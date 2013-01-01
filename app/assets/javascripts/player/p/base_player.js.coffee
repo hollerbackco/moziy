@@ -13,13 +13,13 @@ class App.Player
       @_show()
     else
       @_hide()
-    
+
   _mute: ->
     @volumeState = 0
-     
+
   _unMute: ->
     @volumeState = 1
-    
+
   play: (video_id) ->
     @state = 1
     @current_playing_id = video_id
@@ -29,9 +29,6 @@ class App.Player
     else
       @_loadVideo()
 
-  error: (error) ->
-    alert error
-
   _hide: =>
     $("##{@divId}").css 'display', 'none'
 
@@ -39,9 +36,8 @@ class App.Player
     $("##{@divId}").css 'display', 'block'
 
   _onError: (event) ->
-    @error(event)
     Backbone.Events.trigger('player:error')
-    
+
   _onEnd: ->
     @state = 0
     Backbone.Events.trigger('player:finished')

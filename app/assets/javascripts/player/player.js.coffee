@@ -8,9 +8,14 @@ class App.PlayerManager
     @_playFromId @starting_video_id
     @volumeState = 1
     Backbone.Events.bind("player:finished", @next, this)
+    Backbone.Events.bind("player:error", @errorPlayNext, this)
 
   next: =>
     # todo: what happens if the queue fails
+    @_play @next_video
+
+  errorPlayNext: (msg) =>
+    window.App.notice "Couldn't play #{@getCurrentVideoTitle()}. Moving on."
     @_play @next_video
 
   toggleMute: ->

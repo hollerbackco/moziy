@@ -1,16 +1,16 @@
 $ ->
 
   $.extend window.App,
-    channels:
-      _notice: (msg) ->
-        $("#alert").html(msg).show().delay(2000).fadeOut(300)
+    notice: (msg) ->
+      $("#alert").html(msg).show().delay(2000).fadeOut(300)
 
+    channels:
       _likeVideo: ->
         video_id = window.App.playerManager.getCurrentVideoID()
         video_title = window.App.playerManager.getCurrentVideoTitle()
         from_id = window.App.playerManager.getCurrentChannelID()
         alert_message = "You highfived #{video_title}"
-        @_notice alert_message
+        window.App.notice alert_message
 
         $.ajax
           url: "/channels/#{from_id}/likes?video_id=#{video_id}",
@@ -26,9 +26,9 @@ $ ->
           success: (msg) =>
             if msg.success
               alert_message = "Rechanneled to #{msg.channel_title}"
-              @_notice alert_message
+              window.App.notice alert_message
             else
-              @_notice(msg.msg)
+              window.App.notice(msg.msg)
 
     effects:
       instantiate: ->
