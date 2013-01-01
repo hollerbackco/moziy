@@ -2,7 +2,7 @@
   overflow: hidden;
   padding: 0px;
   margin: 0px;
-  
+
   #header {
     position: absolute;
     top: 0px;
@@ -16,7 +16,7 @@
     .container {position: relative; padding: 0;}
 
   }
-  
+
   #mute {
     position: absolute;
     top: 35px;
@@ -25,7 +25,7 @@
     height: 24px;
     z-index: 10;
     background: image-url('icons/sound_mute.png') transparent no-repeat center center;
-    
+
     &.on {
       background: image-url('icons/sound_on.png') transparent no-repeat center center;
     }
@@ -44,7 +44,6 @@
     bottom: 0px;
     z-index: 0;
     overflow:hidden;
-    
   }
 
   .player {
@@ -172,16 +171,16 @@
 
   #actions {
     position: absolute;
-    top: 0;
-    right: 0;
-    width: 200px;
+    top: 5px;
+    right: 5px;
+    width: 350px;
     height: 100px;
     z-index: 5;
-    
+
     &:hover  {
       .mark {display: none;}
     }
-    
+
     .mark {
       position: absolute;
       top: 0px;
@@ -192,47 +191,48 @@
       font-weight: bold;
       color: #999;
     }
-    
-    
-    
+
     .buttons {
       display: none;
       list-style: none;
       padding: 0px;
       margin: 0px;
-      
+
       li {
         margin: 0;
+        margin-left: 10px;
         background: white;
         float: right;
         width: 100px;
       }
-      
-      a, .reair-button {
+
+      a, .reair-button, .like-button {
         display: block;
+        text-align: center;
         padding: 5px 10px;
         text-decoration: none;
         color: black;
+        cursor: pointer;
         &:hover {
-          background: black;
-          color: white;
+          background: #ddd;
         }
       }
-      
+
       .reair-actions {
         position:relative;
         width: 100px;
         margin: 0px;
+        margin-left: 10px;
         padding: 0px;
         list-style: none;
-        
+
         &:hover {
           .reair-button {
             background: black;
             color: white;
           }
         }
-        
+
         ul {
           display: none;
           position: absolute;
@@ -244,7 +244,7 @@
           margin: 0;
           padding: 0;
           border-right: 1px solid #999;
-          
+
           li {
             background: white;
             width: 150px;
@@ -252,16 +252,12 @@
             margin: 0px;
           }
         }
-        
+
         &:hover {
           ul {display: block;}
         }
-
       }
-      
-      
     }
-
   }
 
   #now-playing {
@@ -271,7 +267,7 @@
     bottom: 0px;
     left: 0px;
     right: 0px;
-  
+
     #coverart {
       position: absolute;
       top: 0;
@@ -280,7 +276,7 @@
       height: 175px;
       border-top: 1px solid #ccc;
     }
-    
+
     #channel-info {
       position: absolute;
       border-top: 1px solid #ccc;
@@ -292,7 +288,6 @@
       padding: 10px 0px;
     }
     .title {
-      
       font-size: 11px;
       height: 19px;
       margin: 0 10px;

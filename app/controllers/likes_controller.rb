@@ -7,7 +7,7 @@ class LikesController < ApplicationController
 
     if airing.liked_by current_user
       ChannelMailer.liked(current_user, channel, video.title).deliver
-      render nothing: true, status: :success
+      render nothing: true, status: :ok
     else
       render nothing: true, status: 400
     end

@@ -46,14 +46,14 @@
                 unfollow
           - else
             %li= link_to 'follow', subscribe_channel_path(@channel)
-        %li
-          .like.like-button Like
         %li.reair-actions
-          .reair-button reChannel
+          .reair-button restream
           %ul.reair-list
             - current_user.channels.publik.each do |c|
               %li.channel.reair{"data-channel-id" => c.id.to_s}
                 = link_to "#{c.title}", channel_path(c)
+        %li
+          .like.like-button like
       - else
         %li= link_to 'follow', subscribe_channel_path(@channel)
   

@@ -2,8 +2,6 @@ class ChannelMailer < ApplicationMailer
 
   def liked(by, from, video_title)
     @your_channel = from
-    logger.info from.inspect
-    logger.info from.creator
     @user = from.creator
 
     @their_name = by.username
@@ -11,7 +9,7 @@ class ChannelMailer < ApplicationMailer
     @video_title = video_title
 
     mail :to => @user.email,
-         :subject => "Your video got liked."
+         :subject => "#{@their_name} just highfived your video."
   end
 
   def reaired(to, from, video_title)
@@ -27,7 +25,6 @@ class ChannelMailer < ApplicationMailer
   end
 
   def subscribed(receiver_channel, subscriber)
-    logger.info "subscribe"
     @channel = receiver_channel
     @user = receiver_channel.creator
 
