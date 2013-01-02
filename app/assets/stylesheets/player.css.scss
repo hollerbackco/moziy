@@ -3,6 +3,18 @@
   padding: 0px;
   margin: 0px;
 
+  .button {
+    padding: 5px 10px;
+    background: #fff;
+    font-weight: bold;
+    &:hover {
+      background: #000;
+      color: #fff;
+      border: 1px solid #000;
+    }
+  }
+  .label { text-transform: capitalize; color: #999; font-size: 12px; }
+
   #alert{
     position: absolute;
     background: rgba(255,255,255,.3);
@@ -26,7 +38,6 @@
     background: white;
 
     .container {position: relative; padding: 0;}
-
   }
 
   #mute {
@@ -121,7 +132,7 @@
       font-weight: bold;
       margin-bottom: 5px;
     }
-    
+
     .main-action {
       a {
         border-top: 1px solid #666;
@@ -131,7 +142,6 @@
         color: white;
       }
     }
-    
 
     .channels {
       margin-top: 10px;
@@ -144,27 +154,26 @@
         padding: 4px 10px;
         float: none;
         margin: 0;
-        
+
         .count {
           color: #999;
         }
-        
+
         .icon {
           position: relative;
           top: 1px;
           float: left;
           padding-right: 5px;
         }
-        
+
         .title {
           white-space:nowrap; 
           text-overflow: ellipsis;
           margin-left: 21px;
         }
-        
+
         a {
           display: block;
-          
           color: #000;
           font-size: 12px;
           &.color0 { background: #333;}
@@ -177,25 +186,22 @@
   }
 
   #actions {
+    background: #fff;
+
     .buttons {
       list-style: none;
       padding: 0px;
       margin: 0px;
-      text-align: center;
       padding: 10px;
-      background: #ddd;
 
       li {
         display: inline-block;
         margin: 0;
         margin-left: 10px;
-        background: white;
-        width: 100px;
       }
 
-      a, .reair-button, .like-button {
+      a {
         display: block;
-        text-align: center;
         padding: 5px 10px;
         text-decoration: none;
         color: black;
@@ -207,18 +213,11 @@
 
       .reair-actions {
         position:relative;
-        width: 100px;
         margin: 0px;
         margin-left: 10px;
         padding: 0px;
         list-style: none;
 
-        &:hover {
-          .reair-button {
-            background: black;
-            color: white;
-          }
-        }
 
         ul {
           display: none;
@@ -267,9 +266,9 @@
   }
 
   #current-pane {
+    display: none;
     position: absolute;
     margin: 10px;
-    background: rgba(255,255,255,.6);
     width: 300px;
     bottom: 0;
     left: 0;
@@ -277,32 +276,30 @@
     top: 0;
   }
 
+  #currently-playing {
+    background: #fff;
+    border-top: 1px solid #eee;
+    #video-info { padding: 15px;background: #eee;}
+    .meta {
+      border-top: 1px solid #eee;
+      #video-parent { float: left; border-left: 1px solid #eee; padding: 10px;
+        a {font-weight: bold}
+      }
+      #video-notes { float: left; padding: 10px; width: 75px; }
+    }
+  }
+
   #current-channel {
     position: absolute;
     color: black;
-    height: 420px;
     bottom: 0px;
     left: 0px;
     right: 0px;
-
-    #coverart {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 300px;
-      border-top: 1px solid #ccc;
-    }
+    background: #efefef;
 
     #channel-info {
-      position: absolute;
-      border-top: 1px solid #ccc;
-      background: #efefef;
-      height: 100px;
-      bottom: 0px;
-      left: 0px;
-      right: 0px;
-      padding: 10px 0px;
+      text-align: center;
+      padding: 30px 0;
     }
     .title {
       font-size: 16px;
@@ -311,8 +308,19 @@
 
     #channel-title {
       font-weight: bold;
-      white-space:nowrap; 
-      text-overflow: ellipsis;
+      padding: 10px;
+    }
+    #channel-follow {
+      padding: 10px;
+      border-top: 1px solid #ddd;
+      line-height: 27px;
+      #channel-actions {
+        float: right;
+      }
+    }
+    #channel-owner {
+      padding: 10px;
+      border-top: 1px solid #ddd;
     }
   }
 }

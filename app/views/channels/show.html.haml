@@ -37,35 +37,46 @@
           #mute.on
           - if logged_in?
             %li.reair-actions
-              .reair-button restream
+              .reair-button.button restream
               %ul.reair-list
                 - current_user.channels.publik.each do |c|
                   %li.channel.reair{"data-channel-id" => c.id.to_s}
                     = link_to "#{c.title}", channel_path(c)
             %li
-              .like.like-button like
+              .like.like-button.button like
       #currently-playing.clearfix
-        .label Now Playing
-        #video-title.title= truncate(@current.title, :length => 200, :omission => '...')
-        #video-notes= pluralize @current.note_count, "notes"
+        #video-info
+          .label Now Playing
+          #video-title.title
+            = truncate(@current.title, :length => 200, :omission => '...')
+        .meta
+          #video-notes= pluralize @current.note_count, "notes"
+          #video-parent
+            - if @current.parent.present?
+              = "Restreamed from"
+              = link_to @current.parent.channel.title, @current.parent.channel
     #current-channel
-      #coverart= image_tag(@channel.cover_art_url, width: 300, height: 300)
       #channel-info
+        #coverart= image_tag(@channel.cover_art_url(:thumb_player))
         #channel-title.title= @channel.title
-        #channel-followers= pluralize @channel.subscriptions.count, "follower"
+        #channel-description.description= @channel.description
+      #channel-follow.clearfix
         #channel-actions
           - if logged_in?
             - if current_user.owns?(@channel)
-              = link_to 'edit', manage_channel_videos_path(@channel)
+              = link_to 'edit', manage_channel_videos_path(@channel), class: "button"
             - else
               - if @channel.subscribed_by?(current_user)
-                = link_to unsubscribe_channel_path(@channel) do
+                = link_to unsubscribe_channel_path(@channel), class: "button" do
                   unfollow
               - else
-                = link_to 'follow', subscribe_channel_path(@channel)
+                = link_to 'follow', subscribe_channel_path(@channel), class: "button"
           - else
-            = link_to 'follow', subscribe_channel_path(@channel)
-        #channel-owner= @channel.creator.username
+            = link_to 'follow', subscribe_channel_path(@channel), class: "button"
+        #channel-watchers= pluralize @channel.subscriptions.count, "follower"
+      #channel-owner
+        = @channel.creator.username
+        %span.label curator
 
 
 :javascript
