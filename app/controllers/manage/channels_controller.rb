@@ -1,28 +1,28 @@
 class Manage::ChannelsController < ApplicationController
   before_filter :require_login, :except => [:index, :show]
   before_filter :check_ownership, :except => [:index, :new, :create]
-  
+
   def index
     @channels = current_user.channels.publik
   end
-  
+
   def new
     @channel = Channel.new
   end
-  
+
   def show
   end
 
   def create
     @channel = Channel.new(params[:channel].merge(:creator => current_user))
-    
+
     if @channel.save
       redirect_to new_manage_channel_video_path(@channel)
     else
       render :action => :new
     end
   end
-  
+
   def edit
   end
 
@@ -39,12 +39,11 @@ class Manage::ChannelsController < ApplicationController
     redirect_to manage_channels_path
   end
 
-  
   private
-    
+
     def check_ownership
       @channel = Channel.find(params[:id])
       redirect_to root_path unless current_user.owns? @channel
     end
-  
+
 end

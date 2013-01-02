@@ -4,7 +4,7 @@ class VideosController < ApplicationController
   def show
     # grab the video only if it still exists in the player
     # else send the first video in the channel
-    video = @channel.videos.exists?(params[:id]) ? @channel.videos.find(params[:id]) : @channel.airings.first.video
+    video = @channel.airings.exists?(params[:id]) ? @channel.airings.find(params[:id]) : @channel.airings.first
 
     re = {
        :id => video.id,
@@ -17,7 +17,7 @@ class VideosController < ApplicationController
   end
 
   def next
-    video = @channel.next_video(params[:id])
+    video = @channel.next_airing(params[:id])
 
     re = {
        :id => video.id,

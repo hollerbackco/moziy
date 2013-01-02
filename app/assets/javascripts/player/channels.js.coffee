@@ -43,7 +43,7 @@ $ ->
           window.App.playerManager.toggleMute()
 
       mainMenu: ->
-        $("#main-menu").hoverIntent
+        $("#remote-control-pane").hoverIntent
           over: ->
             $(this).addClass("hover")
             $(".channels").show()
@@ -54,14 +54,16 @@ $ ->
             $(".channels").hide()
 
       channelMenu: ->
-        $("#actions").hoverIntent
+        $("#current-pane-target-zone").hoverIntent
           over: ->
-            $(".buttons", this).show().addClass("hover")
+            $(this).addClass("hover")
+            $("#current-pane").show()
             $(".mark", this).hide()
-          sensitivity: 13
+          sensitivity: 14
           timeout: 100
           out: ->
-            $(".buttons", this).hide().removeClass("hover")
+            $(this).removeClass("hover")
+            $("#current-pane").hide()
             $(".mark", this).show()
       reairBindings: ->
         $(".reair").click (e) ->

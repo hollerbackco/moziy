@@ -11,6 +11,8 @@ class Airing < ActiveRecord::Base
   validates :video_id, :presence => true
   validates :channel_id, :presence => true, :uniqueness => {:scope => [:video_id]}
 
+  delegate :title, :source_id, :source_name, to: :video
+
   state_machine :initial => :suggestion do
     event :go_live do
       transition all => :live
@@ -24,6 +26,10 @@ class Airing < ActiveRecord::Base
     state :suggestion
     state :live
     state :archived
+  end
+
+  def note_count
+    likes.count + descendants.count
   end
 
   def liked_by(user)

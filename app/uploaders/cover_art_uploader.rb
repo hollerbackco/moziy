@@ -1,6 +1,6 @@
 class CoverArtUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
-  
+
   # Choose what kind of storage to use for this uploader:
   storage :fog
 
@@ -15,19 +15,18 @@ class CoverArtUploader < CarrierWave::Uploader::Base
   def filename
     model.gen_random_string + File.extname(@filename) if @filename
   end
-  
+
   def default_url
     "/assets/fallback/" + [version_name, "default.jpg"].compact.join('_')
   end
-  
 
   process :convert => 'jpg'
   process :resize_to_fill => [512,512]
-  
+
   version :thumb_list do
     process :resize_to_fill => [48,48]
   end
-  
+
   version :thumb_favicon do
     process :resize_to_fill => [16,16]
   end

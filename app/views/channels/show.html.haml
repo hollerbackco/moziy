@@ -5,7 +5,8 @@
   #vimeo-player.player
     .mask
     #vimeo-dummy
-#main-menu.clearfix
+
+#remote-control-pane.clearfix
   %h1#mosey.clearfix= link_to "mosey", root_path
   %nav.menu
     #new-channel.main-action= link_to "Build a Channel", new_manage_channel_path
@@ -26,44 +27,51 @@
               %li.channel
                 .icon= link_to image_tag(c.cover_art_url(:thumb_favicon)), channel_path(c)
                 .title= link_to "#{c.title}", channel_path(c)
-    #now-playing
-      #coverart= image_tag(@channel.cover_art_url(:thumb_player))
+
+#current-pane-target-zone
+  .mark +
+  #current-pane
+    #actions
+      - if @channel && !@channel.new_record?
+        %ul.buttons.clearfix
+          #mute.on
+          - if logged_in?
+            %li.reair-actions
+              .reair-button restream
+              %ul.reair-list
+                - current_user.channels.publik.each do |c|
+                  %li.channel.reair{"data-channel-id" => c.id.to_s}
+                    = link_to "#{c.title}", channel_path(c)
+            %li
+              .like.like-button like
+      #currently-playing.clearfix
+        .label Now Playing
+        #video-title.title= truncate(@current.title, :length => 200, :omission => '...')
+        #video-notes= pluralize @current.note_count, "notes"
+    #current-channel
+      #coverart= image_tag(@channel.cover_art_url, width: 300, height: 300)
       #channel-info
         #channel-title.title= @channel.title
-        #video-title.title= truncate(@current.title, :length => 30, :omission => '...')
-#actions.clearfix
-  - if @channel && !@channel.new_record?
-    .mark +
-    %ul.buttons
-      #mute.on
-      - if logged_in?
-        - if current_user.owns?(@channel)
-          %li= link_to 'edit', manage_channel_videos_path(@channel)
-        - else
-          - if @channel.subscribed_by?(current_user)
-            %li
-              = link_to unsubscribe_channel_path(@channel) do
-                unfollow
+        #channel-followers= pluralize @channel.subscriptions.count, "follower"
+        #channel-actions
+          - if logged_in?
+            - if current_user.owns?(@channel)
+              = link_to 'edit', manage_channel_videos_path(@channel)
+            - else
+              - if @channel.subscribed_by?(current_user)
+                = link_to unsubscribe_channel_path(@channel) do
+                  unfollow
+              - else
+                = link_to 'follow', subscribe_channel_path(@channel)
           - else
-            %li= link_to 'follow', subscribe_channel_path(@channel)
-        %li.reair-actions
-          .reair-button restream
-          %ul.reair-list
-            - current_user.channels.publik.each do |c|
-              %li.channel.reair{"data-channel-id" => c.id.to_s}
-                = link_to "#{c.title}", channel_path(c)
-        %li
-          .like.like-button like
-      - else
-        %li= link_to 'follow', subscribe_channel_path(@channel)
-  
+            = link_to 'follow', subscribe_channel_path(@channel)
+        #channel-owner= @channel.creator.username
+
+
 :javascript
   $(document).ready(function() {
     var cookie_video_id = window.App.cookie.get('channel-' + '#{@channel.id}');
-    console.log(cookie_video_id)
     $.extend(window.App,{
-      playerManager: new App.PlayerManager(cookie_video_id == "" ? '#{@current.id}' : cookie_video_id, '#{@channel.id}')
+      playerManager: new App.PlayerManager(cookie_video_id == "" ? '#{@current.video_id}' : cookie_video_id, '#{@channel.id}')
     })
   });
-  
-  

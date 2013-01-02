@@ -66,7 +66,7 @@
     z-index: 1;
   }
 
-  #main-menu {
+  #remote-control-pane {
     position: absolute;
     top: 0px;
     left: 0px;
@@ -90,34 +90,30 @@
       }
 
     }
-    
-    
+
     nav.menu {
       display: none;
     }
 
-    
     #channels-container {
       position: absolute;
       top: 77px;
       left: 0;
       right: 0;
-      bottom: 220px;
+      bottom: 0;
       overflow-y: scroll;
       overflow-x: hidden;
     }
-    
+
     &.hover {
       background: white;
       border-right: 1px solid #ccc;
-      
+
       nav.menu {
         display: block;
       }
     }
 
-
-    
     h2 {
       clear: both;
       padding: 0 10px;
@@ -181,39 +177,19 @@
   }
 
   #actions {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-    width: 350px;
-    height: 100px;
-    z-index: 5;
-
-    &:hover  {
-      .mark {display: none;}
-    }
-
-    .mark {
-      position: absolute;
-      top: 0px;
-      right: 0px;
-      font-size: 20px;
-      line-height: 20px;
-      padding: 3px 18px;
-      font-weight: bold;
-      color: #999;
-    }
-
     .buttons {
-      display: none;
       list-style: none;
       padding: 0px;
       margin: 0px;
+      text-align: center;
+      padding: 10px;
+      background: #ddd;
 
       li {
+        display: inline-block;
         margin: 0;
         margin-left: 10px;
         background: white;
-        float: right;
         width: 100px;
       }
 
@@ -271,10 +247,40 @@
     }
   }
 
-  #now-playing {
+  #current-pane-target-zone {
+    position: absolute;
+    width: 320px;
+    top: 0;
+    bottom: 0;
+    right: 0;
+
+    .mark {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      font-size: 20px;
+      line-height: 20px;
+      padding: 3px 18px;
+      font-weight: bold;
+      color: #999;
+    }
+  }
+
+  #current-pane {
+    position: absolute;
+    margin: 10px;
+    background: rgba(255,255,255,.6);
+    width: 300px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+  }
+
+  #current-channel {
     position: absolute;
     color: black;
-    height: 240px;
+    height: 420px;
     bottom: 0px;
     left: 0px;
     right: 0px;
@@ -284,7 +290,7 @@
       top: 0;
       left: 0;
       right: 0;
-      height: 175px;
+      height: 300px;
       border-top: 1px solid #ccc;
     }
 
@@ -292,24 +298,21 @@
       position: absolute;
       border-top: 1px solid #ccc;
       background: #efefef;
-      height: 45px;
+      height: 100px;
       bottom: 0px;
       left: 0px;
       right: 0px;
       padding: 10px 0px;
     }
     .title {
-      font-size: 11px;
+      font-size: 16px;
       height: 19px;
-      margin: 0 10px;
     }
 
     #channel-title {
       font-weight: bold;
       white-space:nowrap; 
       text-overflow: ellipsis;
-      margin-left: 21px;
     }
   }
-  
 }
