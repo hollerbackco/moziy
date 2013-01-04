@@ -17,6 +17,7 @@ gem 'mini_fb'
 
 gem 'state_machine'
 gem 'awesome_nested_set'
+gem 'unread'
 
 
 # Image Uploader
@@ -40,8 +41,6 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
 end
-
-
 
 group :test do
   # Pretty printed test output

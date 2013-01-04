@@ -16,6 +16,12 @@ class Channel < ActiveRecord::Base
 
   def self.default
     find(11)
+  rescue ActiveRecord::RecordNotFound
+    if Channel.count > 0
+      Channel.first
+    else
+      Channel.create(title: "MoseyTv")
+    end
   end
 
   def subscribed_by?(user)

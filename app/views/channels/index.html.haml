@@ -3,9 +3,7 @@
     %ul#secondary-menu.clearfix
       %li{:class => @sort.nil? ? "active" : "" }= link_to "Following", root_path
       %li{:class => @sort == "watchers" ? "active" : "" }= link_to "Popular", root_path(:sort => "watchers")
-      - if logged_in?
-        %li{:class => @sort == "social" ? "active" : "" }= link_to "Social", root_path(:sort => "social")
-    
+
     - if @sort.nil? and ! logged_in?
       %ul.channels
         %li.channel.clearfix{:id => "channel_#{@mosey_channel.id.to_s}", "data-channel-id" => @mosey_channel.id.to_s}
@@ -39,27 +37,7 @@
             = f.password_field :password
           .actions
             = f.submit "Sign Up", :class => "button primary"
-    - elsif @sort == "social" and logged_in? 
-      %ul.channels      
-        - if current_user.social_channel?(:facebook)
-          %li.channel.facebook.clearfix
-            .coverart= link_to image_tag("fallback/facebook_thumb_list.jpeg"), channel_path(current_user.facebook_channel)
-            .content
-              .title
-                = link_to "My Facebook Channel", channel_path(current_user.facebook_channel)
-              .description
-                Watch videos from your facebook newsfeed.
-        - else
-          %li.channel.facebook
-            = link_to "My Facebook Channel", 
-            auth_at_provider_path(:facebook)
-        - if current_user.social_channel?(:twitter)
-          %li.channel.twitter
-            = link_to channel_path(current_user.facebook_channel) do
-              My Twitter Channel
-        - else
-          = link_to ""
-      
+
     - else
       %ul.channels
         - index = 0
@@ -80,7 +58,6 @@
                     - if current_user.owns?(c)
                       = link_to manage_channel_videos_path(c) do
                         .action.edit
-                    
             - index += 1
   #viewer
     %iframe#viewer-iframe{:width => "100%", :height => "100%", :frameborder => 0}

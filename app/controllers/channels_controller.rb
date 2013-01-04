@@ -1,5 +1,6 @@
 class ChannelsController < ApplicationController
   before_filter :require_login, :only => [:subscribe]
+  before_filter :channel_list
 
   def index
     @sort = params[:sort]
@@ -18,7 +19,6 @@ class ChannelsController < ApplicationController
   end
 
   def show
-
     @channel = Channel.find(params[:id])
 
     begin
@@ -29,9 +29,11 @@ class ChannelsController < ApplicationController
         return
       end
 
-      unless logged_in?
-        @top = Channel.publik.all(:order => "subscriptions_count DESC, updated_at DESC")
-      end
+      @channel_list = if logged_in?
+                        current_user.channel_list.publik
+                      else
+                        Channel.publik.all(:order => "subscriptions_count DESC, updated_at DESC")
+                      end
 
       @current = params[:playing] ? @channel.airings[params[:playing].to_i] : @channel.airings.first
       @previous_id = (params[:playing].to_i - 1) % @channel.airings.count
@@ -79,4 +81,8 @@ class ChannelsController < ApplicationController
     end
   end
 
+  private
+
+  def channel_list
+  end
 end

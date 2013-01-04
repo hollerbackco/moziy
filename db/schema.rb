@@ -16,8 +16,8 @@ ActiveRecord::Schema.define(:version => 20121231085639) do
   create_table "airings", :force => true do |t|
     t.integer  "video_id"
     t.integer  "channel_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.integer  "position"
     t.string   "state"
     t.integer  "parent_id"
@@ -32,8 +32,8 @@ ActiveRecord::Schema.define(:version => 20121231085639) do
     t.integer  "user_id",    :null => false
     t.string   "provider",   :null => false
     t.string   "uid",        :null => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.string   "token"
   end
 
@@ -43,8 +43,8 @@ ActiveRecord::Schema.define(:version => 20121231085639) do
     t.integer  "creator_id"
     t.string   "title"
     t.string   "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
     t.integer  "subscriptions_count", :default => 0
     t.string   "cover_art"
     t.string   "random_string"
@@ -70,15 +70,15 @@ ActiveRecord::Schema.define(:version => 20121231085639) do
     t.integer  "user_id"
     t.integer  "channel_id"
     t.string   "level"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "subscriptions", :force => true do |t|
     t.integer  "user_id"
     t.integer  "channel_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "subscriptions", ["user_id"], :name => "index_subscriptions_on_user_id"
@@ -88,8 +88,8 @@ ActiveRecord::Schema.define(:version => 20121231085639) do
     t.string   "email"
     t.string   "crypted_password"
     t.string   "salt"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
     t.string   "remember_me_token"
     t.datetime "remember_me_token_expires_at"
     t.string   "reset_password_token"
@@ -112,12 +112,12 @@ ActiveRecord::Schema.define(:version => 20121231085639) do
   create_table "videos", :force => true do |t|
     t.integer  "channel_id"
     t.integer  "owner_id"
-    t.integer  "airing_count"
+    t.integer  "airings_count"
     t.string   "title"
     t.text     "body"
     t.text     "description"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
     t.string   "source_name"
     t.string   "source_id"
     t.string   "source_url"

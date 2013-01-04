@@ -1,4 +1,5 @@
 #alert{style: "display:none"}
+
 #player
   #youtube-player.player
     .mask
@@ -9,52 +10,60 @@
 #remote-control-pane.clearfix
   %h1#mosey.clearfix= link_to "mosey", root_path
   %nav.menu
-    #new-channel.main-action= link_to "Build a Channel", new_manage_channel_path
-    #channels-container
+    #top-banner.clearfix
       - if logged_in?
-        %ul.channels
-          - @channel_list.each do |c|
-            - if c.has_airings?
-              %li.channel
-                .icon= link_to image_tag(c.cover_art_url(:thumb_favicon)), channel_path(c)
-                .title= link_to c.title, channel_path(c)
-          %li= link_to "find more", root_path
+        .button.add.primary Add
       - else
-        %h2 Top Channels
-        %ul.channels
-          - @top.each do |c|
-            - if c.has_airings?
-              %li.channel
-                .icon= link_to image_tag(c.cover_art_url(:thumb_favicon)), channel_path(c)
-                .title= link_to "#{c.title}", channel_path(c)
+        = link_to "Login", login_path, class: "button login"
+    -##mute.on
+    %ul#channel-menu.clearfix
+      %li{:class => @sort.nil? ? "active" : "" }= link_to "Home", root_path
+      %li{:class => @sort == "watchers" ? "active" : "" }= link_to "Explore", root_path(:sort => "watchers")
+    #channels-container
+      %ul.channels
+        - @channel_list.each do |c|
+          - if c.has_airings?
+            %li.channel.clearfix
+              = link_to channel_path(c) do
+                .icon= image_tag(c.cover_art_url(:thumb_list), width: 48)
+                .title
+                  = c.title
+                  %span.username= c.creator.username if c.creator.present?
+                .description= c.description
+                .actions
+                  - if current_user.owns?(c)
+                  - else
+                    = link_to subscribe_channel_path(c) do
+                      .action.star.subscribe Follow
 
 #current-pane-target-zone
   .mark +
   #current-pane
-    #actions
-      - if @channel && !@channel.new_record?
-        %ul.buttons.clearfix
-          #mute.on
-          - if logged_in?
-            %li.reair-actions
-              .reair-button.button restream
-              %ul.reair-list
-                - current_user.channels.publik.each do |c|
-                  %li.channel.reair{"data-channel-id" => c.id.to_s}
-                    = link_to "#{c.title}", channel_path(c)
-            %li
-              .like.like-button.button like
-      #currently-playing.clearfix
-        #video-info
-          .label Now Playing
-          #video-title.title
-            = truncate(@current.title, :length => 200, :omission => '...')
-        .meta
-          #video-notes= pluralize @current.note_count, "notes"
-          #video-parent
-            - if @current.parent.present?
-              = "Restreamed from"
-              = link_to @current.parent.channel.title, @current.parent.channel
+    #current-video
+      #actions
+        - if @channel && !@channel.new_record?
+          %ul.buttons.clearfix
+            - if logged_in?
+              %li.reair-actions
+                .reair-button.button restream
+                %ul.reair-list
+                  - current_user.channels.publik.each do |c|
+                    %li.channel.reair{"data-channel-id" => c.id.to_s}
+                      = link_to "#{c.title}", channel_path(c)
+              %li
+                .like.like-button.button like
+        #currently-playing.clearfix
+          #video-info
+            #video-channel
+              %span#video-channel-title= @current.channel.title
+              - if @current.parent.present?
+                %span.label via
+                %span#video-parent
+                  = link_to @current.parent.channel.title, @current.parent.channel
+            #video-title.title
+              = truncate(@current.title, :length => 200, :omission => '...')
+          .meta
+            #video-notes= pluralize @current.note_count, "notes"
     #current-channel
       #channel-info
         #coverart= image_tag(@channel.cover_art_url(:thumb_player))
@@ -76,7 +85,7 @@
         #channel-watchers= pluralize @channel.subscriptions.count, "follower"
       #channel-owner
         = @channel.creator.username
-        %span.label curator
+        %span.label Curator
 
 
 :javascript
