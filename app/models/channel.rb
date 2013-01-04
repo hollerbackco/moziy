@@ -78,7 +78,20 @@ class Channel < ActiveRecord::Base
     end
   end
 
-  def next_airing(current_id)
+  def next_airing(cid=nil,user=nil)
+    if user and airings.unread_by(user).count > 0
+      logger.info "1"
+      next_unseen_airing_for_user(user)
+    elsif cid and airings.exists? cid
+      logger.info "2"
+      next_airing_for_id(cid)
+    else
+      logger.info "3"
+      airings.first
+    end
+  end
+
+  def next_airing_for_id(current_id)
     ids = airings.map {|a| a.id }
 
     current_index = ids.index current_id.to_i
@@ -87,9 +100,13 @@ class Channel < ActiveRecord::Base
       next_index = (current_index + 1) % self.airings.count
       airings.find(ids[next_index])
     else
-    # give the next video or the first if current_index not set.
+      # give the next video or the first if current_index not set.
       airings.first
     end
+  end
+
+  def next_unseen_airing_for_user(user)
+    airings.unread_by(user).first
   end
 
   def find_airing_from_video_id(id)

@@ -4,11 +4,17 @@ class VideosController < ApplicationController
   def show
     # grab the video only if it still exists in the player
     # else send the first video in the channel
-    video = @channel.airings.exists?(params[:id]) ? @channel.airings.find(params[:id]) : @channel.airings.first
+    video = if logged_in?
+              @channel.next_airing(params[:id],current_user)
+            elsif @channel.airings.exists? params[:id]
+              @channel.airings.find(params[:id])
+            else
+              @channel.airings.first
+            end
 
     if logged_in?
       video.mark_as_read! for: current_user
-      @channel.subscription_for(current_user).update_unread_count!
+      @channel.subscription_for(current_user).update_unread_count! if @channel.subscribed_by? current_user
     end
 
     re = {
@@ -22,12 +28,12 @@ class VideosController < ApplicationController
   end
 
   def next
-    video = @channel.next_airing(params[:id])
+    video = @channel.next_airing(params[:id], (logged_in? ? current_user : nil))
 
     if logged_in?
       former_video = @channel.airings.find(params[:id])
-      @channel.subscription_for(current_user).update_unread_count!
       former_video.mark_as_read! for: current_user
+      @channel.subscription_for(current_user).update_unread_count! if @channel.subscribed_by? current_user
     end
 
     re = {

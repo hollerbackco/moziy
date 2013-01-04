@@ -58,19 +58,19 @@ class User < ActiveRecord::Base
     case params.delete(:provider)
     when :facebook
       if authentications.find_by_provider("facebook").update_attributes(params)
-      
+
         # create the facebook channel if it doesn't exist
         create_facebook_channel({
           :title => facebook_channel_title, 
           :private => true}) unless social_channel?(:facebook)
-          
+
         # todo: do this in a background task
         # crawl it
         facebook_channel.crawl(50)
       end
     end
   end
-    
+
   def social_channel?(provider)
     case provider
       when :twitter
