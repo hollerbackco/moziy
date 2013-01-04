@@ -22,18 +22,19 @@ class ChannelsController < ApplicationController
     @channel = Channel.find(params[:id])
 
     begin
-      @channel.crawl(50) if @channel.needs_crawl?
+      #@channel.crawl(50) if @channel.needs_crawl?
 
       if @channel.airings.empty?
         redirect_to new_manage_channel_video_path(@channel)
         return
       end
 
-      @channel_list = if logged_in?
-                        current_user.channel_list.publik
-                      else
-                        Channel.publik.all(:order => "subscriptions_count DESC, updated_at DESC")
-                      end
+      @unread_channels = current_user.unread_channels.publik if logged_in?
+      @channels = if logged_in?
+                    current_user.read_channels.publik
+                  else
+                    Channel.publik.all(:order => "subscriptions_count DESC, updated_at DESC")
+                  end
 
       @current = params[:playing] ? @channel.airings[params[:playing].to_i] : @channel.airings.first
       @previous_id = (params[:playing].to_i - 1) % @channel.airings.count

@@ -24,6 +24,10 @@ class Channel < ActiveRecord::Base
     end
   end
 
+  def subscription_for(user)
+    subscriptions.find_by_user_id(user.id)
+  end
+
   def subscribed_by?(user)
     ! Subscription.find_by_user_id_and_channel_id(user.id, self.id).nil?
   end

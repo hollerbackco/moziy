@@ -1,0 +1,16 @@
+- sub_count = channel.subscription_for(current_user).unread_count
+
+%li.channel.clearfix{class: (sub_count ? "unread" : "")}
+  = link_to channel_path(channel) do
+    .icon= image_tag(channel.cover_art_url(:thumb_list), width: 48)
+    .title
+      = channel.title
+      - if logged_in? and sub_count > 0
+        = "(#{sub_count})"
+      %span.username= channel.creator.username if channel.creator.present?
+    .description= channel.description
+    .actions
+      - if current_user.owns?(channel)
+      - else
+        = link_to subscribe_channel_path(channel) do
+          .action.star.subscribe Follow

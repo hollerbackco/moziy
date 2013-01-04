@@ -2,6 +2,7 @@
   overflow: hidden;
   padding: 0px;
   margin: 0px;
+  cursor: none;
 
   .button {
     padding: 5px 10px;
@@ -168,6 +169,12 @@
       margin-bottom: 20px;
       padding: 0;
       display: none;
+      border-bottom: 1px solid #eee;
+      background: #efefef;
+
+      &.unread {
+        background: #fff;
+      }
 
       li {
         list-style: none;

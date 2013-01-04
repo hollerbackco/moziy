@@ -1,5 +1,6 @@
 class Airing < ActiveRecord::Base
   acts_as_nested_set
+  acts_as_readable on: :created_at
 
   attr_accessible :video, :channel, :video_id, :channel_id, :parent_id, :state
 
@@ -13,7 +14,11 @@ class Airing < ActiveRecord::Base
 
   delegate :title, :source_id, :source_name, to: :video
 
+  after_create :update_subscription_unread_count
+  after_destroy :update_subscription_unread_count
+
   state_machine :initial => :suggestion do
+    after_transition to: :archived, do: :update_subscription_unread_count
     event :go_live do
       transition all => :live
     end
@@ -51,5 +56,11 @@ class Airing < ActiveRecord::Base
       ["position = STRPOS(?, ','||video_id||',')", ",#{ids.join(',')},"], 
       { :video_id => ids }
     )
+  end
+
+  private
+
+  def update_subscription_unread_count
+    channel.subscriptions.each{|s| s.update_unread_count!}
   end
 end

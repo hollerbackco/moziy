@@ -6,6 +6,11 @@ class VideosController < ApplicationController
     # else send the first video in the channel
     video = @channel.airings.exists?(params[:id]) ? @channel.airings.find(params[:id]) : @channel.airings.first
 
+    if logged_in?
+      video.mark_as_read! for: current_user
+      @channel.subscription_for(current_user).update_unread_count!
+    end
+
     re = {
        :id => video.id,
        :source_name => video.source_name,
@@ -18,6 +23,12 @@ class VideosController < ApplicationController
 
   def next
     video = @channel.next_airing(params[:id])
+
+    if logged_in?
+      former_video = @channel.airings.find(params[:id])
+      @channel.subscription_for(current_user).update_unread_count!
+      former_video.mark_as_read! for: current_user
+    end
 
     re = {
        :id => video.id,

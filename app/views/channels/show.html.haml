@@ -21,21 +21,9 @@
       %li{:class => @sort == "watchers" ? "active" : "" }= link_to "Explore", root_path(:sort => "watchers")
     #channels-container
       %ul.channels
-        - @channel_list.each do |c|
-          - if c.has_airings?
-            %li.channel.clearfix
-              = link_to channel_path(c) do
-                .icon= image_tag(c.cover_art_url(:thumb_list), width: 48)
-                .title
-                  = c.title
-                  %span.username= c.creator.username if c.creator.present?
-                .description= c.description
-                .actions
-                  - if current_user.owns?(c)
-                  - else
-                    = link_to subscribe_channel_path(c) do
-                      .action.star.subscribe Follow
-
+        - if logged_in?
+          = render partial: "channel_list_item", collection: @unread_channels, as: "channel"
+        = render partial: "channel_list_item", collection: @channels, as: "channel"
 #current-pane-target-zone
   .mark +
   #current-pane
