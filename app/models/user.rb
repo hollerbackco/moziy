@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 
   validates :email, :presence => true, :uniqueness => true
   validates :username, :presence => true, :uniqueness => true, :format => {:with => /^[A-Za-z\d_]+$/}
-jkk
+
   acts_as_reader
 
   uuthenticates_with_sorcery! do |config|
