@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   acts_as_reader
 
-  uuthenticates_with_sorcery! do |config|
+  authenticates_with_sorcery! do |config|
     config.authentications_class = Authentication
   end
 
