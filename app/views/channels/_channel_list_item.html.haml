@@ -2,11 +2,12 @@
 
 %li.channel.clearfix{class: (sub_count ? "unread" : "")}
   = link_to channel_path(channel) do
-    .icon= image_tag(channel.cover_art_url(:thumb_list), width: 48)
-    .title
-      = channel.title
+    .icon
       - if logged_in? and sub_count > 0
         = "(#{sub_count})"
+      = image_tag(channel.cover_art_url(:thumb_list))
+    .title
+      = channel.title
       %span.username= channel.creator.username if channel.creator.present?
     .description= channel.description
     .actions
