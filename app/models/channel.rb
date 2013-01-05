@@ -80,13 +80,10 @@ class Channel < ActiveRecord::Base
 
   def next_airing(cid=nil,user=nil)
     if user and airings.unread_by(user).count > 0
-      logger.info "1"
-      next_unseen_airing_for_user(user)
+      next_unseen_airing_for_user user
     elsif cid and airings.exists? cid
-      logger.info "2"
-      next_airing_for_id(cid)
+      next_airing_for_id cid
     else
-      logger.info "3"
       airings.first
     end
   end

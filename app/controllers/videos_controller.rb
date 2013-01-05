@@ -14,7 +14,9 @@ class VideosController < ApplicationController
 
     if logged_in?
       video.mark_as_read! for: current_user
-      @channel.subscription_for(current_user).update_unread_count! if @channel.subscribed_by? current_user
+      if @channel.subscribed_by? current_user
+        @channel.subscription_for(current_user).update_unread_count!
+      end
     end
 
     re = {
@@ -33,7 +35,9 @@ class VideosController < ApplicationController
     if logged_in?
       former_video = @channel.airings.find(params[:id])
       former_video.mark_as_read! for: current_user
-      @channel.subscription_for(current_user).update_unread_count! if @channel.subscribed_by? current_user
+      if @channel.subscribed_by? current_user
+        @channel.subscription_for(current_user).update_unread_count!
+      end
     end
 
     re = {
