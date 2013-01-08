@@ -1,77 +1,92 @@
 $ ->
-
   $.extend window.App,
+    vent: _.extend {}, Backbone.Events
+
+    initialize: (bootstrap) ->
+      if bootstrap.current_user?
+        @setupCurrentUser bootstrap.current_user
+
+      @currentlyPlayingPane()
+      @mainMenu()
+      @muteButton()
+      @setupModal()
+      @setupHistory()
+      @controller.initialize()
+
+      @setupPlayer bootstrap.channel
+
     notice: (msg) ->
       $("#alert").html(msg).show().delay(2000).fadeOut(300)
 
-    channels:
-      _likeVideo: ->
-        video_id = window.App.playerManager.getCurrentVideoID()
-        video_title = window.App.playerManager.getCurrentVideoTitle()
-        from_id = window.App.playerManager.getCurrentChannelID()
-        alert_message = "You highfived #{video_title}"
-        window.App.notice alert_message
+    setupPlayer: (channel) ->
+      @playerManager = new App.PlayerManager()
+      App.vent.trigger "channel:watch", channel
 
-        $.ajax
-          url: "/channels/#{from_id}/likes?video_id=#{video_id}",
-          type: "POST"
-          success: =>
+    setupCurrentUser: (user) ->
+      App.currentUser = new App.Models.CurrentUser(user)
 
-      _reairVideo: (channel_id) ->
-        video_id = window.App.playerManager.getCurrentVideoID()
-        from_id = window.App.playerManager.getCurrentChannelID()
-        $.ajax
-          url: "/manage/channels/#{channel_id}/airings?video_id=#{video_id}&from_id=#{from_id}",
-          type: "POST"
-          success: (msg) =>
-            if msg.success
-              alert_message = "Rechanneled to #{msg.channel_title}"
-              window.App.notice alert_message
-            else
-              window.App.notice(msg.msg)
+    navigate: (href) ->
+      Backbone.history.navigate(href)
 
-    effects:
-      instantiate: ->
-        @channelMenu()
-        @mainMenu()
-        @reairBindings()
-        @muteButton()
+    controller:
+      initialize: ->
+        App.vent.on "airing:like", @likeVideo
+        App.vent.on "airing:restream", @restreamAiring
 
-      muteButton: ->
-        $("#mute").click ->
-          $(this).toggleClass("on")
-          window.App.playerManager.toggleMute()
+      likeVideo: (airing) ->
+        alert_message = "You highfived #{airing.get('title')}"
+        App.notice alert_message
 
-      mainMenu: ->
-        $("#remote-control-pane").hoverIntent
-          over: ->
-            $(this).addClass("hover")
-            $(".channels").show()
-          sensitivity: 12
-          timeout: 100
-          out: ->
-            $(this).removeClass("hover")
-            $(".channels").hide()
+        App.currentUser.like airing
 
-      channelMenu: ->
-        $("#current-pane-target-zone").hoverIntent
-          over: ->
-            $(this).addClass("hover")
-            $("#current-pane").show()
-            $(".mark", this).hide()
-          sensitivity: 14
-          timeout: 100
-          out: ->
-            $(this).removeClass("hover")
-            $("#current-pane").hide()
-            $(".mark", this).show()
-      reairBindings: ->
-        $(".reair").click (e) ->
-          channel_id = $(this).attr("data-channel-id")
-          window.App.channels._reairVideo channel_id
-          e.preventDefault()
-        $(".like").click (e) ->
-          window.App.channels._likeVideo()
-          e.preventDefault()
+      restreamAiring: (airing, channel) ->
+        if App.currentUser?
+          App.currentUser.restream airing, channel, (msg) ->
+            App.notice msg
 
-  window.App.effects.instantiate()
+
+    setupHistory: ->
+      Backbone.history.start
+        pushState: true
+        root: '/'
+      App.vent.on "channel:watch", (channel) ->
+        App.navigate "channels/#{channel.id}"
+
+
+    muteButton: ->
+      $("#mute").click ->
+        $(this).toggleClass("on")
+        App.playerManager.toggleMute()
+
+    setupModal: ->
+      App.modals =
+        channel: new App.Views.ChannelModal(el: "#channel-modal")
+        notes:   new App.Views.NotesModal(el: "#notes-modal")
+        restream: new App.Views.RestreamModal(el: "#restream-modal")
+
+    mainMenu: ->
+      $("#remote-control-pane").hoverIntent
+        over: ->
+          $(this).addClass("hover")
+          $(".channels").show()
+        sensitivity: 12
+        timeout: 100
+        out: ->
+          $(this).removeClass("hover")
+          $(".channels").hide()
+
+    currentlyPlayingPane: ->
+      App.currentAiringPane = new App.Views.CurrentAiring(el: "#current-video")
+      App.currentChannelPane = new App.Views.CurrentChannel(el: "#current-channel")
+
+      $("#current-pane-target-zone").hoverIntent
+        over: ->
+          $(this).addClass("hover")
+          $("#current-pane").show()
+          $(".mark", this).hide()
+        sensitivity: 14
+        timeout: 100
+        out: ->
+          $(this).removeClass("hover")
+          $("#current-pane").hide()
+          $(".mark", this).show()

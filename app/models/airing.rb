@@ -37,6 +37,13 @@ class Airing < ActiveRecord::Base
     likes.count + descendants.count
   end
 
+  def notes
+    {
+      likes: likes,
+      restreams: descendants.map {|a| a.channel}
+    }
+  end
+
   def liked_by(user)
     if like = likes.find_by_user_id(user.id)
       like.up

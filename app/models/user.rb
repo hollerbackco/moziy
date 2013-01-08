@@ -28,14 +28,15 @@ class User < ActiveRecord::Base
   has_one :twitter_channel, :class_name => "Channel::Twitter", :foreign_key => "creator_id"
 
   has_many :subscriptions, order: "created_at ASC"
-  has_many :unread_subscriptions, class_name: "Subscription", order: "created_at DESC",
+  has_many :unread_subscriptions, class_name: "Subscription",
     conditions: ['unread_count > ?', 0]
-  has_many :read_subscriptions, class_name: "Subscription", order: "created_at ASC",
-    conditions: {unread_count: 0}
+  has_many :read_subscriptions, class_name: "Subscription", conditions: {unread_count: 0}
 
   has_many :channel_list, through: :subscriptions, source: :channel
-  has_many :unread_channels, through: :unread_subscriptions, source: :channel
-  has_many :read_channels, through: :read_subscriptions, source: :channel
+  has_many :unread_channels, through: :unread_subscriptions, source: :channel,
+    order: "subscriptions.updated_at DESC"
+  has_many :read_channels, through: :read_subscriptions, source: :channel,
+    order: "subscriptions.created_at ASC"
 
   def owns?(obj)
     self.id == obj.creator_id
@@ -74,18 +75,17 @@ class User < ActiveRecord::Base
   def social_channel?(provider)
     case provider
       when :twitter
-        
       when :facebook
         ! facebook_channel.nil?
     end
   end
-  
+
   def facebook_channel_title
     "fb-#{self.username}"
   end
-  
+
   def twitter_channel_title
     "tw-#{self.username}"
   end
-  
+
 end

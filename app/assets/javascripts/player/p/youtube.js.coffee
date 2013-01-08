@@ -1,4 +1,4 @@
-if typeof(window.App) == "undefined" then window.App = {}
+#= require player/p/base_player
 
 class App.YouTubePlayer extends App.Player
   # @state

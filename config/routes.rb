@@ -54,7 +54,11 @@ Puretv::Application.routes.draw do
     end
     resources :likes, :only => [:create, :destroy]
     resources :videos, :only => [:show] do
+      collection do
+        get :first
+      end
       member do
+        get :notes
         get :next
       end
     end

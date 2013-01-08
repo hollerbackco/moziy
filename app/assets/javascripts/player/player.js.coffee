@@ -1,21 +1,23 @@
-if typeof(window.App) == "undefined" then window.App = {}
-
 class App.PlayerManager
-  youtubePlayer: new App.YouTubePlayer('youtube-player')  
+  youtubePlayer: new App.YouTubePlayer('youtube-player')
   vimeoPlayer: new App.VimeoPlayer('vimeo-player')
-
-  constructor: (@starting_video_id, @channel_id) ->
-    @_playFromId @starting_video_id
+  constructor:  ->
     @volumeState = 1
+
     Backbone.Events.bind("player:finished", @next, this)
     Backbone.Events.bind("player:error", @errorPlayNext, this)
+    App.vent.on("channel:watch", @changeChannel, this)
+
+  changeChannel: (channel) ->
+    @channel = channel
+    @channel.getFirstAiring @_play
 
   next: =>
     # todo: what happens if the queue fails
     @_play @next_video
 
   errorPlayNext: (msg) =>
-    window.App.notice "Couldn't play #{@getCurrentVideoTitle()}. Moving on."
+    App.notice "Couldn't play #{@getCurrentVideoTitle()}. Moving on."
     @_play @next_video
 
   toggleMute: ->
@@ -26,35 +28,37 @@ class App.PlayerManager
       @volumeState = 1
       Backbone.Events.trigger("player:unMute")
 
+  getCurrentAiring: ->
+    @current_video
+
   getCurrentChannelID: ->
-    @channel_id
+    @channel.id
 
   getCurrentVideoID: ->
     @current_video.id
 
   getCurrentVideoTitle: ->
-    @current_video.title
+    @current_video.get "title"
 
   _isNew: (video) ->
     @next_video.id != video.id
 
   _playFromId: (id) ->
     self = this
-    $.ajax
-      url: "/channels/#{@channel_id}/videos/#{id}",
-      success: (video) ->
-        self.current_video = video
-        self._play video
+    @channel.getAiringFromID id, (airing) ->
+      self._play airing
 
-  _play: (video) =>
+  _play: (airing) =>
     # set the current video
 
-    @current_video = video
+    @current_video = airing
+
+    video = airing.toJSON()
 
     try
       switch video.source_name
         when 'youtube'
-          @youtubePlayer.play(video.source_id)
+          @youtubePlayer.play video.source_id
 
           # set the title
           @_setNowPlaying video.title
@@ -65,8 +69,8 @@ class App.PlayerManager
           # queue up the next next video
           @_queue()
 
-        when 'vimeo' 
-          @vimeoPlayer.play(video.source_id)
+        when 'vimeo'
+          @vimeoPlayer.play video.source_id
 
           # set the title
           @_setNowPlaying video.title
@@ -81,22 +85,22 @@ class App.PlayerManager
     catch error
       @next()
 
+
   _notifyPlayers: ->
+    App.vent.trigger "airings:play", @current_video
     Backbone.Events.trigger("player:update")
 
   _setNowPlaying: (title) ->
     $("#video-title").text title
 
   _queue: (callback) ->
-
     self = this
 
-    $.ajax
-      url: "/channels/#{@channel_id}/videos/#{@current_video.id}/next",
-      success: (video) ->
-        self._shiftQueue(video)
-        callback() if callback?
+    @channel.getNextAiring @current_video, (airing) ->
+      self._shiftQueue(airing)
+      callback() if callback?
 
-  _shiftQueue: (video) ->
-    @next_video = video
-    window.App.cookie.set("channel-#{@channel_id}", video.id, 14)
+
+  _shiftQueue: (airing) ->
+    @next_video = airing
+    App.cookie.set("channel-#{@channel.id}", @next_video.id, 14)

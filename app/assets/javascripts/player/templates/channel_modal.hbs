@@ -1,0 +1,34 @@
+<div class="header clearfix">
+  <img class="channel-image" width=150 height=150 src="{{cover_art.thumb_player.url}}" />
+  <div class="channel-info">
+    <div class="channel-title channel-play">{{title}}</div>
+    <div class="channel-description">{{description}}</div>
+    <div class="user">
+      created by <span class="username">{{user.name}}</span>
+    </div>
+  </div>
+</div>
+<div class="action-bar clearfix">
+  <div class="part1">
+    <div class="watch-button play-channel">
+      <div class="channel-slug">
+        <div class="slug">{{slug}}</div>
+        <div class="label">Play</div>
+      </div>
+    </div>
+  </div>
+  <div class="part2">
+    <div class="follower-count show-followers">
+      <div class="count">{{follower_count}}</div>
+      <div class="label">Followers</div>
+    </div>
+  </div>
+  <div class="part3">
+    <div class="follow-button follow-channel">Follow</div>
+  </div>
+</div>
+<div class="now-playing">
+ <div class="label">NOW PLAYING</div>
+ <div class="video">{{video.title}}</div>
+</div>
+

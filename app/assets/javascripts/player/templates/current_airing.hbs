@@ -1,0 +1,27 @@
+<div id="currently-playing" class="clearfix">
+  <div id="video-info">
+    <div id="video-channel">
+      <span id="video-channel-title"> {{channel.title}} </span>
+    </div>
+    {{#parent}}
+      <span class="label">via</span>
+      <a href="{{channel.url}}"> {{ channel.title }} </a>
+    {{/parent}}
+    <div id="video-title" class="title">
+      {{title}}
+    </div>
+  </div>
+  <div id="video-actions">
+    <ul class="buttons clearfix">
+      <li class="reair-actions">
+        <div class="restream-button restream button"> restream </div>
+        <div class="like-button like button"> like </div>
+      </li>
+    </ul>
+  </div>
+  <div class="meta">
+    <div id="video-notes">
+      {{note_count}} notes
+    </div>
+  </div>
+</div>

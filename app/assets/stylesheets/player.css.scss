@@ -15,6 +15,125 @@
   }
   .label { color: #999; font-size: 12px; }
 
+  #notes-modal {
+    .header {
+      padding: 15px;
+      font-size: 16px;
+    }
+    #restreams-label {
+      padding: 0 15px 15px;
+    }
+    .restream-item {
+      cursor: pointer;
+      padding: 15px;
+
+      &:hover {
+        background: #efefef;
+      }
+
+      .restream-channel-cover-art {display: block; float: left; margin-right: 10px;}
+      .restream-channel-title {font-weight: bold}
+    }
+  }
+
+  #channel-modal {
+    .channel-image {float:left;}
+    .channel-info {
+      text-align: center;
+      .channel-title {font-size: 33px; font-weight: bold;padding-top: 15px}
+      .channel-description {font-size: 16px;}
+    }
+    .action-bar {
+      .part1 {float: left; width: 30%; border-right: 1px solid #eee;}
+      .part2 {float: left; width: 45%; border-right: 1px solid #eee;}
+      .part3 {float: left; width: 24%;}
+    }
+
+    .slug,
+    .count,
+    .follow-button {font-weight: bold}
+
+    .channel-slug,
+    .follower-count,
+    .follow-button {padding: 10px}
+
+    .watch-button {
+      cursor: pointer;
+    }
+
+    .follow-button {
+      cursor: pointer;
+      margin: 5px;
+      padding: 13px;
+      text-align: center;
+      color: white;
+      background: green;
+
+      &:hover {
+        background: black;
+      }
+    }
+
+    .action-bar {border-top: 1px solid #eee;}
+    .now-playing {border-top: 1px solid #eee; padding: 20px;}
+
+  }
+
+  .modal-backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1040;
+    background-color: #000000;
+  }
+
+  .modal-backdrop.fade {
+    opacity: 0;
+  }
+
+  .modal-backdrop,
+  .modal-backdrop.fade.in {
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+  }
+
+  .modal {
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    z-index: 1050;
+    width: 480px;
+    margin-left: -240px;
+    background-color: #ffffff;
+    border: 1px solid #999;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    *border: 1px solid #999;
+    -webkit-border-radius: 6px;
+       -moz-border-radius: 6px;
+            border-radius: 6px;
+    outline: none;
+    -webkit-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+       -moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+    -webkit-background-clip: padding-box;
+       -moz-background-clip: padding-box;
+            background-clip: padding-box;
+  }
+
+  .modal.fade {
+    top: -25%;
+    -webkit-transition: opacity 0.3s linear, top 0.3s ease-out;
+       -moz-transition: opacity 0.3s linear, top 0.3s ease-out;
+         -o-transition: opacity 0.3s linear, top 0.3s ease-out;
+            transition: opacity 0.3s linear, top 0.3s ease-out;
+  }
+
+  .modal.fade.in {
+    top: 10%;
+  }
+
   #alert{
     position: absolute;
     background: rgba(255,255,255,.3);
@@ -27,6 +146,7 @@
     padding: 50px;
     font-size: 24px;
   }
+
   #header {
     position: absolute;
     top: 0px;
@@ -83,7 +203,7 @@
     position: absolute;
     top: 0px;
     left: 0px;
-    width: 350px;
+    width: 400px;
     bottom: 0px;
 
     #mosey {
@@ -134,7 +254,7 @@
 
     #channels-container {
       position: absolute;
-      top: 67px;
+      top: 87px;
       left: 0;
       right: 0;
       bottom: 0px;
@@ -173,11 +293,6 @@
       margin-bottom: 20px;
       padding: 0;
       display: none;
-      background: #efefef;
-
-      &.unread {
-        background: #fff;
-      }
 
       li {
         list-style: none;
@@ -192,86 +307,37 @@
         .icon {
           position: relative;
           float: left;
-          top: 1px;
           padding-right: 10px;
-          img {display: block;}
+          .unread-count {position: absolute; top:0; left:0; padding: 2px 4px; background: #000; color: #fff;}
+          img {display: block; width: 64px; height: 64px}
         }
 
         .title {
           white-space:nowrap;
           font-weight: bold;
-          margin-top: 3px;
+          font-size: 14px;
+          padding-top: 3px;
           text-overflow: ellipsis;
           margin-left: 21px;
+
+          .slug {
+            color: #999;
+            font-size: 12px;
+            font-weight: normal;
+          }
+        }
+
+        .description {
+          font-style: italic;
         }
 
         a {
           color: #000;
+          text-decoration: none;
           font-size: 12px;
           &.color0 { background: #333;}
           &.color1 { background: #333;}
           &.color2 { background: #333;}
-        }
-      }
-    }
-  }
-
-  #actions {
-    background: #fff;
-
-    .buttons {
-      list-style: none;
-      padding: 0px;
-      margin: 0px;
-      padding: 10px;
-
-      li {
-        display: inline-block;
-        margin: 0;
-        margin-left: 10px;
-      }
-
-      a {
-        display: block;
-        padding: 5px 10px;
-        text-decoration: none;
-        color: black;
-        cursor: pointer;
-        &:hover {
-          background: #ddd;
-        }
-      }
-
-      .reair-actions {
-        position:relative;
-        margin: 0px;
-        margin-left: 10px;
-        padding: 0px;
-        list-style: none;
-
-
-        ul {
-          display: none;
-          position: absolute;
-          border-top: 1px solid #000;
-          left: 0px;
-          top: 100%;
-          width: 150px;
-          list-style: none;
-          margin: 0;
-          padding: 0;
-          border-right: 1px solid #999;
-
-          li {
-            background: white;
-            width: 150px;
-            display: block;
-            margin: 0px;
-          }
-        }
-
-        &:hover {
-          ul {display: block;}
         }
       }
     }
@@ -313,11 +379,36 @@
     border: 1px solid #999;
     margin: 10px;
 
-    #video-channel {font-weight: bold;}
-    #video-info { padding: 15px;background: #fff;}
+    #video-channel {
+      font-weight: bold;
+    }
+
+    #video-info {
+      padding: 15px;
+      background: #fff;
+    }
+
+    #video-actions {
+      padding: 15px;
+      border-top: 1px solid #eee;
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        li {
+          margin: 0;
+          padding: 0;
+        }
+      }
+    }
+
     .meta {
       border-top: 1px solid #eee;
-      #video-parent { float: left; border-left: 1px solid #eee; padding: 10px;
+      #video-parent {
+        float: left;
+        border-left: 1px solid #eee;
+        padding: 10px;
         a {font-weight: bold}
       }
       #video-notes { float: left; padding: 10px; width: 60px; }
@@ -332,28 +423,26 @@
     right: 0px;
     background: #efefef;
 
-    #channel-info {
+    #current-channel-info {
       text-align: center;
       padding: 30px 0;
     }
-    .title {
+
+    #current-channel-title {
+      font-weight: bold;
       font-size: 16px;
       height: 19px;
-    }
-
-    #channel-title {
-      font-weight: bold;
       padding: 10px;
     }
-    #channel-follow {
+    #current-channel-follow {
       padding: 10px;
       border-top: 1px solid #ddd;
       line-height: 27px;
-      #channel-actions {
+      #current-channel-actions {
         float: right;
       }
     }
-    #channel-owner {
+    #current-channel-owner {
       padding: 10px;
       border-top: 1px solid #ddd;
     }

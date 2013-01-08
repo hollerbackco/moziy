@@ -8,12 +8,18 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require jquery.hoverIntent.min
-//= require cookie
+//= require bootstrap-modal
 //= require underscore-min
 //= require backbone-min
 //= require swfobject
-//= require player/p/base_player
-//= require player/p/vimeo
-//= require player/p/youtube
+
+//= require handlebars.runtime
+//= require_tree ./player/templates
+
+//= require player/app
+//= require cookie
+//= require_tree ./player/p
+//= require_tree ./player/views
+//= require_tree ./player/models
 //= require player/player
 //= require player/channels

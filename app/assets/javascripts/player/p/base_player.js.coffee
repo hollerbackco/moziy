@@ -1,5 +1,3 @@
-if typeof(window.App) == "undefined" then window.App = {}
-
 class App.Player
   # @state
     # 0 = stopped

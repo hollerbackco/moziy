@@ -2,7 +2,7 @@ class LikesController < ApplicationController
   before_filter :require_login
 
   def create
-    video = Video.find(params[:video_id])
+    video = Video.find(params[:airing_id])
     airing = channel.find_airing_from_video_id(video.id)
 
     if airing.liked_by current_user

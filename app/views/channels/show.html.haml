@@ -1,5 +1,9 @@
 #alert{style: "display:none"}
 
+#channel-modal.modal
+#notes-modal.modal
+#restream-modal.modal
+
 #player
   #youtube-player.player
     .mask
@@ -28,30 +32,6 @@
   .mark +
   #current-pane
     #current-video
-      #actions
-        - if @channel && !@channel.new_record?
-          %ul.buttons.clearfix
-            - if logged_in?
-              %li.reair-actions
-                .reair-button.button restream
-                %ul.reair-list
-                  - current_user.channels.publik.each do |c|
-                    %li.channel.reair{"data-channel-id" => c.id.to_s}
-                      = link_to "#{c.title}", channel_path(c)
-              %li
-                .like.like-button.button like
-        #currently-playing.clearfix
-          #video-info
-            #video-channel
-              %span#video-channel-title= @current.channel.title
-              - if @current.parent.present?
-                %span.label via
-                %span#video-parent
-                  = link_to @current.parent.channel.title, @current.parent.channel
-            #video-title.title
-              = truncate(@current.title, :length => 200, :omission => '...')
-          .meta
-            #video-notes= pluralize @current.note_count, "notes"
     #current-channel
       #channel-info
         #coverart= image_tag(@channel.cover_art_url(:thumb_player))
@@ -78,8 +58,13 @@
 
 :javascript
   $(document).ready(function() {
-    var cookie_video_id = window.App.cookie.get('channel-' + '#{@channel.id}');
-    $.extend(window.App,{
-      playerManager: new App.PlayerManager(cookie_video_id == "" ? '#{@current.video_id}' : cookie_video_id, '#{@channel.id}')
-    })
+    var channel = new App.Models.Channel(#{@channel.to_json})
+    var current_user = #{logged_in? ? current_user.as_json({only: [:username], include: :channels}).to_json : "null"}
+
+    var bootstrap = {
+      channel: channel,
+      current_user: current_user
+    }
+
+    App.initialize(bootstrap);
   });
