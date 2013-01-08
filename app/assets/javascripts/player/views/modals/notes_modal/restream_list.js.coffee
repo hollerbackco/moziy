@@ -4,6 +4,9 @@ App.Views.RestreamList = Backbone.View.extend
 
   initialize: ->
 
+  clear: () ->
+    @_clear()
+
   # should be a collection
   refresh: (restreams) ->
 
@@ -16,7 +19,7 @@ App.Views.RestreamList = Backbone.View.extend
 
   _clear: ->
     for i in @subviews
-      @subviews[i].remove()
+      i.remove()
     @subviews = []
 
   _add: (subview) ->

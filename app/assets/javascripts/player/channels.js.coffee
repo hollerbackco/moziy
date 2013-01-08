@@ -65,6 +65,7 @@ $ ->
         restream: new App.Views.RestreamModal(el: "#restream-modal")
 
     mainMenu: ->
+      App.remoteControlPane = new App.Views.RemoteControlPane(el: "#remote-control-pane")
       $("#remote-control-pane").hoverIntent
         over: ->
           $(this).addClass("hover")

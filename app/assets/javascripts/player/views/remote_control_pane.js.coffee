@@ -1,3 +1,29 @@
-//= require player/views/hover_pane
+App.Views.RemoteControlPane = Backbone.View.extend
+  template: HandlebarsTemplates['player/templates/remote_control_pane']
+  events:
+    "click .home" : "showHome"
+    "click .explore" : "showExplore"
+    "click .me" : "showMe"
 
-class App.Views.RemoteControl extends App.Views.HoverPane
+  initialize: ->
+    @homeChannels = App.currentUser.channelList
+    @exploreChannels = new App.Models.Channels()
+    @myChannels = App.currentUser.channels
+
+    @render()
+    @showHome()
+
+  render: ->
+    @$el.html @template()
+    @channelListView = new App.Views.RemoteControlChannelList
+      model: @homeChannels
+      el: @$(".channels")
+
+  showHome: ->
+    @channelListView.show @homeChannels
+
+  showExplore: ->
+    @channelListView.show @exploreChannels
+
+  showMe: ->
+    @channelListView.show @myChannels

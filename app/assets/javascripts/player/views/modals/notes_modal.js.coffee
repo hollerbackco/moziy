@@ -17,6 +17,8 @@ App.Views.NotesModal = Backbone.View.extend
   show: (airing) ->
     @$(".airing-title").html airing.get("title")
 
+    @restreamList.clear()
+
     airing.getNotes (notes) =>
       @restreamList.refresh(notes.restreams)
 

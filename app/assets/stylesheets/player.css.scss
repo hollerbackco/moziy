@@ -241,7 +241,6 @@
     #channel-menu {
       margin: 0;
       padding: 0;
-      border-bottom: 1px solid #eee;
 
       li {
         float: left;
@@ -254,12 +253,14 @@
 
     #channels-container {
       position: absolute;
-      top: 87px;
+      top: 83px;
       left: 0;
       right: 0;
       bottom: 0px;
-      overflow-y: scroll;
-      overflow-x: hidden;
+      border-top: 1px solid #eee;
+
+      .channels {
+      }
     }
 
     &.hover {
@@ -290,11 +291,19 @@
     }
 
     .channels {
-      margin-bottom: 20px;
-      padding: 0;
       display: none;
+      margin: 0;
+      padding: 0;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      overflow-y: scroll;
+      overflow-x: hidden;
 
       li {
+        cursor: pointer;
         list-style: none;
         float: none;
         margin: 0;
