@@ -5,9 +5,10 @@ class App.YouTubePlayer extends App.Player
     # 0 = stopped
     # 1 = playing
   constructor: (@divId) ->
-    Backbone.Events.bind("player:update", @update, this)
-    Backbone.Events.bind("player:mute", @_mute, this)
-    Backbone.Events.bind("player:unMute", @_unMute, this)
+    Backbone.Events.on("player:update", @update, this)
+    Backbone.Events.on("player:mute", @_mute, this)
+    Backbone.Events.on("player:unMute", @_unMute, this)
+    Backbone.Events.on("player:stop", @_stop, this)
     super()
 
   _loadVideo: ->
@@ -32,6 +33,11 @@ class App.YouTubePlayer extends App.Player
 
   _mute: ->
     @_player.mute() if @_player?
+    super()
+
+  _stop: ->
+    console.log "stopped"
+    @_player.stopVideo() if @_player?
     super()
 
   _onReady: =>

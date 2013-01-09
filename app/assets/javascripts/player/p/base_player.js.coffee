@@ -12,6 +12,10 @@ class App.Player
     else
       @_hide()
 
+  _stop: ->
+    @state = 0
+    @_hide()
+
   _mute: ->
     @volumeState = 0
 

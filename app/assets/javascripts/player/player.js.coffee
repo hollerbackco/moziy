@@ -44,9 +44,8 @@ class App.PlayerManager
     @next_video.id != video.id
 
   _playFromId: (id) ->
-    self = this
-    @channel.getAiringFromID id, (airing) ->
-      self._play airing
+    @channel.getAiringFromID id, (airing) =>
+      @_play airing
 
   _play: (airing) =>
     # set the current video
@@ -58,6 +57,8 @@ class App.PlayerManager
     try
       switch video.source_name
         when 'youtube'
+          @_stopPlayers()
+
           @youtubePlayer.play video.source_id
 
           # set the title
@@ -70,6 +71,8 @@ class App.PlayerManager
           @_queue()
 
         when 'vimeo'
+          @_stopPlayers()
+
           @vimeoPlayer.play video.source_id
 
           # set the title
@@ -86,13 +89,16 @@ class App.PlayerManager
       @next()
 
 
+  _stopPlayers: ->
+    Backbone.Events.trigger("player:stop")
+
   _notifyPlayers: ->
     App.vent.trigger "airings:play", @current_video
     Backbone.Events.trigger("player:update")
 
   _setNowPlaying: (title) ->
-    $("#video-title").text title
 
+    $("#video-title").text title
   _queue: (callback) ->
     self = this
 
