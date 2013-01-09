@@ -24,6 +24,8 @@ class ChannelsController < ApplicationController
     begin
       #@channel.crawl(50) if @channel.needs_crawl?
 
+      @explore_channels = Channel.all
+
       if @channel.airings.empty?
         redirect_to new_manage_channel_video_path(@channel)
         return

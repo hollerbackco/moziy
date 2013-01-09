@@ -11,9 +11,6 @@ App.Models.CurrentUser = Backbone.Model.extend
   setChannelList: (channels) ->
     @channelList = new App.Models.Channels(channels)
 
-  setSubscriptions: (channels_json) ->
-    @subscriptions = new App.Models.Channels(channels_json)
-
   restream: (airing, channel, callback) ->
     $.ajax
       url: "/manage/channels/#{channel.id}/airings?video_id=#{airing.id}"

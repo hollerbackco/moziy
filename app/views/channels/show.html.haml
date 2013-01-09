@@ -10,60 +10,23 @@
   #vimeo-player.player
     .mask
     #vimeo-dummy
-
 #remote-control-pane.clearfix
-  %h1#mosey.clearfix= link_to "mosey", root_path
-  %nav.menu
-    #top-banner.clearfix
-      - if logged_in?
-        .button.add.primary Add
-      - else
-        = link_to "Login", login_path, class: "button login"
-    -##mute.on
-    %ul#channel-menu.clearfix
-      %li{:class => @sort.nil? ? "active" : "" }= link_to "Home", root_path
-      %li{:class => @sort == "watchers" ? "active" : "" }= link_to "Explore", root_path(:sort => "watchers")
-    #channels-container
-      %ul.channels
-        - if logged_in?
-          = render partial: "channel_list_item", collection: @unread_channels, as: "channel"
-        = render partial: "channel_list_item", collection: @channels, as: "channel"
 #current-pane-target-zone
   .mark +
   #current-pane
     #current-video
     #current-channel
-      #channel-info
-        #coverart= image_tag(@channel.cover_art_url(:thumb_player))
-        #channel-title.title= @channel.title
-        #channel-description.description= @channel.description
-      #channel-follow.clearfix
-        #channel-actions
-          - if logged_in?
-            - if current_user.owns?(@channel)
-              = link_to 'edit', manage_channel_videos_path(@channel), class: "button"
-            - else
-              - if @channel.subscribed_by?(current_user)
-                = link_to unsubscribe_channel_path(@channel), class: "button" do
-                  unfollow
-              - else
-                = link_to 'follow', subscribe_channel_path(@channel), class: "button"
-          - else
-            = link_to 'follow', subscribe_channel_path(@channel), class: "button"
-        #channel-watchers= pluralize @channel.subscriptions.count, "follower"
-      #channel-owner
-        = @channel.creator.username
-        %span.label Curator
-
 
 :javascript
   $(document).ready(function() {
     var channel = new App.Models.Channel(#{@channel.to_json})
+    var channels = new App.Models.Channels(#{@explore_channels.to_json})
     var current_user = #{logged_in? ? current_user.as_json({only: [:username], include: [:channels, :channel_list]}).to_json : "null"}
 
     var bootstrap = {
       channel: channel,
-      current_user: current_user
+      current_user: current_user,
+      channels: channels
     }
 
     App.initialize(bootstrap);

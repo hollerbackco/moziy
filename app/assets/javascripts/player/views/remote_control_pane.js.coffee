@@ -7,7 +7,7 @@ App.Views.RemoteControlPane = Backbone.View.extend
 
   initialize: ->
     @homeChannels = App.currentUser.channelList
-    @exploreChannels = new App.Models.Channels()
+    @exploreChannels = App.exploreChannels
     @myChannels = App.currentUser.channels
 
     @render()

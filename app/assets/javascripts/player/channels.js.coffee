@@ -7,7 +7,7 @@ $ ->
         @setupCurrentUser bootstrap.current_user
 
       @currentlyPlayingPane()
-      @mainMenu()
+      @mainMenu bootstrap.channels
       @muteButton()
       @setupModal()
       @setupHistory()
@@ -64,7 +64,8 @@ $ ->
         notes:   new App.Views.NotesModal(el: "#notes-modal")
         restream: new App.Views.RestreamModal(el: "#restream-modal")
 
-    mainMenu: ->
+    mainMenu: (channels) ->
+      App.exploreChannels = channels
       App.remoteControlPane = new App.Views.RemoteControlPane(el: "#remote-control-pane")
       $("#remote-control-pane").hoverIntent
         over: ->
