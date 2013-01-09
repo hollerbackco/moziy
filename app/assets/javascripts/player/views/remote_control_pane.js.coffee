@@ -1,6 +1,7 @@
 App.Views.RemoteControlPane = Backbone.View.extend
   template: HandlebarsTemplates['player/templates/remote_control_pane']
   events:
+    "click .add"  : "showAdd"
     "click .home" : "showHome"
     "click .explore" : "showExplore"
     "click .me" : "showMe"
@@ -18,6 +19,9 @@ App.Views.RemoteControlPane = Backbone.View.extend
     @channelListView = new App.Views.RemoteControlChannelList
       model: @homeChannels
       el: @$(".channels")
+
+  showAdd: ->
+    App.vent.trigger "modals:add"
 
   showHome: ->
     @channelListView.show @homeChannels

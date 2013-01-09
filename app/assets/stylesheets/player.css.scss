@@ -241,23 +241,36 @@
     #channel-menu {
       margin: 0;
       padding: 0;
+      border-top: 1px solid #eee;
+      border-bottom: 1px solid #eee;
 
       li {
         float: left;
-        width: 50px;
-        padding: 10px;
+        font-weight: bold;
+        margin-right: -1px;
+        border-right: 1px solid #eee;
+        text-align: center;
+        cursor: pointer;
+        width: 33%;
+        padding: 15px 0;
         margin: 0;
         list-style-type: none;
+
+        &:hover {
+          background: #fafafa;
+        }
+        &:last-child {
+          border-right: 0;
+        }
       }
     }
 
     #channels-container {
       position: absolute;
-      top: 83px;
+      top: 99px;
       left: 0;
       right: 0;
       bottom: 0px;
-      border-top: 1px solid #eee;
     }
 
     &.hover {
@@ -385,56 +398,72 @@
     left: 0;
     right: 0;
     top: 0;
+  }
+
+  #now-playing {
+    color: #666;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: lowercase;
+    padding: 7px 15px;
+    border-bottom: 1px solid #fafafa;
     background: #fff;
   }
 
   #currently-playing {
     background: #fff;
-    border: 1px solid #999;
-    margin: 10px;
-
-    #video-channel {
-      font-weight: bold;
-    }
 
     #video-info {
+      font-size: 16px;
       padding: 15px;
       background: #fff;
     }
 
     #video-actions {
-      padding: 15px;
-      border-top: 1px solid #eee;
-      ul {
-        list-style: none;
-        margin: 0;
-        padding: 0;
+      position: absolute;
+      width: 60px;
+      left: -60px;
+      border-right: 1px solid #eee;
+
+      .video-button {
+        cursor: pointer;
+        display: block;
+        text-transform: uppercase;
+        font-size: 10px;
+        color: #666;
         text-align: center;
-        li {
-          margin: 0;
-          padding: 0;
+        line-height: 60px;
+        height: 60px;
+        border-bottom: 1px solid #eaeaea;
+        background: #fff;
+
+        &:hover {
+          background: #efefef;
         }
       }
     }
 
     .meta {
-      border-top: 1px solid #eee;
       #video-parent {
         float: left;
         border-left: 1px solid #eee;
         padding: 10px;
         a {font-weight: bold}
       }
-      #video-notes { float: left; padding: 10px; width: 60px; }
+      #video-notes {
+        float: right;
+        cursor: pointer;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 13px;
+        padding: 10px;
+        width: 60px;
+      }
     }
   }
 
   #current-channel {
-    position: absolute;
     color: black;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
     background: #efefef;
 
     #current-channel-info {
@@ -458,7 +487,6 @@
     }
     #current-channel-owner {
       padding: 10px;
-      border-top: 1px solid #ddd;
     }
   }
 }

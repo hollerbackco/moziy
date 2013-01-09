@@ -63,6 +63,7 @@ $ ->
         channel: new App.Views.ChannelModal(el: "#channel-modal")
         notes:   new App.Views.NotesModal(el: "#notes-modal")
         restream: new App.Views.RestreamModal(el: "#restream-modal")
+        add: new App.Views.AddModal(el: "#add-modal")
 
     mainMenu: (channels) ->
       App.exploreChannels = channels

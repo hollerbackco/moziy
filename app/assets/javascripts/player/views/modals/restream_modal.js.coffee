@@ -2,6 +2,7 @@ App.Views.RestreamModal = Backbone.View.extend
   template: HandlebarsTemplates['player/templates/restream_modal']
 
   initialize: ->
+    _.bindAll this, "restream"
     @listenTo App.vent, "modals:restream", @show
     @listenTo App.vent, "modals:close", @close
 
@@ -10,20 +11,17 @@ App.Views.RestreamModal = Backbone.View.extend
   render: ->
     @$el.modal().modal("hide")
     @$el.html @template()
-    @$channelsListView = $("#restreamable-channels")
 
-    App.currentUser.channels.each (channel) =>
-      subview = new App.Views.RestreamModalChannelItem(model: channel)
-      @$channelsListView.append subview.el
-      @listenTo subview, "restream", @restream
+    @channelsListView = new App.Views.ModalChannelList
+      el: "#restreamable-channels"
+      model: App.currentUser.channels
+      channelClickCallback: @restream
 
 
-  show: (airing) ->
+  show: (@model) ->
     App.vent.trigger "modals:close"
 
-    @model = airing
-
-    @$(".airing-title").html airing.get("title")
+    @$(".airing-title").html @model.get("title")
     @$el.modal("show")
 
   close: ->
