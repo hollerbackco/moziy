@@ -34,13 +34,13 @@ class Airing < ActiveRecord::Base
   end
 
   def note_count
-    likes.count + descendants.count
+    likes.count + video.airings.count
   end
 
   def notes
     {
       likes: likes,
-      restreams: descendants.map {|a| a.channel}
+      restreams: video.airings.map {|a| a.channel}
     }
   end
 
