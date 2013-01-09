@@ -3,16 +3,6 @@
   padding: 0px;
   margin: 0px;
 
-  .button {
-    padding: 5px 10px;
-    background: #fff;
-    font-weight: bold;
-    &:hover {
-      background: #000;
-      color: #fff;
-      border: 1px solid #000;
-    }
-  }
   .label { color: #999; font-size: 12px; }
 
   #notes-modal {
@@ -33,6 +23,32 @@
 
       .restream-channel-cover-art {display: block; float: left; margin-right: 10px;}
       .restream-channel-title {font-weight: bold}
+    }
+  }
+
+  #restream-modal {
+    .channel-item {
+      border-top: 1px solid #eee;
+
+      img {
+        float: left;
+        margin-right: 10px;
+      }
+
+      .channel-title {
+        font-size: 16px;
+        line-height: 48px;
+
+        &:hover {
+          background: #fafafa;
+        }
+      }
+    }
+  }
+  .modal {
+    .header {
+      padding: 15px;
+      font-size: 16px;
     }
   }
 
@@ -233,8 +249,7 @@
     }
 
     #top-banner {
-      height: 28px;
-      margin: 10px;
+      height: 48px;
       .button {float: right;}
     }
 
