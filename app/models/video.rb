@@ -1,6 +1,7 @@
 class Video < ActiveRecord::Base
 
   has_many :airings, :dependent => :destroy
+  has_many :likes, through: :airings
 
   validates :title, :presence => true
   validates :body, :presence => true
