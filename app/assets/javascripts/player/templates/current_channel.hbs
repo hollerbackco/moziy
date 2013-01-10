@@ -6,18 +6,20 @@
     {{title}}
   </div>
   <div id="current-channel-owner">
+    <span class="label">Created by</span>
     {{creator.username}}
-    <div class="label">Curator</div>
   </div>
   <div id="current-channel-description" class="description">
     {{description}}
   </div>
 </div>
 <div id="current-channel-follow" class="clearfix">
-  <div id="current-channel-actions">
-    <div class="follow-button button"> follow </div>
+  <div class="follow-button button primary">
+    <span class="follow-text">follow</span>
+    <span class="following-text">following</span>
+    <span class="unfollow-text">unfollow</span>
   </div>
   <div id="current-channel-followers">
-    {{channel_subscriptions_count}} followers
+    {{channel_subscribers_count}} followers
   </div>
 </div>

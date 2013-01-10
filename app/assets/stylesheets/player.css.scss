@@ -3,7 +3,10 @@
   padding: 0px;
   margin: 0px;
 
-  .label { color: #999; font-size: 12px; }
+  .label {
+    color: #999;
+    font-size: 12px;
+  }
 
   #notes-modal {
     .header {
@@ -46,9 +49,32 @@
     }
   }
   .modal {
+    .close {
+      float: right;
+      padding: 16px 19px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      position: absolute;
+      top: 0;
+      right: 0;
+      background: #fff;
+      border: 0;
+      border-left: 1px solid #DDD;
+      -webkit-border-radius: 0 6px 0 0;
+      -moz-border-radius: 0 6px 0 0;
+      border-radius: 0 6px 0 0;
+      -webkit-box-shadow: inset 1px 0 0 rgba(255, 255, 255, .5);
+      -moz-box-shadow: inset 1px 0 0 rgba(255,255,255,.5);
+      box-shadow: inset 1px 0 0 rgba(255, 255, 255, .5);
+
+      &:hover {
+        background: #fafafa;
+      }
+    }
     .header {
       padding: 15px;
-      font-size: 16px;
+      font-size: 15px;
     }
   }
 
@@ -264,6 +290,7 @@
         font-weight: bold;
         margin-right: -1px;
         border-right: 1px solid #eee;
+        background: #fafafa;
         text-align: center;
         cursor: pointer;
         width: 33%;
@@ -272,10 +299,13 @@
         list-style-type: none;
 
         &:hover {
-          background: #fafafa;
+          background: #eee;
         }
         &:last-child {
           border-right: 0;
+        }
+        &.active {
+          background: #fff;
         }
       }
     }
@@ -430,7 +460,7 @@
 
     #video-info {
       font-size: 16px;
-      padding: 15px;
+      padding: 10px 15px;
       background: #fff;
     }
 
@@ -459,10 +489,10 @@
     }
 
     .meta {
+      padding: 0 15px 10px;
       #video-parent {
-        float: left;
-        border-left: 1px solid #eee;
-        padding: 10px;
+        text-transform: uppercase;
+        color: #666;
         a {font-weight: bold}
       }
       #video-notes {
@@ -471,7 +501,6 @@
         font-weight: bold;
         text-transform: uppercase;
         font-size: 13px;
-        padding: 10px;
         width: 60px;
       }
     }
@@ -493,10 +522,20 @@
       padding: 10px;
     }
     #current-channel-follow {
+      position: relative;
       padding: 10px;
       border-top: 1px solid #ddd;
       line-height: 27px;
-      #current-channel-actions {
+
+      .follow-button {
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 100px;
+        padding: 0;
+        line-height: 48px;
+        text-align: center;
         float: right;
       }
     }

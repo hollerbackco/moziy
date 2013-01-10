@@ -5,6 +5,9 @@ App.Models.CurrentUser = Backbone.Model.extend
     if @has("channel_list")
       @setChannelList @get "channel_list"
 
+  isFollowing: (channel) ->
+    @channelList? and @channelList.hasChannel channel
+
   setChannels: (channels) ->
     @channels = new App.Models.Channels(channels)
 

@@ -11,6 +11,8 @@ App.Views.RemoteControlChannelListItem = Backbone.View.extend
 
   render: ->
     @$el.html @template @model.toJSON()
+    if App.currentUser?
+      @$el.addClass("following") if App.currentUser.isFollowing(@model)
 
   watch: ->
     App.vent.trigger "channel:watch", @model

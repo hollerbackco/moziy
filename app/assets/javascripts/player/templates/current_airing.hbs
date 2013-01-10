@@ -10,10 +10,6 @@
     <div id="video-channel">
       <span id="video-channel-title"> {{channel.title}} </span>
     </div>
-    {{#parent}}
-      <span class="label">via</span>
-      <a href="{{channel.url}}"> {{ channel.title }} </a>
-    {{/parent}}
     <div id="video-title" class="title">
       {{title}}
     </div>
@@ -21,6 +17,16 @@
   <div class="meta">
     <div id="video-notes">
       {{note_count}} notes
+    </div>
+    <div id="video-parent">
+      {{#if parent}}
+        {{#parent}}
+          <span class="label">via</span>
+          <a href="{{channel.url}}"> {{ channel.title }} </a>
+        {{/parent}}
+      {{else}}
+        Original Poster
+      {{/if}}
     </div>
   </div>
 </div>

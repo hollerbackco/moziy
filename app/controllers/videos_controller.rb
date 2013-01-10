@@ -65,7 +65,8 @@ class VideosController < ApplicationController
        :source_id => video.source_id,
        :title => video.title,
        :channel_id => video.channel_id,
-       :note_count => video.note_count
+       :note_count => video.note_count,
+       :parent => video.parent
       }
     end
 

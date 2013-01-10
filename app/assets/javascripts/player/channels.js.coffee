@@ -34,7 +34,7 @@ $ ->
         App.vent.on "airing:restream", @restreamAiring
 
       likeVideo: (airing) ->
-        alert_message = "You highfived #{airing.get('title')}"
+        alert_message = "You liked <div>#{airing.get('title')}</div>"
         App.notice alert_message
 
         App.currentUser.like airing

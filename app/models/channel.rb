@@ -18,7 +18,7 @@ class Channel < ActiveRecord::Base
     find(11)
   rescue ActiveRecord::RecordNotFound
     if Channel.count > 0
-      Channel.first
+      Channel.find(2)
     else
       Channel.create(title: "MoseyTv")
     end

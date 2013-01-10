@@ -19,7 +19,7 @@ class ChannelsController < ApplicationController
   end
 
   def show
-    @channel = Channel.find(params[:id])
+    @channel = params.key?(:id) ? Channel.find(params[:id]) : Channel.default
 
     begin
       #@channel.crawl(50) if @channel.needs_crawl?

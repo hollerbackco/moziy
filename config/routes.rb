@@ -1,5 +1,5 @@
 Puretv::Application.routes.draw do
-  root :to => "channels#index"
+  root :to => "channels#show"
 
   match :terms, :to => "pages#terms"
   match :terms, :to => "pages#privacy"
