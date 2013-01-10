@@ -11,6 +11,14 @@ App.Models.CurrentUser = Backbone.Model.extend
   setChannelList: (channels) ->
     @channelList = new App.Models.Channels(channels)
 
+  follow: (channel, callback) ->
+    $.ajax
+      url: "/channels/#{channel.id}/subscribe"
+      type: "POST"
+      success: (results) =>
+        if callback?
+          callback(results)
+
   restream: (airing, channel, callback) ->
     $.ajax
       url: "/manage/channels/#{channel.id}/airings?video_id=#{airing.id}"
@@ -29,4 +37,5 @@ App.Models.CurrentUser = Backbone.Model.extend
       url: "/channels/#{airing.get "channel_id"}/likes?airing_id=#{airing.id}"
       type: "POST"
       success: (results) =>
-        callback() if callback?
+        if callback?
+          callback results

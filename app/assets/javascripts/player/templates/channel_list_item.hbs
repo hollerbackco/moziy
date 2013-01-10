@@ -1,5 +1,7 @@
 <div class="icon">
-  <div class="unread-count">{{sub_count}}</div>
+  {{#if unread_count}}
+    <div class="unread-count">{{unread_count}}</div>
+  {{/if}}
   <img src="{{cover_art.thumb_list.url}}" />
 </div>
 <div class="title">

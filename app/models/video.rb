@@ -8,4 +8,8 @@ class Video < ActiveRecord::Base
   validates :source_name, :presence => true, :uniqueness => {:scope => [:source_id]}
   validates :source_id, :presence => true
 
+  def note_count
+    airings.count + likes.count
+  end
+
 end

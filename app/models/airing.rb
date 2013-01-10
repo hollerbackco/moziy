@@ -12,7 +12,7 @@ class Airing < ActiveRecord::Base
   validates :video_id, :presence => true
   validates :channel_id, :presence => true, :uniqueness => {:scope => [:video_id]}
 
-  delegate :title, :source_id, :source_name, :likes, to: :video
+  delegate :title, :source_id, :source_name, :note_count, to: :video
 
   after_create :update_subscription_unread_count
   after_destroy :update_subscription_unread_count
@@ -31,10 +31,6 @@ class Airing < ActiveRecord::Base
     state :suggestion
     state :live
     state :archived
-  end
-
-  def note_count
-    video.airings.count + video.airings.count
   end
 
   def notes
