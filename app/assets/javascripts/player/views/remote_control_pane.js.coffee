@@ -6,6 +6,7 @@ App.Views.RemoteControlPane = Backbone.View.extend
     "click .home" : "showHome"
     "click .explore" : "showExplore"
     "click .me" : "showMe"
+    "click .login": "showLogin"
 
   initialize: ->
     @homeChannels = App.currentUser.channelList
@@ -15,11 +16,28 @@ App.Views.RemoteControlPane = Backbone.View.extend
     @render()
     @showHome()
 
+    @listenTo App.vent, "login", @login
+
   render: ->
     @$el.html @template()
+
+    @$el.hoverIntent
+      over: =>
+        @$el.addClass("hover")
+      sensitivity: 12
+      timeout: 100
+      out: =>
+        @$el.removeClass("hover")
+        @$(".dropdown").removeClass("open")
+
+    @$(".dropdown-toggle").dropdown()
+
     @channelListView = new App.Views.RemoteControlChannelList
       model: @homeChannels
       el: @$(".channels")
+
+  showLogin: ->
+    App.vent.trigger "modals:login"
 
   showAdd: ->
     App.vent.trigger "modals:add"
@@ -41,3 +59,7 @@ App.Views.RemoteControlPane = Backbone.View.extend
   inactivateMenu: ->
     @$(".menu-button").removeClass "active"
 
+  login: (user) ->
+    username = user.get "username"
+    @$(".user .name").html username
+    @$el.addClass "logged-in"

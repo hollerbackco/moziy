@@ -6,6 +6,8 @@ $ ->
       if bootstrap.current_user?
         @setupCurrentUser bootstrap.current_user
 
+      @setupPlayer bootstrap.channel
+
       @currentlyPlayingPane()
       @mainMenu bootstrap.channels
       @muteButton()
@@ -13,7 +15,8 @@ $ ->
       @setupHistory()
       @controller.initialize()
 
-      @setupPlayer bootstrap.channel
+      if App.currentUser?
+        App.vent.trigger "login", App.currentUser
 
     notice: (msg) ->
       $("#alert").html(msg).show().delay(2000).fadeOut(300)
@@ -60,23 +63,15 @@ $ ->
 
     setupModal: ->
       App.modals =
-        channel: new App.Views.ChannelModal(el: "#channel-modal")
-        notes:   new App.Views.NotesModal(el: "#notes-modal")
+        channel:  new App.Views.ChannelModal(el: "#channel-modal")
+        notes:    new App.Views.NotesModal(el: "#notes-modal")
         restream: new App.Views.RestreamModal(el: "#restream-modal")
-        add: new App.Views.AddModal(el: "#add-modal")
+        add:      new App.Views.AddModal(el: "#add-modal")
+        login:    new App.Views.LoginModal(el: "#login-modal")
 
     mainMenu: (channels) ->
       App.exploreChannels = channels
       App.remoteControlPane = new App.Views.RemoteControlPane(el: "#remote-control-pane")
-      $("#remote-control-pane").hoverIntent
-        over: ->
-          $(this).addClass("hover")
-          $(".channels").show()
-        sensitivity: 12
-        timeout: 100
-        out: ->
-          $(this).removeClass("hover")
-          $(".channels").hide()
 
     currentlyPlayingPane: ->
       App.currentAiringPane = new App.Views.CurrentAiring(el: "#current-video")

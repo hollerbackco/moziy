@@ -1,8 +1,7 @@
 class Auth::SessionsController < ApplicationController
-  
   # before_filter :check_not_logged_in, :except => :destroy
   before_filter :require_login, :only => :destroy
-  
+
   def new
     @user = User.new
   end
@@ -21,6 +20,4 @@ class Auth::SessionsController < ApplicationController
     logout
     redirect_to(login_path, :notice => 'Logged out!')
   end
-  
-  
 end

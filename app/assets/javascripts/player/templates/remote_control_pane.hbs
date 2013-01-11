@@ -3,8 +3,19 @@
 </h1>
 <nav class="menu">
   <div id="top-banner" class="clearfix">
-    <div class="button primary add">add</div>
-    <div class="button login">login</div>
+    <div class="top-menu-item add button primary">add +</div>
+    <div class="top-menu-item login">login</div>
+    <div class="top-menu-item user dropdown">
+      <div class="text dropdown-toggle" data-toggle="dropdown">
+        <span class="name"></span>
+        <span class="caret"></span>
+      </div>
+      <div class="sub-menu dropdown-menu" role="menu">
+        <a href="/manage/channels" class="sub-menu-item">manage</a>
+        <a href="/settings" class="sub-menu-item">settings</a>
+        <a href="/logout" class="sub-menu-item">logout</a>
+      </div>
+    </div>
   </div>
   <ul id="channel-menu" class="clearfix">
     <li class="home menu-button active">home</li>

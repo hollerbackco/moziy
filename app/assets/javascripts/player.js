@@ -9,6 +9,7 @@
 //= require jquery_ujs
 //= require jquery.hoverIntent.min
 //= require bootstrap-modal
+//= require bootstrap-dropdown
 //= require underscore-min
 //= require backbone-min
 //= require swfobject
