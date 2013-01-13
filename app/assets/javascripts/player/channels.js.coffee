@@ -6,7 +6,6 @@ $ ->
       if bootstrap.current_user?
         @setupCurrentUser bootstrap.current_user
 
-      @setupPlayer bootstrap.channel
 
       @currentlyPlayingPane()
       @mainMenu bootstrap.channels
@@ -17,6 +16,8 @@ $ ->
 
       if App.currentUser?
         App.vent.trigger "login", App.currentUser
+
+      @setupPlayer bootstrap.channel
 
     notice: (msg) ->
       $("#alert").html(msg).show().delay(2000).fadeOut(300)
@@ -35,6 +36,11 @@ $ ->
       initialize: ->
         App.vent.on "airing:like", @likeVideo
         App.vent.on "airing:restream", @restreamAiring
+        App.vent.on "channel:follow", @followChannel
+
+      followChannel: (channel) ->
+        App.notice "Followed #{channel.get 'title'}"
+        #App.currentUser.follow channel, ->
 
       likeVideo: (airing) ->
         alert_message = "You liked <div>#{airing.get('title')}</div>"

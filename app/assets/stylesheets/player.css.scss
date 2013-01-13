@@ -601,6 +601,7 @@
 
   #currently-playing {
     background: #fff;
+    min-height: 122px;
 
     #video-info {
       font-size: 16px;
@@ -635,7 +636,6 @@
     .meta {
       padding: 0 15px 10px;
       #video-parent {
-        text-transform: uppercase;
         color: #666;
         a {font-weight: bold}
       }

@@ -1,7 +1,7 @@
 App.Views.CurrentChannel = Backbone.View.extend
   template: HandlebarsTemplates['player/templates/current_channel']
   events:
-    "click .follow" : "follow"
+    "click .follow-button" : "follow"
     "click .edit"   : "edit"
 
   initialize: ->
@@ -16,6 +16,6 @@ App.Views.CurrentChannel = Backbone.View.extend
     @$el.html @template @model.toJSON()
 
   follow: ->
-    @channel.follow()
+    App.vent.trigger "channel:follow", @model
 
   edit: ->
