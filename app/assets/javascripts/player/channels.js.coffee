@@ -39,8 +39,8 @@ $ ->
         App.vent.on "channel:follow", @followChannel
 
       followChannel: (channel) ->
-        App.notice "Followed #{channel.get 'title'}"
-        #App.currentUser.follow channel, ->
+        App.currentUser.follow channel, ->
+          App.notice "Followed #{channel.get 'title'}"
 
       likeVideo: (airing) ->
         alert_message = "You liked <div>#{airing.get('title')}</div>"
