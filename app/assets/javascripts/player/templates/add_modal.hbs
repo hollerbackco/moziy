@@ -3,7 +3,7 @@
     Add +
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
   </div>
-  <div class="modal-body clearfix">
+  <div class="modal-body modal-no-padding clearfix">
     <div class="add-menu-item add-airing">
       Add Video
     </div>
@@ -15,22 +15,23 @@
     Add Video
     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
   </div>
-  <div class="modal-body">
-    <form>
-      <fieldset>
-        <label class="video-urls" for="video-urls">
-          <span>Urls</span>
-          <textarea id="video-urls" name="video-urls"></textarea>
-        </label>
-      </fieldset>
-      <fieldset>
-        <label class="channels">
-          <span>Which Channel</span>
-          <select name="channel_id"></select>
-        </label>
-      </fieldset>
+  <form>
+    <div class="modal-body">
+        <fieldset>
+          <label class="video-urls" for="video-urls">
+            <span>Urls</span>
+            <textarea id="video-urls" name="video-urls"></textarea>
+          </label>
+        </fieldset>
+        <fieldset>
+          <label class="channels">
+            <span>Which Channel</span>
+            <select name="channel_id"></select>
+          </label>
+        </fieldset>
+    </div>
+    <div class="modal-footer">
       <div class="button primary">add</div>
-    </form>
-    <div id="addable-channels" class="channel-list"></div>
-  </div>
+    </div>
+  </form>
 </div>

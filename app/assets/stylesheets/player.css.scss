@@ -102,11 +102,6 @@
 
   #add-modal {
 
-    .modal-body {
-      padding: 0;
-      margin: 0;
-    }
-
     .add-menu-item {
       display: block;
       cursor: pointer;
@@ -134,7 +129,6 @@
   #login-modal {
     .modal-body {
       padding: 30px;
-
     }
     button {
       position: absolute;
@@ -156,24 +150,22 @@
     overflow: hidden;
     .close {
       float: right;
-      padding: 16px 19px;
+      padding: 8px 10px;
       font-size: 14px;
       font-weight: bold;
       cursor: pointer;
       position: absolute;
+      color: #666;
       top: 0;
       right: 0;
       background: #fff;
       border: 0;
-      border-left: 1px solid #DDD;
-      -webkit-border-radius: 0 6px 0 0;
-      -moz-border-radius: 0 6px 0 0;
-      border-radius: 0 6px 0 0;
       -webkit-box-shadow: inset 1px 0 0 rgba(255, 255, 255, .5);
       -moz-box-shadow: inset 1px 0 0 rgba(255,255,255,.5);
       box-shadow: inset 1px 0 0 rgba(255, 255, 255, .5);
 
       &:hover {
+        color: #000;
         background: #fafafa;
       }
     }
@@ -185,11 +177,28 @@
     }
     .modal-body {
       padding: 15px;
+
+      &.modal-no-padding {
+        padding: 0;
+      }
     }
     .modal-footer {
       position: relative;
       border-top: 1px solid #efefef;
       padding: 15px;
+
+      button,
+      .button {
+        position: absolute;
+        margin: 0;
+        padding: 0;
+        width: 100px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        line-height: 48px;
+        text-align: center;
+      }
     }
   }
 
@@ -267,9 +276,6 @@
     border: 1px solid #999;
     border: 1px solid rgba(0, 0, 0, 0.3);
     *border: 1px solid #999;
-    -webkit-border-radius: 6px;
-       -moz-border-radius: 6px;
-            border-radius: 6px;
     outline: none;
     -webkit-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
        -moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
@@ -463,15 +469,16 @@
     #channel-menu {
       margin: 0;
       padding: 0;
+      background: #efefef;
       border-top: 1px solid #eee;
       border-bottom: 1px solid #eee;
 
       li {
         float: left;
-        font-weight: bold;
         margin-right: -1px;
         border-right: 1px solid #eee;
         background: #efefef;
+        color: #666;
         text-align: center;
         cursor: pointer;
         width: 33%;
@@ -483,10 +490,12 @@
           background: #eaeaea;
         }
         &:last-child {
+          margin-right: 0;
           border-right: 0;
         }
         &.active {
-          background: #fff;
+          color: #000;
+          font-weight: bold;
         }
       }
     }
@@ -552,7 +561,7 @@
         .icon {
           position: relative;
           float: left;
-          padding-right: 15px;
+          padding-right: 20px;
 
           .unread-count {
             position: absolute;
@@ -633,7 +642,7 @@
     font-weight: bold;
     text-transform: lowercase;
     padding: 7px 15px;
-    border-bottom: 1px solid #fafafa;
+    border-bottom: 1px solid #efefef;
     background: #fff;
   }
 
@@ -643,7 +652,7 @@
 
     #video-info {
       font-size: 16px;
-      padding: 10px 15px;
+      padding: 15px;
       background: #fff;
     }
 
@@ -689,23 +698,35 @@
   }
 
   #current-channel {
+    border-top: 1px solid #efefef;
     color: black;
-    background: #efefef;
+    background: #fff;
 
+    #current-channel-coverart {
+      img {
+        height: 270px;
+        width: 270px;
+      }
+    }
     #current-channel-info {
-      text-align: center;
-      padding: 30px 0;
+      padding: 15px;
     }
 
     #current-channel-title {
-      font-weight: bold;
-      font-size: 16px;
-      height: 19px;
-      padding: 10px;
+      margin-top: 10px;
+      font-size: 24px;
+      line-height: 28px;
+    }
+    #current-channel-owner {
+      color: #666;
+    }
+    #current-channel-description {
+      margin-top: 10px;
+      font-style: italic;
     }
     #current-channel-follow {
       position: relative;
-      padding: 10px;
+      padding: 10px 15px;
       border-top: 1px solid #ddd;
       line-height: 27px;
 
@@ -720,9 +741,6 @@
         text-align: center;
         float: right;
       }
-    }
-    #current-channel-owner {
-      padding: 10px;
     }
   }
 }
