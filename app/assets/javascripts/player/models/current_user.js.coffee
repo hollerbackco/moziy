@@ -2,8 +2,14 @@ App.Models.CurrentUser = Backbone.Model.extend
   initialize: ->
     if @has("channels")
       @setChannels @get "channels"
+    else
+      @setChannels []
+
     if @has("channel_list")
       @setChannelList @get "channel_list"
+
+  loggedIn: ->
+    @get("loggedIn") || false
 
   isFollowing: (channel) ->
     @channelList? and @channelList.hasChannel channel

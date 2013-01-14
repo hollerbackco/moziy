@@ -9,7 +9,7 @@ App.Views.RemoteControlPane = Backbone.View.extend
     "click .login": "showLogin"
 
   initialize: ->
-    @homeChannels = App.currentUser.channelList
+    @homeChannels = App.currentUser.channelList || App.exploreChannels
     @exploreChannels = App.exploreChannels
     @myChannels = App.currentUser.channels
 

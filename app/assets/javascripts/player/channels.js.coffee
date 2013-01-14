@@ -3,8 +3,9 @@ $ ->
     vent: _.extend {}, Backbone.Events
 
     initialize: (bootstrap) ->
-      if bootstrap.current_user?
-        @setupCurrentUser bootstrap.current_user
+
+      current_user = if bootstrap.current_user? then bootstrap.current_user else {loggedIn:false}
+      @setupCurrentUser current_user
 
 
       @currentlyPlayingPane()
