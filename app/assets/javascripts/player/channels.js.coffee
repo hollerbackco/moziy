@@ -15,7 +15,7 @@ $ ->
       @setupHistory()
       @controller.initialize()
 
-      if App.currentUser?
+      if App.currentUser? and App.currentUser.get "loggedIn"
         App.vent.trigger "login", App.currentUser
 
       @setupPlayer bootstrap.channel
