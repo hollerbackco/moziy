@@ -110,4 +110,16 @@ class Channel < ActiveRecord::Base
     airings.find(:first, conditions: {video_id: id})
   end
 
+  def channel_subscribers_count
+    subscriptions.count
+  end
+
+  def as_json(options={})
+    options = {
+      methods: [:channel_subscribers_count],
+      only: [:id, :title, :description, :cover_art],
+      include: [:creator]
+    }.merge options
+    super
+  end
 end

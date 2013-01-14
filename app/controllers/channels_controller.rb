@@ -1,6 +1,5 @@
 class ChannelsController < ApplicationController
   before_filter :require_login, :only => [:subscribe]
-  before_filter :channel_list
 
   def index
     @sort = params[:sort]
@@ -84,8 +83,4 @@ class ChannelsController < ApplicationController
     end
   end
 
-  private
-
-  def channel_list
-  end
 end

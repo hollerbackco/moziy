@@ -1,17 +1,35 @@
 <div class="choose-add-type">
-  <div class="add-airing">
-    Add Video
+  <div class="modal-header">
+    Add +
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
   </div>
-  <div class="add-channel">
-    Add Channel
+  <div class="modal-body clearfix">
+    <div class="add-menu-item add-airing">
+      Add Video
+    </div>
+    <a class="add-menu-item add-channel" href="/manage/channels/new">Add Channel</a>
   </div>
 </div>
 <div class="add-airing-body">
-  <div class="header">Add Video</div>
+  <div class="header">
+    Add Video
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  </div>
   <div class="modal-body">
     <form>
-      <textarea id="video-urls" name="video-urls"></textarea>
-      <div class="button">add</div>
+      <fieldset>
+        <label class="video-urls" for="video-urls">
+          <span>Urls</span>
+          <textarea id="video-urls" name="video-urls"></textarea>
+        </label>
+      </fieldset>
+      <fieldset>
+        <label class="channels">
+          <span>Which Channel</span>
+          <select name="channel_id"></select>
+        </label>
+      </fieldset>
+      <div class="button primary">add</div>
     </form>
     <div id="addable-channels" class="channel-list"></div>
   </div>

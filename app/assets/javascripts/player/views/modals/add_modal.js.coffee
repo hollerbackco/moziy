@@ -1,6 +1,9 @@
 App.Views.AddModal = Backbone.View.extend
   template: HandlebarsTemplates['player/templates/add_modal']
 
+  events:
+    "click .add-airing" : "showAiringForm"
+
   initialize: ->
     _.bindAll this, "show", "close", "add"
 
@@ -14,10 +17,11 @@ App.Views.AddModal = Backbone.View.extend
 
     @$el.html @template()
 
-    @channelsListView = new App.Views.ModalChannelList
-      el: "#addable-channels"
-      model: App.currentUser.channels
-      channelClickCallback: @add
+    @_setupChannels()
+    #@channelsListView = new App.Views.ModalChannelList
+      #el: "#addable-channels"
+      #model: App.currentUser.channels
+      #channelClickCallback: @add
 
   show: (airing) ->
     @$el.modal("show")
@@ -27,3 +31,12 @@ App.Views.AddModal = Backbone.View.extend
 
   add: (channel) ->
     console.log channel
+
+  showAiringForm: ->
+    @$(".choose-add-type").hide()
+    @$(".add-airing-body").show()
+
+  _setupChannels: ->
+    $select = @$("select")
+    App.currentUser.channels.each (channel) ->
+      $select.append "<option value=\"#{channel.id}\">#{channel.get 'title'}</option>"
