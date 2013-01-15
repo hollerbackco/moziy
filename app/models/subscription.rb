@@ -4,7 +4,7 @@ class Subscription < ActiveRecord::Base
 
   validates :channel_id, :uniqueness => {:scope => [:user_id]}
 
-  delegate :title, :description, :creator, :id,  to: :channel
+  delegate :title, :description, :creator,  to: :channel
 
   def cover_art
     channel.cover_art.as_json[:cover_art]
@@ -23,7 +23,7 @@ class Subscription < ActiveRecord::Base
   end
 
   def as_json(options={})
-    options = {methods: [:channel_subscribers_count, :title, :description, :creator, :cover_art]}.merge options
+    options = {only: [:channel_id], methods: [:channel_subscribers_count, :title, :description, :creator, :cover_art]}.merge options
     super
   end
 end

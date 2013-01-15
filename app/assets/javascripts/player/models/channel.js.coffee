@@ -1,5 +1,9 @@
 App.Models.Channel = Backbone.Model.extend
 
+  initialize: ->
+    if @has "channel_id"
+      @id = @get("channel_id")
+
   getAiringFromID: (airing,callback) ->
     self = this
     $.ajax
