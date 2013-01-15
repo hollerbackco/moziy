@@ -66,7 +66,7 @@ class VideosController < ApplicationController
        :title => video.title,
        :channel_id => video.channel_id,
        :note_count => video.note_count,
-       :parent => video.parent
+       :parent => video.parent.as_json(:include => [:channel])
       }
     end
 
