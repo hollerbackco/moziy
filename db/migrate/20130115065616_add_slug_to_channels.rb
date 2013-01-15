@@ -6,8 +6,9 @@ class AddSlugToChannels < ActiveRecord::Migration
       title = c.title.parameterize
 
       if Channel.find_by_slug title
-        title = title + title
+        title = "#{title}#{Random.rand(11)}"
       end
+
       c.slug = title
       c.save
     end
