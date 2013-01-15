@@ -9,7 +9,7 @@ class Channel < ActiveRecord::Base
   has_many :subscriptions, :dependent => :destroy
 
   validates :title, uniqueness: true, presence: true
-  validates :slug,  uniqueness: true, presence: true, :format => {:with => /^([a-zA-Z](_?[a-zA-Z0-9]+)*_?|_([a-zA-Z0-9]+_?)*)$/}
+  validates :slug,  uniqueness: true, presence: true, :format => {:with => /^[a-zA-Z0-9_]*[a-zA-Z][a-zA-Z0-9_]*$/}
 
   mount_uploader :cover_art, CoverArtUploader
 

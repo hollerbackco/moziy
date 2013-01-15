@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :username, :password, :password_confirmation, :authentications_attributes
 
   validates :email, :presence => true, :uniqueness => true
-  validates :username, :presence => true, :uniqueness => true, :format => {:with => /^([a-zA-Z](_?[a-zA-Z0-9]+)*_?|_([a-zA-Z0-9]+_?)*)$/}
+  validates :username, :presence => true, :uniqueness => true, :format => {:with => /^[a-zA-Z0-9_]*[a-zA-Z][a-zA-Z0-9_]*$/}
 
   acts_as_reader
 
