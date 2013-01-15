@@ -6,6 +6,8 @@ class Subscription < ActiveRecord::Base
 
   delegate :title, :description, :creator, :slug,  to: :channel
 
+  after_create :update_unread_count!
+
   def cover_art
     channel.cover_art.as_json[:cover_art]
   end
