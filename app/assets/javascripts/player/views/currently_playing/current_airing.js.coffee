@@ -1,5 +1,6 @@
 App.Views.CurrentAiring = Backbone.View.extend
   template: HandlebarsTemplates['player/templates/current_airing']
+
   events:
     "click .like" : "like"
     "click .restream" : "restream"
@@ -25,3 +26,7 @@ App.Views.CurrentAiring = Backbone.View.extend
   restream: ->
     # this should have a controller
     App.vent.trigger "modals:restream", @model
+
+  showRestreamFrom: ->
+    channel = new App.Models.Channel @model.get("parent").channel
+    App.vent.trigger "modals:channel", channel

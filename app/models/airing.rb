@@ -59,8 +59,8 @@ class Airing < ActiveRecord::Base
       ["position = STRPOS(?, ','||video_id||',')", ",#{ids.join(',')},"], 
       { :video_id => ids }
     )
-  end
 
+  end
   private
 
   def update_subscription_unread_count

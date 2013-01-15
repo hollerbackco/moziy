@@ -46,7 +46,7 @@ Puretv::Application.routes.draw do
   # channel non-management
   match :explore, :to => "channels#index"
 
-  resources :channels, :only => [:index, :show] do
+  resources :channels, :only => [:index] do
     member do
       match :chromeless, :to => "channels#show_chromeless"
       match :subscribe
@@ -64,4 +64,5 @@ Puretv::Application.routes.draw do
     end
   end
 
+  match ":name", :to => "channels#show"
 end

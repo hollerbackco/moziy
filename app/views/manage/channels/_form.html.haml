@@ -9,6 +9,10 @@
     %br
     = f.text_area :description
   .field
+    = f.label :slug
+    %br
+    = f.text_area :slug
+  .field
     = image_tag(@channel.cover_art_url(:thumb_player)) if @channel.cover_art?
     %br
     = f.label :cover_art

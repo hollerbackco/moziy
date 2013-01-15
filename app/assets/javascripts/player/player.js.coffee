@@ -88,7 +88,6 @@ class App.PlayerManager
     catch error
       @next()
 
-
   _stopPlayers: ->
     Backbone.Events.trigger("player:stop")
 
@@ -99,13 +98,13 @@ class App.PlayerManager
   _setNowPlaying: (title) ->
 
     $("#video-title").text title
+
   _queue: (callback) ->
     self = this
 
     @channel.getNextAiring @current_video, (airing) ->
       self._shiftQueue(airing)
       callback() if callback?
-
 
   _shiftQueue: (airing) ->
     @next_video = airing

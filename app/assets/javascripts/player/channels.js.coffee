@@ -60,7 +60,7 @@ $ ->
         pushState: true
         root: '/'
       App.vent.on "channel:watch", (channel) ->
-        App.navigate "channels/#{channel.id}"
+        App.navigate "#{channel.get "slug"}"
 
 
     muteButton: ->

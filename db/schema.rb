@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130104035540) do
+ActiveRecord::Schema.define(:version => 20130115065616) do
 
   create_table "airings", :force => true do |t|
     t.integer  "video_id"
@@ -43,17 +43,19 @@ ActiveRecord::Schema.define(:version => 20130104035540) do
     t.integer  "creator_id"
     t.string   "title"
     t.string   "description"
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
+    t.datetime "created_at",                          :null => false
+    t.datetime "updated_at",                          :null => false
     t.integer  "subscriptions_count", :default => 0
     t.string   "cover_art"
     t.string   "random_string"
     t.string   "type"
     t.boolean  "private"
     t.integer  "score"
+    t.string   "slug",                :default => "", :null => false
   end
 
   add_index "channels", ["creator_id"], :name => "index_channels_on_creator_id"
+  add_index "channels", ["slug"], :name => "index_channels_on_slug", :unique => true
 
   create_table "likes", :force => true do |t|
     t.integer  "user_id"

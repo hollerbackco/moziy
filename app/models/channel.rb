@@ -8,7 +8,8 @@ class Channel < ActiveRecord::Base
 
   has_many :subscriptions, :dependent => :destroy
 
-  validates :title, :uniqueness => true, :presence => true
+  validates :title, uniqueness: true, presence: true
+  validates :slug,  uniqueness: true, presence: true, :format => {:with => /^([a-zA-Z](_?[a-zA-Z0-9]+)*_?|_([a-zA-Z0-9]+_?)*)$/}
 
   mount_uploader :cover_art, CoverArtUploader
 
@@ -117,7 +118,7 @@ class Channel < ActiveRecord::Base
   def as_json(options={})
     options = {
       methods: [:channel_subscribers_count],
-      only: [:id, :title, :description, :cover_art],
+      only: [:id, :title, :description, :cover_art, :slug],
       include: [:creator]
     }.merge options
     super
