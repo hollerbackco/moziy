@@ -8,10 +8,10 @@ class AddSlugToChannels < ActiveRecord::Migration
       if Channel.find_by_slug title
         title = "#{title}#{Random.rand(11)}"
       end
-      puts title
 
       c.slug = title
-      c.save
+      puts c.save
+      put c.title
     end
 
     add_index :channels, :slug, unique: true
