@@ -210,7 +210,15 @@
     .channel-image {float:left;}
     .channel-info {
       padding: 15px;
-      .channel-title {font-size: 33px; font-weight: bold; padding-top: 15px}
+      .channel-title {
+        font-size: 33px;
+        font-weight: bold;
+        padding-top: 15px;
+        .slug {
+          color: #666;
+          font-size: 16px;
+        }
+      }
       .channel-description {font-size: 16px;}
     }
     .action-bar {
@@ -243,7 +251,6 @@
     }
 
     .now-playing {border-top: 1px solid #eee; padding: 20px;}
-
   }
 
   .modal-backdrop {
@@ -717,6 +724,11 @@
       margin-top: 10px;
       font-size: 24px;
       line-height: 28px;
+      .slug {
+        color: #666;
+        font-size: 16px;
+        font-weight: normal;
+      }
     }
     #current-channel-owner {
       color: #666;

@@ -1,7 +1,10 @@
 <div class="header modal-no-padding clearfix">
   <img class="channel-image" width=150 height=150 src="{{cover_art.thumb_player.url}}" />
   <div class="channel-info">
-    <div class="channel-title channel-play">{{title}}</div>
+    <div class="channel-title channel-play">
+      {{title}}
+      <span class="slug">{{slug}}</span>
+    </div>
     <div class="user">
       created by <span class="username">{{creator.username}}</span>
     </div>
