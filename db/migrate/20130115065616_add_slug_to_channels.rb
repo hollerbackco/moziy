@@ -3,7 +3,12 @@ class AddSlugToChannels < ActiveRecord::Migration
     add_column :channels, :slug, :string, default: "", null: false
 
     Channel.all.each do |c|
-      c.slug = c.title.parameterize
+      title = c.title.parameterize
+
+      if Channel.find_by_slug title
+        title = title + title
+      end
+      c.slug = title
       c.save
     end
 
