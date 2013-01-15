@@ -10,9 +10,14 @@ class App.PlayerManager
 
   changeChannel: (channel) ->
     @channel = channel
-    @channel.getFirstAiring @_play
+    @channel.getFirstAiring (first) =>
+      @channel.getNextAiring first, (second) =>
+        @_shiftQueue(second)
+        @_play first
 
   next: =>
+    console.log "current", @current_video
+    console.log "next", @next_video
     # todo: what happens if the queue fails
     @_play @next_video
 
@@ -102,7 +107,7 @@ class App.PlayerManager
   _queue: (callback) ->
     self = this
 
-    @channel.getNextAiring @current_video, (airing) ->
+    @channel.getNextAiring @next_video, (airing) ->
       self._shiftQueue(airing)
       callback() if callback?
 
