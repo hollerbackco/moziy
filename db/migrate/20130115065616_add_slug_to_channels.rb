@@ -11,7 +11,7 @@ class AddSlugToChannels < ActiveRecord::Migration
 
       c.slug = title
       puts c.save
-      put c.title
+      puts c.title
     end
 
     add_index :channels, :slug, unique: true
