@@ -10,6 +10,7 @@ class AddSlugToChannels < ActiveRecord::Migration
       end
 
       c.slug = title
+      puts title
       puts c.save
       puts c.title
     end
