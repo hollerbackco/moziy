@@ -3,7 +3,7 @@ class AddSlugToChannels < ActiveRecord::Migration
     add_column :channels, :slug, :string, default: "", null: false
 
     Channel.all.each do |c|
-      title = c.title.parameterize
+      title = c.title.parameterize("_")
 
       if Channel.find_by_slug title
         title = "#{title}#{Random.rand(11)}"
