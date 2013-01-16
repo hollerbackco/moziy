@@ -52,8 +52,8 @@ class App.PlayerManager
   _play: (airing) =>
     # set the current video
 
-    console.log @current_video
-    console.log @next_video
+    console.log "current", @current_video
+    console.log "next", @next_video
 
     @current_video = airing
 
