@@ -12,7 +12,7 @@
       %nav.menu
         %ul.clearfix
           - if logged_in?
-            %li{:class => current_page?(explore_path) ? "active" : "" }= link_to "Explore", explore_path(:sort => "watchers")
+            %li= link_to "Explore", root_path
             %li{:class => current_page?(manage_channels_path) ? "active" : "" }= link_to "Manage", manage_channels_path
             %li{:class => current_page?(new_manage_channel_path) ? "active" : "" }= link_to 'Build a Channel', new_manage_channel_path, :class => "button bold"
           - else
