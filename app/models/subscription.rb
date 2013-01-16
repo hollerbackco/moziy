@@ -26,7 +26,7 @@ class Subscription < ActiveRecord::Base
 
   def as_json(options={})
     options = {
-      only: [:channel_id],
+      only: [:channel_id, :unread_count],
       methods: [:channel_subscribers_count, :slug, :title, :description, :creator, :cover_art]
     }.merge options
     super
