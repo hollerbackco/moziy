@@ -9,8 +9,6 @@
             = link_to "#{c.title}", manage_channel_videos_path(c)
             %span.count= "+#{c.subscriptions.count}"
             .actions
-              = link_to channel_path(c), :class => "watch" do
-                .action.expand
               = link_to subscribe_channel_path(c) do
                 .action.star.subscribe
   #viewer
