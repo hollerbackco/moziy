@@ -11,7 +11,7 @@
   .field
     = f.label :slug
     %br
-    = f.text_area :slug
+    = f.text_field :slug
   .field
     = image_tag(@channel.cover_art_url(:thumb_player)) if @channel.cover_art?
     %br
