@@ -1,6 +1,6 @@
 class Airing < ActiveRecord::Base
   acts_as_nested_set
-  acts_as_readable on: :created_at
+  acts_as_readable
 
   attr_accessible :video, :channel, :parent, :video_id, :channel_id, :parent_id, :state
 
