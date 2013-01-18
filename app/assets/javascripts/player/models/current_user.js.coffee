@@ -30,7 +30,7 @@ App.Models.CurrentUser = Backbone.Model.extend
 
   restream: (airing, channel, callback) ->
     $.ajax
-      url: "/manage/channels/#{channel.id}/airings?video_id=#{airing.id}"
+      url: "/me/channels/#{channel.id}/airings?video_id=#{airing.id}"
       type: "POST"
       success: (results) =>
         if results.success
