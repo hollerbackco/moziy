@@ -32,15 +32,13 @@ class User < ActiveRecord::Base
     conditions: ['unread_count > ?', 0]
   has_many :read_subscriptions, class_name: "Subscription", conditions: {unread_count: 0}
 
+  has_many :channel_list, through: :subscriptions, source: :channel
   has_many :unread_channels, through: :unread_subscriptions, source: :channel,
     order: "subscriptions.updated_at DESC"
   has_many :read_channels, through: :read_subscriptions, source: :channel,
     order: "subscriptions.created_at ASC"
 
 
-  def channel_list
-    unread_subscriptions + read_subscriptions
-  end
 
   def owns?(obj)
     self.id == obj.creator_id

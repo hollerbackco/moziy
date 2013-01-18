@@ -7,6 +7,7 @@ class App.PlayerManager
     Backbone.Events.bind("player:finished", @next, this)
     Backbone.Events.bind("player:error", @errorPlayNext, this)
     App.vent.on("channel:watch", @changeChannel, this)
+    App.vent.on("player:next", @next, this)
 
   changeChannel: (channel) ->
     @channel = channel

@@ -7,12 +7,12 @@ $ ->
       current_user = if bootstrap.current_user? then bootstrap.current_user else {loggedIn:false}
       @setupCurrentUser current_user
 
-
       @currentlyPlayingPane()
       @mainMenu bootstrap.channels
       @muteButton()
       @setupModal()
       @setupHistory()
+      @setupKeyboard()
       @controller.initialize()
 
       if App.currentUser? and App.currentUser.get "loggedIn"
@@ -56,6 +56,8 @@ $ ->
           App.currentUser.restream airing, channel, (msg) ->
             App.notice msg
 
+    setupKeyboard: ->
+      App.keyboard = new App.Keyboard()
 
     setupHistory: ->
       Backbone.history.start

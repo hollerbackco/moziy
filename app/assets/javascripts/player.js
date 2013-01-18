@@ -18,6 +18,7 @@
 //= require_tree ./player/templates
 
 //= require player/app
+//= require player/keyboard
 //= require cookie
 //= require_tree ./player/p
 //= require_tree ./player/views
