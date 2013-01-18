@@ -1,0 +1,125 @@
+#stage {
+  overflow: hidden;
+  padding: 0px;
+  margin: 0px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+
+  .caret {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    vertical-align: top;
+    border-top: 4px solid #000000;
+    border-right: 4px solid transparent;
+    border-left: 4px solid transparent;
+    content: "";
+  }
+
+  form {
+    fieldset {
+      border: 0;
+      padding: 0;
+      margin: 0;
+      background: none;
+      label {
+        display: block;
+        margin-top: 10px;
+
+        span {display: block}
+
+        input[type=text],
+        input[type=password] {
+          width: 100%;
+          font-size: 36px;
+          border: 1px solid #999;
+          background: #fafafa;
+        }
+      }
+
+      &.with-submit {
+        text-align: right;
+
+        .remember {
+          float: left;
+
+          span {display: inline-block}
+        }
+      }
+    }
+  }
+
+  .label {
+    color: #999;
+    font-size: 12px;
+  }
+
+  #alert{
+    position: absolute;
+    background: rgba(255,255,255,.7);
+    text-align: center;
+    z-index: 100000;
+    top: 125px;
+    left: 50%;
+    width: 300px;
+    margin-left: -170px;
+    padding: 50px;
+    font-size: 24px;
+  }
+
+  #header {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    padding: 10px;
+    height: 25px;
+    z-index: 5;
+    background: white;
+
+    .container {position: relative; padding: 0;}
+  }
+
+  #mute {
+    position: absolute;
+    top: 35px;
+    right: 10px;
+    width: 24px;
+    height: 24px;
+    z-index: 10;
+    background: image-url('icons/sound_mute.png') transparent no-repeat center center;
+
+    &.on {
+      background: image-url('icons/sound_on.png') transparent no-repeat center center;
+    }
+    &.chromeless {
+      top: 15px;
+    }
+  }
+
+  #player {
+    background: image-url('mosey-logo.png') black no-repeat center center;
+  }
+
+  #player, .player, .mask {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    z-index: 0;
+    overflow:hidden;
+  }
+
+  .player {
+    display: none;
+  }
+
+  .mask {
+    z-index: 1;
+  }
+}

@@ -1,0 +1,145 @@
+#stage {
+  #current-pane-target-zone {
+    position: absolute;
+    width: 320px;
+    top: 0;
+    bottom: 0;
+    right: 0;
+
+    .mark {
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      font-size: 20px;
+      line-height: 20px;
+      padding: 3px 18px;
+      font-weight: bold;
+      color: #999;
+    }
+  }
+
+  #current-pane {
+    display: none;
+    position: absolute;
+    margin: 10px;
+    width: 300px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+  }
+
+  #now-playing {
+    color: #666;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: lowercase;
+    padding: 7px 15px;
+    border-bottom: 1px solid #efefef;
+    background: #fff;
+  }
+
+  #currently-playing {
+    background: #fff;
+    min-height: 122px;
+
+    #video-info {
+      font-size: 16px;
+      padding: 15px;
+      background: #fff;
+    }
+
+    #video-actions {
+      position: absolute;
+      width: 60px;
+      left: -60px;
+      border-right: 1px solid #eee;
+
+      .video-button {
+        cursor: pointer;
+        display: block;
+        text-transform: uppercase;
+        font-size: 10px;
+        color: #666;
+        text-align: center;
+        line-height: 60px;
+        height: 60px;
+        border-bottom: 1px solid #eaeaea;
+        background: #fff;
+
+        &:hover {
+          background: #efefef;
+        }
+      }
+    }
+
+    .meta {
+      padding: 0 15px 10px;
+      #video-parent {
+        color: #666;
+        a {font-weight: bold}
+      }
+      #video-notes {
+        float: right;
+        cursor: pointer;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 13px;
+        width: 60px;
+      }
+    }
+  }
+
+  #current-channel {
+    border-top: 1px solid #efefef;
+    color: black;
+    background: #fff;
+
+    #current-channel-coverart {
+      img {
+        height: 270px;
+        width: 270px;
+      }
+    }
+    #current-channel-info {
+      padding: 15px;
+    }
+
+    #current-channel-title {
+      margin-top: 10px;
+      font-size: 24px;
+      line-height: 28px;
+      .slug {
+        color: #666;
+        font-size: 16px;
+        font-weight: normal;
+      }
+    }
+    #current-channel-owner {
+      color: #666;
+    }
+    #current-channel-description {
+      margin-top: 10px;
+      font-style: italic;
+    }
+    #current-channel-follow {
+      position: relative;
+      padding: 10px 15px;
+      border-top: 1px solid #ddd;
+      line-height: 27px;
+
+      .follow-button {
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 100px;
+        padding: 0;
+        line-height: 48px;
+        border-left: 1px solid #ccc;
+        text-align: center;
+        float: right;
+      }
+    }
+  }
+}

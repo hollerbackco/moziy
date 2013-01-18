@@ -1,16 +1,18 @@
+{{#if unread_count}}
+  <div class="unread-count">{{unread_count}}</div>
+{{/if}}
 <div class="icon">
-  {{#if unread_count}}
-    <div class="unread-count">{{unread_count}}</div>
-  {{/if}}
   <img src="{{cover_art.thumb_list.url}}" />
 </div>
-<div class="title">
-  {{title}}
-  <span class="slug">{{slug}}</span>
-</div>
-<div class="description">
-  {{description}}
-  {{#creator}}
-    <span class="slug">{{username}}</span>
-  {{/creator}}
+<div class="text-info">
+  <div class="title">
+    {{title}}
+    <span class="slug">{{slug}}</span>
+  </div>
+  <div class="description">
+    {{description}}
+    {{#creator}}
+      <span class="slug">{{username}}</span>
+    {{/creator}}
+  </div>
 </div>

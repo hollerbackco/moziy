@@ -76,6 +76,14 @@ button,
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
+.follow-button {
+  span {display: none;}
+  span.follow-text {display: inline-block;}
+  &.following {
+    span.follow-text {display: none;}
+    span.following-text {display: inline-block;}
+  }
+}
 /*--- forms*/
 
 form.button_to {

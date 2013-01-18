@@ -1,0 +1,247 @@
+#stage {
+  #notes-modal {
+    .header {
+      padding: 15px;
+      font-size: 16px;
+    }
+    #restreams-label {
+      padding: 0 15px 15px;
+    }
+    .restream-item {
+      cursor: pointer;
+      padding: 15px;
+
+      &:hover {
+        background: #efefef;
+      }
+
+      .restream-channel-cover-art {display: block; float: left; margin-right: 10px;}
+      .restream-channel-title {font-weight: bold}
+    }
+  }
+
+  #restream-modal {
+    .channel-item {
+      cursor: pointer;
+      border-bottom: 1px solid #eee;
+
+      img {
+        float: left;
+        margin-right: 10px;
+      }
+
+      .channel-title {
+        font-size: 16px;
+        line-height: 48px;
+
+        &:hover {
+          background: #fafafa;
+        }
+      }
+    }
+  }
+
+  #add-modal {
+    .add-menu-item {
+      display: block;
+      cursor: pointer;
+      float: left;
+      width: 50%;
+      padding: 60px 0;
+      text-align: center;
+      text-decoration: none;
+
+      &:first-child {
+        border-right: 1px solid #eee;
+        margin-right: -1px;
+      }
+
+      &:hover {
+        background: #efefef;
+      }
+    }
+
+    .add-airing-body {
+      display: none;
+    }
+  }
+
+  #login-modal {
+    .modal-body {
+      padding: 30px;
+    }
+    button {
+      position: absolute;
+      margin: 0;
+      padding: 0;
+      width: 100px;
+      top: 0;
+      right: 0;
+      bottom: 0;
+    }
+    .modal-footer {
+      label {
+        margin-top: 0;
+      }
+    }
+  }
+
+  .modal {
+    overflow: hidden;
+    .close {
+      float: right;
+      padding: 8px 10px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      position: absolute;
+      color: #666;
+      top: 0;
+      right: 0;
+      background: #fff;
+      border: 0;
+      -webkit-box-shadow: inset 1px 0 0 rgba(255, 255, 255, .5);
+      -moz-box-shadow: inset 1px 0 0 rgba(255,255,255,.5);
+      box-shadow: inset 1px 0 0 rgba(255, 255, 255, .5);
+
+      &:hover {
+        color: #000;
+        background: #fafafa;
+      }
+    }
+    .header,
+    .modal-header {
+      padding: 15px 20px;
+      font-size: 16px;
+      border-bottom: 1px solid #eee;
+
+      &.modal-no-padding {
+        padding: 0;
+      }
+    }
+    .modal-body {
+      padding: 15px;
+
+      &.modal-no-padding {
+        padding: 0;
+      }
+    }
+    .modal-footer {
+      position: relative;
+      border-top: 1px solid #efefef;
+      padding: 15px;
+
+      button,
+      .button {
+        position: absolute;
+        margin: 0;
+        padding: 0;
+        width: 100px;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        line-height: 48px;
+        text-align: center;
+      }
+    }
+  }
+
+  #channel-modal {
+    .channel-image {float:left;}
+    .channel-info {
+      padding: 15px;
+      .channel-title {
+        font-size: 33px;
+        font-weight: bold;
+        padding-top: 15px;
+        .slug {
+          color: #666;
+          font-size: 16px;
+        }
+      }
+      .channel-description {font-size: 16px;}
+    }
+    .action-bar {
+      .part1 {float: left; width: 30%; border-right: 1px solid #eee; margin-right: -1px;}
+      .part2 {float: left; width: 45%; border-right: 1px solid #eee; margin-right: -1px;}
+      .part3 {float: left; width: 25%;}
+    }
+
+    .slug,
+    .count,
+    .follow-button {font-weight: bold}
+
+    .channel-slug,
+    .follower-count {padding: 10px}
+
+    .watch-button {
+      cursor: pointer;
+    }
+
+    .follow-button {
+      cursor: pointer;
+      padding: 13px;
+      text-align: center;
+      color: white;
+      background: green;
+
+      &:hover {
+        background: black;
+      }
+    }
+
+    .now-playing {border-top: 1px solid #eee; padding: 20px;}
+  }
+
+  .modal-backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1040;
+    background-color: #000000;
+  }
+
+  .modal-backdrop.fade {
+    opacity: 0;
+  }
+
+  .modal-backdrop,
+  .modal-backdrop.fade.in {
+    opacity: 0.8;
+    filter: alpha(opacity=80);
+  }
+
+  .modal {
+    position: fixed;
+    top: 10%;
+    left: 50%;
+    z-index: 1050;
+    width: 480px;
+    margin-left: -240px;
+    background-color: #ffffff;
+    border: 1px solid #999;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    *border: 1px solid #999;
+    outline: none;
+    -webkit-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+       -moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
+    -webkit-background-clip: padding-box;
+       -moz-background-clip: padding-box;
+            background-clip: padding-box;
+  }
+
+  .modal.fade {
+    top: -25%;
+    -webkit-transition: opacity 0.3s linear, top 0.3s ease-out;
+       -moz-transition: opacity 0.3s linear, top 0.3s ease-out;
+         -o-transition: opacity 0.3s linear, top 0.3s ease-out;
+            transition: opacity 0.3s linear, top 0.3s ease-out;
+  }
+
+  .modal.fade.in {
+    top: 10%;
+  }
+}
