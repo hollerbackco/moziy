@@ -15,6 +15,11 @@ class Channel < ActiveRecord::Base
 
   scope :publik, where("private IS NULL")
 
+
+  def all_airings
+    airings + archived_airings
+  end
+
   def self.default
     find(11)
   rescue ActiveRecord::RecordNotFound

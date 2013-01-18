@@ -1,30 +1,31 @@
 #flipside {
-
-  
   padding: 0;
   margin: 0;
   overflow-y: hidden;
-  
+
   form {
     padding: 10px;
   }
-  
+
   #register {
     margin: 50px auto 0;
+
     h2 {
       text-align: center;
       font-weight: bold;
     }
+
     form {
       margin: 20px auto 0;
       width: 230px;
-      
+
       label {
         font-weight: bold;
       }
+
       input[type=text],
       input[type=password],
-      input[type=email] {        
+      input[type=email] {
         display: inline-block;
         width: 210px;
         height: 18px;
@@ -42,32 +43,29 @@
       }
     }
   }
-  
+
   .session {
     float: right;
-    
+
     li {
       margin-left: 20px;
       margin-right: 0px;
     }
   }
+
+  .container {
+    width: 960px;
+    margin: 0 auto;
+  }
   header {
-    position: absolute;
-    top: 0px;
-    right: 0px;
-    left: 0px;
-    height: 20px;
-    padding: 10px;
-    border-bottom: 1px solid #ccc;
-    z-index: 10;
-    
+    padding: 30px 0;
+
     h1 {
       float: left;
       font-weight: bold;
       font-size: 100%;
       margin: 0;
       margin-right: 20px;
-
 
       a {
         text-indent: -9999px;
@@ -79,7 +77,7 @@
       }
 
     }
-  
+
     nav {
       float: left;
 
@@ -96,7 +94,7 @@
           float: left;
           margin-left: 0px;
           margin-right: 20px;
-          
+
           .button {
             position: relative;
             top: -4px;
@@ -106,107 +104,121 @@
       }
     }
   }
-  
+
+  section#sidebar {
+    float: left;
+    width: 200px;
+
+    .sidebar-menu {
+      padding: 0;
+      margin: 0 0 30px;
+      list-style-type: none;
+      border: 1px solid #ddd;
+
+      li {
+        border-top: 1px solid #ddd;
+        margin: 0;
+
+        &:first-child {
+          border-top: 0;
+        }
+
+        a {
+          display: block;
+          text-decoration: none;
+          font-weight: bold;
+          line-height: 16px;
+          padding: 10px;
+
+          img {
+            display: block;
+            float: left;
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  }
+
   section#content {
-    position: absolute;
-    top: 40px;
-    bottom: 0px;
-    right: 0px;
-    left: 0px;
+    margin-left: 200px;
+    padding-left: 30px;
   }
-  
-  #video-manage {
-    #main-content {
-      position: absolute;
-      overflow-x:hidden;
-      top: 0px;
-      right: 0px;
-      left: 60%;
-      bottom: 0px;
-      overflow-y: scroll;
-      background: #fff;
-    }
-    
-    #viewer {
-      position: absolute;
-      z-index: 5;
-      top: 0px;
-      bottom: 0px;
-      right: 40%;
-      left: 0;
-      overflow:hidden;
-      background: image-url('mosey-logo.png') black no-repeat center center;
-    }
-  }
-  
-  #channel-manage {
-    #main-content {
-      position: absolute;
-      top: 0px;
-      right: 60%;
-      left: 0;
-      bottom: 0px;
-      z-index: 5;
-      overflow-x:hidden;
-      overflow-y: scroll;
-      background: #fff;
-    }
-    
-    #viewer {
-      position: absolute;
-      top: 0px;
-      bottom: 0px;
-      right: 0;
-      left: 40%;
-      overflow:hidden;
-      background: image-url('mosey-logo.png') black no-repeat center center;
-    }
-  }
-  
+
   #main-content {
-    overflow-y: scroll;
-    
+    overflow-y: hidden;
+
     form {
       padding: 10px;
     }
-    
+
     #secondary-title {
       list-style: none;
-      padding: 12px 10px 8px;
+      padding: 12px 0 8px;
       margin: 0;
-      background: #444;
-      border-bottom: 1px solid #2D2D2D;
-      color: #eee;
-      font-size: 1.3em;
+      font-size: 2.0em;
     }
-    
+
     #secondary-menu {
-      border-top: 1px solid #3d3d3d;
+      float: right;
       list-style: none;
       margin: 0;
-      background: #333;
       padding: 0;
-     
+
       li {
         float: left;
         margin: 0;
         position: relative;
         top: -1px;
+
         a {
           display: block;
-          color: #fff;
           padding: 10px 15px;
           text-decoration:none;
         }
       }
-      
+
       li.active, li:hover {
-       a {
+        a {
+          color: #fff;
           background: #282828;
         }
       }
     }
-    
+
+    #add-video {
+      position: relative;
+      margin: 20px 0;
+      padding: 10px;
+      height: 24px;
+      border: 1px solid #ccc;
+
+      label {
+        display: none;
+      }
+
+      textarea {
+        border: 0;
+        width: 100%;
+        font-size: 18px;
+        height: 24px;
+        line-height: 24px;
+        outline: none;
+      }
+
+      .button {
+        border: 0;
+        margin: 0;
+        padding: 0 20px;
+
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        text-align: center;
+      }
+    }
+
     .channels, .videos {
       padding: 0;
 
@@ -216,22 +228,18 @@
       }
     }
 
-    
+
     .channels, .videos {
       margin: 0px;
-      
+      border: 1px solid #ddd;
+
       .actions {
+        display: none;
         position: absolute;
-        top: 5px;
+        top: 10px;
         right: 5px;
-        width: 50px;
-        a {
-          margin-right: 0;
-          display: block;
-          float: right;
-        }
       }
-      
+
       #channel-manage .channel a .action {float: right;}
       .action {cursor:pointer; width: 25px; text-align: center;}
       .action {height:24px; width:24px; display:inline-block; background-repeat: no-repeat;}
@@ -245,34 +253,53 @@
       .action.expand {background: image-url("icons/expand.png") center center no-repeat; opacity: .6;}
       .action.expand:hover {opacity: 1;}
       .action.trash {background: image-url("icons/star_fav_warn.png") center center no-repeat;}
-      
-      
+
       .video, .video:hover {
-        padding: 10px 10px 10px 36px;
-        background: image-url("icons/cursor_drag_arrow.png") 10px center no-repeat;
+        padding: 10px 10px 10px 29px;
+        background-color: #fff;
         border-bottom: 1px solid #E6E6E6;
         position: relative;
         margin-bottom: 0px;
         cursor: move;
+
+        &.archived {
+          background-color: #ddd;
+          text-decoration: strike-through;
+          a {
+            color: #666;
+          }
+        }
       }
-      
+
+      .video:hover {
+        background: image-url("icons/cursor_drag_arrow.png") 6px center no-repeat;
+
+        .actions {
+          display: block;
+        }
+      }
+
+      .video.ui-sortable-helper {
+        border: 1px solid #999;
+      }
+
       li.channel {
         position: relative;
         margin: 0;
         padding: 10px;
         border-bottom: 1px solid #E6E6E6;
-        
+
         &:nth-child(even) { background: #F6F6F6 }
-        
+
         &:hover {
-         background: #efefef; 
+         background: #efefef;
         }
-        
+
         &.previewing {
           background: #e7e7e7;
           border-top: 1px solid white;
         }
-        
+
         .coverart {
           width: 48px;
           height: 48px;
@@ -282,11 +309,10 @@
         .content {
           overflow: hidden;
           margin-right: 30px;
-          
+
           .title { font-weight:bold;}
           .description {color: #666;}
           .user {color: #999; font-weight: 300;}
-          
         }
         .count, .nowplaying {
           color: #999;
@@ -294,11 +320,7 @@
         .watch {
           float: right;
         }
-        
-        
-      
       }
     }
   }
-
 }

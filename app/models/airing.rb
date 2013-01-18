@@ -56,11 +56,12 @@ class Airing < ActiveRecord::Base
 
   def self.sort(ids)
     update_all(
-      ["position = STRPOS(?, ','||video_id||',')", ",#{ids.join(',')},"], 
+      ["position = STRPOS(?, ','||video_id||',')", ",#{ids.join(',')},"],
       { :video_id => ids }
     )
 
   end
+
   private
 
   def update_subscription_unread_count

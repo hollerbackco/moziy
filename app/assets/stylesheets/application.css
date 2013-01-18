@@ -1,4 +1,7 @@
 /*
  *= require_self
- *= require_tree . 
+ *= require grid
+ *= require typo
+ *= require common
+ *= require flipside
 */

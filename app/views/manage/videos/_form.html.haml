@@ -1,0 +1,4 @@
+= form_for ['manage', @channel, Video.new], html: {id: "add-video"} do |f|
+  = label_tag :links, 'Enter the youtube/vimeo url of the video'
+  = text_area_tag :links, "", placeholder: 'Enter a youtube/vimeo url of the video'
+  = f.submit "Add Video", class: "primary button"

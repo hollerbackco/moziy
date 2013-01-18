@@ -7,25 +7,31 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body#flipside{:class => body_id}
-    %header
-      %h1= link_to "mosey", root_path
-      %nav.menu
-        %ul.clearfix
-          - if logged_in?
-            %li= link_to "Explore", root_path
-            %li{:class => current_page?(manage_channels_path) ? "active" : "" }= link_to "Manage", manage_channels_path
-            %li{:class => current_page?(new_manage_channel_path) ? "active" : "" }= link_to 'Build a Channel', new_manage_channel_path, :class => "button bold"
-          - else
-            %li{:class => current_page?(new_manage_channel_path) ? "active" : "" }= link_to 'Build a Channel', new_manage_channel_path, :class => "button bold"
-      %nav.session
-        %ul
-          - if logged_in?
-            %li= link_to 'Log out', logout_path 
-          - else
-            %li= link_to 'Log in', login_path
-            %li= link_to 'Join', root_path
-    %section#content
-      = yield
+    .container
+      %header.clearfix
+        %h1= link_to "mosey", root_path
+        %nav.session
+          %ul
+            - if logged_in?
+              %li= link_to 'Log out', logout_path
+            - else
+              %li= link_to 'Log in', login_path
+              %li= link_to 'Join', root_path
+      %section#main
+        %section#sidebar
+          %ul#menu-options.sidebar-menu
+            %li.menu-item=link_to "Likes", root_path
+            %li.menu-item= link_to "My Settings", root_path
+          %ul#my-channels.sidebar-menu
+            %li.menu-item= link_to "Create a Stream", new_manage_channel_path
+            - @channels.each do |c|
+              - if c.has_airings?
+                %li.menu-item.channel.clearfix{:class => (logged_in? and c.favorited?(current_user)) ? "favorited": "", :id => "channel_#{c.id.to_s}", "data-channel-id" => c.id.to_s}
+                  = link_to manage_channel_videos_path(c) do
+                    = image_tag c.cover_art_url(:thumb_favicon), width: 16, height: 16
+                    = c.title
+        %section#content
+          = yield
     :javascript
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-27201002-1']);
