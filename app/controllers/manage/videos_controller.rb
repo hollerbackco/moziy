@@ -1,9 +1,8 @@
-class Manage::VideosController < ApplicationController
-  before_filter :require_login
+class Manage::VideosController < Manage::BaseController
   before_filter :set_channel
   before_filter :set_default_title
   before_filter :check_ownership
-  before_filter :my_channels
+  before_filter :set_my_channels
 
   def index
     @videos = @channel.videos
@@ -16,7 +15,6 @@ class Manage::VideosController < ApplicationController
   def new
     @video = Video.new
   end
-
 
   # accepts a list of comma separated links
   def create

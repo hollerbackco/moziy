@@ -20,7 +20,7 @@
       %section#main
         %section#sidebar
           %ul#menu-options.sidebar-menu
-            %li.menu-item=link_to "Likes", root_path
+            %li.menu-item=link_to "Likes", manage_likes_path
             %li.menu-item= link_to "My Settings", root_path
           %ul#my-channels.sidebar-menu
             %li.menu-item= link_to "Create a Stream", new_manage_channel_path
@@ -30,7 +30,7 @@
                   = link_to manage_channel_videos_path(c) do
                     = image_tag c.cover_art_url(:thumb_favicon), width: 16, height: 16
                     = c.title
-        %section#content
+        %section#main-content
           = yield
     :javascript
       var _gaq = _gaq || [];

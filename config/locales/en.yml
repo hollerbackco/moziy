@@ -5,6 +5,9 @@ en:
   common:
     title_prefix:    "Mosey"
     title_separator: " | "
+  likes:
+    index:
+      title:  "My Likes"
   channels:
     index:
       title:  "Channels"

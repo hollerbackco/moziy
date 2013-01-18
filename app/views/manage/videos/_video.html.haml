@@ -1,0 +1,5 @@
+%li.video{:id => "video_#{a.video_id.to_s}", class: a.state}
+  .title= link_to a.video.title, edit_manage_channel_video_path(@channel, a.video)
+  .actions
+    = button_to (a.archived? ? "recover" : "delete"),
+      archive_manage_channel_airing_path(@channel, a), :method => :put

@@ -25,6 +25,7 @@ Puretv::Application.routes.draw do
 
   # channel management
   scope "/manage", :module => :manage, :as => :manage do
+    resources :likes, :only => [:index]
     resources :channels do
       resources :airings, :only => [:create, :destroy] do
         member do
@@ -64,5 +65,5 @@ Puretv::Application.routes.draw do
     end
   end
 
-  match ":name", :to => "channels#show"
+  match ":name", :to => "channels#show", :as => :slug
 end

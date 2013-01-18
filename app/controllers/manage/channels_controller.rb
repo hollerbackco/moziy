@@ -1,7 +1,6 @@
-class Manage::ChannelsController < ApplicationController
-  before_filter :require_login, :except => [:index, :show]
+class Manage::ChannelsController < Manage::BaseController
+  before_filter :set_my_channels
   before_filter :check_ownership, :except => [:index, :new, :create]
-  before_filter :my_channels
 
   def index
     @channels = current_user.channels.publik
@@ -42,13 +41,8 @@ class Manage::ChannelsController < ApplicationController
 
   private
 
-    def check_ownership
-      @channel = Channel.find(params[:id])
-      redirect_to root_path unless current_user.owns? @channel
-    end
-
-    def my_channels
-      @channels = current_user.channels
-    end
-
+  def check_ownership
+    @channel = Channel.find(params[:id])
+    redirect_to root_path unless current_user.owns? @channel
+  end
 end
