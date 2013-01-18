@@ -24,7 +24,7 @@ Puretv::Application.routes.draw do
   end
 
   # channel management
-  scope "/manage", :module => :manage, :as => :manage do
+  scope "/me", :module => :manage, :as => :manage do
     resources :likes, :only => [:index]
     resources :channels do
       resources :airings, :only => [:create, :destroy] do

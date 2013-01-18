@@ -266,6 +266,10 @@
             color: #666;
           }
         }
+
+        &.liked-video {
+          background: #fff;
+        }
       }
 
       .video:hover {
