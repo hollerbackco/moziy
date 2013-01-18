@@ -4,8 +4,10 @@ class App.Keyboard
 
   render: ->
     $("html").keydown (e) =>
+
       @register e, 110, =>
         @_nextVideo()
+
       @register e, 39, =>
         @_nextVideo()
 
