@@ -38,7 +38,8 @@ class User < ActiveRecord::Base
     order: "subscriptions.created_at ASC"
 
   has_many :likes, order: "likes.created_at DESC"
-  has_many :liked_airings, through: :likes, source: :likeable, :source_type => "Airing"
+  has_many :liked_airings, through: :likes, source: :likeable, :source_type => "Airing",
+    order: "likes.created_at DESC"
 
 
   def channel_list
