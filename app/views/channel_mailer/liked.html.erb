@@ -6,7 +6,7 @@
   <body>
     <p>Hello <%= @user.username %>,</p>
 
-    <p><%= link_to @their_name, channel_url(@their_channel) %> just liked your video <strong><%= @video_title %></strong> from <strong><%= @your_channel.title %></strong>. </p>
+    <p><%= link_to @their_name, slug_url(@their_channel.slug) %> just liked your video <strong><%= @video_title %></strong> from <strong><%= @your_channel.title %></strong>. </p>
 
     <p>Keep posting the goodness.</p>
 
