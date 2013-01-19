@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130115065616) do
+ActiveRecord::Schema.define(:version => 20130119020624) do
 
   create_table "airings", :force => true do |t|
     t.integer  "video_id"
@@ -128,20 +128,14 @@ ActiveRecord::Schema.define(:version => 20130115065616) do
     t.string   "title"
     t.text     "body"
     t.text     "description"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
     t.string   "source_name"
     t.string   "source_id"
     t.string   "source_url"
-    t.string   "source_author_name"
-    t.string   "provider_object_id"
-    t.string   "provider_user_name"
-    t.string   "provider_user_image"
-    t.string   "provider_user_nick"
-    t.string   "provider_user_id"
-    t.string   "provider_thumbnail_url"
-    t.integer  "provider_thumbnail_width"
-    t.integer  "provider_thumbnail_height"
+    t.string   "video_image"
+    t.string   "random_string"
+    t.text     "source_meta"
   end
 
 end

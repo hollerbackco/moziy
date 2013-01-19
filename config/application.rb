@@ -51,3 +51,9 @@ module Puretv
     config.assets.version = '1.0'
   end
 end
+
+module Sass::Script::Functions
+  def getRandomColor()
+      Sass::Script::String.new("#%06x" % (rand * 0xffffff))
+  end
+end

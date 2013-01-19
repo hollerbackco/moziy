@@ -1,3 +1,6 @@
-%li.video-item.video.liked-video{:id => "video_#{a.video_id.to_s}", class: a.state}
-  .title= link_to a.video.title, slug_path(a.channel.slug)
-  .channel= link_to a.channel.title, slug_path(a.channel.slug)
+%li.video-item.liked-video.clearfix{:id => "video_#{a.video_id.to_s}", class: a.state}
+  = image_tag a.video.video_image_url(:thumb_list), class: "image"
+  .title= link_to a.video.title, manage_like_path(a)
+  .channel
+    from
+    = link_to a.channel.title, slug_path(a.channel.slug)

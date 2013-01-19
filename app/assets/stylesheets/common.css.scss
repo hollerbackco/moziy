@@ -54,7 +54,7 @@ button,
 }
 
 .button.primary {
-  background: #ff0000;
+  background: getRandomColor();
   color: #fff;
 }
 

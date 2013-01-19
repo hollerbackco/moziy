@@ -20,7 +20,6 @@ class CoverArtUploader < CarrierWave::Uploader::Base
     "/assets/fallback/" + [version_name, "default.jpg"].compact.join('_')
   end
 
-  process :convert => 'jpg'
   process :resize_to_fill => [512,512]
 
   version :thumb_list do

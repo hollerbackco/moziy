@@ -23,10 +23,10 @@ class Channel < ActiveRecord::Base
   def self.default
     find(11)
   rescue ActiveRecord::RecordNotFound
-    if Channel.count > 0
+    if Channel.count > 1
       Channel.find(2)
     else
-      Channel.create(title: "MoseyTv")
+      Channel.create(title: "MoseyTv", slug: "moseytv")
     end
   end
 

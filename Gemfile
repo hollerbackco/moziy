@@ -3,36 +3,37 @@ source 'http://rubygems.org'
 gem 'rails', '3.2.6'
 gem 'thin'
 
-# Bundle edge Rails instead:
-# gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+# Persistance
+gem 'pg'
 
 # Views
 gem 'haml'
 gem 'jquery-rails'
 
-gem 'embedly'
-gem 'mini_fb'
-
-
+# Models
 gem 'state_machine'
 gem 'awesome_nested_set'
 gem 'unread'
-
+gem 'kaminari' # Paginate
+gem 'sorcery'  # Authentication
 
 # Image Uploader
 gem 'mini_magick'
 gem 'fog'
 gem 'carrierwave'
 
-gem 'kaminari' #paginate
+# Utils
+gem 'embedly'
+gem 'mini_fb'
 
-# Authentication
-gem 'sorcery'
 
 group :production do
   gem 'pg'
+end
+
+group :development do
+  gem 'sqlite3'
 end
 
 # Gems used only for assets and not required

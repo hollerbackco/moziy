@@ -4,4 +4,9 @@ class Manage::LikesController < Manage::BaseController
   def index
     @videos = current_user.liked_airings
   end
+
+  def show
+    @video = Airing.find(params[:id]).video
+    set_title @video.title
+  end
 end

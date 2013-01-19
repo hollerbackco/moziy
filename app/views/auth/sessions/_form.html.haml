@@ -1,4 +1,5 @@
 = form_tag login_path, :method => :post do
+  %h2 Log in
   .field
     = label_tag :username, "Username or Email"
     %br
@@ -8,6 +9,6 @@
     %br
     = password_field_tag :password, "", :placeholder => "Password"
   .actions
-    = submit_tag "Login", :class => "btn primary"
+    = submit_tag "Login", :class => "button primary"
     = check_box_tag :remember
     = label_tag "keep me logged in"

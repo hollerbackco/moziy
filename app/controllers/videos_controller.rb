@@ -51,32 +51,26 @@ class VideosController < ApplicationController
 
   private
 
-    def mark_as_read(video)
-      video.mark_as_read! for: current_user
-      if @channel.subscribed_by? current_user
-        @channel.subscription_for(current_user).update_unread_count!
-      end
+  def mark_as_read(video)
+    video.mark_as_read! for: current_user
+    if @channel.subscribed_by? current_user
+      @channel.subscription_for(current_user).update_unread_count!
     end
+  end
 
-    def airing_json(video)
-      {
-       :id => video.id,
-       :source_name => video.source_name,
-       :source_id => video.source_id,
-       :title => video.title,
-       :channel_id => video.channel_id,
-       :note_count => video.note_count,
-       :parent => video.parent.as_json(:include => [:channel])
-      }
-    end
+  def airing_json(video)
+    {
+     :id => video.id,
+     :source_name => video.source_name,
+     :source_id => video.source_id,
+     :title => video.title,
+     :channel_id => video.channel_id,
+     :note_count => video.note_count,
+     :parent => video.parent.as_json(:include => [:channel])
+    }
+  end
 
-    def check_regex(s)
-      embedly_re = Regexp.new(/((http:\/\/(.*youtube\.com\/watch.*|.*\.youtube\.com\/v\/.*|youtu\.be\/.*|.*\.youtube\.com\/user\/.*|.*\.youtube\.com\/.*#.*\/.*|m\.youtube\.com\/watch.*|m\.youtube\.com\/index.*|.*\.youtube\.com\/profile.*|.*\.youtube\.com\/view_play_list.*|.*\.youtube\.com\/playlist.*|www\.vimeo\.com\/groups\/.*\/videos\/.*|www\.vimeo\.com\/.*|vimeo\.com\/groups\/.*\/videos\/.*|vimeo\.com\/.*|vimeo\.com\/m\/#\/.*))|(https:\/\/(.*youtube\.com\/watch.*|.*\.youtube\.com\/v\/.*)))/i)
-      s.match(embedly_re)
-    end
-
-    def set_channel
-      @channel = Channel.includes(:airings => :video).find(params[:channel_id])
-    end
-
+  def set_channel
+    @channel = Channel.includes(:airings => :video).find(params[:channel_id])
+  end
 end

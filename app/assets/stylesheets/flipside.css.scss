@@ -140,6 +140,9 @@
     }
   }
 
+
+
+
   section#main-content {
     margin-left: 200px;
     padding-left: 30px;
@@ -225,6 +228,12 @@
       }
     }
 
+    iframe {
+      display: block;
+      width: 730px;
+      height: 540px;
+    }
+
 
     .channels, .videos {
       margin: 0px;
@@ -251,6 +260,26 @@
       .action.expand:hover {opacity: 1;}
       .action.trash {background: image-url("icons/star_fav_warn.png") center center no-repeat;}
 
+      .liked-video {
+        background-color: #fff;
+        border-bottom: 1px solid #E6E6E6;
+        margin: 0;
+        padding: 0;
+
+        .title {
+          font-size: 16px;
+          padding-top: 15px;
+        }
+
+        .image {
+          float: left;
+          display: block;
+          height: 80px;
+          width: 80px;
+          margin-right: 20px;
+        }
+      }
+
       .video, .video:hover {
         padding: 10px 10px 10px 29px;
         background-color: #fff;
@@ -259,16 +288,13 @@
         margin-bottom: 0px;
         cursor: move;
 
+
         &.archived {
           background-color: #ddd;
           text-decoration: strike-through;
           a {
             color: #666;
           }
-        }
-
-        &.liked-video {
-          background: #fff;
         }
       }
 

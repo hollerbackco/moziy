@@ -3,7 +3,7 @@ class Manage::ChannelsController < Manage::BaseController
   before_filter :check_ownership, :except => [:index, :new, :create]
 
   def index
-    @channels = current_user.channels.publik
+    @channels = current_user.channels
   end
 
   def new
@@ -11,13 +11,15 @@ class Manage::ChannelsController < Manage::BaseController
   end
 
   def show
+    set_title @channel.title
+    @videos = @channel.videos
   end
 
   def create
     @channel = Channel.new(params[:channel].merge(:creator => current_user))
 
     if @channel.save
-      redirect_to new_manage_channel_video_path(@channel)
+      redirect_to manage_channel_videos_path(@channel)
     else
       render :action => :new
     end
