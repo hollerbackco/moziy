@@ -20,6 +20,6 @@ icons/star_fav_warn.png: icons/star_fav_warn-9c611938f5e8ef3b795d8910ff770d08.pn
 mosey-logo.png: mosey-logo-7ff0bd0447a5ec577a52b7ba71095e2e.png
 rails.png: rails-be8732dac73d845ac5b142c8fb5f9fb0.png
 application.js: application-5c058911ee001940165054d91928b64e.js
-player.js: player-1702bccd2b302f3a63f9c94cde77beea.js
-application.css: application-e920da966e7dbd80da22ed7d3c2ab2ec.css
-player.css: player-02c5efc4b96ad52e28c23da1b0147b95.css
+player.js: player-b7ef8f321ee7e037584192822dccbc0e.js
+application.css: application-f3efcd84d077f068f0564e2970df38aa.css
+player.css: player-0cd634c23854c653a5020ad6234edc95.css

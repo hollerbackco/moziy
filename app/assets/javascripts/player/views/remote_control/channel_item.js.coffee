@@ -7,10 +7,13 @@ App.Views.RemoteControlChannelListItem = Backbone.View.extend
     "click": "watch"
 
   initialize: ->
+    _.bindAll this, "updateCount"
+    @model.on "change:unread_count", @updateCount
     @render()
 
   render: ->
     @$el.html @template @model.toJSON()
+
     if App.currentUser?
       @$el.addClass("following") if App.currentUser.isFollowing(@model)
 
@@ -19,3 +22,6 @@ App.Views.RemoteControlChannelListItem = Backbone.View.extend
 
   remove: ->
     @$el.remove()
+
+  updateCount: ->
+    @$(".unread-count").html @get("unread_count")
