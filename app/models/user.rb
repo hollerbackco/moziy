@@ -41,7 +41,7 @@ class User < ActiveRecord::Base
   has_many :liked_airings, through: :likes, source: :likeable, :source_type => "Airing",
     order: "likes.created_at DESC"
 
-  belongs_to :primary_channel
+  belongs_to :primary_channel, class_name: "Channel"
 
   def channel_list
     subscriptions

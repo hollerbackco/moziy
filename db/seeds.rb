@@ -33,6 +33,8 @@ end
 # create first channel
 channel = Channel.find_or_create_by_title(:creator_id => user.id, :title => user.username, :slug => user.username)
 channel.subscribed_by user
+user.primary_channel = channel
+user.save
 
 # create first video
 if channel.airings.blank?
