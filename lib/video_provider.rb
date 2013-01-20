@@ -5,21 +5,25 @@ class VideoProvider
   YOUTUBE2_REGEX = /www.youtube.com\/v\/([a-zA-Z0-9_-]+).*/i
   VIMEO_REGEX   = /player.vimeo.com\/video\/([a-zA-Z0-9_-]+).*/i
 
+  # links is a csv of youtube/vimeo links
   def initialize(links)
     @embedly = Embedly::API.new :key => '584b1c340e4811e186fe4040d3dc5c07',
                   :user_agent => 'Mozilla/5.0 (compatible; puretv/1.0; jnoh12388@gmail.com)'
-    @links = links
+    @links = split_csv links
   end
 
-
   def get
-    objs = @embedly.oembed(
-              :urls => @links,
-              :wmode => 'transparent',
-              :method => 'after',
-              :autoplay => 'true')
+    if @links.any?
+      objs = @embedly.oembed(
+                :urls => @links,
+                :wmode => 'transparent',
+                :method => 'after',
+                :autoplay => 'true')
 
-    objs.map {|o| format_obj o }.compact
+      objs.map {|o| format_obj o }.compact
+    else
+      []
+    end
   end
 
   private
@@ -47,6 +51,16 @@ class VideoProvider
     else
       nil
     end
+  end
+
+  def split_csv(links)
+    arr = links.split(',').map{|r| r.strip}
+    arr.select{|r| check_regex r}
+  end
+
+  def check_regex(s)
+    embedly_re = Regexp.new(/((http:\/\/(.*youtube\.com\/watch.*|.*\.youtube\.com\/v\/.*|youtu\.be\/.*|.*\.youtube\.com\/user\/.*|.*\.youtube\.com\/.*#.*\/.*|m\.youtube\.com\/watch.*|m\.youtube\.com\/index.*|.*\.youtube\.com\/profile.*|.*\.youtube\.com\/view_play_list.*|.*\.youtube\.com\/playlist.*|www\.vimeo\.com\/groups\/.*\/videos\/.*|www\.vimeo\.com\/.*|vimeo\.com\/groups\/.*\/videos\/.*|vimeo\.com\/.*|vimeo\.com\/m\/#\/.*))|(https:\/\/(.*youtube\.com\/watch.*|.*\.youtube\.com\/v\/.*)))/i)
+    s.match(embedly_re)
   end
 
 end

@@ -63,7 +63,6 @@ class User < ActiveRecord::Base
   end
 
   def update_social(params)
-
     case params.delete(:provider)
     when :facebook
       if authentications.find_by_provider("facebook").update_attributes(params)

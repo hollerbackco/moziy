@@ -5,8 +5,8 @@ App.Models.Channel = Backbone.Model.extend
       @id = @get("channel_id")
 
   watchAiring: ->
-    console.log "watchAiring"
     if @has("unread_count") and (@get("unread_count") > 0)
+      console.log "watchAiring"
       @set("unread_count", (@get("unread_count") - 1))
 
   getAiringFromID: (airing,callback) ->

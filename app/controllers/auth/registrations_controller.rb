@@ -10,7 +10,7 @@ class Auth::RegistrationsController < ApplicationController
       format.xml  { render :xml => @user }
     end
   end
-  
+
   # POST /users
   # POST /users.xml
   def create

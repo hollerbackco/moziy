@@ -98,7 +98,6 @@ class App.PlayerManager
     App.vent.trigger "airings:play", @current_video
     Backbone.Events.trigger("player:update")
 
-    console.log "hello"
     @channel.watchAiring()
 
   _setNowPlaying: (title) ->

@@ -21,13 +21,7 @@ class Channel < ActiveRecord::Base
   end
 
   def self.default
-    find(11)
-  rescue ActiveRecord::RecordNotFound
-    if Channel.count > 1
-      Channel.find(2)
-    else
-      Channel.create(title: "MoseyTv", slug: "moseytv")
-    end
+    find(1)
   end
 
   def subscription_for(user)
