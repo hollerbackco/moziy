@@ -45,7 +45,8 @@ class Channel < ActiveRecord::Base
   end
 
   def subscribed_by(user)
-    subscriptions.create(:user_id => user.id)
+    s = subscriptions.create(:user_id => user.id)
+    s.update_unread_count!
   end
 
   def gen_random_string
