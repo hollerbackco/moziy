@@ -25,21 +25,12 @@ class ChannelsController < ApplicationController
 
       @explore_channels = Channel.all.keep_if {|c| c.airings.any? }
 
-      if @channel.airings.empty?
-        redirect_to new_manage_channel_video_path(@channel)
-        return
-      end
-
       @unread_channels = current_user.unread_channels.publik if logged_in?
       @channels = if logged_in?
                     current_user.read_channels.publik
                   else
                     Channel.publik.all(:order => "subscriptions_count DESC, updated_at DESC")
                   end
-
-      @current = params[:playing] ? @channel.airings[params[:playing].to_i] : @channel.airings.first
-      @previous_id = (params[:playing].to_i - 1) % @channel.airings.count
-      @next_id = (params[:playing].to_i + 1) % @channel.airings.count
 
       set_title @channel.title
       render :layout => "player"
@@ -51,16 +42,12 @@ class ChannelsController < ApplicationController
   end
 
   def show_chromeless
-    @channel = Channel.find(params[:id])
+    @channel = Channel.find_by_slug(params[:name])
 
     unless @channel.airings.count > 0
       redirect_to new_manage_channel_video_path(@channel)
       return
     end
-
-    @current = params[:playing] ? @channel.airings[params[:playing].to_i].video : @channel.airings.first.video
-    @previous_id = (params[:playing].to_i - 1) % @channel.airings.count
-    @next_id = (params[:playing].to_i + 1) % @channel.airings.count
 
     set_title @channel.title
     render :layout => "player"

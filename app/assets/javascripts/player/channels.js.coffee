@@ -8,7 +8,8 @@ $ ->
       @setupCurrentUser current_user
 
       @currentlyPlayingPane()
-      @mainMenu bootstrap.channels
+      if bootstrap.channels?
+        @mainMenu bootstrap.channels
       @muteButton()
       @setupModal()
       @setupHistory()

@@ -8,9 +8,11 @@
 
 :javascript
   $(document).ready(function() {
-    var cookie_video_id = window.App.cookie.get('channel-' + '#{@channel.id}');
-    $.extend(window.App,{
-      playerManager: new App.PlayerManager(cookie_video_id == "" ? '#{@current.id}' : cookie_video_id, '#{@channel.id}')
-    })
+    var channel = new App.Models.Channel(#{@channel.to_json})
+
+    var bootstrap = {
+      channel: channel
+    }
+
+    App.initialize(bootstrap);
   });
-  
