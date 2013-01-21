@@ -60,13 +60,18 @@ class ChannelsController < ApplicationController
       Subscription.find_by_channel_id_and_user_id(channel.id, current_user.id).destroy
 
       flash[:success] = "You've removed " + channel.title
-
-      redirect_to channel
+      respond_to do |format|
+        format.json {render json: {subscribed: false, count: channel.subscriptions.count }}
+        format.html {redirect_to channel}
+      end
     else
       current_user.subscriptions.create(:channel => channel)
 
       flash[:success] = "You have subscribed to this channel. "
-      redirect_to channel
+      respond_to do |format|
+        format.json {render json: {subscribed: true, count: channel.subscriptions.count }}
+        format.html {redirect_to slug_path(channel.slug)}
+      end
     end
   end
 

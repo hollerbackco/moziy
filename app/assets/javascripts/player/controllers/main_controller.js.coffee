@@ -16,7 +16,9 @@ class App.Controllers.MainController
 
   followChannel: (channel) ->
     @notice "Followed #{channel.get 'title'}"
-    App.currentUser.follow channel
+
+    App.currentUser.follow(channel).done (results) ->
+      channel.set("channel_subscribers_count", results.count)
 
   likeVideo: (airing) ->
     alert_message = "You liked <div>#{airing.get('title')}</div>"

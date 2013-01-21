@@ -20,13 +20,17 @@ App.Models.CurrentUser = Backbone.Model.extend
   setChannelList: (channels) ->
     @channelList = new App.Models.Channels(channels)
 
-  follow: (channel, callback) ->
-    $.ajax
+  follow: (channel) ->
+    get = $.ajax
       url: "/channels/#{channel.id}/subscribe"
       type: "POST"
-      success: (results) =>
-        if callback?
-          callback(results)
+
+    get.done (results) =>
+      if results.subscribed
+        @channelList.add channel
+      else
+        @channelList.remove channel
+
 
   restream: (airing, channel, callback) ->
     $.ajax
