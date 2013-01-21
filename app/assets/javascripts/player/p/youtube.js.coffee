@@ -36,7 +36,6 @@ class App.YouTubePlayer extends App.Player
     super()
 
   _stop: ->
-    console.log "stopped"
     @_player.stopVideo() if @_player?
     super()
 
@@ -48,10 +47,10 @@ class App.YouTubePlayer extends App.Player
       height: '100%',
       width: '100%',
       videoId: @current_playing_id,
-      playerVars: 
+      playerVars:
         'rel': 0,
         'controls': 0,
-        'disablekb': 1, 
+        'disablekb': 1,
         'enablejsapi': 1,
         'wmode': 'transparent',
         'autoplay': 1,

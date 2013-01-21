@@ -1,8 +1,9 @@
 class App.PlayerManager
-  youtubePlayer: new App.YouTubePlayer('youtube-player')
-  vimeoPlayer: new App.VimeoPlayer('vimeo-player')
   constructor:  ->
     @volumeState = 1
+
+    @vimeoPlayer = new App.VimeoPlayer('vimeo-player')
+    @youtubePlayer = new App.YouTubePlayer('youtube-player')
 
     Backbone.Events.bind("player:finished", @next, this)
     Backbone.Events.bind("player:error", @errorPlayNext, this)
@@ -13,14 +14,13 @@ class App.PlayerManager
     @channel = channel
     @channel.getFirstAiring (airing) =>
       @next_video = airing
-      @_play airing
+      @next()
 
   next: =>
-    # todo: what happens if the queue fails
     @_play @next_video
 
   errorPlayNext: (msg) =>
-    App.notice "Couldn't play #{@getCurrentVideoTitle()}. Moving on."
+    App.controller.notice "Couldn't play #{@getCurrentVideoTitle()}. Moving on."
     @_play @next_video
 
   toggleMute: ->
@@ -52,44 +52,33 @@ class App.PlayerManager
 
   _play: (airing) =>
     # set the current video
-
     @current_video = airing
-
     video = airing.toJSON()
 
     try
       switch video.source_name
         when 'youtube'
-          @_stopPlayers()
-
-          @youtubePlayer.play video.source_id
-
-          # set the title
-          @_setNowPlaying video.title
-
-          # hide or show the right players
-          @_notifyPlayers()
-
-          # queue up the next next video
-          @_queue()
+          @_playerPlay @youtubePlayer, video
 
         when 'vimeo'
-          @_stopPlayers()
+          @_playerPlay @vimeoPlayer, video
 
-          @vimeoPlayer.play video.source_id
-
-          # set the title
-          @_setNowPlaying video.title
-
-          # hide or show the right players
-          @_notifyPlayers()
-
-          # queue up the next next video
-          @_queue()
-
-        else @_queue @next
+        else
+          console.log "queue next"
+          @_queue @next
     catch error
       @next()
+
+  _playerPlay: (player, video) ->
+    @_stopPlayers()
+
+    player.play video.source_id
+
+    @_setNowPlaying video.title
+    @_notifyPlayers()
+
+    # queue up the next next video
+    @_queue()
 
   _stopPlayers: ->
     Backbone.Events.trigger("player:stop")

@@ -22,6 +22,7 @@
 //= require cookie
 //= require_tree ./player/p
 //= require_tree ./player/views
+//= require_tree ./player/controllers
 //= require_tree ./player/models
 //= require player/player
 //= require player/channels
