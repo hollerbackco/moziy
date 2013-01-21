@@ -52,7 +52,6 @@ class App.YouTubePlayer extends App.Player
         'controls': 0,
         'disablekb': 1,
         'enablejsapi': 1,
-        'wmode': 'transparent',
         'autoplay': 1,
         'showinfo': 0,
         'modestbranding': 1,

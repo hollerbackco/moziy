@@ -16,7 +16,6 @@ class VideoProvider
     if @links.any?
       objs = @embedly.oembed(
                 :urls => @links,
-                :wmode => 'transparent',
                 :method => 'after',
                 :autoplay => 'true')
 
