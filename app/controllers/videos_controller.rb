@@ -39,7 +39,6 @@ class VideosController < ApplicationController
 
     video = @channel.next_airing(params[:id], (logged_in? ? current_user : nil))
 
-
     render json: airing_json(video)
   end
 
