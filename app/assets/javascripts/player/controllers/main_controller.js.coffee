@@ -1,6 +1,8 @@
 class App.Controllers.MainController
   constructor: ->
     self = this
+    _.bindAll this, "likeVideo", "restreamAiring", "followChannel", "notice"
+
     App.vent.on "airing:like", @likeVideo
     App.vent.on "airing:restream", @restreamAiring
     App.vent.on "channel:follow", @followChannel
