@@ -10,23 +10,9 @@ class VideosController < ApplicationController
               @channel.airings.first
             end
 
-    mark_as_read video if logged_in?
-
-    render json: airing_json(video)
-  end
-
-  def show
-    # grab the video only if it still exists in the player
-    # else send the first video in the channel
-    video = if logged_in?
-              @channel.next_airing(params[:id],current_user)
-            elsif @channel.airings.exists? params[:id]
-              @channel.airings.find(params[:id])
-            else
-              @channel.airings.first
-            end
-
-    mark_as_read(video) if logged_in?
+    if logged_in?
+      mark_as_read video
+    end
 
     render json: airing_json(video)
   end
