@@ -1,5 +1,6 @@
 class App.PlayerManager
   constructor:  ->
+    _.bindAll(this, '_play')
     @volumeState = 1
 
     @vimeoPlayer = new App.VimeoPlayer('vimeo-player')
@@ -12,16 +13,14 @@ class App.PlayerManager
 
   changeChannel: (channel) ->
     @channel = channel
-    @channel.getFirstAiring (airing) =>
-      @next_video = airing
-      @next()
+    @channel.startWatching().done @_play
 
-  next: =>
-    @_play @next_video
+  next: ->
+    @_play @channel.watchNext()
 
   errorPlayNext: (msg) =>
     App.controller.notice "Couldn't play #{@getCurrentVideoTitle()}. Moving on."
-    @_play @next_video
+    @next()
 
   toggleMute: ->
     if @volumeState
@@ -32,74 +31,39 @@ class App.PlayerManager
       Backbone.Events.trigger("player:unMute")
 
   getCurrentAiring: ->
-    @current_video
+    @channel.watching
 
   getCurrentChannelID: ->
     @channel.id
 
   getCurrentVideoID: ->
-    @current_video.id
+    @channel.watching.id
 
   getCurrentVideoTitle: ->
-    @current_video.get "title"
+    @channel.watching.get "title"
 
-  _isNew: (video) ->
-    @next_video.id != video.id
-
-  _playFromId: (id) ->
-    @channel.getAiringFromID id, (airing) =>
-      @_play airing
-
-  _play: (airing) =>
-    # set the current video
-    @current_video = airing
-    video = airing.toJSON()
-
+  _play: (airing) ->
     try
-      switch video.source_name
+      switch airing.get "source_name"
         when 'youtube'
-          @_playerPlay @youtubePlayer, video
+          @_playerPlay @youtubePlayer, airing
 
         when 'vimeo'
-          @_playerPlay @vimeoPlayer, video
+          @_playerPlay @vimeoPlayer, airing
 
         else
-          console.log "queue next"
-          @_queue @next
+          @next()
     catch error
       @next()
 
-  _playerPlay: (player, video) ->
+  _playerPlay: (player, airing) ->
     @_stopPlayers()
-
-    player.play video.source_id
-
-    @_setNowPlaying video.title
-    @_notifyPlayers()
-
-    # queue up the next next video
-    @_queue()
+    player.play airing.get "source_id"
+    @_notifyPlayers airing
 
   _stopPlayers: ->
     Backbone.Events.trigger("player:stop")
 
-  _notifyPlayers: ->
-    App.vent.trigger "airings:play", @current_video
+  _notifyPlayers: (airing) ->
+    App.vent.trigger "airings:play", airing
     Backbone.Events.trigger("player:update")
-
-    @channel.watchAiring()
-
-  _setNowPlaying: (title) ->
-
-    $("#video-title").text title
-
-  _queue: (callback) ->
-    self = this
-
-    @channel.getNextAiring @next_video, (airing) ->
-      self._shiftQueue(airing)
-      callback() if callback?
-
-  _shiftQueue: (airing) ->
-    @next_video = airing
-    App.cookie.set("channel-#{@channel.id}", @next_video.id, 14)
