@@ -100,5 +100,4 @@ class User < ActiveRecord::Base
     options = {only: [:username], includes: :channels}.merge options
     super
   end
-
 end

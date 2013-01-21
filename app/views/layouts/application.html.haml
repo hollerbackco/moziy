@@ -24,14 +24,12 @@
             %li.menu-item= link_to "My Settings", root_path
           %ul#my-channels.sidebar-menu
             %li.menu-item= link_to "Create a Stream", new_manage_channel_path
-            - @channels.each do |c|
-              - if c.has_airings?
-                %li.menu-item.channel.clearfix{:class => (logged_in? and c.favorited?(current_user)) ? "favorited": "", :id => "channel_#{c.id.to_s}", "data-channel-id" => c.id.to_s}
-                  = link_to manage_channel_videos_path(c) do
-                    = image_tag c.cover_art_url(:thumb_favicon), width: 16, height: 16
-                    = c.title
+            = render partial: "layouts/application/sidebar_channel_item",
+                collection: @channels,
+                as: :channel
         %section#main-content
           = yield
+
     :javascript
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-27201002-1']);
