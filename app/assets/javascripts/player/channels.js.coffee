@@ -6,7 +6,6 @@ $ ->
       current_user = if bootstrap.current_user? then bootstrap.current_user else {loggedIn:false}
       App.currentUser = new App.Models.CurrentUser current_user
 
-
       if bootstrap.channels?
         App.exploreChannels = bootstrap.channels
 
