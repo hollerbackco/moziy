@@ -2,7 +2,7 @@ App.Views.NotesModal = Backbone.View.extend
   template: HandlebarsTemplates['player/templates/notes_modal']
 
   initialize: ->
-    _.bindAll this, "show", "close"
+    _.bindAll this, "show", "close", "_refreshNotes"
 
     @listenTo App.vent, "airing:notes", @show
     @listenTo App.vent, "modals:close", @close
@@ -13,16 +13,20 @@ App.Views.NotesModal = Backbone.View.extend
     @$el.modal().modal("hide")
     @$el.html @template()
     @restreamList = new App.Views.RestreamList(el: $("#notes-restreams"))
+    @likeList = new App.Views.LikeList(el: $("#notes-likes"))
 
   show: (airing) ->
-    @$(".airing-title").html airing.get("title")
+    @model = airing
 
-    @restreamList.clear()
-
-    airing.getNotes (notes) =>
-      @restreamList.refresh(notes.restreams)
-
+    @$(".airing-title").html @model.get("title")
+    @_refreshNotes()
     @$el.modal("show")
 
   close: ->
     @$el.modal("hide")
+
+  _refreshNotes: ->
+    @restreamList.clear()
+    @model.getNotes().done (notes) =>
+      @likeList.refresh notes.likes
+      @restreamList.refresh notes.restreams

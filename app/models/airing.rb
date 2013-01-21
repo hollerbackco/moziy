@@ -35,7 +35,7 @@ class Airing < ActiveRecord::Base
 
   def notes
     {
-      likes: likes,
+      likes: likes.map {|like| like.user.username },
       restreams: video.airings.map {|a| a.channel}.as_json
     }
   end

@@ -1,5 +1,4 @@
 App.Views.RestreamList = Backbone.View.extend
-
   subviews: []
 
   initialize: ->
