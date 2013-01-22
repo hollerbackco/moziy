@@ -20,8 +20,8 @@ class ChannelsController < ApplicationController
   def show
     @channel = params.key?(:name) ? Channel.find_by_slug(params[:name]) : Channel.default
 
-    if params[:video] and @channel.airings.exists? params[:video]
-      @first_airing_id = params[:video]
+    if params[:v] and @channel.airings.exists? params[:v]
+      @first_airing_id = params[:v]
     end
 
     begin
