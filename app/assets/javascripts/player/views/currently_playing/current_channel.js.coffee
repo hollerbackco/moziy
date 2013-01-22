@@ -10,7 +10,7 @@ App.Views.CurrentChannel = Backbone.View.extend
     @listenTo App.vent, "channel:watch", @show
 
   show: (channel) ->
-    @stopListening @model
+    @stopListening channel, "change"
     @model = channel
     @listenTo @model, "change", @render
     @render()
