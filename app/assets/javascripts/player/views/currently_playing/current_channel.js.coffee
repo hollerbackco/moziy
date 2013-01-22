@@ -6,7 +6,7 @@ App.Views.CurrentChannel = Backbone.View.extend
     "click .edit"   : "edit"
 
   initialize: ->
-    _.bindAll this, "follow", "edit", "show"
+    _.bindAll this, "follow", "edit", "show", "render"
     @listenTo App.vent, "channel:watch", @show
 
   show: (channel) ->
