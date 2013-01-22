@@ -102,24 +102,23 @@
   }
 
   #current-channel {
-    border-top: 1px solid #efefef;
     color: black;
-    background: #fff;
+    background: rgba(255,255,255,.8);
+
 
     #current-channel-coverart {
       img {
-        height: 270px;
-        width: 270px;
+        height: 300px;
+        width: 300px;
       }
     }
-    #current-channel-info {
+    #current-channel-meta {
       padding: 15px;
     }
 
     #current-channel-title {
-      margin-top: 10px;
-      font-size: 24px;
-      line-height: 28px;
+      font-size: 22px;
+      line-height: 24px;
       .slug {
         color: #666;
         font-size: 16px;
@@ -136,7 +135,7 @@
     #current-channel-follow {
       position: relative;
       padding: 10px 15px;
-      border-top: 1px solid #ddd;
+      border-top: 1px solid #fff;
       line-height: 27px;
 
       .follow-button {
