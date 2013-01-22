@@ -9,6 +9,7 @@ $ ->
       if bootstrap.channels?
         App.exploreChannels = bootstrap.channels
 
+      @setupTitleChanger()
       @setupViews()
       @setupHistory()
       @setupKeyboard()
@@ -25,6 +26,10 @@ $ ->
 
     setupKeyboard: ->
       App.keyboard = new App.Keyboard()
+
+    setupTitleChanger: ->
+      App.vent.on "channel:watch", (channel) ->
+        $("title").html("#{channel.get "slug"} | moziy")
 
     setupHistory: ->
       Backbone.history.start
