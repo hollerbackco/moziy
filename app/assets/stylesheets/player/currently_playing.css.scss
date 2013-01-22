@@ -29,6 +29,15 @@
     top: 0;
   }
 
+  #next-playing {
+    color: #666;
+    font-size: 14px;
+    float: right;
+    cursor: pointer;
+    padding: 7px 15px;
+    font-weight: bold;
+  }
+
   #now-playing {
     color: #666;
     font-size: 14px;
