@@ -94,8 +94,6 @@ GEM
     mini_fb (1.1.7)
       hashie
       rest-client
-    mini_magick (3.4)
-      subexec (~> 0.2.1)
     multi_json (1.3.6)
     multipart-post (1.1.5)
     net-scp (1.0.4)
@@ -136,6 +134,7 @@ GEM
       json (~> 1.4)
     rest-client (1.6.7)
       mime-types (>= 1.16)
+    rmagick (2.13.1)
     ruby-hmac (0.4.0)
     sass (3.1.20)
     sass-rails (3.2.5)
@@ -152,7 +151,6 @@ GEM
       tilt (~> 1.1, != 1.3.0)
     sqlite3 (1.3.6)
     state_machine (1.1.2)
-    subexec (0.2.2)
     thin (1.3.1)
       daemons (>= 1.0.9)
       eventmachine (>= 0.12.6)
@@ -188,9 +186,9 @@ DEPENDENCIES
   jquery-rails
   kaminari
   mini_fb
-  mini_magick
   pg
   rails (= 3.2.6)
+  rmagick
   sass-rails (~> 3.2.3)
   sorcery
   sqlite3

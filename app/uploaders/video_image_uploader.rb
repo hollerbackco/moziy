@@ -1,6 +1,6 @@
 # encoding: utf-8
 class VideoImageUploader < CarrierWave::Uploader::Base
-  include CarrierWave::MiniMagick
+  include CarrierWave::RMagick
 
   storage :fog
 

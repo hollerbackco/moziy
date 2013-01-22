@@ -8,6 +8,9 @@
 
     &.logged-in {
       #top-banner {
+        .signup {
+          display: none;
+        }
         .login {
           display: none;
         }
@@ -55,12 +58,17 @@
       position: relative;
 
       .top-menu-item {
+        display: block;
         float: right;
         position: relative;
         cursor: pointer;
         line-height: 20px;
-        padding: 14px 15px;
+        padding: 14px 30px 14px 0;
         font-size: 13px;
+
+        &.add {
+          padding: 14px 15px;
+        }
       }
 
       .user {

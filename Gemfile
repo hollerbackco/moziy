@@ -3,7 +3,6 @@ source 'http://rubygems.org'
 gem 'rails', '3.2.6'
 gem 'thin'
 
-
 # Persistance
 gem 'pg'
 
@@ -19,7 +18,7 @@ gem 'kaminari' # Paginate
 gem 'sorcery'  # Authentication
 
 # Image Uploader
-gem 'mini_magick'
+gem 'rmagick'
 gem 'fog'
 gem 'carrierwave'
 
