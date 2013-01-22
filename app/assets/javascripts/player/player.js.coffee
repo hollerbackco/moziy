@@ -43,15 +43,18 @@ class App.PlayerManager
     @channel.watching.get "title"
 
   _play: (airing) ->
-    switch airing.get "source_name"
-      when 'youtube'
-        @_playerPlay @youtubePlayer, airing
+    try
+      switch airing.get "source_name"
+        when 'youtube'
+          @_playerPlay @youtubePlayer, airing
 
-      when 'vimeo'
-        @_playerPlay @vimeoPlayer, airing
+        when 'vimeo'
+          @_playerPlay @vimeoPlayer, airing
 
-      else
-        @next()
+        else
+          @next()
+    catch error
+      @next()
 
   _playerPlay: (player, airing) ->
     @_stopPlayers()
