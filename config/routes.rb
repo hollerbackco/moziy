@@ -67,7 +67,7 @@ Puretv::Application.routes.draw do
 
   scope ":name" do
     match :chromeless, :to => "channels#show_chromeless"
-    match "video", :to => "channels#show"
+    match "video", :to => "channels#show", as: :start_video
     match ":v", :to => "channels#show"
     match "/", :to => "channels#show", :as => :slug
   end

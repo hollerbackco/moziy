@@ -242,8 +242,9 @@
       .actions {
         display: none;
         position: absolute;
-        top: 10px;
-        right: 5px;
+        top: 5px;
+        right: 10px;
+
       }
 
       #channel-manage .channel a .action {float: right;}
@@ -268,7 +269,7 @@
 
         .title {
           font-size: 16px;
-          padding-top: 15px;
+          padding-top: 16px;
         }
 
         .image {
@@ -278,16 +279,41 @@
           width: 80px;
           margin-right: 20px;
         }
+
+        .channel-link {
+          font-weight: bold;
+        }
+
+        .permalink {
+          color: #999;
+          margin-left: 20px;
+        }
+
+        &:last-child {
+          border-bottom: 0;
+        }
       }
 
       .video, .video:hover {
-        padding: 10px 10px 10px 29px;
         background-color: #fff;
         border-bottom: 1px solid #E6E6E6;
         position: relative;
         margin-bottom: 0px;
         cursor: move;
 
+        .title {
+          padding-top: 5px;
+        }
+
+        .image {
+          float: left;
+          margin-right: 15px;
+        }
+
+        .permalink {
+          color: #999;
+          font-size: 11px;
+        }
 
         &.archived {
           background-color: #ddd;
@@ -299,10 +325,16 @@
       }
 
       .video:hover {
-        background: image-url("icons/cursor_drag_arrow.png") 6px center no-repeat;
+        background: #fff image-url("icons/cursor_drag_arrow.png") 6px 12px no-repeat;
 
         .actions {
           display: block;
+          input[type=submit] {
+            color: #999;
+            &:hover {
+              color: red;
+            }
+          }
         }
       }
 

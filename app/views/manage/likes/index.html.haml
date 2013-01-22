@@ -1,2 +1,5 @@
 %ul.videos.video-list
   = render partial: 'manage/likes/liked_video', collection: @videos, as: :a
+- if @videos.blank?
+  .nobody
+    Go like some videos.

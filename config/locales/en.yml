@@ -3,21 +3,21 @@
 
 en:
   common:
-    title_prefix:    "Mosey"
+    title_prefix:    "moziy"
     title_separator: " | "
   likes:
     index:
-      title:  "My Likes"
+      title:  "my likes"
   channels:
     index:
-      title:  "Channels"
+      title:  "channels"
     edit:
-      title:  "Edit"
+      title:  "edit"
     new:
-      title:  "Build a Channel"
+      title:  "build a channel"
   sessions:
     new:
-      title:  "Sign in"
+      title:  "sign in"
   registrations:
     new:
-      title: "Join"
+      title: "join"
