@@ -33,7 +33,7 @@ $ ->
       App.vent.on "channel:watch", (channel) ->
         App.navigate "#{channel.get "slug"}"
       App.vent.on "airings:play", (airing, channel) ->
-        App.navigate "#{channel.get "slug"}/#{airing.id}", true
+        App.navigate "#{channel.get "slug"}?video=#{airing.id}", true
 
     setupViews: ->
       App.currentlyPlayingPane = new App.Views.CurrentlyPlayingPane
