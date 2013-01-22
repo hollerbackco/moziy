@@ -18,10 +18,10 @@ $ ->
       if App.currentUser? and App.currentUser.get "loggedIn"
         App.vent.trigger "login", App.currentUser
 
-      @setupPlayer bootstrap.channel
+      @setupPlayer bootstrap.channel, bootstrap.first_airing_id
 
-    navigate: (href) ->
-      Backbone.history.navigate(href)
+    navigate: (href, replace=false) ->
+      Backbone.history.navigate(href, {replace: replace})
 
     setupKeyboard: ->
       App.keyboard = new App.Keyboard()
@@ -32,6 +32,8 @@ $ ->
         root: '/'
       App.vent.on "channel:watch", (channel) ->
         App.navigate "#{channel.get "slug"}"
+      App.vent.on "airings:play", (airing, channel) ->
+        App.navigate "#{channel.get "slug"}/#{airing.id}", true
 
     setupViews: ->
       App.currentlyPlayingPane = new App.Views.CurrentlyPlayingPane
@@ -46,6 +48,6 @@ $ ->
         add:      new App.Views.AddModal(el: "#add-modal")
         login:    new App.Views.LoginModal(el: "#login-modal")
 
-    setupPlayer: (channel) ->
+    setupPlayer: (channel, airing_id) ->
       @playerManager = new App.PlayerManager()
-      App.vent.trigger "channel:watch", channel
+      App.vent.trigger "channel:watch", channel, airing_id

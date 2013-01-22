@@ -32,5 +32,7 @@
       channels: channels
     }
 
+    #{"bootstrap.first_airing_id = " + @first_airing_id if @first_airing_id}
+
     App.initialize(bootstrap);
   });

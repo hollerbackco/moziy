@@ -1,12 +1,13 @@
 App.Models.Channel = Backbone.Model.extend
   initialize: ->
-    _.bindAll this, "watchNext", "_getFirstAiring", "_getNextAiring", "_watchAiring", "_setNextUp"
+    _.bindAll this, "watchNext", "_getFirstAiring",
+      "_getNextAiring", "_watchAiring", "_setNextUp", "_getAiring"
 
     if @has "channel_id"
       @id = @get("channel_id")
 
-  startWatching: ->
-    promise = @_getFirstAiring()
+  startWatching: (airing_id) ->
+    promise = if airing_id? then @_getAiring(airing_id) else @_getFirstAiring()
     promise.done @_watchAiring
     promise
 
@@ -28,6 +29,12 @@ App.Models.Channel = Backbone.Model.extend
 
   _getFirstAiring: ->
     get = $.ajax({url: "/channels/#{@id}/videos/first"})
+      .pipe (results) ->
+        airing = new App.Models.Airing results
+    get
+
+  _getAiring: (airing_id) ->
+    get = $.ajax({url: "/channels/#{@id}/videos/#{airing_id}"})
       .pipe (results) ->
         airing = new App.Models.Airing results
     get

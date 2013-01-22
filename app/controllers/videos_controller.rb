@@ -17,6 +17,16 @@ class VideosController < ApplicationController
     render json: airing_json(video)
   end
 
+  def show
+    video = @channel.airings.find params[:id]
+
+    if logged_in?
+      mark_as_read video
+    end
+
+    render json: airing_json(video)
+  end
+
   def next
     if logged_in?
       former_video = @channel.airings.find(params[:id])

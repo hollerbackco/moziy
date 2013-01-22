@@ -11,9 +11,9 @@ class App.PlayerManager
     App.vent.on("channel:watch", @changeChannel, this)
     App.vent.on("player:next", @next, this)
 
-  changeChannel: (channel) ->
+  changeChannel: (channel, airing_id) ->
     @channel = channel
-    @channel.startWatching().done @_play
+    @channel.startWatching(airing_id).done @_play
 
   next: ->
     @_play @channel.watchNext()
@@ -65,5 +65,5 @@ class App.PlayerManager
     Backbone.Events.trigger("player:stop")
 
   _notifyPlayers: (airing) ->
-    App.vent.trigger "airings:play", airing
+    App.vent.trigger "airings:play", airing, @channel
     Backbone.Events.trigger("player:update")
