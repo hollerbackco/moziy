@@ -74,11 +74,12 @@
         width: 50%;
         cursor: pointer;
         text-align: center;
-        font-size: 16px;
+        font-size: 13px;
         border-right: 1px solid #ccc;
         margin-right: -1px;
         border-bottom: 1px solid #ccc;
         line-height: 48px;
+        text-transform: uppercase;
 
         &:hover {
           background: #efefef;
@@ -91,6 +92,8 @@
       bottom: 0;
       width: 270px;
       padding: 0 15px 10px;
+      font-size: 13px;
+
       #video-parent {
         color: #666;
         a {font-weight: bold}
@@ -165,11 +168,13 @@
       position: relative;
 
       .follow-button {
+        text-transform: uppercase;
         border-left: 1px solid #ccc;
-        padding: 15px 0;
+        font-size: 13px;
+        line-height: 48px;
         display: block;
         text-align: center;
-
+        padding: 0;
       }
     }
   }
