@@ -18,6 +18,9 @@ en:
   sessions:
     new:
       title:  "sign in"
+    create:
+      title:  "sign in"
   registrations:
     new:
       title: "join"
+

@@ -61,6 +61,7 @@ class VideosController < ApplicationController
      :source_id => video.source_id,
      :title => video.title,
      :channel_id => video.channel_id,
+     :channel => video.channel,
      :note_count => video.note_count,
      :parent => video.parent.as_json(:include => [:channel])
     }

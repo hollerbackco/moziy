@@ -12,7 +12,7 @@ App.Views.ChannelModal = Backbone.View.extend
 
     @$el.modal().modal("hide")
 
-    @listenTo App.vent, "channel:modal", @show
+    @listenTo App.vent, "modals:channel", @show
     @listenTo App.vent, "modals:close", @close
 
   show: (channel) ->

@@ -4,9 +4,10 @@ App.Views.CurrentChannel = Backbone.View.extend
     "click .follow-button.primary" : "follow"
     "click .follow-button.following" : "unfollow"
     "click .edit"   : "edit"
+    "click #current-channel-info" : "modal"
 
   initialize: ->
-    _.bindAll this, "follow", "edit", "show", "render"
+    _.bindAll this, "follow", "edit", "show", "render", "modal"
     @listenTo App.vent, "channel:watch", @show
 
   show: (channel) ->
@@ -30,6 +31,9 @@ App.Views.CurrentChannel = Backbone.View.extend
     @_unfollowClicked()
 
   edit: ->
+
+  modal: ->
+    App.vent.trigger "modals:channel", @model
 
   _updateButton: ->
     if App.currentUser.isFollowing @model

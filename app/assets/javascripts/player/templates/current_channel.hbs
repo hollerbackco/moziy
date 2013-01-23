@@ -1,25 +1,13 @@
-<div id="current-channel-info">
-  <div id="current-channel-coverart">
-    <img src="{{cover_art.thumb_player.url}}" />
-  </div>
-  <div id="current-channel-meta">
-    <div id="current-channel-title" class="title">
-      {{title}}
-    </div>
-    <div id="current-channel-owner">
-      <span class="label">Created by</span>
-      {{creator.username}}
-    </div>
-    <div id="current-channel-description" class="description">
-      {{description}}
-    </div>
-  </div>
-</div>
-<div id="current-channel-follow" class="clearfix">
+<div id="current-channel-follow">
   <div class="follow-button button primary">
     <span class="follow-text">follow</span>
     <span class="following-text">following</span>
     <span class="unfollow-text">unfollow</span>
+  </div>
+</div>
+<div id="current-channel-info">
+  <div id="current-channel-coverart">
+    <img src="{{cover_art.thumb_player.url}}" />
   </div>
   <div id="current-channel-followers">
     {{channel_subscribers_count}} followers
