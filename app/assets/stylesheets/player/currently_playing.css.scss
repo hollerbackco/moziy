@@ -140,7 +140,7 @@
       bottom: 0;
       right: 0;
       left: 0;
-      padding: 5px;
+      padding: 10px 5px;
       background: #000;
       color: #fff;
       text-align: center;
@@ -170,9 +170,6 @@
         display: block;
         text-align: center;
 
-        &:hover {
-          background: #efefef;
-        }
       }
     }
   }
