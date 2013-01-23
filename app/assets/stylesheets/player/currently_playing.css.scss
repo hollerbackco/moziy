@@ -74,12 +74,13 @@
         width: 50%;
         cursor: pointer;
         text-align: center;
-        font-size: 13px;
+        font-size: 12px;
         border-right: 1px solid #ccc;
         margin-right: -1px;
         border-bottom: 1px solid #ccc;
         line-height: 48px;
         text-transform: uppercase;
+        color: #666;
 
         &:hover {
           background: #efefef;
@@ -170,11 +171,12 @@
       .follow-button {
         text-transform: uppercase;
         border-left: 1px solid #ccc;
-        font-size: 13px;
+        font-size: 12px;
         line-height: 48px;
         display: block;
         text-align: center;
         padding: 0;
+        color: #666;
       }
     }
   }
