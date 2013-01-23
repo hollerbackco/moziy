@@ -1,7 +1,7 @@
 #stage {
   #current-pane-target-zone {
     position: absolute;
-    width: 480px;
+    width: 470px;
     height: 200px;
     top: 0;
     right: 0;
@@ -12,9 +12,10 @@
       right: 0px;
       font-size: 20px;
       line-height: 20px;
-      padding: 3px 18px;
+      padding: 10px 18px;
       font-weight: bold;
       color: #999;
+      opacity: .3;
     }
   }
 
@@ -74,9 +75,9 @@
         cursor: pointer;
         text-align: center;
         font-size: 16px;
-        border-right: 1px solid #eee;
+        border-right: 1px solid #ccc;
         margin-right: -1px;
-        border-bottom: 1px solid #eaeaea;
+        border-bottom: 1px solid #ccc;
         line-height: 48px;
 
         &:hover {
@@ -93,6 +94,12 @@
       #video-parent {
         color: #666;
         a {font-weight: bold}
+      }
+
+      .channel-from,
+      .restream-from {
+        cursor: pointer;
+        text-decoration: none;
       }
       #video-notes {
         float: right;
@@ -158,9 +165,14 @@
       position: relative;
 
       .follow-button {
+        border-left: 1px solid #ccc;
         padding: 15px 0;
         display: block;
         text-align: center;
+
+        &:hover {
+          background: #efefef;
+        }
       }
     }
   }

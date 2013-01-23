@@ -21,12 +21,15 @@ class Manage::VideosController < Manage::BaseController
     vp = VideoProvider.new params[:links]
     video_params = vp.get
 
-    video_params.each do |v_params|
+    airings = video_params.each do |v_params|
       v = create_a_video v_params
-      @channel.airings.create :video_id => v.id
+      airing_json @channel.airings.create(:video_id => v.id)
     end
 
-    redirect_to manage_channel_path(@channel)
+    respond_to do |format|
+      format.html { redirect_to manage_channel_path(@channel) }
+      format.json { render json: {airings: airings} }
+    end
   end
 
   def edit
@@ -56,6 +59,19 @@ class Manage::VideosController < Manage::BaseController
 
 
   private
+
+  def airing_json(video)
+    {
+     :id => video.id,
+     :source_name => video.source_name,
+     :source_id => video.source_id,
+     :title => video.title,
+     :channel_id => video.channel_id,
+     :channel => video.channel,
+     :note_count => video.note_count,
+     :parent => video.parent.as_json(:include => [:channel])
+    }
+  end
 
   def create_a_video(v_params)
     video = Video.find_by_source_name_and_source_id(v_params[:source_name], v_params[:source_id])

@@ -7,6 +7,7 @@ App.Views.CurrentAiring = Backbone.View.extend
     "click #video-notes" : "notes"
     "click .restream-from" : "showRestreamFrom"
     "click #next-playing" : "next"
+    "click .channel-from" : "showChannelFrom"
 
   initialize: ->
     _.bindAll this, "like", "restream", "show", "next"
@@ -28,6 +29,11 @@ App.Views.CurrentAiring = Backbone.View.extend
   restream: ->
     # this should have a controller
     App.vent.trigger "modals:restream", @model
+
+  showChannelFrom: (e) ->
+    e.preventDefault()
+    channel = new App.Models.Channel @model.get("channel")
+    App.vent.trigger "modals:channel", channel
 
   showRestreamFrom: (e) ->
     e.preventDefault()

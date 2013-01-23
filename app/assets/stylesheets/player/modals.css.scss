@@ -1,16 +1,26 @@
 #stage {
   #notes-modal {
     .header {
-      padding: 15px;
+      padding: 15px 20px;
+      font-size: 16px;
+    }
+
+    #notes-likes-list {
+      padding: 15px 20px;
       font-size: 16px;
     }
 
     #restreams-label,
     #notes-likes-label {
-      padding: 0 15px 15px;
+      display: block;
+      background: #ccc;
+      color: #fff;
+      padding: 7px 20px;
+      font-size: 16px;
     }
 
     .restream-item {
+      padding: 15px 20px;
       cursor: pointer;
 
       &:hover {
@@ -18,7 +28,11 @@
       }
 
       .restream-channel-cover-art {display: block; float: left; margin-right: 10px;}
-      .restream-channel-title {font-weight: bold}
+      .restream-channel-title {
+        font-weight: bold;
+        font-size: 16px;
+        line-height: 48px;
+      }
     }
   }
 
@@ -26,6 +40,11 @@
     .channel-item {
       cursor: pointer;
       border-bottom: 1px solid #eee;
+      padding: 15px 20px;
+
+      &:hover {
+        background: #efefef;
+      }
 
       img {
         float: left;
@@ -36,9 +55,6 @@
         font-size: 16px;
         line-height: 48px;
 
-        &:hover {
-          background: #fafafa;
-        }
       }
     }
   }
@@ -65,6 +81,10 @@
 
     .add-airing-body {
       display: none;
+    }
+    .modal-footer {
+      padding: 0;
+      height: 48px;
     }
   }
 
@@ -149,11 +169,12 @@
   }
 
   #channel-modal {
-    .channel-image {float:left;}
+    .channel-image {float:left; margin-right: 20px;}
     .channel-info {
       padding: 15px;
+
       .channel-title {
-        font-size: 33px;
+        font-size: 24px;
         font-weight: bold;
         padding-top: 15px;
         .slug {
@@ -163,7 +184,9 @@
       }
       .channel-description {font-size: 16px;}
     }
+
     .action-bar {
+      &>div {position: relative; height: 57px}
       .part1 {float: left; width: 30%; border-right: 1px solid #eee; margin-right: -1px;}
       .part2 {float: left; width: 45%; border-right: 1px solid #eee; margin-right: -1px;}
       .part3 {float: left; width: 25%;}
@@ -181,11 +204,13 @@
     }
 
     .follow-button {
+      line-height: 57px;
       cursor: pointer;
       padding: 13px;
       text-align: center;
       color: white;
       background: green;
+      padding: 0;
 
       &:hover {
         background: black;

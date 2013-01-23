@@ -23,7 +23,7 @@
   form {
     fieldset {
       border: 0;
-      padding: 0;
+      padding: 10px 0;
       margin: 0;
       background: none;
       label {
@@ -34,10 +34,15 @@
 
         input[type=text],
         input[type=password] {
-          width: 100%;
-          font-size: 36px;
+          width: 428px;
+          padding: 5px 10px;
+          font-size: 24px;
           border: 1px solid #999;
           background: #fafafa;
+        }
+
+        select {
+          font-size: 36px;
         }
       }
 
@@ -102,7 +107,7 @@
   }
 
   #player {
-    background: image-url('moziy-logo.png') black no-repeat center center;
+    background: image-url('moziy-logo-2.png') black no-repeat center center;
   }
 
   #player, .player, .mask {

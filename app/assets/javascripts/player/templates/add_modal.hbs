@@ -19,19 +19,18 @@
     <div class="modal-body">
         <fieldset>
           <label class="video-urls" for="video-urls">
-            <span>Urls</span>
-            <textarea id="video-urls" name="video-urls"></textarea>
+            <input type="text" id="video-urls" name="video-urls" placeholder="Enter a youtube/vimeo video url" />
           </label>
         </fieldset>
         <fieldset>
           <label class="channels">
-            <span>Which Channel</span>
-            <select name="channel_id"></select>
+            <span>Which Channel?</span>
+            <select id="channel-id" name="channel_id"></select>
           </label>
         </fieldset>
     </div>
     <div class="modal-footer">
-      <div class="button primary">add</div>
+      <div class="button primary" id="add-airing">add</div>
     </div>
   </form>
 </div>

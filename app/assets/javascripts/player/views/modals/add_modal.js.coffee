@@ -3,6 +3,7 @@ App.Views.AddModal = Backbone.View.extend
 
   events:
     "click .add-airing" : "showAiringForm"
+    "click #add-airing" : "add"
 
   initialize: ->
     _.bindAll this, "show", "close", "add"
@@ -14,23 +15,41 @@ App.Views.AddModal = Backbone.View.extend
 
   render: ->
     @$el.modal().modal("hide")
-
     @$el.html @template()
-
     @_setupChannels()
+
     #@channelsListView = new App.Views.ModalChannelList
       #el: "#addable-channels"
       #model: App.currentUser.channels
       #channelClickCallback: @add
 
   show: (airing) ->
+    @render()
     @$el.modal("show")
 
   close: ->
     @$el.modal("hide")
 
-  add: (channel) ->
-    console.log channel
+  add: ->
+    urls = @$("#video-urls").val()
+    id = @$("#channel-id").val()
+
+    if urls? and urls != "" and id?
+      get = $.ajax
+        url: "/me/channels/#{id}/videos.json"
+        type: "POST"
+        data:
+          links: urls
+
+      get.done (results) =>
+        App.vent.trigger "airing:add", results.airings
+        @_clearForm()
+        @close()
+    else
+      @$(".modal-body").prepend $("<div>").html("Please add a url").delay(200).remove()
+
+  _clearForm: ->
+     @$("#video-urls").val ""
 
   showAiringForm: ->
     @$(".choose-add-type").hide()

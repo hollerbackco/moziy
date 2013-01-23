@@ -15,7 +15,7 @@
 
 #remote-control-pane.clearfix
 #current-pane-target-zone
-  .mark +
+  .mark= image_tag @channel.cover_art_url(:thumb_list), width: 24, height: 24
   #current-pane
     #current-video
     #current-channel
