@@ -8,7 +8,7 @@ App.Views.CurrentlyPlayingPane = Backbone.View.extend
         $(this).addClass("hover")
         $("#current-pane").show()
         $(".mark", this).hide()
-      sensitivity: 14
+      sensitivity: 15
       timeout: 100
       out: ->
         $(this).removeClass("hover")
