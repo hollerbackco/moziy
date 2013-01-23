@@ -18,4 +18,4 @@ App.Views.CurrentlyPlayingPane = Backbone.View.extend
     App.vent.on "channel:watch", @updateMark, this
 
   updateMark: (channel) ->
-    @$(".mark img").attr "src", channel.get("cover_art").thumb_list_url
+    @$(".mark img").attr "src", channel.get("cover_art").thumb_list.url
