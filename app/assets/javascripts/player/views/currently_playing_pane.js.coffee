@@ -14,3 +14,8 @@ App.Views.CurrentlyPlayingPane = Backbone.View.extend
         $(this).removeClass("hover")
         $("#current-pane").hide()
         $(".mark", this).show()
+
+    App.vent.on "channel:watch", @updateMark, this
+
+  updateMark: (channel) ->
+    @$(".mark img").attr "src", channel.get("cover_art").thumb_list_url

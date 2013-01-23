@@ -14,7 +14,7 @@ App.Views.RestreamItem = Backbone.View.extend
     @$el.html @template @model.toJSON()
 
   moreInfo: ->
-    App.vent.trigger "channel:modal", @model
+    App.vent.trigger "modals:channel", @model
 
   remove: ->
     @$el.remove()
