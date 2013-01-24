@@ -20,23 +20,29 @@
     }
 
     .restream-item {
-      padding: 15px 20px;
+      margin: 15px 20px;
       cursor: pointer;
-      border-bottom: 1px solid #eee;
 
-      &:last-child {
-        border-bottom: 0;
+      .restream-box {
+        border: 1px solid #ccc;
       }
 
-      &:hover {
-        background: #efefef;
+      .restream-channel-cover-art {
+        display: block;
+        float: left;
+        margin-right: 10px
       }
 
-      .restream-channel-cover-art {display: block; float: left; margin-right: 10px;}
       .restream-channel-title {
+        padding-top: 7px;
         font-weight: bold;
         font-size: 16px;
-        line-height: 48px;
+      }
+
+      .restream-channel-description {
+        color: #666;
+        font-style: italic;
+        font-size: 13px;
       }
     }
   }
@@ -44,7 +50,7 @@
   #restream-modal {
     .channel-item {
       cursor: pointer;
-      border-bottom: 1px solid #eee;
+      border: 1px solid #eee;
       padding: 15px 20px;
 
       &:hover {
