@@ -23,7 +23,7 @@ class CoverArtUploader < CarrierWave::Uploader::Base
   process :resize_to_fill => [512,512]
 
   version :thumb_list do
-    process :resize_to_fill => [48,48]
+    process :resize_to_fill => [100,100]
   end
 
   version :thumb_favicon do

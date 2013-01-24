@@ -72,8 +72,8 @@
         font-size: 13px;
 
         &.add {
-          padding: 14px 15px;
-          font-weight: bold;
+          font-size: 12px;
+          padding: 10px 20px 14px;
         }
       }
 
@@ -137,7 +137,7 @@
         list-style-type: none;
 
         &:hover {
-          background: #eaeaea;
+          background: #dadada;
         }
 
         &:last-child {
@@ -147,6 +147,7 @@
 
         &.active {
           color: #000;
+          background: #eaeaea;
           font-weight: bold;
         }
       }

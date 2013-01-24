@@ -218,11 +218,9 @@
 
     .follow-button {
       line-height: 57px;
+      width: 100%;
       cursor: pointer;
-      padding: 13px;
       text-align: center;
-      color: white;
-      background: green;
       padding: 0;
 
       &:hover {

@@ -52,6 +52,18 @@ button,
   }
 }
 
+.action-button {
+  text-transform: uppercase;
+  font-size: 12px;
+  line-height: 48px;
+
+  i {
+    position: relative;
+    top: 4px;
+    left: -6px;
+  }
+}
+
 .button.primary {
   background: getRandomColor();
   color: #fff;
@@ -124,6 +136,37 @@ form.button_to {
 
 #composer {
   margin-bottom: 20px;
+}
+
+
+i {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+
+  &.restream {
+    background: transparent image-url("icons/plus_sprite.png") top center no-repeat;
+  }
+
+  &.add {
+    background: transparent image-url("icons/plus_sprite_white.png") top center no-repeat;
+  }
+
+  &.like {
+    background: transparent image-url("icons/heart_sprite.png") top center no-repeat;
+  }
+
+  &.follow {
+    background: transparent image-url("icons/restream_sprite_white.png") top center no-repeat;
+  }
+}
+
+.icon-on {
+  i {
+    &.restream {
+      background: transparent image-url("icons/restream_sprite.gif") bottom center no-repeat;
+    }
+  }
 }
 
 
