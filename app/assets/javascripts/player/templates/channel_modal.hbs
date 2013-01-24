@@ -5,9 +5,15 @@
       {{title}}
     </div>
     <div class="user">
-      created by <span class="username">{{creator.username}}</span>
+      <span class="slug">{{slug}}</span>
     </div>
-    <div class="channel-description">{{description}}</div>
+    <div class="channel-description">
+      {{#if description}}
+        {{description}}
+      {{else}}
+        you should follow me
+      {{/if}}
+    </div>
   </div>
 </div>
 <div class="action-bar clearfix">

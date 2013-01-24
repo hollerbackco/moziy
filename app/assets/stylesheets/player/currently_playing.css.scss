@@ -118,6 +118,7 @@
     margin-left: 300px;
     width: 150px;
     color: black;
+    border-left: 1px solid #ccc;
 
     #current-channel-coverart {
       img {
@@ -142,13 +143,16 @@
       display: none;
       position: absolute;
       bottom: 0;
+      top: 0;
       right: 0;
       left: 0;
-      padding: 10px 5px;
-      background: #000;
-      color: #fff;
+      padding: 60px 5px 0;
+      color: #000;
+      background: rgba(255,255,255,.6);
       text-align: center;
-      opacity: .7;
+      #current-channel-name {
+        font-weight: bold;
+      }
     }
 
     #current-channel-title {
@@ -170,13 +174,20 @@
 
       .follow-button {
         text-transform: uppercase;
-        border-left: 1px solid #ccc;
         font-size: 12px;
         line-height: 48px;
         display: block;
         text-align: center;
         padding: 0;
-        color: #666;
+        color: #fff;
+
+        &.following {
+          span {color: #666;}
+          &:hover {
+            span { display: none;}
+            span.unfollow-text {display: inline-block }
+          }
+        }
       }
     }
   }
