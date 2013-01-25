@@ -33,14 +33,14 @@ class App.Controllers.MainController
     App.modals.invite.show()
 
   followChannel: (channel) ->
-    @authenticate ->
+    @authenticate =>
       @notice "Followed #{channel.get 'title'}"
 
       App.currentUser.follow(channel).done (results) ->
         channel.set("channel_subscribers_count", results.count)
 
   likeVideo: (airing) ->
-    @authenticate ->
+    @authenticate =>
       alert_message = "You liked <div>#{airing.get('title')}</div>"
       @notice alert_message
       App.currentUser.like airing
