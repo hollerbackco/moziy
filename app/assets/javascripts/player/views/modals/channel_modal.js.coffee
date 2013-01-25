@@ -1,14 +1,15 @@
 App.Views.ChannelModal = Backbone.View.extend
 
   events:
-    "click .follow-channel": "follow"
+    "click .follow-button.primary" : "follow"
+    "click .follow-button.following" : "unfollow"
     "click .play-channel":   "watch"
     "click .show-followers": "followers"
 
   template: HandlebarsTemplates['player/templates/channel_modal']
 
   initialize: ->
-    _.bindAll this, "show", "close"
+    _.bindAll this, "show", "close", "follow", "unfollow"
 
     @$el.modal().modal("hide")
 
@@ -20,28 +21,24 @@ App.Views.ChannelModal = Backbone.View.extend
 
     @channel = channel
 
-    #@channel = new App.Models.Channel
-      #id: 3
-      #image: "https://s3.amazonaws.com/mosey.dev/uploads/cover_art/2/thumb_player_vWrEtJACV5.jpg"
-      #title: "a title"
-      #description: "a description"
-      #slug: "title"
-      #follower_count: 35
-      #user:
-        #name: "jnoh"
-      #video:
-        #title: "the video title"
-
     @$el.html @template @channel.toJSON()
     @$el.modal("show")
+
+    @$following = @$(".follow-button")
+
+    @_updateButton()
 
   close: ->
     @$el.modal("hide")
 
   #follow
   follow: ->
-    @channel.follow()
-    App.vent.trigger "channel:followed", @channel
+    App.vent.trigger "channel:follow", @channel
+    @_followClicked()
+
+  unfollow: ->
+    App.vent.trigger "channel:follow", @model
+    @_unfollowClicked()
 
   watch: ->
     App.vent.trigger "channel:watch", @channel
@@ -49,3 +46,17 @@ App.Views.ChannelModal = Backbone.View.extend
 
   followers: ->
     App.vent.trigger "channel:followers", @channel
+
+  _updateButton: ->
+    if App.currentUser.isFollowing @model
+      @_followClicked()
+    else
+
+  _followClicked: ->
+    @$following.removeClass "primary"
+    @$following.addClass "following"
+
+  _unfollowClicked: ->
+    @$following.addClass "primary"
+    @$following.removeClass "following"
+

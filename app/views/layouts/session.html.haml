@@ -15,9 +15,8 @@
             - if logged_in?
               %li= link_to 'Log out', logout_path
             - else
-              %li= link_to 'Sign up', register_path
+              %li= link_to 'Join', register_path
               %li= link_to 'Log in', login_path
-              %li= link_to 'Join', root_path
       %section#main
         = yield
     :javascript

@@ -11,6 +11,7 @@ class App.Controllers.MainController
     App.vent.on "modals:restream", @showRestreamModal, this
     App.vent.on "modals:login", @showLoginModal, this
     App.vent.on "modals:add", @showAddModal, this
+    App.vent.on "modals:invite", @showInviteModal, this
 
     $("#mute").click ->
       $(this).toggleClass("on")
@@ -27,6 +28,9 @@ class App.Controllers.MainController
 
   showLoginModal: ->
     App.modals.login.show()
+
+  showInviteModal: ->
+    App.modals.invite.show()
 
   followChannel: (channel) ->
     @authenticate ->

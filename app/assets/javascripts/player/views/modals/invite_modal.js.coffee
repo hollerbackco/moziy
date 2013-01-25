@@ -1,11 +1,10 @@
-App.Views.LoginModal = Backbone.View.extend
-  template: HandlebarsTemplates['player/templates/login_modal']
+App.Views.InviteModal = Backbone.View.extend
+  template: HandlebarsTemplates['player/templates/invite_modal']
 
   initialize: ->
     _.bindAll this, "show", "close"
 
     @listenTo App.vent, "modals:close", @close
-
     @render()
 
   render: ->
