@@ -43,6 +43,8 @@ App.Views.RemoteControlPane = Backbone.View.extend
     @$(".menu-button").removeClass "active"
 
   login: (user) ->
+    @render()
+
     username = user.get "username"
     @$(".user .name").html username
     @$el.addClass "logged-in"
@@ -50,4 +52,3 @@ App.Views.RemoteControlPane = Backbone.View.extend
     @channelListView = new App.Views.RemoteControlChannelMenu
       el: @$("#remote-control-container")
 
-    @render()
