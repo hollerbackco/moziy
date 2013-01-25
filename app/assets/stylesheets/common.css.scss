@@ -71,8 +71,14 @@ button,
   }
 }
 
+.rounded {
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;
+}
+
 .button.primary {
-  background: getRandomColor();
+  background: #04BBF5;
   color: #fff;
 }
 
