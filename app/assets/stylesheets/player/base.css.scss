@@ -130,8 +130,9 @@
 
   #invite-pane {
     position: absolute;
-    bottom: 7px;
-    right: 7px;
+    bottom: 0;
+    right: 0;
+    padding: 100px 20px 20px 0;
     z-index: 100;
 
     .button {
@@ -139,4 +140,16 @@
       margin-left: 10px;
     }
   }
+
+  #moziy-logo-splash {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    margin-top: -115px;
+    margin-left: -347px;
+    height: 229px;
+    width: 692px;
+    z-index: 100;
+  }
+
 }

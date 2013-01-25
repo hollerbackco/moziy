@@ -45,11 +45,18 @@ class ChannelsController < ApplicationController
     end
   end
 
+  def show_root
+    @channel = Channel.default
+
+    set_title @channel.title
+    render :layout => "player"
+  end
+
   def show_chromeless
     @channel = Channel.find_by_slug(params[:name])
 
     unless @channel.airings.count > 0
-      redirect_to new_manage_channel_video_path(@channel)
+      redirect_to root_path
       return
     end
 

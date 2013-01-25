@@ -18,6 +18,7 @@ $ ->
 
       if App.currentUser? and App.currentUser.loggedIn()
         App.vent.trigger "login", App.currentUser
+        $("#moziy-logo-splash").remove()
       else
         @setupInvite()
 

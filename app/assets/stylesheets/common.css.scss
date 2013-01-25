@@ -32,6 +32,14 @@ background-color: #EEE;
   background: image-url('moziy-logo.png') transparent top left no-repeat;
 }
 
+.logo-moziy-big {
+  display: block;
+  text-indent: -9999px;
+  width: 692px;
+  height: 229px;
+  background: image-url('moziy-logo-big.png') transparent top left no-repeat;
+}
+
 /*--- buttons*/
 button,
 .button {

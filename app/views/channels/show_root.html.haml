@@ -1,0 +1,23 @@
+#login-modal.modal
+#invite-modal.modal
+
+#player
+  #youtube-player.player
+    .mask
+  #vimeo-player.player
+    .mask
+    #vimeo-dummy
+
+#moziy-logo-splash
+  .logo-moziy-big moziy
+
+:javascript
+  $(document).ready(function() {
+    var channel = new App.Models.Channel(#{@channel.to_json})
+
+    var bootstrap = {
+      channel: channel
+    }
+
+    App.initialize(bootstrap);
+  });
