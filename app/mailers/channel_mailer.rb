@@ -1,15 +1,13 @@
 class ChannelMailer < ApplicationMailer
 
-  def liked(by, from, video_title)
-    @your_channel = from
-    @user = from.creator
+  def liked(channel)
+    @your_channel = channel
+    @user = channel.creator
+    @likes = channel.todays_likes
 
-    @their_name = by.username
-    @their_channel = by.channels.first
-    @video_title = video_title
+    subject = "#{likers_string @likes} liked #{@your_channel.slug}"
 
-    mail :to => @user.email,
-         :subject => "#{@their_name} just highfived your video."
+    mail to: @user.email, subject: subject
   end
 
   def reaired(to, from, video_title)
@@ -34,6 +32,18 @@ class ChannelMailer < ApplicationMailer
       mail :to => @user.email,
            :subject => "You are now famouser."
     end
+  end
+
+  private
+
+  def likers_string(likes)
+    string = "#{likes.first.user.username}"
+
+    if likes.count > 1
+      string = "#{string} and #{likes.count - 1} others"
+    end
+
+    string
   end
 
 end

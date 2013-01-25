@@ -3,6 +3,8 @@ class Channel < ActiveRecord::Base
   has_many :airings, :conditions => "airings.state != 'archived'", :order => "position ASC, video_id DESC", :dependent => :destroy
   has_many :videos, :through => :airings
 
+  has_many :likes, :through => :airings
+
   has_many :archived_airings, :class_name => "Airing", :conditions => "airings.state = 'archived'", :order => "position ASC, video_id DESC", :dependent => :destroy
   has_many :archived_videos, :source => :video,  :through => :archived_airings
 
@@ -15,6 +17,14 @@ class Channel < ActiveRecord::Base
 
   scope :publik, where("private IS NULL")
 
+
+  # grab likes from yesterday
+  def todays_likes
+    dayEnd = DateTime.now.beginning_of_day
+    dayStart = dayEnd - 1.day
+
+    likes.where("likes.created_at > ? and likes.created_at < ?", dayStart, dayEnd)
+  end
 
   def all_airings
     airings + archived_airings

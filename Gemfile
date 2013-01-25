@@ -33,6 +33,7 @@ end
 
 group :development do
   gem 'sqlite3'
+  gem 'mailcatcher'
 end
 
 # Gems used only for assets and not required

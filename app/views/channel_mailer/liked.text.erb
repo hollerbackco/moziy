@@ -1,7 +1,11 @@
-<%= @their_name %> just liked your video <%= @video_title %> from <%= @your_channel.title %>. 
+<%= @user.username %>,
 
-Visit <%= slug_url(@their_channel.slug) %> to view their channel.
+<% for like in @likes %>
+    _<%= like.user.username %>_ liked your video *<%= like.likeable.title %>*
+    Visit <%= slug_url(like.user.primary_channel.slug) %> to view their channel.
+
+<% end %>
 
 Keep posting the goodness.
 
-mosey.tv
+moziy.com
