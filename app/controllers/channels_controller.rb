@@ -48,6 +48,10 @@ class ChannelsController < ApplicationController
   def show_root
     @channel = Channel.default
 
+    if logged_in?
+      redirect_to slug_path(@channel)
+    end
+
     set_title @channel.title
     render :layout => "player"
   end
