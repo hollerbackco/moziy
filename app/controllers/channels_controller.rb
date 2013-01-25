@@ -49,7 +49,7 @@ class ChannelsController < ApplicationController
     @channel = Channel.default
 
     if logged_in?
-      redirect_to slug_path(@channel)
+      redirect_to slug_path(@channel.slug)
       return
     end
 
