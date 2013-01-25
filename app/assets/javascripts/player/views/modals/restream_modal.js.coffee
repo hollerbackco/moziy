@@ -2,7 +2,7 @@ App.Views.RestreamModal = Backbone.View.extend
   template: HandlebarsTemplates['player/templates/restream_modal']
 
   initialize: ->
-    _.bindAll this, "restream"
+    _.bindAll this, "restream", "show"
     @listenTo App.vent, "modals:close", @close
 
     @render()
