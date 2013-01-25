@@ -4,7 +4,6 @@ App.Views.LoginModal = Backbone.View.extend
   initialize: ->
     _.bindAll this, "show", "close"
 
-    @listenTo App.vent, "modals:login", @show
     @listenTo App.vent, "modals:close", @close
 
     @render()

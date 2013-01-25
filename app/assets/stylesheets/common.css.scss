@@ -24,6 +24,13 @@ background-color: #EEE;
 -webkit-border-radius: 8px;
 }
 
+.logo-moziy {
+  display: block;
+  text-indent: -9999px;
+  width: 100px;
+  height: 23px;
+  background: image-url('moziy-logo.png') transparent top left no-repeat;
+}
 
 /*--- buttons*/
 button,

@@ -7,6 +7,10 @@ class App.Controllers.MainController
     App.vent.on "airing:restream", @restreamAiring
     App.vent.on "channel:follow", @followChannel
     App.vent.on "airing:add", @addAiring
+    App.vent.on "player:mute", @mute, this
+    App.vent.on "modals:restream", @showRestreamModal, this
+    App.vent.on "modals:login", @showLoginModal, this
+    App.vent.on "modals:add", @showAddModal, this
 
     $("#mute").click ->
       $(this).toggleClass("on")
@@ -15,17 +19,27 @@ class App.Controllers.MainController
   notice: (msg) ->
     $("#alert").html(msg).show().delay(2000).fadeOut(300)
 
-  followChannel: (channel) ->
-    @notice "Followed #{channel.get 'title'}"
+  showAddModal: ->
+    @authenticate App.modals.add.show
 
-    App.currentUser.follow(channel).done (results) ->
-      channel.set("channel_subscribers_count", results.count)
+  showRestreamModal: ->
+    @authenticate App.modals.restream.show
+
+  showLoginModal: ->
+    App.modals.login.show()
+
+  followChannel: (channel) ->
+    @authenticate ->
+      @notice "Followed #{channel.get 'title'}"
+
+      App.currentUser.follow(channel).done (results) ->
+        channel.set("channel_subscribers_count", results.count)
 
   likeVideo: (airing) ->
-    alert_message = "You liked <div>#{airing.get('title')}</div>"
-    @notice alert_message
-
-    App.currentUser.like airing
+    @authenticate ->
+      alert_message = "You liked <div>#{airing.get('title')}</div>"
+      @notice alert_message
+      App.currentUser.like airing
 
   restreamAiring: (airing, channel) ->
     if App.currentUser?
@@ -41,4 +55,13 @@ class App.Controllers.MainController
       @notice "<div>Error adding</div>"
 
   mute: ->
+    @notice "muted"
     App.playerManager.toggleMute()
+
+  authenticate: (callback) ->
+    if App.currentUser.loggedIn()
+      callback()
+    else
+      @showLoginModal()
+
+

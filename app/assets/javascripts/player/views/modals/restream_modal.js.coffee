@@ -3,7 +3,6 @@ App.Views.RestreamModal = Backbone.View.extend
 
   initialize: ->
     _.bindAll this, "restream"
-    @listenTo App.vent, "modals:restream", @show
     @listenTo App.vent, "modals:close", @close
 
     @render()

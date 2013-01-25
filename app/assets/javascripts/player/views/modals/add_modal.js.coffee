@@ -8,7 +8,6 @@ App.Views.AddModal = Backbone.View.extend
   initialize: ->
     _.bindAll this, "show", "close", "add"
 
-    @listenTo App.vent, "modals:add", @show
     @listenTo App.vent, "modals:close", @close
 
     @render()
