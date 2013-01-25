@@ -1,3 +1,3 @@
 class ApplicationMailer < ActionMailer::Base
-  self.default :from => "\"mosey.tv\" <moses@mosey.tv>"
+  self.default :from => "\"moziy.com\" <moziy@moziy.com>"
 end

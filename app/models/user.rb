@@ -27,7 +27,7 @@ class User < ActiveRecord::Base
   has_one :facebook_channel, :class_name => "Channel::Facebook", :foreign_key => "creator_id"
   has_one :twitter_channel, :class_name => "Channel::Twitter", :foreign_key => "creator_id"
 
-  has_many :subscriptions, order: "created_at ASC"
+  has_many :subscriptions, order: "last_added_airing_at DESC"
   has_many :unread_subscriptions, class_name: "Subscription",
     conditions: ['unread_count > ?', 0]
   has_many :read_subscriptions, class_name: "Subscription", conditions: {unread_count: 0}

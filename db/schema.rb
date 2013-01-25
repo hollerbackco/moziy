@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130120060431) do
+ActiveRecord::Schema.define(:version => 20130125223516) do
 
   create_table "airings", :force => true do |t|
     t.integer  "video_id"
@@ -88,11 +88,13 @@ ActiveRecord::Schema.define(:version => 20130120060431) do
   create_table "subscriptions", :force => true do |t|
     t.integer  "user_id"
     t.integer  "channel_id"
-    t.datetime "created_at",                  :null => false
-    t.datetime "updated_at",                  :null => false
-    t.integer  "unread_count", :default => 0
+    t.datetime "created_at",                                              :null => false
+    t.datetime "updated_at",                                              :null => false
+    t.integer  "unread_count",         :default => 0
+    t.datetime "last_added_airing_at", :default => '2013-01-25 22:45:57', :null => false
   end
 
+  add_index "subscriptions", ["last_added_airing_at"], :name => "index_subscriptions_on_last_added_airing_at"
   add_index "subscriptions", ["user_id"], :name => "index_subscriptions_on_user_id"
 
   create_table "users", :force => true do |t|

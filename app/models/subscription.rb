@@ -6,6 +6,7 @@ class Subscription < ActiveRecord::Base
 
   delegate :title, :description, :creator, :slug,  to: :channel
 
+  after_initialize :set_last_added_to_now
   after_create :update_unread_count!
 
   def cover_art
@@ -20,6 +21,15 @@ class Subscription < ActiveRecord::Base
     channel.subscriptions_count
   end
 
+  def increment_unread_count!
+    set_last_added_to_now
+    update_unread_count!
+  end
+
+  def decrement_unread_count!
+    update_unread_count!
+  end
+
   def update_unread_count!
     update_attribute(:unread_count, channel.airings.unread_by(user).count)
   end
@@ -30,5 +40,11 @@ class Subscription < ActiveRecord::Base
       methods: [:channel_subscribers_count, :slug, :title, :description, :creator, :cover_art]
     }.merge options
     super
+  end
+
+  private
+
+  def set_last_added_to_now
+    self.last_added_airing_at = Time.now
   end
 end

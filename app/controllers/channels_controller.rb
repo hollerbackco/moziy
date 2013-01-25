@@ -18,23 +18,28 @@ class ChannelsController < ApplicationController
   end
 
   def show
-    @channel = params.key?(:name) ? Channel.find_by_slug(params[:name]) : Channel.default
+    @channel = params.key?(:name) ?
+      Channel.find_by_slug(params[:name]) : logged_in? ?
+        current_user.subscriptions.first.as_json : Channel.default
 
     if params[:v] and @channel.airings.exists? params[:v]
       @first_airing_id = params[:v]
     end
 
     begin
-      #@channel.crawl(50) if @channel.needs_crawl?
+      explore_scope = Channel
 
-      @explore_channels = Channel.all.keep_if {|c| c.airings.any? }
+      if logged_in?
+        @channel_list = current_user.channel_list
+        @my_channels = current_user.channels
 
-      @unread_channels = current_user.unread_channels.publik if logged_in?
-      @channels = if logged_in?
-                    current_user.read_channels.publik
-                  else
-                    Channel.publik.all(:order => "subscriptions_count DESC, updated_at DESC")
-                  end
+        not_ids = @channel_list.map {|s| s.channel_id }
+        not_ids = not_ids + @my_channels.map {|c| c.id}
+
+        explore_scope = explore_scope.where("channels.id NOT IN (?)", not_ids)
+      end
+
+      @explore_channels = explore_scope.all.keep_if {|c| c.airings.any? }
 
       set_title @channel.title
       render :layout => "player"

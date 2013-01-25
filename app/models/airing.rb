@@ -14,11 +14,11 @@ class Airing < ActiveRecord::Base
 
   delegate :title, :source_id, :source_name, :note_count, to: :video
 
-  after_create :update_subscription_unread_count
-  after_destroy :update_subscription_unread_count
+  after_create :increment_counts
+  after_destroy :decrement_counts
 
   state_machine :initial => :suggestion do
-    after_transition to: :archived, do: :update_subscription_unread_count
+    after_transition to: :archived, do: :decrement_counts
     event :go_live do
       transition all => :live
     end
@@ -64,7 +64,11 @@ class Airing < ActiveRecord::Base
 
   private
 
-  def update_subscription_unread_count
-    channel.subscriptions.each{|s| s.update_unread_count!}
+  def increment_counts
+    channel.subscriptions.each{|s| s.increment_unread_count!}
+  end
+
+  def decrement_counts
+    channel.subscriptions.each {|s| s.decrement_unread_count!}
   end
 end
