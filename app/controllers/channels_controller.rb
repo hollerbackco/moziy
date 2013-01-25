@@ -50,6 +50,7 @@ class ChannelsController < ApplicationController
 
     if logged_in?
       redirect_to slug_path(@channel)
+      return
     end
 
     set_title @channel.title
