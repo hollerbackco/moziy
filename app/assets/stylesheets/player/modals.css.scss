@@ -51,13 +51,14 @@
     .channel-item {
       cursor: pointer;
       border: 1px solid #eee;
-      padding: 15px 20px;
 
       &:hover {
         background: #efefef;
       }
 
       img {
+        width: 48px;
+        height: 48px;
         float: left;
         margin-right: 10px;
       }
@@ -113,6 +114,7 @@
       bottom: 0;
     }
     .modal-footer {
+      padding: 10px 20px;
       label {
         margin-top: 0;
       }

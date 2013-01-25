@@ -16,18 +16,15 @@
       {{title}}
     </div>
     <div class="meta">
+      <div id="video-parent">
+        <a class="channel-from">{{ channel.slug }}</a>
+        {{#parent}}
+          <i class="restream" />
+          <a class="restream-from" href="{{channel.url}}"> {{ channel.title }} </a>
+        {{/parent}}
+      </div>
       <div id="video-notes">
         {{note_count}} notes
-      </div>
-      <div id="video-parent">
-        {{#if parent}}
-          {{#parent}}
-            <span class="label">restreamed from</span>
-            <a class="restream-from" href="{{channel.url}}"> {{ channel.title }} </a>
-          {{/parent}}
-        {{else}}
-          <a class="channel-from">{{ channel.slug }}</a>
-        {{/if}}
       </div>
     </div>
   </div>

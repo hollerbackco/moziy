@@ -97,8 +97,16 @@
       font-size: 13px;
 
       #video-parent {
+        float: right;
+        text-align: right;
+        cursor: pointer;
         color: #666;
         a {font-weight: bold}
+        i {
+          position: relative;
+          top: 5px;
+          margin-top: -10px;
+        }
       }
 
       .channel-from,
@@ -107,8 +115,6 @@
         text-decoration: none;
       }
       #video-notes {
-        float: right;
-        text-align: right;
         cursor: pointer;
         font-weight: bold;
       }
@@ -133,24 +139,18 @@
       position: relative;
       cursor: pointer;
 
-      &:hover {
-        #current-channel-followers {
-          display: block;
-        }
-      }
     }
 
     #current-channel-followers {
-      display: none;
       position: absolute;
       bottom: 0;
-      top: 0;
       right: 0;
       left: 0;
-      padding: 60px 5px 0;
+      padding: 10px 0;
       color: #000;
-      background: rgba(255,255,255,.6);
+      background: rgba(255,255,255,.8);
       text-align: center;
+
       #current-channel-name {
         font-weight: bold;
       }
@@ -166,9 +166,6 @@
       }
     }
 
-    #current-channel-owner {
-      color: #666;
-    }
 
     #current-channel-follow {
       position: relative;

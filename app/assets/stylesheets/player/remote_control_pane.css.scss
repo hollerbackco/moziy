@@ -119,7 +119,7 @@
     #channel-menu {
       margin: 0;
       padding: 0;
-      background: #efefef;
+      background: #fff;
       border-top: 1px solid #eee;
       border-bottom: 1px solid #eee;
 
@@ -127,7 +127,6 @@
         float: left;
         margin-right: -1px;
         border-right: 1px solid #eee;
-        background: #efefef;
         color: #666;
         text-align: center;
         cursor: pointer;
@@ -137,7 +136,7 @@
         list-style-type: none;
 
         &:hover {
-          background: #dadada;
+          background: #fafafa;
         }
 
         &:last-child {
@@ -147,7 +146,7 @@
 
         &.active {
           color: #000;
-          background: #eaeaea;
+          background: #fafafa;
           font-weight: bold;
         }
       }
