@@ -23,8 +23,9 @@ class App.Controllers.MainController
   showAddModal: ->
     @authenticate App.modals.add.show
 
-  showRestreamModal: ->
-    @authenticate App.modals.restream.show
+  showRestreamModal: (airing) ->
+    @authenticate =>
+      App.modals.restream.show(airing)
 
   showLoginModal: ->
     App.modals.login.show()
