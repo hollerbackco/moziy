@@ -26,6 +26,8 @@ gem 'carrierwave'
 gem 'embedly'
 gem 'mini_fb'
 
+# Analytics
+gem 'intercom-rails', '~> 0.2.11'
 
 group :production do
   gem 'pg'
