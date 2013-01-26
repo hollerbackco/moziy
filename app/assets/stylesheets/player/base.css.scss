@@ -21,6 +21,17 @@
   }
 
   form {
+    &.has-errors {
+      input[type=text] {
+        border: 1px solid red;
+      }
+    }
+    .errors {
+      &>.error {
+        margin-top: 10px;
+      }
+    }
+
     fieldset {
       border: 0;
       padding: 10px 0;

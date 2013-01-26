@@ -7,6 +7,7 @@ class App.Controllers.MainController
     App.vent.on "airing:restream", @restreamAiring
     App.vent.on "channel:follow", @followChannel
     App.vent.on "airing:add", @addAiring
+    App.vent.on "invite:request", @requestInvite, this
     App.vent.on "player:mute", @mute, this
     App.vent.on "modals:restream", @showRestreamModal, this
     App.vent.on "modals:login", @showLoginModal, this
@@ -33,10 +34,25 @@ class App.Controllers.MainController
   showInviteModal: ->
     App.modals.invite.show()
 
+  requestInvite: (email,opts={}) ->
+    post = $.ajax
+      url: "/invite"
+      type: "POST"
+      data:
+        email: email
+
+    post.done (results) =>
+      if results.success
+        opts.success() if opts.success?
+      else
+        opts.error(results.errors) if opts.error?
+
+    post.fail =>
+      @fivehundred()
+
+
   followChannel: (channel) ->
     @authenticate =>
-      @notice "Followed #{channel.get 'title'}"
-
       App.currentUser.follow(channel).done (results) ->
         channel.set("channel_subscribers_count", results.count)
 
@@ -69,4 +85,6 @@ class App.Controllers.MainController
     else
       @showLoginModal()
 
+  fivehundred: ->
+    @notice "Something went wrong"
 

@@ -17,11 +17,6 @@ App.Views.AddModal = Backbone.View.extend
     @$el.html @template()
     @_setupChannels()
 
-    #@channelsListView = new App.Views.ModalChannelList
-      #el: "#addable-channels"
-      #model: App.currentUser.channels
-      #channelClickCallback: @add
-
   show: (airing) ->
     @render()
     @$el.modal("show")

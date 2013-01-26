@@ -1,17 +1,18 @@
 Puretv::Application.routes.draw do
   root :to => "channels#show_root"
 
-  match :terms, :to => "pages#terms"
-  match :terms, :to => "pages#privacy"
+  match :terms, to: "pages#terms"
+  match :terms, to: "pages#privacy"
+  post :invite, to: "invites#create"
 
   # login
   scope :module => :auth do
-    get   :login,   :to => "sessions#new"
-    post  :login,   :to => "sessions#create"
-    match :logout,  :to => "sessions#destroy"
+    get   :login,   to: "sessions#new"
+    post  :login,   to: "sessions#create"
+    match :logout,  to: "sessions#destroy"
 
-    get :register,  :to => "registrations#new"
-    post :register, :to => "registrations#create"
+    get :register,  to: "registrations#new"
+    post :register, to: "registrations#create"
 
     match "oauth/callback" => "oauths#callback"
     match "oauth/:provider" => "oauths#oauth", :as => :auth_at_provider
@@ -66,9 +67,9 @@ Puretv::Application.routes.draw do
   end
 
   scope ":name" do
-    match :chromeless, :to => "channels#show_chromeless"
+    match :chromeless, :to => "channels#show_chromeless", as: :chromeless
     match "video", :to => "channels#show", as: :start_video
     match ":v", :to => "channels#show"
-    match "/", :to => "channels#show", :as => :slug
+    match "/", :to => "channels#show", as: :slug
   end
 end

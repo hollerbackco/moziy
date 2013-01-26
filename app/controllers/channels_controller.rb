@@ -19,8 +19,7 @@ class ChannelsController < ApplicationController
 
   def show
     @channel = params.key?(:name) ?
-      Channel.find_by_slug(params[:name]) : logged_in? ?
-        current_user.subscriptions.first.as_json : Channel.default
+      Channel.find_by_slug(params[:name]) : default_channel
 
     if params[:v] and @channel.airings.exists? params[:v]
       @first_airing_id = params[:v]
@@ -48,15 +47,16 @@ class ChannelsController < ApplicationController
       session[:from_facebook_return_to] = request.referer
       login_at("facebook")
     end
+
   end
 
   def show_root
-    @channel = Channel.default
-
     if logged_in?
-      redirect_to slug_path(@channel.slug)
+      redirect_to slug_path(default_channel.slug)
       return
     end
+
+    @channel = Channel.default
 
     set_title @channel.title
     render :layout => "player"
@@ -66,7 +66,7 @@ class ChannelsController < ApplicationController
     @channel = Channel.find_by_slug(params[:name])
 
     unless @channel.airings.count > 0
-      redirect_to root_path
+      redirect_to chromeless_path(default_channel.slug)
       return
     end
 
@@ -94,6 +94,12 @@ class ChannelsController < ApplicationController
         format.html {redirect_to slug_path(channel.slug)}
       end
     end
+  end
+
+  private
+
+  def default_channel
+    logged_in? ? current_user.subscriptions.first : Channel.default
   end
 
 end
