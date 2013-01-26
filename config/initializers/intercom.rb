@@ -1,12 +1,13 @@
+#intercom
 IntercomRails.config do |config|
   # == Intercom app_id
-  # 
+  #
   config.app_id = ENV["INTERCOM_APP_ID"] || "dwv93v36"
 
   # == Intercom secret key 
   # This is reuqired to enable secure mode, you can find it on your Intercom 
   # "security" configuration page.
-  # 
+  #
   config.api_secret = "0bjV7Wv1D4waXfIitjouD9jJO4WLAoypjgGEo5P2"
 
   # == Intercom API Key
@@ -20,7 +21,7 @@ IntercomRails.config do |config|
   # If it is `current_user` or `@user`, then you can ignore this
   #
   # config.user.current = Proc.new { current_user }
-  
+
   # == User model class
   # The class which defines your user model
   #
@@ -36,7 +37,15 @@ IntercomRails.config do |config|
   #   :favorite_color => :favorite_color
   # }
 
- 
+  config.user.custom_data = {
+    channel_count: Proc.new { |user| user.channels.count },
+    airings_count: Proc.new { |user| user.airings.count },
+    likes_count: Proc.new { |user| user.likes.count },
+    following_count: Proc.new { |user| user.subscriptions.count },
+    primary_channel: Proc.new { |user| user.primary_channel.slug }
+  }
+
+
   # == Inbox Style
   # This enables the Intercom inbox which allows your users to read their
   # past conversations with your app, as well as start new ones. It is 
@@ -45,7 +54,7 @@ IntercomRails.config do |config|
   #   * :custom attaches the inbox open event to an anchor with an
   #             id of #Intercom.
   #
-  # config.inbox.style = :default 
+  # config.inbox.style = :default
   # config.inbox.style = :custom
 
   # == Inbox Counter
@@ -55,3 +64,6 @@ IntercomRails.config do |config|
   # config.inbox.counter = true
 
 end
+
+#mixpanel
+Rails.configuration.mixpanel_key = ENV["MIXPANEL_APP_ID"] || "6e0b5b5917fea0e3ebaaaaceff55c892"

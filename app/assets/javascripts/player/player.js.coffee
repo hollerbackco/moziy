@@ -61,6 +61,8 @@ class App.PlayerManager
     player.play airing.get "source_id"
     @_notifyPlayers airing
 
+    mixpanel.track "Video:Play"
+
   _stopPlayers: ->
     Backbone.Events.trigger("player:stop")
 

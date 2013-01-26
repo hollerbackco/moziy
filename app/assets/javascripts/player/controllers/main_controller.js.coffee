@@ -5,6 +5,7 @@ class App.Controllers.MainController
 
     App.vent.on "airing:like", @likeVideo
     App.vent.on "airing:restream", @restreamAiring
+    App.vent.on "channel:watch", @watchChannel, this
     App.vent.on "channel:follow", @followChannel
     App.vent.on "airing:add", @addAiring
     App.vent.on "invite:request", @requestInvite, this
@@ -20,6 +21,11 @@ class App.Controllers.MainController
 
   notice: (msg) ->
     $("#alert").html(msg).show().delay(2000).fadeOut(300)
+
+  watchChannel: (channel) ->
+    mixpanel.track "Channel:Watch",
+      slug: channel.get("slug"),
+      id: channel.get("id"),
 
   showAddModal: ->
     @authenticate App.modals.add.show
@@ -56,22 +62,31 @@ class App.Controllers.MainController
       App.currentUser.follow(channel).done (results) ->
         channel.set("channel_subscribers_count", results.count)
 
+      mixpanel.track "Channel:Follow",
+        slug: channel.get("slug"),
+        id: channel.get("id"),
+
   likeVideo: (airing) ->
     @authenticate =>
       alert_message = "You liked <div>#{airing.get('title')}</div>"
       @notice alert_message
       App.currentUser.like airing
 
+      mixpanel.track "Video:Like"
+
   restreamAiring: (airing, channel) ->
     if App.currentUser?
       App.currentUser.restream airing, channel, (msg) =>
         @notice msg
+        mixpanel.track "Video:Restream"
 
   addAiring: (airings) ->
     titleDivs = _.map airings, (airing) ->
       "<div>#{airing.title}</div>"
     if airings.length > 0
       @notice "Added #{titleDivs.join()}"
+
+      mixpanel.track "Add:Video"
     else
       @notice "<div>Error adding</div>"
 

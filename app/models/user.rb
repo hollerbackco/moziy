@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :authentications
 
   has_many :channels, :foreign_key => "creator_id"
+  has_many :airings, through: :channels
 
   has_one :facebook_channel, :class_name => "Channel::Facebook", :foreign_key => "creator_id"
   has_one :twitter_channel, :class_name => "Channel::Twitter", :foreign_key => "creator_id"

@@ -29,6 +29,7 @@ class App.Keyboard
 
   _nextVideo: ->
     App.vent.trigger "player:next"
+    mixpanel.track "Video:Skip"
 
   _toggleMute: ->
     App.vent.trigger "player:mute"
