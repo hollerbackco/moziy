@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :username, :password, :password_confirmation, :authentications_attributes
+  attr_accessible :email, :username, :password, :password_confirmation, :authentications_attributes, :primary_channel, :primary_channel_id
 
   validates :email, :presence => true, :uniqueness => true, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create }
   validates :username, :presence => true, :uniqueness => true, :format => {:with => /^[a-zA-Z0-9_]*[a-zA-Z][a-zA-Z0-9_]*$/}
