@@ -1,7 +1,7 @@
 class InviteRequest < ActiveRecord::Base
   attr_accessible :email, :state
 
-  validates :email, :presence => true, :uniqueness => true
+  validates :email, :presence => true, :uniqueness => true, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create }
   validate :already_user?
 
   state_machine :initial => :requested do

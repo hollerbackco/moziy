@@ -32,6 +32,7 @@ App.Views.InviteModal = Backbone.View.extend
         success: @_success
 
   _success: ->
+    @$("form").addClass "submitted"
 
   _showErrors: (errors) ->
     @$("form").addClass "has-errors"

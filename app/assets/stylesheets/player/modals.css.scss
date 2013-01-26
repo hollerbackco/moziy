@@ -130,6 +130,17 @@
     }
   }
 
+  #invite-modal {
+    .success {
+      display: none
+    }
+
+    form.submitted {
+      .start {display: none;}
+      .success {display: block;}
+    }
+  }
+
   .modal {
     overflow: hidden;
     .close {
