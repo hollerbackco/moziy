@@ -128,8 +128,7 @@ class Channel < ActiveRecord::Base
   def as_json(options={})
     options = {
       methods: [:channel_subscribers_count],
-      only: [:id, :title, :description, :cover_art, :slug],
-      include: [:creator]
+      only: [:id, :title, :description, :cover_art, :slug]
     }.merge options
     super
   end

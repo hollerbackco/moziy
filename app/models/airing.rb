@@ -34,12 +34,16 @@ class Airing < ActiveRecord::Base
   end
 
   def notes_count
-    likes.count + video.airings.count
+    top_node = root? ? self : root
+    likes.count + top_node.self_and_descendants.count
   end
 
   def notes
-    channels = video.airings.map {|a| {type: "Restream", channel: a.channel} }
+    top_node = root? ? self : root
+    channels = [{type: "Add", channel: top_node.channel}]
+    channels = channels + top_node.descendants.map {|a| {type: "Restream", channel: a.channel} }
     channels = channels + likes.map {|like| {type: "Like", channel: like.user.primary_channel} }
+    channels.as_json
   end
 
   def liked_by(user)

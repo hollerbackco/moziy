@@ -14,6 +14,8 @@ App.Views.RestreamItem = Backbone.View.extend
   render: ->
     json = _.extend @model.toJSON(),
       restream: (@type == "Restream")
+      like: (@type == "Like")
+      add: (@type == "Add")
 
     @$el.html @template json
 
