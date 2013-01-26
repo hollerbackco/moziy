@@ -6,7 +6,7 @@ class Subscription < ActiveRecord::Base
 
   delegate :title, :description, :creator, :slug,  to: :channel
 
-  after_initialize :set_last_added_to_now
+  before_create :set_last_added_to_now!
   after_create :update_unread_count!
 
   def cover_art
@@ -22,7 +22,7 @@ class Subscription < ActiveRecord::Base
   end
 
   def increment_unread_count!
-    set_last_added_to_now
+    set_last_added_to_now!
     update_unread_count!
   end
 
@@ -44,7 +44,7 @@ class Subscription < ActiveRecord::Base
 
   private
 
-  def set_last_added_to_now
-    self.last_added_airing_at = Time.now
+  def set_last_added_to_now!
+    update_attribute :last_added_airing_at, Time.now
   end
 end

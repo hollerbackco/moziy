@@ -50,7 +50,7 @@ class VideosController < ApplicationController
   def mark_as_read(video)
     video.mark_as_read! for: current_user
     if @channel.subscribed_by? current_user
-      @channel.subscription_for(current_user).update_unread_count!
+      @channel.subscription_for(current_user).decrement_unread_count!
     end
   end
 
