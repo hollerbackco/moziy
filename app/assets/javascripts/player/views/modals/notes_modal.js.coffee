@@ -13,7 +13,6 @@ App.Views.NotesModal = Backbone.View.extend
     @$el.modal().modal("hide")
     @$el.html @template()
     @restreamList = new App.Views.RestreamList(el: $("#notes-restreams"))
-    @likeList = new App.Views.LikeList(el: $("#notes-likes"))
 
   show: (airing) ->
     @model = airing
@@ -27,6 +26,5 @@ App.Views.NotesModal = Backbone.View.extend
 
   _refreshNotes: ->
     @restreamList.clear()
-    @model.getNotes().done (notes) =>
-      @likeList.refresh notes.likes
-      @restreamList.refresh notes.restreams
+    @model.getNotes().done (msg) =>
+      @restreamList.refresh msg.notes

@@ -5,13 +5,7 @@
       font-size: 16px;
     }
 
-    #notes-likes-list {
-      padding: 15px 20px;
-      font-size: 16px;
-    }
-
-    #restreams-label,
-    #notes-likes-label {
+    #restreams-label {
       display: block;
       background: #ccc;
       color: #fff;
@@ -20,29 +14,61 @@
     }
 
     .restream-item {
-      margin: 15px 20px;
       cursor: pointer;
+      float: left;
+      position: relative;
 
-      .restream-box {
-        border: 1px solid #ccc;
+      .note-type {
+        color: #999;
+        padding: 5px 10px 5px 27px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: #fff;
+        z-index: 3;
+        font-size: 12px;
+        text-transform: uppercase;
+        line-height: 12px;
+        opacity: .9;
+
+        i {
+          left: 5px;
+          top: 2px;
+          position: absolute;
+        }
+      }
+
+      &:hover {
+        .restream-channel-info {
+          text-align: center;
+          display: block;
+        }
       }
 
       .restream-channel-cover-art {
         display: block;
-        float: left;
-        margin-right: 10px
+      }
+
+      .restream-channel-info {
+        color: #000;
+        background: rgba(255,255,255, .8);
+        display: none;
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 2;
       }
 
       .restream-channel-title {
-        padding-top: 7px;
+        padding-top: 55px;
         font-weight: bold;
-        font-size: 16px;
       }
 
       .restream-channel-description {
         color: #666;
         font-style: italic;
-        font-size: 13px;
       }
     }
   }

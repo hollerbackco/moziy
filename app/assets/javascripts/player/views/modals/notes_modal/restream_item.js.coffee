@@ -8,10 +8,14 @@ App.Views.RestreamItem = Backbone.View.extend
 
   initialize: ->
     _.bindAll this, "moreInfo"
+    @type = @options.type
     @render()
 
   render: ->
-    @$el.html @template @model.toJSON()
+    json = _.extend @model.toJSON(),
+      restream: (@type == "Restream")
+
+    @$el.html @template json
 
   moreInfo: ->
     App.vent.trigger "modals:channel", @model

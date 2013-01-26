@@ -1,8 +1,14 @@
-<div class="restream-title label">Restream onto</div>
-<div class="restream-box">
-  <div class="restream-details clearfix">
-    <img class="restream-channel-cover-art" src="{{cover_art.thumb_list.url}}" width=80 height=80 />
-    <div class="restream-channel-title">{{title}}</div>
-    <div class="restream-channel-description">{{description}}</div>
-  </div>
+<div class="note-type">
+  {{#if restream }}
+    <i class="restream" />
+    restream
+  {{else}}
+    <i class="like" />
+    like
+  {{/if}}
+</div>
+<img class="restream-channel-cover-art" src="{{cover_art.thumb_player.url}}" width=150 height=150 />
+<div class="restream-channel-info">
+  <div class="restream-channel-title">{{title}}</div>
+  <div class="restream-channel-followers">{{channel_subscribers_count}} followers</div>
 </div>

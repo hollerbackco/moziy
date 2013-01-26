@@ -42,7 +42,7 @@ class VideosController < ApplicationController
   def notes
     video = @channel.airings.find(params[:id])
 
-    render json: video.notes
+    render json: {notes: video.notes}
   end
 
   private

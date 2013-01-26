@@ -33,11 +33,13 @@ class Airing < ActiveRecord::Base
     state :archived
   end
 
+  def notes_count
+    likes.count + video.airings.count
+  end
+
   def notes
-    {
-      likes: likes.map {|like| like.user.username },
-      restreams: video.airings.map {|a| a.channel}.as_json
-    }
+    channels = video.airings.map {|a| {type: "Restream", channel: a.channel} }
+    channels = channels + likes.map {|like| {type: "Like", channel: like.user.primary_channel} }
   end
 
   def liked_by(user)
