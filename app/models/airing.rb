@@ -12,7 +12,7 @@ class Airing < ActiveRecord::Base
   validates :video_id, :presence => true
   validates :channel_id, :presence => true, :uniqueness => {:scope => [:video_id]}
 
-  delegate :title, :source_id, :source_name, :note_count, to: :video
+  delegate :title, :source_id, :source_name, to: :video
 
   after_create :increment_counts
   after_destroy :decrement_counts
@@ -33,16 +33,16 @@ class Airing < ActiveRecord::Base
     state :archived
   end
 
-  def notes_count
+  def note_count
     top_node = root? ? self : root
     likes.count + top_node.self_and_descendants.count
   end
 
   def notes
     top_node = root? ? self : root
-    channels = [{type: "Add", channel: top_node.channel}]
-    channels = channels + top_node.descendants.map {|a| {type: "Restream", channel: a.channel} }
+    channels = top_node.descendants.map {|a| {type: "Restream", channel: a.channel} }
     channels = channels + likes.map {|like| {type: "Like", channel: like.user.primary_channel} }
+    channels = channels + [{type: "Add", channel: top_node.channel}]
     channels.as_json
   end
 
