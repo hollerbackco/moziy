@@ -8,13 +8,13 @@ IntercomRails.config do |config|
   # This is reuqired to enable secure mode, you can find it on your Intercom 
   # "security" configuration page.
   #
-  config.api_secret = "0bjV7Wv1D4waXfIitjouD9jJO4WLAoypjgGEo5P2"
+  config.api_secret = ENV["INTERCOM_API_SECRET"] || "0bjV7Wv1D4waXfIitjouD9jJO4WLAoypjgGEo5P2"
 
   # == Intercom API Key
   # This is required for some Intercom rake tasks like importing your users;
   # you can generate one at https://www.intercom.io/apps/api_keys.
   #
-  config.api_key = "b952c2c21517e3214067593edcfc146ccc8cf50d"
+  config.api_key = ENV["INTERCOM_API_KEY"] || "b952c2c21517e3214067593edcfc146ccc8cf50d"
 
   # == Curent user name
   # The method/variable that contains the logged in user in your controllers.
