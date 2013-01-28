@@ -17,10 +17,21 @@
       color: #999;
       opacity: .4;
     }
+
+    &.hover {
+      #current-pane{
+        #current-video {
+          display: block;
+        }
+
+        #current-channel {
+          display: block;
+        }
+      }
+    }
   }
 
   #current-pane {
-    display: none;
     position: absolute;
     margin: 10px;
     width: 460px;
@@ -29,6 +40,14 @@
     right: 0;
     top: 0;
 
+    #current-video {display: none;}
+    #current-channel {
+      display: block;
+
+      &.following {
+        display: none;
+      }
+    }
   }
 
   #next-playing {
@@ -52,7 +71,8 @@
   #current-video {
     float: left;
     background: #fff;
-    width: 300px;
+    width: 299px;
+    border-right: 1px solid #ccc;
   }
 
   #currently-playing {
@@ -125,7 +145,6 @@
     margin-left: 300px;
     width: 150px;
     color: black;
-    border-left: 1px solid #ccc;
 
     #current-channel-coverart {
       img {
@@ -152,8 +171,15 @@
       background: rgba(255,255,255,.8);
       text-align: center;
 
-      #current-channel-name {
-        font-weight: bold;
+      span.channel-title { display: inline-block; font-weight: bold }
+      span.follower-count { display: none; }
+
+    }
+
+    &:hover {
+      #current-channel-followers {
+        span.channel-title { display: none; }
+        span.follower-count { display: inline-block; }
       }
     }
 

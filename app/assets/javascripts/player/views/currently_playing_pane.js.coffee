@@ -6,13 +6,11 @@ App.Views.CurrentlyPlayingPane = Backbone.View.extend
     @$el.hoverIntent
       over: ->
         $(this).addClass("hover")
-        $("#current-pane").show()
         $(".mark", this).hide()
       sensitivity: 15
       timeout: 100
       out: ->
         $(this).removeClass("hover")
-        $("#current-pane").hide()
         $(".mark", this).show()
 
     App.vent.on "channel:watch", @updateMark, this

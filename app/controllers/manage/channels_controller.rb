@@ -3,11 +3,9 @@ class Manage::ChannelsController < Manage::BaseController
   before_filter :check_ownership, :except => [:index, :new, :create]
 
   def index
-
     channel = current_user.primary_channel
 
     redirect_to manage_channel_path channel
-
   end
 
   def new
