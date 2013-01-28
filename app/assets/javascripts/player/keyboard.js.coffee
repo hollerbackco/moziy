@@ -6,6 +6,7 @@ class App.Keyboard
     $("html").keydown (e) =>
       @register e, 27, =>
         @_modalsClose()
+
       if ! @_formFocus e
         @register e, 110, =>
           @_nextVideo()
@@ -15,6 +16,9 @@ class App.Keyboard
 
         @register e, 77, =>
           @_toggleMute()
+
+        @register e, 40, =>
+          @_togglePause()
 
   register: (e, key, callback) ->
     if e.which == key
@@ -33,5 +37,8 @@ class App.Keyboard
 
   _toggleMute: ->
     App.vent.trigger "player:mute"
+
+  _togglePause: ->
+    App.vent.trigger "player:pause"
 
 

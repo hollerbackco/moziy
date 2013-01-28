@@ -9,6 +9,8 @@ class App.VimeoPlayer extends App.Player
     Backbone.Events.on("player:mute", @_mute, this)
     Backbone.Events.on("player:unMute", @_unMute, this)
     Backbone.Events.on("player:stop", @_stop, this)
+    Backbone.Events.on("player:play", @_pause, this)
+    Backbone.Events.on("player:pause", @_pause, this)
     super()
 
   _mute: ->
@@ -19,6 +21,11 @@ class App.VimeoPlayer extends App.Player
     @_player.api_setVolume(1) if @_player?
     super()
 
+  _pause: ->
+    @_player.api_play() if @_player?
+
+  _pause: ->
+    @_player.api_pause() if @_player?
 
   _stop: ->
     @_player.api_unload() if @_player?

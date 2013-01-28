@@ -9,6 +9,8 @@ class App.YouTubePlayer extends App.Player
     Backbone.Events.on("player:mute", @_mute, this)
     Backbone.Events.on("player:unMute", @_unMute, this)
     Backbone.Events.on("player:stop", @_stop, this)
+    Backbone.Events.on("player:play", @_play, this)
+    Backbone.Events.on("player:pause", @_pause, this)
     super()
 
   _loadVideo: ->
@@ -24,8 +26,6 @@ class App.YouTubePlayer extends App.Player
       when 3 then break #YT.PlayerState.BUFFERING
       when 5 then break #YT.PlayerState.CUED
 
-  _onPause: ->
-    @_player.playVideo() if @_player?
 
   _unMute: ->
     @_player.unMute() if @_player?
@@ -34,6 +34,12 @@ class App.YouTubePlayer extends App.Player
   _mute: ->
     @_player.mute() if @_player?
     super()
+
+  _pause: ->
+    @_player.pauseVideo() if @_player?
+
+  _play: ->
+    @_player.playVideo() if @_player?
 
   _stop: ->
     @_player.stopVideo() if @_player?

@@ -25,6 +25,6 @@ App.Views.ControlsPane = Backbone.View.extend
     mixpanel.track "Video:Skip"
 
   pause: ->
-    App.vent.trigger "player:togglePause"
+    App.vent.trigger "player:pause"
     mixpanel.track "Player:Pause"
 
