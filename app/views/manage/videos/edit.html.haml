@@ -1,17 +1,13 @@
 #video-manage
   #viewer
-    .holder{:style => "margin: 0 auto"}= sanitize @video.body, :tags => %w(embed iframe p), :attributes => %w(src width height frameborder)
+    .holder{:style => "margin: 0 auto"}
+      = sanitize @airing.video.body, :tags => %w(embed iframe p), :attributes => %w(src width height frameborder)
   #main-content
-    %h1= link_to start_video_url(a.channel.slug, v: a.video.id), start_video_path(a.channel.slug, v: a.video.id)
-    = form_for ['manage', @channel, @video] do |f|
+    %h1= link_to start_video_url(@channel.slug, v: @airing.id), start_video_path(@channel.slug, v: @airing.id)
+    = form_for ['manage', @channel, @airing] do |f|
       .field
         = f.label :title
-        %br
         = f.text_field :title
-      .field
-        = f.label :description
-        %br
-        = f.text_area :description
       .actions
         = f.submit
 :javascript

@@ -12,10 +12,6 @@ class Manage::VideosController < Manage::BaseController
     @videos = @channel.archived_videos
   end
 
-  def new
-    @video = Video.new
-  end
-
   # accepts a list of comma separated links
   def create
     vp = VideoProvider.new params[:links]
@@ -33,13 +29,13 @@ class Manage::VideosController < Manage::BaseController
   end
 
   def edit
-    @video = Video.find(params[:id])
+    @airing = @channel.airings.find(params[:id])
   end
 
   def update
-    @video = Video.find(params[:id])
+    @airing = @channel.airings.find(params[:id])
 
-    if @video.update_attributes(params[:video])
+    if @airing.video.update_attributes(params[:video])
       redirect_to edit_manage_channel_video_path(@channel, @video)
     else
       render :action => :edit
