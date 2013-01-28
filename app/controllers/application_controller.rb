@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   def check_not_logged_in
-    redirect_to current_user if logged_in?
+    redirect_to manage_channels_path if logged_in?
   end
 
 end

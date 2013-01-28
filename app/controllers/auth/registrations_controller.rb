@@ -1,4 +1,5 @@
 class Auth::RegistrationsController < ApplicationController
+  before_filter :check_not_logged_in
 
   # GET /users/new
   # GET /users/new.xml
