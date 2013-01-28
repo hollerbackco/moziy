@@ -9,4 +9,10 @@ ActiveAdmin.register InviteCode do
   end
 
 
+  batch_action :issue do |selection|
+    InviteCode.find(selection).each do |code|
+      code.issue
+    end
+    redirect_to action: :index, notice: "issued #{selection.count}"
+  end
 end
