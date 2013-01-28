@@ -2,7 +2,7 @@
   #viewer
     .holder{:style => "margin: 0 auto"}= sanitize @video.body, :tags => %w(embed iframe p), :attributes => %w(src width height frameborder)
   #main-content
-    = render :partial => 'manage/channels/channel_menu'
+    %h1= link_to start_video_url(a.channel.slug, v: a.video.id), start_video_path(a.channel.slug, v: a.video.id)
     = form_for ['manage', @channel, @video] do |f|
       .field
         = f.label :title
