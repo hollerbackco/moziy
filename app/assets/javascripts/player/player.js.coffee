@@ -31,7 +31,8 @@ class App.PlayerManager
       Backbone.Events.trigger("player:pause")
     else
       @playState = 1
-      Backbone.Events.trigger("player:play")
+      @player._play() if @player?
+      #Backbone.Events.trigger("player:play")
 
   toggleMute: ->
     if @volumeState
@@ -68,8 +69,9 @@ class App.PlayerManager
       @next()
 
   _playerPlay: (player, airing) ->
+    @player = player
     @_stopPlayers()
-    player.play airing.get "source_id"
+    @player.play airing.get "source_id"
     @_notifyPlayers airing
 
     @playState = 1
