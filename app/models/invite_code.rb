@@ -1,5 +1,5 @@
 class InviteCode < ActiveRecord::Base
-  attr_accessible :code, :state
+  attr_accessible :code, :state, :user, :user_id
 
   belongs_to :user
   validates :code, presence: true, uniqueness: true

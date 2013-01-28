@@ -48,6 +48,8 @@ $ ->
 
       App.remoteControlPane = new App.Views.RemoteControlPane(el: "#remote-control-pane")
 
+      App.controlsPane = new App.Views.ControlsPane(el: "#controls-pane")
+
       App.modals =
         channel:  new App.Views.ChannelModal(el: "#channel-modal")
         notes:    new App.Views.NotesModal(el: "#notes-modal")

@@ -163,4 +163,41 @@
     z-index: 100;
   }
 
+  #controls-pane {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    width: 300px;
+    height: 250px;
+
+    .keys {
+      padding: 50px 0;
+      display: none;
+    }
+
+    &.hover {
+      .keys {
+        display: block;
+      }
+    }
+    .row {
+      text-align: center;
+
+      .key {
+        display: inline-block;
+        cursor: pointer;
+        width: 73px;
+        height: 73px;
+        opacity: 1;
+      }
+
+      #controls-left { background: image-url("keyboard/left.png") center center no-repeat; }
+      #controls-up { background: image-url("keyboard/up.png") center center no-repeat; }
+      #controls-down { background: image-url("keyboard/down.png") center center no-repeat; }
+      #controls-right { background: image-url("keyboard/right.png") center center no-repeat; }
+
+    }
+
+  }
+
 }

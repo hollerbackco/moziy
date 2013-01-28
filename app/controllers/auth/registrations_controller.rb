@@ -28,6 +28,8 @@ class Auth::RegistrationsController < ApplicationController
     respond_to do |format|
       if @user.save
         invite_code.use
+        invite_code.user = @user
+        invite_code.save
 
         # subscribe user
         Channel.default.subscribed_by(@user)
