@@ -43,6 +43,7 @@ class App.YouTubePlayer extends App.Player
 
   _stop: ->
     @_player.stopVideo() if @_player?
+    @_player.clearVideo() if @_player?
     super()
 
   _onReady: =>

@@ -2,12 +2,12 @@ class Channel < ActiveRecord::Base
   acts_as_paranoid
 
   belongs_to :creator, :class_name => "User"
-  has_many :airings, :conditions => "airings.state != 'archived'", :order => "position ASC, video_id DESC"
+  has_many :airings, :conditions => "airings.state != 'archived'", :order => "position ASC, airings.created_at DESC"
   has_many :videos, :through => :airings
 
   has_many :likes, :through => :airings
 
-  has_many :archived_airings, :class_name => "Airing", :conditions => "airings.state = 'archived'", :order => "position ASC, video_id DESC"
+  has_many :archived_airings, :class_name => "Airing", :conditions => "airings.state = 'archived'", :order => "position ASC, airings.created_at DESC"
   has_many :archived_videos, :source => :video,  :through => :archived_airings
 
   has_many :subscriptions, :dependent => :destroy

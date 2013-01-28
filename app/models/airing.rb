@@ -2,7 +2,8 @@ class Airing < ActiveRecord::Base
   acts_as_nested_set
   acts_as_readable on: :created_at
 
-  attr_accessible :video, :channel, :parent, :video_id, :channel_id, :parent_id, :state
+  attr_accessible :video, :channel, :parent, :video_id, :channel_id,
+    :parent_id, :state
 
   has_many :likes, as: :likeable
 
@@ -65,7 +66,6 @@ class Airing < ActiveRecord::Base
       ["position = STRPOS(?, ','||video_id||',')", ",#{ids.join(',')},"],
       { :video_id => ids }
     )
-
   end
 
   private
