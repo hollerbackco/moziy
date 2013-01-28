@@ -143,7 +143,7 @@ ActiveRecord::Schema.define(:version => 20130128004104) do
     t.datetime "created_at",                                              :null => false
     t.datetime "updated_at",                                              :null => false
     t.integer  "unread_count",         :default => 0
-    t.datetime "last_added_airing_at", :default => '2013-01-25 22:45:57', :null => false
+    t.datetime "last_added_airing_at", :default => '2013-01-28 02:51:46', :null => false
   end
 
   add_index "subscriptions", ["last_added_airing_at"], :name => "index_subscriptions_on_last_added_airing_at"

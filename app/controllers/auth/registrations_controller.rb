@@ -31,7 +31,9 @@ class Auth::RegistrationsController < ApplicationController
         Channel.default.subscribed_by(@user)
 
         # create a primary channel
-        @user.create_primary_channel(:title => @user.username, :slug => @user.username)
+        channel = @user.channels.create(:title => @user.username, :slug => @user.username)
+        @user.primary_channel = channel
+        @user.save
 
         auto_login(@user)
         format.html { redirect_to(manage_channel_path(channel), :notice => 'Registration successful. Check your email for activation instructions.') }
