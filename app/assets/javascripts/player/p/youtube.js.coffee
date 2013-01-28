@@ -63,9 +63,12 @@ class App.YouTubePlayer extends App.Player
         'onError': @_onError
     }
 
+    $("iframe").contents().find("body").focus ->
+      alert "iframe focus"
+
   _bootstrap: ->
     tag = document.createElement('script')
-    tag.src = "http://www.youtube.com/player_api"
+    tag.src = "//www.youtube.com/player_api"
     firstScriptTag = document.getElementsByTagName('script')[0]
     firstScriptTag.parentNode.insertBefore tag, firstScriptTag
 

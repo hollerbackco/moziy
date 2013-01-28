@@ -11,6 +11,7 @@ class App.PlayerManager
     App.vent.on("channel:watch", @changeChannel, this)
     App.vent.on("player:next", @next, this)
 
+
   changeChannel: (channel, airing_id) ->
     @channel = channel
     @channel.startWatching(airing_id).done @_play

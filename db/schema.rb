@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130126003223) do
+ActiveRecord::Schema.define(:version => 20130128000123) do
 
   create_table "airings", :force => true do |t|
     t.integer  "video_id"
@@ -56,6 +56,14 @@ ActiveRecord::Schema.define(:version => 20130126003223) do
 
   add_index "channels", ["creator_id"], :name => "index_channels_on_creator_id"
   add_index "channels", ["slug"], :name => "index_channels_on_slug", :unique => true
+
+  create_table "invite_codes", :force => true do |t|
+    t.string   "code"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "invite_codes", ["code"], :name => "index_invite_codes_on_code", :unique => true
 
   create_table "invite_requests", :force => true do |t|
     t.string   "email"

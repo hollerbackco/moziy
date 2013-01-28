@@ -16,6 +16,7 @@ gem 'awesome_nested_set'
 gem 'unread'
 gem 'kaminari' # Paginate
 gem 'sorcery'  # Authentication
+gem 'webster'  # Random Dictionary Word
 
 # Image Uploader
 gem 'rmagick'
@@ -26,7 +27,8 @@ gem 'carrierwave'
 gem 'embedly'
 gem 'mini_fb'
 
-# Analytics
+# Admin
+gem 'activeadmin'
 gem 'intercom-rails', '~> 0.2.11'
 
 group :production do
