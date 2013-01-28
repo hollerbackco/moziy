@@ -6,7 +6,7 @@ class Manage::LikesController < Manage::BaseController
   end
 
   def show
-    @video = Airing.find(params[:id]).video
-    set_title @video.title
+    @airing = Airing.find(params[:id])
+    set_title @airing.title
   end
 end

@@ -1,1 +1,2 @@
-= raw @video.body
+= raw @airing.video.body
+%h1= link_to start_video_url(@airing.channel.slug, v: @airing.id), start_video_path(@airing.channel.slug, v: @airing.id)
