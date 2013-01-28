@@ -91,7 +91,6 @@ class App.Controllers.MainController
       @notice "<div>Error adding</div>"
 
   mute: ->
-    @notice "muted"
     App.playerManager.toggleMute()
 
   authenticate: (callback) ->
