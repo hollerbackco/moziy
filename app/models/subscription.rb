@@ -23,6 +23,7 @@ class Subscription < ActiveRecord::Base
 
   def increment_unread_count!
     set_last_added_to_now!
+    save
     update_unread_count!
   end
 
@@ -45,6 +46,6 @@ class Subscription < ActiveRecord::Base
   private
 
   def set_last_added_to_now!
-    update_attribute :last_added_airing_at, Time.now
+    self.last_added_airing_at = Time.now
   end
 end

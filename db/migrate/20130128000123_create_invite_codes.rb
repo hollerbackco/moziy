@@ -1,8 +1,9 @@
 class CreateInviteCodes < ActiveRecord::Migration
   def change
     create_table :invite_codes do |t|
-      t.string :code
       t.integer :user_id
+      t.string :state
+      t.string :code
 
       t.timestamps
     end

@@ -6,10 +6,6 @@
           %li= msg
   %h2 Sign up
   .field
-    = f.label :username
-    %br
-    = f.text_field :username
-  .field
     = f.label :email
     %br
     = f.text_field :email
@@ -17,5 +13,13 @@
     = f.label :password
     %br
     = f.password_field :password
+  .field
+    = f.label :username
+    %br
+    = f.text_field :username
+  .field
+    = label_tag "Registration Code"
+    %br
+    = text_field_tag :code
   .actions
     = f.submit :register, :class => "button primary"
