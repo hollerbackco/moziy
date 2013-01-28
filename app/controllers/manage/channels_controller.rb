@@ -3,7 +3,11 @@ class Manage::ChannelsController < Manage::BaseController
   before_filter :check_ownership, :except => [:index, :new, :create]
 
   def index
-    @channels = current_user.channels
+
+    channel = current_user.primary_channel
+
+    redirect_to manage_channel_path channel
+
   end
 
   def new
@@ -37,8 +41,12 @@ class Manage::ChannelsController < Manage::BaseController
   end
 
   def destroy
-    @channel.destroy
-    redirect_to manage_channels_path
+    if !current_user.primary? @channel
+      @channel.destroy
+      redirect_to manage_channels_path
+    else
+      redirect_to manage_channel_path(@channel), alert: "You cannot delete your first channel "
+    end
   end
 
   private
@@ -47,4 +55,5 @@ class Manage::ChannelsController < Manage::BaseController
     @channel = Channel.find(params[:id])
     redirect_to root_path unless current_user.owns? @channel
   end
+
 end

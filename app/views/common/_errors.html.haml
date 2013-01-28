@@ -1,5 +1,4 @@
 - if object.errors.any?
-  #error_explanation
-    %ul
-      - object.errors.full_messages.each do |msg|
-        %li= msg
+  %ul#error-explanation
+    - object.errors.full_messages.each do |msg|
+      %li= msg

@@ -1,25 +1,22 @@
 = form_for(@user, :url => register_path) do |f|
-  - if @user.errors.any?
-    #error_explanation
-      %ul
-        - @user.errors.full_messages.each do |msg|
-          %li= msg
-  %h2 Sign up
+  - if @user.errors.any? or flash.key? :alert
+    %ul#error-explanation
+      - @user.errors.full_messages.each do |msg|
+        %li= msg
+      - flash.each do |key,msg|
+        %li= msg
+  .field
+    = label_tag "Registration Code"
+    = text_field_tag :code
   .field
     = f.label :email
-    %br
     = f.text_field :email
   .field
     = f.label :password
-    %br
     = f.password_field :password
   .field
     = f.label :username
-    %br
     = f.text_field :username
-  .field
-    = label_tag "Registration Code"
-    %br
-    = text_field_tag :code
   .actions
-    = f.submit :register, :class => "button primary"
+    = f.submit :join, :class => "button primary "
+

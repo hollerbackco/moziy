@@ -48,6 +48,7 @@ button,
   background-color: #fff;
   background-repeat: no-repeat;
   padding: 5px 14px 6px;
+  text-transform: uppercase;
   color: #333;
   font-size: 16px;
   line-height: normal;
@@ -131,6 +132,7 @@ form.button_to {
 
 .field {
   margin-bottom: 20px;
+  position: relative;
 
   input[type=text],
   input[type=password],
@@ -145,20 +147,43 @@ form.button_to {
     border: 1px solid #999;
   }
 
+  label {
+    display: block;
+  }
+
   textarea {
     height: 50px;
   }
+}
+
+.slug-field {
+  label {display: inline-block;}
+  input[type=text] {width: 275px;}
 }
 
 .fields {
   margin-bottom: 60px;
 }
 
+.right {
+  float: right;
+}
 
 #composer {
   margin-bottom: 20px;
 }
 
+#error-explanation {
+  padding: 0;
+  display: 0;
+  list-style-type: none;
+
+  li {
+    padding: 10px 0;
+    margin: 0;
+    color: red;
+  }
+}
 
 i {
   display: inline-block;

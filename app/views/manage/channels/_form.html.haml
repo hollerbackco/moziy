@@ -2,24 +2,21 @@
   = render "common/errors", :object => f.object
   .field
     = f.label :title
-    %br
     = f.text_field :title
   .field
     = f.label :description
-    %br
     = f.text_area :description
+  - if !current_user.primary? @channel
+    .field.slug-field
+      = f.label :slug, "moziy.com/"
+      = f.text_field :slug
   .field
-    = f.label :slug, "Slug (moziy.com/{slug_goes_here})"
-    %br
-    = f.text_field :slug
-  .field
-    = image_tag(@channel.cover_art_url(:thumb_player)) if @channel.cover_art?
-    %br
+    = image_tag(@channel.cover_art_url(:thumb_list))
     = f.label :cover_art
     = f.file_field :cover_art
     = f.hidden_field :cover_art_cache
   .actions
-    = f.submit
-    - unless f.object.new_record?
-      = link_to 'cancel', manage_channel_videos_path(@channel)
-      = link_to 'delete', manage_channel_path(@channel), :method => :delete, :confirm => "Are you sure?"
+    = f.submit "Update Channel", class: "button primary"
+
+    - if !f.object.new_record? and !current_user.primary? @channel
+      = link_to 'delete', manage_channel_path(@channel), :method => :delete, :confirm => "Are you sure?", class: "right"

@@ -2,7 +2,7 @@
   %li{:class => current_page?(archived_manage_channel_videos_path(@channel)) ? "active" : "" }
     = link_to 'Trash', archived_manage_channel_videos_path(@channel)
   %li{:class => current_page?(edit_manage_channel_path(@channel)) ? "active" : "" }
-    = link_to 'Settings', edit_manage_channel_path(@channel)
+    = link_to 'Channel Settings', edit_manage_channel_path(@channel)
   %li
     = link_to 'Watch', "/#{@channel.slug}"
 #secondary-title.clearfix

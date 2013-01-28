@@ -19,8 +19,7 @@ class InviteCode < ActiveRecord::Base
 
   def generate_code
     begin
-      webster = Webster.new
-      self.code = webster.random_word
+      self.code = ReadableRandom.base64(5)
     end while self.class.exists?(code: self.code)
   end
 end

@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.6'
+gem 'rails', '3.2.11'
 gem 'thin'
 
 # Persistance
@@ -17,6 +17,7 @@ gem 'unread'
 gem 'kaminari' # Paginate
 gem 'sorcery'  # Authentication
 gem 'webster'  # Random Dictionary Word
+gem 'paranoia'
 
 # Image Uploader
 gem 'rmagick'
@@ -30,6 +31,7 @@ gem 'mini_fb'
 # Admin
 gem 'activeadmin'
 gem 'intercom-rails', '~> 0.2.11'
+gem 'readable_random'
 
 group :production do
   gem 'pg'

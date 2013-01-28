@@ -23,7 +23,7 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :authentications
 
   belongs_to :primary_channel, class_name: "Channel"
-  has_many :channels, :foreign_key => "creator_id", :dependent => :destroy
+  has_many :channels, :foreign_key => "creator_id", :order => "created_at ASC", :dependent => :destroy
   has_many :airings, through: :channels
 
   #has_one :facebook_channel, :class_name => "Channel::Facebook", :foreign_key => "creator_id"
@@ -92,5 +92,9 @@ class User < ActiveRecord::Base
   def as_json(options={})
     options = {only: [:username], includes: :channels}.merge options
     super
+  end
+
+  def primary?(channel)
+    primary_channel == channel
   end
 end

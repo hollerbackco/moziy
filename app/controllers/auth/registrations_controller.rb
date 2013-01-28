@@ -7,7 +7,7 @@ class Auth::RegistrationsController < ApplicationController
     @user = User.new
 
     respond_to do |format|
-      format.html { }# new.html.erb
+      format.html {}
       format.xml  { render :xml => @user }
     end
   end
@@ -18,7 +18,8 @@ class Auth::RegistrationsController < ApplicationController
     @user = User.new(params[:user])
 
     if !InviteCode.not_used.exists?(code: params[:code])
-      render action: "new", notice: "invalid code"
+      flash.now[:alert] = "Invalid Registration Code"
+      render action: "new"
       return
     end
 

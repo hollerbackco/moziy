@@ -213,7 +213,7 @@ Rails.application.config.sorcery.configure do |config|
                                                                                       # identifier in authentications
                                                                                       # class.
   end
-  
+
   config.external_providers = [:twitter, :facebook]
 
   config.twitter.key = "kdS4VwxPOmL64MgX2qpHnw"
@@ -226,7 +226,7 @@ Rails.application.config.sorcery.configure do |config|
   config.facebook.scope = "email,read_stream,publish_stream"
   config.facebook.callback_url = "http://outlaw.mosey.tv/oauth/callback?provider=facebook"
   config.facebook.user_info_mapping = {:username => "username", :token => "access_token"}
-    
+
   # This line must come after the 'user config' block.
   config.user_class = "User"                                       # define which model authenticates
                                                                                       # with sorcery.
