@@ -23,9 +23,13 @@
         #current-video {
           display: block;
         }
-
         #current-channel {
           display: block;
+
+          #current-channel-followers {
+            span.channel-title { display: none; }
+            span.follower-count { display: inline-block; }
+          }
         }
       }
     }
@@ -176,12 +180,6 @@
 
     }
 
-    &:hover {
-      #current-channel-followers {
-        span.channel-title { display: none; }
-        span.follower-count { display: inline-block; }
-      }
-    }
 
     #current-channel-title {
       font-weight: bold;
