@@ -64,9 +64,12 @@ class Manage::VideosController < Manage::BaseController
      :title => video.title,
      :channel_id => video.channel_id,
      :channel => video.channel,
-     :note_count => video.note_count,
-     :parent => video.parent.channel.as_json
+     :note_count => video.note_count
     }
+    if video.parent.present?
+      obj[:parent] = video.parent.channel.as_json
+    end
+    obj
   end
 
   def create_a_video(v_params)

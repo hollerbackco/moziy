@@ -55,7 +55,7 @@ class VideosController < ApplicationController
   end
 
   def airing_json(video)
-    {
+    obj = {
      :id => video.id,
      :source_name => video.source_name,
      :source_id => video.source_id,
@@ -63,8 +63,11 @@ class VideosController < ApplicationController
      :channel_id => video.channel_id,
      :channel => video.channel,
      :note_count => video.note_count,
-     :parent => video.parent.as_json(:include => [:channel])
     }
+    if video.parent.present?
+      obj[:parent] = video.parent.channel.as_json
+    end
+    obj
   end
 
   def set_channel

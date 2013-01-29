@@ -38,7 +38,7 @@ class ChannelsController < ApplicationController
         explore_scope = explore_scope.where("channels.id NOT IN (?)", not_ids)
       end
 
-      @explore_channels = explore_scope.all.keep_if {|c| c.airings.any? }
+      @explore_channels = explore_scope.where("channels.airings_count > 1").all
 
       set_title @channel.title
       render :layout => "player"

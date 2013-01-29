@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130128072731) do
+ActiveRecord::Schema.define(:version => 20130129013026) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(:version => 20130128072731) do
     t.integer  "score"
     t.string   "slug",                :default => "", :null => false
     t.datetime "deleted_at"
+    t.integer  "airings_count"
   end
 
   add_index "channels", ["creator_id"], :name => "index_channels_on_creator_id"

@@ -36,6 +36,8 @@ class Channel < ActiveRecord::Base
 
   def self.default
     find(1)
+  rescue ActiveRecord::RecordNotFound
+    first
   end
 
   def subscription_for(user)
@@ -140,6 +142,6 @@ class Channel < ActiveRecord::Base
   private
 
   def update_airings_count
-    update_attribute :airings_count, airings.reload.count
+    self.airings_count = airings.reload.count
   end
 end
