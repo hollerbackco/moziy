@@ -17,6 +17,8 @@ class Channel < ActiveRecord::Base
 
   mount_uploader :cover_art, CoverArtUploader
 
+  before_save :update_airings_count
+
   scope :publik, where("private IS NULL")
 
 
@@ -133,5 +135,11 @@ class Channel < ActiveRecord::Base
       only: [:id, :title, :description, :cover_art, :slug]
     }.merge options
     super
+  end
+
+  private
+
+  def update_airings_count
+    update_attribute :airings_count, airings.reload.count
   end
 end

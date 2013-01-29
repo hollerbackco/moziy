@@ -65,7 +65,7 @@ class Manage::VideosController < Manage::BaseController
      :channel_id => video.channel_id,
      :channel => video.channel,
      :note_count => video.note_count,
-     :parent => video.parent.as_json(:include => [:channel])
+     :parent => video.parent.channel.as_json
     }
   end
 

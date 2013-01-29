@@ -37,7 +37,7 @@ App.Views.CurrentAiring = Backbone.View.extend
 
   showRestreamFrom: (e) ->
     e.preventDefault()
-    channel = new App.Models.Channel @model.get("parent").channel
+    channel = new App.Models.Channel @model.get("parent")
     App.vent.trigger "modals:channel", channel
 
   next: ->

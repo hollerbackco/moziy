@@ -72,9 +72,11 @@ class Airing < ActiveRecord::Base
 
   def increment_counts
     channel.subscriptions.each{|s| s.increment_unread_count!}
+    channel.save
   end
 
   def decrement_counts
     channel.subscriptions.each {|s| s.decrement_unread_count!}
+    channel.save
   end
 end
