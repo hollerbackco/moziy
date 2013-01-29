@@ -34,6 +34,13 @@ class Channel < ActiveRecord::Base
     likes.where("likes.created_at > ? and likes.created_at < ?", dayStart, dayEnd)
   end
 
+  def likes_from_last(duration)
+   time_end = DateTime.now
+   time_start = time_end - duration
+
+   likes.where("likes.created_at > ? and likes.created_at < ?", time_start, time_end)
+  end
+
   def all_airings
     airings + archived_airings
   end

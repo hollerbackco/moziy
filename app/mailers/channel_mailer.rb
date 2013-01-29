@@ -1,9 +1,9 @@
 class ChannelMailer < ApplicationMailer
 
-  def liked(channel)
+  def liked(channel, likes)
     @your_channel = channel
     @user = channel.creator
-    @likes = channel.todays_likes
+    @likes = likes
 
     subject = "#{likers_string @likes} liked #{@your_channel.slug}"
 
