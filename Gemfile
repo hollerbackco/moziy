@@ -27,6 +27,7 @@ gem 'carrierwave'
 # Utils
 gem 'embedly'
 gem 'mini_fb'
+gem 'delayed_job_active_record'
 
 # Admin
 gem 'activeadmin'
