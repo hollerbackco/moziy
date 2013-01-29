@@ -30,6 +30,7 @@ class Manage::VideosController < Manage::BaseController
 
   def edit
     @airing = @channel.airings.find(params[:id])
+    set_title @airing.title
   end
 
   def update

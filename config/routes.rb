@@ -33,6 +33,9 @@ Puretv::Application.routes.draw do
 
   # channel management
   scope "/me", :module => :manage, :as => :manage do
+    get "settings", :to => "settings#edit"
+    put "settings", :to => "settings#update"
+
     resources :likes, :only => [:index, :show]
     resources :channels do
       resources :airings, :only => [:create, :destroy] do

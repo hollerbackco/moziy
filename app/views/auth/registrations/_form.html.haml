@@ -14,9 +14,9 @@
   .field
     = f.label :password
     = f.password_field :password
-  .field
-    = f.label :username
-    = f.text_field :username
+  .field.slug-field
+    = f.label :username, "moziy.com/"
+    = f.text_field :username, placeholder: "username"
   .actions
     = f.submit :join, :class => "button primary "
 

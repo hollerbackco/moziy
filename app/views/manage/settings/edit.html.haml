@@ -1,0 +1,13 @@
+#main-content
+  %h1 Settings
+  = form_for @user, url: manage_settings_path do |f|
+    .field
+      = f.label :username
+      = f.text_field :username
+
+    .field
+      = f.label :email
+      = f.text_field :email
+
+    .actions
+      = f.submit :update, class: "button primary"
