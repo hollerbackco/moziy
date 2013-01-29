@@ -1,8 +1,10 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :username, :password, :password_confirmation, :authentications_attributes, :primary_channel, :primary_channel_id
 
-  validates :email, :presence => true, :uniqueness => true, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create }
-  validates :username, :presence => true, :uniqueness => true, :format => {:with => /^[a-zA-Z0-9_]*[a-zA-Z][a-zA-Z0-9_]*$/}
+  validates :email, :presence => true, :uniqueness => { :case_sensitive => false }, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create }
+  validates :username, :presence => true, :uniqueness => { :case_sensitive => false }, :format => {:with => /^[a-zA-Z0-9_]*[a-zA-Z][a-zA-Z0-9_]*$/}
+
+  before_validation :downcase_attributes
 
   acts_as_reader
 
@@ -96,5 +98,12 @@ class User < ActiveRecord::Base
 
   def primary?(channel)
     primary_channel == channel
+  end
+
+  private
+
+  def downcase_attributes
+    self.email = self.email.downcase if self.email.present?
+    self.username = self.username.downcase if self.username.present?
   end
 end
