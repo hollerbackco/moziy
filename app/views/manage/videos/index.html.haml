@@ -2,7 +2,7 @@
   = render :partial => 'manage/channels/channel_menu'
   = render :partial => 'manage/videos/form'
   - if @channel.airings.blank?
-    No videos added yet.
+    .empty No videos added yet.
   - else
     %ul.videos
       = render partial: 'manage/videos/video', collection: @channel.airings, as: :a

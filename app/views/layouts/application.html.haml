@@ -24,7 +24,6 @@
         %section#sidebar
           %ul#menu-options.sidebar-menu
             %li.menu-item=link_to "Likes", manage_likes_path
-            %li.menu-item= link_to "My Settings", root_path
           %ul#my-channels.sidebar-menu
             %li.menu-item= link_to "Create a Stream", new_manage_channel_path
             = render partial: "layouts/application/sidebar_channel_item",
