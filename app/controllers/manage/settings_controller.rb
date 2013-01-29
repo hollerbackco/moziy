@@ -1,4 +1,6 @@
 class Manage::SettingsController < Manage::BaseController
+  before_filter :set_my_channels
+
   def edit
     @user = current_user
   end

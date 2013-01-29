@@ -19,7 +19,7 @@ class ChannelsController < ApplicationController
 
   def show
     @channel = params.key?(:name) ?
-      Channel.find_by_slug(params[:name]) : default_channel
+      Channel.find_by_slug!(params[:name]) : default_channel
 
     if params[:v] and @channel.airings.exists? params[:v]
       @first_airing_id = params[:v]
@@ -48,6 +48,8 @@ class ChannelsController < ApplicationController
       login_at("facebook")
     end
 
+  rescue ActiveRecord::RecordNotFound
+    redirect_to slug_path(Channel.default.slug)
   end
 
   def show_root
@@ -63,7 +65,7 @@ class ChannelsController < ApplicationController
   end
 
   def show_chromeless
-    @channel = Channel.find_by_slug(params[:name])
+    @channel = Channel.find_by_slug!(params[:name])
 
     unless @channel.airings.count > 0
       redirect_to chromeless_path(default_channel.slug)
@@ -72,6 +74,9 @@ class ChannelsController < ApplicationController
 
     set_title @channel.title
     render :layout => "player"
+
+  rescue ActiveRecord::RecordNotFound
+    redirect_to slug_path(Channel.default.slug)
   end
 
   def subscribe
