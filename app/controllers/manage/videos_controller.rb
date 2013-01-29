@@ -54,7 +54,6 @@ class Manage::VideosController < Manage::BaseController
     render :text => true
   end
 
-
   private
 
   def airing_json(video)
