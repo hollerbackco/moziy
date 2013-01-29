@@ -3,8 +3,8 @@
   %span.followers= pluralize @channel.subscriptions.count, "follower"
 %ul#secondary-menu.clearfix
   %li
-    = link_to 'Watch Channel', "/#{@channel.slug}"
+    = link_to 'Watch Stream', "/#{@channel.slug}"
   %li{:class => current_page?(edit_manage_channel_path(@channel)) ? "active" : "" }
-    = link_to 'Channel Settings', edit_manage_channel_path(@channel)
+    = link_to 'Stream Settings', edit_manage_channel_path(@channel)
   %li{:class => current_page?(archived_manage_channel_videos_path(@channel)) ? "active" : "" }
     = link_to 'Trash', archived_manage_channel_videos_path(@channel)

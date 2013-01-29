@@ -2,7 +2,7 @@
 
 <% for like in @likes %>
     _<%= like.user.username %>_ liked your video *<%= like.likeable.title %>*
-    Visit <%= slug_url(like.user.primary_channel.slug) %> to view their channel.
+    Visit <%= slug_url(like.user.primary_channel.slug) %> to view their stream.
 
 <% end %>
 
