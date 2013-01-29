@@ -58,7 +58,7 @@ class Manage::VideosController < Manage::BaseController
   private
 
   def airing_json(video)
-    {
+    obj = {
      :id => video.id,
      :source_name => video.source_name,
      :source_id => video.source_id,
