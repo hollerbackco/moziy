@@ -1,4 +1,8 @@
 Puretv::Application.routes.draw do
+  get "settings/edit"
+
+  get "settings/update"
+
   ActiveAdmin.routes(self)
   devise_for :admin_users, ActiveAdmin::Devise.config
 
