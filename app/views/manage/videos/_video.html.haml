@@ -4,7 +4,7 @@
   .meta
     - if a.parent.present?
       = link_to a.parent.channel.slug, slug_path(a.parent.channel.slug)
-    = link_to start_video_url(a.channel.slug, v: a.video.id), start_video_path(a.channel.slug, v: a.video.id),
+    = link_to start_video_url(a.channel.slug, v: a.id), start_video_path(a.channel.slug, v: a.id),
       class: "permalink"
   .actions
     = button_to (a.archived? ? "recover" : "delete"),
