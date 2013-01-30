@@ -3,7 +3,6 @@ class Manage::AiringsController < ApplicationController
   before_filter :verify_ownership
 
   def create
-
     if params[:video_id]
 
       from = Airing.find(params[:video_id])
@@ -16,15 +15,18 @@ class Manage::AiringsController < ApplicationController
 
         ChannelMailer.reaired(@channel, from.channel, video.title).deliver
 
+        Activity.add :airing_restream,
+          actor: from.parent.channel,
+          subject: from,
+          secondary_subject: from.channel
+
         re = {
           :success => true,
           :channel_title => @channel.title
         }
       else
-
         re = {:success => false, :msg => "already exists"}
       end
-
     else
       re = {:success => false, :msg => "not right params"}
     end

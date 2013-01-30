@@ -4,6 +4,7 @@ class Manage::BaseController < ActionController::Base
   layout "application"
   before_filter :set_title
   before_filter :require_login
+  before_filter :set_my_channels
 
   # excepts a string:title
   # =>  if title, use the string as the page title

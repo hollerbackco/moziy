@@ -1,0 +1,10 @@
+#video-manage
+  = render :partial => 'manage/channels/channel_menu'
+  - if @activities.blank?
+    .empty No activity yet.
+  - else
+    %ul.activities
+      - for activity in @activities
+        = render partial: "manage/activities/#{activity.event_type}",
+          locals: {activity: activity}
+

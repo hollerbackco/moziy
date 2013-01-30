@@ -5,6 +5,7 @@ class Airing < ActiveRecord::Base
   attr_accessible :video, :channel, :parent, :video_id, :channel_id,
     :parent_id, :state
 
+  has_many :attachments, class_name: "Activity", as: :subject, order: "created_at DESC"
   has_many :likes, as: :likeable
 
   belongs_to :video #, :counter_cache => true
@@ -48,11 +49,20 @@ class Airing < ActiveRecord::Base
   end
 
   def liked_by(user)
-    if like = likes.find_by_user_id(user.id)
-      like.up
-    else
-      likes.create(user: user).up
+    like = likes.find_by_user_id(user.id)
+
+    unless like
+      like = likes.create(user: user)
     end
+
+    if like.up
+      Activity.add :airing_like,
+        actor: like.user.primary_channel,
+        subject: like.likeable,
+        secondary_subject: like.likeable.channel
+    end
+
+    like
   end
 
   def unliked_by(user)

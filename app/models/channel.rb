@@ -5,6 +5,8 @@ class Channel < ActiveRecord::Base
   has_many :airings, :conditions => "airings.state != 'archived'", :order => "position ASC, airings.created_at DESC"
   has_many :videos, :through => :airings
 
+  has_many :activities, class_name: "Activity", as: :secondary_subject, :order => "created_at DESC"
+
   has_many :likes, :through => :airings
 
   has_many :archived_airings, :class_name => "Airing", :conditions => "airings.state = 'archived'", :order => "position ASC, airings.created_at DESC"

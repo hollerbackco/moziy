@@ -3,7 +3,8 @@ class LikesController < ApplicationController
 
   def create
     airing = channel.airings.find params[:airing_id]
-    if airing.liked_by current_user
+
+    if airing.liked_by(current_user).up?
       render nothing: true, status: :ok
     else
       render nothing: true, status: 400

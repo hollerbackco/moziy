@@ -91,8 +91,4 @@ class Manage::VideosController < Manage::BaseController
   def set_channel
     @channel = Channel.includes(:airings => :video).find(params[:channel_id])
   end
-
-  def my_channels
-    @channels = current_user.channels
-  end
 end

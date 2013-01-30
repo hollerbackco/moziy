@@ -5,9 +5,11 @@ en:
   common:
     title_prefix:    "moziy"
     title_separator: " | "
+
   likes:
     index:
       title:  "my likes"
+
   channels:
     index:
       title:  "channels"
@@ -15,15 +17,21 @@ en:
       title:  "edit"
     new:
       title:  "build a channel"
+
   sessions:
     new:
       title:  "sign in"
     create:
       title:  "sign in"
+
   registrations:
     new:
       title: "join"
+
   settings:
     edit:
       title: "settings"
 
+  activities:
+    index:
+      title: "activities"

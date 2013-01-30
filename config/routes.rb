@@ -1,4 +1,6 @@
 Puretv::Application.routes.draw do
+  get "attachments/index"
+
   get "settings/edit"
 
   get "settings/update"
@@ -38,6 +40,7 @@ Puretv::Application.routes.draw do
 
     resources :likes, :only => [:index, :show]
     resources :channels do
+      resources :activities, only: :index
       resources :airings, :only => [:create, :destroy] do
         member do
           put :archive

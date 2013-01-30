@@ -91,12 +91,19 @@ class ChannelsController < ApplicationController
         format.html {redirect_to channel}
       end
     else
-      current_user.subscriptions.create(:channel => channel)
+      subscription = current_user.subscriptions.create(:channel => channel)
 
-      flash[:success] = "You have subscribed to this channel. "
+      Activity.add :channel_subscribe,
+        actor: subscription.user.primary_channel,
+        subject: subscription,
+        secondary_subject: subscription.channel
+
       respond_to do |format|
         format.json {render json: {subscribed: true, count: channel.subscriptions.count }}
-        format.html {redirect_to slug_path(channel.slug)}
+        format.html do
+          flash[:success] = "You have subscribed to this channel. "
+          redirect_to slug_path(channel.slug)
+        end
       end
     end
   end

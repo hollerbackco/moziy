@@ -56,7 +56,6 @@ class App.Controllers.MainController
     post.fail =>
       @fivehundred()
 
-
   followChannel: (channel) ->
     @authenticate =>
       App.currentUser.follow(channel).done (results) ->

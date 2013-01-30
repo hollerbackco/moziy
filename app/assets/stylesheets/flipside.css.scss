@@ -242,7 +242,9 @@
       }
     }
 
-    .channels, .videos {
+    .channels,
+    .videos,
+    .activities{
       padding: 0;
 
       li {
@@ -257,8 +259,55 @@
       height: 540px;
     }
 
+    .activities {
+      margin: 0px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
 
-    .channels, .videos {
+      .activity {
+        padding: 0;
+        margin: 0;
+        border-bottom: 1px solid #ddd;
+        line-height: 48px;
+
+        i {
+          float: right;
+          position: relative;
+          top: 4px;
+          margin: 10px;
+        }
+
+        .activity-action {
+          color: #666;
+        }
+        a {
+          font-weight: bold;
+        }
+
+        .primary {
+          float: left;
+          margin-right: 15px;
+          width: 48px;
+          height: 48px;
+        }
+        .secondary {
+          float: right;
+          width: 48px;
+          height: 48px;
+        }
+
+        &:last-child {
+          border-bottom: 0;
+        }
+        img {
+          display: block;
+        }
+      }
+    }
+
+    .channels,
+    .videos {
       margin: 0px;
       margin-bottom: 20px;
       border: 1px solid #ddd;

@@ -202,6 +202,10 @@ i {
     background: transparent image-url("icons/heart_sprite.png") top center no-repeat;
   }
 
+  &.follow-white {
+    background: transparent image-url("icons/follow_sprite.png") top center no-repeat;
+  }
+
   &.follow {
     background: transparent image-url("icons/restream_sprite_white.png") top center no-repeat;
   }

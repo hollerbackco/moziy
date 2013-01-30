@@ -11,6 +11,9 @@ class App.Keyboard
         @register e, 110, =>
           @_nextVideo()
 
+        @register e, 20, =>
+          @_togglePause()
+
         @register e, 39, =>
           @_nextVideo()
 
@@ -19,6 +22,7 @@ class App.Keyboard
 
         @register e, 40, =>
           @_togglePause()
+
 
   register: (e, key, callback) ->
     if e.which == key
