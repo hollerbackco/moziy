@@ -264,6 +264,7 @@
       margin-top: 20px;
       margin-bottom: 20px;
       border: 1px solid #ddd;
+      border-right: 0;
 
       .activity {
         padding: 0;
@@ -295,6 +296,7 @@
           float: right;
           width: 48px;
           height: 48px;
+          border-left: 1px solid #ddd;
         }
 
         &:last-child {
@@ -317,7 +319,6 @@
         position: absolute;
         top: 5px;
         right: 10px;
-
       }
 
       #channel-manage .channel a .action {float: right;}
@@ -375,7 +376,14 @@
         cursor: move;
 
         .title {
-          padding-top: 5px;
+          font-size: 14px;
+          font-weight: bold;
+          padding-top: 11px;
+        }
+
+        .parent,
+        .notes {
+          margin-right: 20px;
         }
 
         .image {
@@ -385,7 +393,7 @@
 
         .permalink {
           color: #999;
-          font-size: 11px;
+          font-size: 12px;
         }
 
         &.archived {
