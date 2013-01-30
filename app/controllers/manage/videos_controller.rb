@@ -19,7 +19,7 @@ class Manage::VideosController < Manage::BaseController
 
     airings = video_params.map do |v_params|
       video = create_a_video v_params
-      airing = @channel.airings.create(:video_id => video.id)
+      airing = @channel.airings.create(:video_id => video.id, :position => 0 )
       Activity.add :airing_add, actor: @channel, subject: airing
       airing_json airing
     end
