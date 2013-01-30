@@ -109,16 +109,23 @@ class Channel < ActiveRecord::Base
   end
 
   def next_airing(cid=nil,user=nil)
-    if user and airings.unread_by(user).count > 0
+    next_airing_for_user(user) || next_airing_for_id(cid) || airings.first
+  end
+
+  def next_airing_for_user(user)
+    return if user.blank?
+
+    if airings.unread_by(user).any?
       next_unseen_airing_for_user user
-    elsif cid and airings.exists? cid
-      next_airing_for_id cid
-    else
-      airings.first
+    elsif subscribed_by? user
+      next_since_last_seen_for_user user
     end
   end
 
   def next_airing_for_id(current_id)
+    return if current_id.blank?
+    return if ! airings.exists?(current_id)
+
     ids = airings.map {|a| a.id }
 
     current_index = ids.index current_id.to_i
@@ -129,6 +136,13 @@ class Channel < ActiveRecord::Base
     else
       # give the next video or the first if current_index not set.
       airings.first
+    end
+  end
+
+  def next_since_last_seen_for_user(user)
+    subscription = self.subscription_for user
+    if subscription
+      next_airing_for_id subscription.last_played_id
     end
   end
 

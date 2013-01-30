@@ -46,10 +46,15 @@ class VideosController < ApplicationController
 
   private
 
-  def mark_as_read(video)
-    video.mark_as_read! for: current_user
-    if @channel.subscribed_by? current_user
-      @channel.subscription_for(current_user).decrement_unread_count!
+  def mark_as_read(airing)
+    airing.mark_as_read! for: current_user
+
+    subscription = @channel.subscription_for(current_user)
+
+    if subscription
+      subscription.decrement_unread_count!
+      subscription.last_played = airing
+      subscription.save
     end
   end
 
