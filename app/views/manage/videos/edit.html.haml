@@ -1,14 +1,15 @@
 #video-manage
+  %h1= @airing.title
   #viewer
     .holder{:style => "margin: 0 auto"}
       = sanitize @airing.video.body, :tags => %w(embed iframe p), :attributes => %w(src width height frameborder)
   #main-content
-    %h1= link_to start_video_url(@channel.slug, v: @airing.id), start_video_path(@channel.slug, v: @airing.id)
-    = form_for ['manage', @channel, @airing] do |f|
-      .field
-        = f.label :title
-        = f.text_field :title
-      .actions
-        = f.submit "Update", :class => "button primary"
+    %h2= link_to start_video_url(@channel.slug, v: @airing.id), start_video_path(@channel.slug, v: @airing.id)
+    - if @airing.attachments.any?
+      %ul.activities
+        - for activity in @airing.attachments
+          = render partial: "manage/activities/#{activity.event_type}",
+            locals: {activity: activity}
+
 :javascript
   $("iframe").attr("width", "100%").attr("height", "100%")
