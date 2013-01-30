@@ -4,5 +4,5 @@
     = link_to slug_url(activity.actor.slug) do
       = image_tag(activity.actor.cover_art_url(:thumb_list), class: "primary", width: 48, height: 48)
   %i.follow-white
-  = link_to "/#{activity.actor.slug}", slug_url(activity.actor.slug)
+  = link_to "/#{activity.actor.slug}", slug_url(activity.actor.slug), class: "channel-link"
   %span.activity-action followed your channel

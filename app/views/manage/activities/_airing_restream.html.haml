@@ -6,7 +6,7 @@
     = link_to slug_url(activity.actor.slug) do
       = image_tag(activity.actor.cover_art_url(:thumb_list), class: "primary", width: 48, height: 48)
   %i.restream
-  = link_to "/#{activity.actor.slug}", slug_url(activity.actor.slug)
+  = link_to "/#{activity.actor.slug}", slug_url(activity.actor.slug), class: "channel-link"
   %span.activity-action
     restreamed
   = link_to activity.subject.title, edit_manage_channel_video_path(activity.secondary_subject, activity.subject)

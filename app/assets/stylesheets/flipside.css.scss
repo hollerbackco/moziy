@@ -282,12 +282,18 @@
         }
 
         .activity-action {
-          color: #666;
+          color: #888;
         }
 
         a {
+          color: #888;
+        }
+
+        a.channel-link {
+          color: black;
           font-weight: bold;
         }
+
 
         .primary {
           float: left;
@@ -359,6 +365,7 @@
 
         .channel-link {
           font-weight: bold;
+          margin-right: 20px;
         }
 
         .permalink {
