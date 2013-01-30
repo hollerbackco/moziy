@@ -1,0 +1,13 @@
+%li.activity.restream.clearfix
+  .secondary
+    = link_to slug_path(activity.secondary_subject.slug) do
+      = image_tag(activity.secondary_subject.cover_art_url(:thumb_list), class: "secondary", width: 48, height: 48)
+  .primary
+    = link_to slug_url(activity.actor.slug) do
+      = image_tag(activity.actor.cover_art_url(:thumb_list), class: "primary", width: 48, height: 48)
+  %i.restream
+  = link_to "/#{activity.actor.slug}", slug_url(activity.actor.slug), class: "channel-link"
+  %span.activity-action
+    restreamed this from
+  = link_to slug_path(activity.secondary_subject.slug) do
+    = "/#{activity.secondary_subject.slug}"

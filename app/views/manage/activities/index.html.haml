@@ -5,6 +5,6 @@
   - else
     %ul.activities
       - for activity in @activities
-        = render partial: "manage/activities/#{activity.event_type}",
+        = render partial: "manage/common/activities/#{activity.event_type}",
           locals: {activity: activity}
 

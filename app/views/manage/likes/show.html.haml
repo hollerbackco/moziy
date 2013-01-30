@@ -5,5 +5,5 @@
 - else
   %ul.activities
     - for activity in @airing.history
-      = render partial: "manage/activities/#{activity.event_type}",
+      = render partial: "manage/common/notes/#{activity.event_type}",
         locals: {activity: activity}

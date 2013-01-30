@@ -36,7 +36,8 @@ class Airing < ActiveRecord::Base
   end
 
   def history
-    Activity.where(:subject_id => self_and_descendants, :subject_type => "Airing")
+    top_node = root? ? self : root
+    Activity.where(:subject_id => top_node.self_and_descendants, :subject_type => "Airing")
   end
 
   def note_count
