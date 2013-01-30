@@ -2,8 +2,8 @@
   = image_tag a.video.video_image_url(:thumb_list), class: "image"
   .title= link_to a.video.title, manage_like_path(a)
   .meta
-    %span.channel
-      = link_to a.channel.title, slug_path(a.channel.slug),
-        class: "channel-link"
+    = link_to a.channel.title, slug_path(a.channel.slug),
+      class: "channel-link channel"
+    %span.notes= pluralize a.history.count, "attachments"
     = link_to start_video_url(a.channel.slug, v: a.video.id), start_video_path(a.channel.slug, v: a.video.id),
       class: "permalink"

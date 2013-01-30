@@ -5,9 +5,9 @@
       = sanitize @airing.video.body, :tags => %w(embed iframe p), :attributes => %w(src width height frameborder)
   #main-content
     %h2= link_to start_video_url(@channel.slug, v: @airing.id), start_video_path(@channel.slug, v: @airing.id)
-    - if @airing.attachments.any?
+    - if @airing.history.any?
       %ul.activities
-        - for activity in @airing.attachments
+        - for activity in @airing.history
           = render partial: "manage/activities/#{activity.event_type}",
             locals: {activity: activity}
 

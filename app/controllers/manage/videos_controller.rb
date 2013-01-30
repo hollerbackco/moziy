@@ -17,9 +17,11 @@ class Manage::VideosController < Manage::BaseController
     vp = VideoProvider.new params[:links]
     video_params = vp.get
 
-    airings = video_params.each do |v_params|
-      v = create_a_video v_params
-      airing_json @channel.airings.create(:video_id => v.id)
+    airings = video_params.map do |v_params|
+      video = create_a_video v_params
+      airing = @channel.airings.create(:video_id => video.id)
+      Activity.add :airing_add, actor: @channel, subject: airing
+      airing_json airing
     end
 
     respond_to do |format|

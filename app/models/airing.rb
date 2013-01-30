@@ -35,6 +35,10 @@ class Airing < ActiveRecord::Base
     state :archived
   end
 
+  def history
+    Activity.where(:subject_id => self_and_descendants, :subject_type => "Airing")
+  end
+
   def note_count
     top_node = root? ? self : root
     likes.count + top_node.self_and_descendants.count
