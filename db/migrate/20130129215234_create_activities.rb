@@ -55,7 +55,7 @@ class CreateActivities < ActiveRecord::Migration
 
   def add_activities_for_restreams
     Airing.where("airings.parent_id is not null").all.each do |restream|
-      a = Activity.add :airing_restream, actor: restream.parent.channel, subject: restream, secondary_subject: restream.channel
+      a = Activity.add :airing_restream, actor: restream.channel, subject: restream, secondary_subject: restream.parent.channel
       a.created_at = restream.created_at
       a.updated_at = restream.updated_at
       a.save

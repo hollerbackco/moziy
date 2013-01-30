@@ -271,6 +271,8 @@
         margin: 0;
         border-bottom: 1px solid #ddd;
         line-height: 48px;
+        height: 48px;
+        overflow: hidden;
 
         i {
           float: right;
@@ -282,6 +284,7 @@
         .activity-action {
           color: #666;
         }
+
         a {
           font-weight: bold;
         }

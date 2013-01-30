@@ -16,7 +16,7 @@ class Manage::AiringsController < ApplicationController
         ChannelMailer.reaired(@channel, from.channel, video.title).deliver
 
         Activity.add :airing_restream,
-          actor: from.parent.channel,
+          actor: @channel,
           subject: from,
           secondary_subject: from.channel
 
