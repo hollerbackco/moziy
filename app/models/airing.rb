@@ -16,6 +16,7 @@ class Airing < ActiveRecord::Base
 
   delegate :title, :source_id, :source_name, to: :video
 
+  before_create :set_position_to_default
   after_create :increment_counts
   after_destroy :decrement_counts
 
@@ -93,5 +94,9 @@ class Airing < ActiveRecord::Base
   def decrement_counts
     channel.subscriptions.each {|s| s.decrement_unread_count!}
     channel.save
+  end
+
+  def set_position_to_default
+    self.position = 0
   end
 end
