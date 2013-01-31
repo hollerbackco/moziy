@@ -11,6 +11,10 @@ class Like < ActiveRecord::Base
     update_attribute(:like_flag, true)
   end
 
+  def up?
+    like_flag
+  end
+
   def down
     update_attribute(:like_flag, false)
   end
