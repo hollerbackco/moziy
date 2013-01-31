@@ -4,7 +4,7 @@ App.Views.RemoteControlExploreListItem = Backbone.View.extend
   className: "explore-channel clearfix"
 
   events:
-    "click .watch-button": "watch"
+    "click": "watch"
     "click .follow-button": "follow"
     "click .follow-button.following": "unfollow"
 

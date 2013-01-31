@@ -24,7 +24,7 @@ class Channel < ActiveRecord::Base
 
   scope :publik, where("private IS NULL").where("channels.airings_count > ?", 1)
   scope :explore, reorder("channels.airings_count DESC")
-  scope :explore_for, lambda {|user| not_in = user.following_channels + user.channels; where("channels.id NOT IN (?)", not_in)}
+  scope :explore_for, lambda {|user| not_in = user.following_channels + user.channels; where("channels.id NOT IN (?)", not_in).explore}
 
   def downcase_slug
     self.slug = self.slug.downcase if self.slug.present?
