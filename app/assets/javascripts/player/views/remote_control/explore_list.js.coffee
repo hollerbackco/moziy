@@ -1,12 +1,11 @@
-App.Views.RemoteControlChannelList = Backbone.View.extend
+App.Views.RemoteControlExploreList = Backbone.View.extend
   tagName: "ul"
-
   attributes:
-    class: "channels"
-
-  subviews: []
+    id: "explore-list"
+    class: "clearfix"
 
   initialize: ->
+    @subviews = []
     @render()
 
   show: (@model) ->
@@ -22,9 +21,11 @@ App.Views.RemoteControlChannelList = Backbone.View.extend
     @model.fetch
       success: =>
         @clear()
+
         @model.each (channel) =>
-          item =  new App.Views.RemoteControlChannelListItem
+          item =  new App.Views.RemoteControlExploreListItem
             model: channel
           @$el.append item.$el
           @subviews.push item
+
     this

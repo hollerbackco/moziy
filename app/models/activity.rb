@@ -26,7 +26,6 @@ class Activity < ActiveRecord::Base
       raise ArgumentError, "Argument :subject is mandatory" unless opts.has_key?(:subject)
 
       unless activity = Activity.where({event_type: event_type}.merge(parse_opts(opts))).first
-
         activity = Activity.new(:event_type => event_type)
         activity.actor   = opts[:actor] if opts.has_key?(:actor)
         activity.subject = opts[:subject] if opts.has_key?(:subject)

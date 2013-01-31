@@ -6,8 +6,8 @@ $ ->
       current_user = if bootstrap.current_user? then bootstrap.current_user else {loggedIn:false}
       App.currentUser = new App.Models.CurrentUser current_user
 
-      if bootstrap.channels?
-        App.exploreChannels = bootstrap.channels
+      if bootstrap.explore?
+        @setupExplore(bootstrap.explore)
 
       @setupTitleChanger()
       @setupViews()
@@ -25,6 +25,10 @@ $ ->
 
     navigate: (href, replace=false) ->
       Backbone.history.navigate(href, {replace: replace})
+
+    setupExplore: (explore) ->
+      App.exploreChannels = new App.Models.Channels(explore)
+      App.exploreChannels.url = "/channels.json"
 
     setupKeyboard: ->
       App.keyboard = new App.Keyboard()

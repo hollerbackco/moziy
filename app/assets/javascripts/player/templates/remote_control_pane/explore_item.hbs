@@ -1,0 +1,42 @@
+<div class="header modal-no-padding clearfix">
+  <img class="channel-image" width=125 height=125 src="{{cover_art.thumb_player.url}}" />
+  <div class="channel-info">
+    <div class="channel-title channel-play">
+      {{title}}
+    </div>
+    <div class="channel-description">
+      {{#if description}}
+        {{description}}
+      {{else}}
+        you should follow me
+      {{/if}}
+    </div>
+  </div>
+</div>
+<div class="action-bar clearfix">
+  <div class="part1">
+    <div class="follower-count show-followers">
+      <div class="count">{{channel_subscribers_count}}</div>
+      <div class="label">Followers</div>
+    </div>
+  </div>
+  <div class="part2">
+    <div class="watch-button play-channel">
+      <div class="channel-slug">
+        <div class="slug">/{{slug}}</div>
+        <div class="label">Play</div>
+      </div>
+    </div>
+  </div>
+  <div class="part3">
+    <div class="follow-button button primary action-button">
+      <span class="follow-text">
+        <i class="follow" />
+        follow
+      </span>
+      <span class="following-text">following</span>
+      <span class="unfollow-text">unfollow</span>
+    </div>
+  </div>
+</div>
+

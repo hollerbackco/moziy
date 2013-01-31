@@ -25,3 +25,6 @@ App.Views.RemoteControlChannelListItem = Backbone.View.extend
 
   updateCount: ->
     @$(".unread-count").html @model.get("unread_count")
+
+    if @model.get("unread_count") == 0
+      @$(".unread-count").remove()

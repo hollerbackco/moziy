@@ -32,15 +32,12 @@ class User < ActiveRecord::Base
   #has_one :twitter_channel, :class_name => "Channel::Twitter", :foreign_key => "creator_id"
 
   has_many :subscriptions, order: "last_added_airing_at DESC", :dependent => :destroy
+  has_many :following_channels, through: :subscriptions, class_name: "Channel", source: :channel,
+    order: "subscriptions.last_added_airing_at DESC"
 
   has_many :likes, order: "likes.created_at DESC"
   has_many :liked_airings, through: :likes, source: :likeable, :source_type => "Airing",
     order: "likes.created_at DESC"
-
-
-  def channel_list
-    subscriptions
-  end
 
   def owns?(obj)
     self.id == obj.creator_id

@@ -1,11 +1,22 @@
 class Manage::ChannelsController < Manage::BaseController
   before_filter :set_my_channels
-  before_filter :check_ownership, :except => [:index, :new, :create]
+  before_filter :check_ownership, :except => [:index,:following, :new, :create]
 
   def index
     channel = current_user.primary_channel
+    respond_to do |format|
+      format.html { redirect_to manage_channel_path channel}
+      format.json { render json: @channels}
+    end
+  end
 
-    redirect_to manage_channel_path channel
+  def following
+    channel = current_user.primary_channel
+    @subscriptions = current_user.subscriptions
+    respond_to do |format|
+      format.html { redirect_to manage_channel_path channel}
+      format.json { render json: @subscriptions}
+    end
   end
 
   def new

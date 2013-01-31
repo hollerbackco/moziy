@@ -40,6 +40,9 @@ Puretv::Application.routes.draw do
 
     resources :likes, :only => [:index, :show]
     resources :channels do
+      collection do
+        match :following
+      end
       resources :activities, only: :index
       resources :airings, :only => [:create, :destroy] do
         member do

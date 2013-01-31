@@ -16,9 +16,11 @@ App.Models.CurrentUser = Backbone.Model.extend
 
   setChannels: (channels) ->
     @channels = new App.Models.Channels(channels)
+    @channels.url = "/me/channels.json"
 
   setChannelList: (channels) ->
     @channelList = new App.Models.Channels(channels)
+    @channelList.url = "/me/channels/following.json"
 
   follow: (channel) ->
     get = $.ajax
@@ -30,7 +32,6 @@ App.Models.CurrentUser = Backbone.Model.extend
         @channelList.add channel
       else
         @channelList.remove channel
-
 
   restream: (airing, channel, callback) ->
     $.ajax

@@ -15,16 +15,21 @@ App.Views.RemoteControlChannelMenu = Backbone.View.extend
 
   render: ->
     @$el.html @template()
+
+    @exploreListView = new App.Views.RemoteControlExploreList
+      model: @exploreChannels
+
     @channelListView = new App.Views.RemoteControlChannelList
       model: @homeChannels
-      el: @$(".channels")
+
+    @$container = @$("#channels-container")
 
   showHome: ->
-    @channelListView.show @homeChannels
+    @$container.html @channelListView.show(@homeChannels).$el
 
   showExplore: ->
-    @channelListView.show @exploreChannels
+    @$container.html @exploreListView.render().$el
 
   showMe: ->
-    @channelListView.show @myChannels
+    @$container.html @channelListView.show(@myChannels).$el
 

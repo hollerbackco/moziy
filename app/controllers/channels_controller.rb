@@ -2,18 +2,11 @@ class ChannelsController < ApplicationController
   before_filter :require_login, :only => [:subscribe]
 
   def index
-    @sort = params[:sort]
-    case @sort
-    when nil
-      @user = User.new
-      if logged_in?
-        @channels = current_user.channel_list
-      end
-      @mosey_channel = Channel.default
-    when 'tastemakers'
-      @channels = Channel.publik
-    when 'watchers'
-      @channels = Channel.publik.all(:order => "subscriptions_count DESC, updated_at DESC")
+    @channels = logged_in? ?
+      Channel.publik.explore_for(current_user) :
+      Channel.publik.explore
+    respond_to do |format|
+      format.json { render json: @channels.as_json }
     end
   end
 
@@ -25,28 +18,17 @@ class ChannelsController < ApplicationController
       @first_airing_id = params[:v]
     end
 
-    begin
-      explore_scope = Channel
-
-      if logged_in?
-        @channel_list = current_user.channel_list
-        @my_channels = current_user.channels
-
-        not_ids = @channel_list.map {|s| s.channel_id }
-        not_ids = not_ids + @my_channels.map {|c| c.id}
-
-        explore_scope = explore_scope.where("channels.id NOT IN (?)", not_ids)
-      end
-
-      @explore_channels = explore_scope.where("channels.airings_count > 1").all
-
-      set_title @channel.title
-      render :layout => "player"
-
-    rescue MiniFB::FaceBookError
-      session[:from_facebook_return_to] = request.referer
-      login_at("facebook")
+    if logged_in?
+      @channel_list = current_user.subscriptions
+      @my_channels = current_user.channels
     end
+
+    @explore_channels = logged_in? ?
+      Channel.publik.explore_for(current_user) :
+      Channel.publik.explore
+
+    set_title @channel.title
+    render :layout => "player"
 
   rescue ActiveRecord::RecordNotFound
     redirect_to slug_path(Channel.default.slug)
