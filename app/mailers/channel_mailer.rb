@@ -27,6 +27,7 @@ class ChannelMailer < ApplicationMailer
     @user = receiver_channel.creator
 
     @subscriber = subscriber
+    @subscriber_channel = subscriber.primary_channel
 
     if @user != @subscriber
       mail :to => @user.email,

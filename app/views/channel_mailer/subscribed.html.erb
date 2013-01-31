@@ -4,7 +4,7 @@
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
   </head>
   <body>
-    <p><strong><%= @channel.title %></strong> is entertaining. Proof: <%= @subscriber.username %> just followed it.</p>
+    <p><strong><%= @channel.title %></strong> is entertaining. Proof: <%= link_to @subscriber_channel, slug_url(@subscriber_channel.slug)%> just followed it.</p>
 
     <p>Congrats. Keep it up.</p>
 
