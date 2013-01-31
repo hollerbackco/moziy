@@ -6,7 +6,7 @@ App.Views.RemoteControlExploreListItem = Backbone.View.extend
   events:
     "click .watch-button": "watch"
     "click .follow-button": "follow"
-    "click .follow-button.unfollow": "unfollow"
+    "click .follow-button.following": "unfollow"
 
   initialize: ->
     _.bindAll this, "updateCount", "follow", "unfollow", "watch"
