@@ -32,19 +32,19 @@ class Auth::RegistrationsController < ApplicationController
       invite_code.user = @user
       invite_code.save
 
-      # subscribe user
-      Channel.default.subscribed_by(@user)
-
       # create a primary channel
-      channel = @user.channels.create(:title => @user.username, :slug => @user.username)
-      @user.primary_channel = channel
+      @channel = @user.channels.create(:title => @user.username, :slug => @user.username)
+      @user.primary_channel = @channel
       @user.save
+
+      # subscribe user; happens last because it is the subscriber
+      Channel.default.subscribed_by(@user)
     end
 
     respond_to do |format|
       if @user.valid?
         auto_login(@user)
-        format.html { redirect_to(manage_channel_path(channel), :notice => 'Registration successful.') }
+        format.html { redirect_to(manage_channel_path(@channel), :notice => 'Registration successful.') }
         format.xml { render :xml => @user, :status => :created, :location => @user }
       else
         format.html { render :action => "new" }
