@@ -34,6 +34,9 @@ gem 'activeadmin'
 gem 'intercom-rails', '~> 0.2.11'
 gem 'readable_random'
 
+# Exception Tracker
+gem 'honeybadger'
+
 group :production do
   gem 'pg'
 end
