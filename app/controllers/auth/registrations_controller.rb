@@ -25,22 +25,26 @@ class Auth::RegistrationsController < ApplicationController
 
     invite_code = InviteCode.find(:first, conditions: {code: params[:code]})
 
+    User.transaction do
+      @user.save
+
+      invite_code.use
+      invite_code.user = @user
+      invite_code.save
+
+      # subscribe user
+      Channel.default.subscribed_by(@user)
+
+      # create a primary channel
+      channel = @user.channels.create(:title => @user.username, :slug => @user.username)
+      @user.primary_channel = channel
+      @user.save
+    end
+
     respond_to do |format|
-      if @user.save
-        invite_code.use
-        invite_code.user = @user
-        invite_code.save
-
-        # subscribe user
-        Channel.default.subscribed_by(@user)
-
-        # create a primary channel
-        channel = @user.channels.create(:title => @user.username, :slug => @user.username)
-        @user.primary_channel = channel
-        @user.save
-
+      if @user.valid?
         auto_login(@user)
-        format.html { redirect_to(manage_channel_path(channel), :notice => 'Registration successful. Check your email for activation instructions.') }
+        format.html { redirect_to(manage_channel_path(channel), :notice => 'Registration successful.') }
         format.xml { render :xml => @user, :status => :created, :location => @user }
       else
         format.html { render :action => "new" }
