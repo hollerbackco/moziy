@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130131221456) do
+ActiveRecord::Schema.define(:version => 20130130214523) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -43,15 +43,6 @@ ActiveRecord::Schema.define(:version => 20130131221456) do
   add_index "activities", ["actor_id", "actor_type"], :name => "index_activities_on_actor_id_and_actor_type"
   add_index "activities", ["secondary_subject_id", "secondary_subject_type"], :name => "index_activities_on_secondary_subject_id_and_type"
   add_index "activities", ["subject_id", "subject_type"], :name => "index_activities_on_subject_id_and_subject_type"
-
-  create_table "add_video_requests", :force => true do |t|
-    t.integer  "channel_id"
-    t.string   "urls"
-    t.string   "state"
-    t.text     "msg"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
 
   create_table "admin_users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
