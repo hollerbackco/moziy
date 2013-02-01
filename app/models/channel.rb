@@ -11,7 +11,6 @@ class Channel < ActiveRecord::Base
 
   has_many :archived_airings, :class_name => "Airing", :conditions => "airings.state = 'archived'", :order => "position ASC, airings.created_at DESC"
   has_many :archived_videos, :source => :video,  :through => :archived_airings
-
   has_many :subscriptions, :dependent => :destroy
 
   validates :title, uniqueness: true, presence: true
