@@ -10,7 +10,7 @@ class VideosController < ApplicationController
               @channel.airings.first
             end
 
-    if logged_in?
+    if logged_in? and video
       mark_as_read video
     end
 
@@ -29,8 +29,9 @@ class VideosController < ApplicationController
 
   def next
     if logged_in?
-      former_video = @channel.airings.find(params[:id])
-      mark_as_read former_video
+      if former_video = @channel.airings.find(params[:id])
+        mark_as_read former_video
+      end
     end
 
     video = @channel.next_airing(params[:id], (logged_in? ? current_user : nil))

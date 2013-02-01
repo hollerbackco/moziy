@@ -93,7 +93,8 @@ class ChannelsController < ApplicationController
   private
 
   def default_channel
-    logged_in? ? current_user.subscriptions.first : Channel.default
+    channel = logged_in? ? current_user.subscriptions.first : Channel.default
+    channel || Channel.default
   end
 
 end
