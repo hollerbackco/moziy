@@ -15,6 +15,7 @@ class App.Controllers.MainController
     App.vent.on "modals:add", @showAddModal, this
     App.vent.on "modals:invite", @showInviteModal, this
     App.vent.on "error", @showError, this
+    App.vent.on "fullscreen", @fullscreen, this
 
     $("#mute").click ->
       $(this).toggleClass("on")
@@ -22,6 +23,9 @@ class App.Controllers.MainController
 
   notice: (msg) ->
     $("#alert").html(msg).show().delay(2000).fadeOut(300)
+
+  fullscreen: ->
+    App.fullscreen.toggle()
 
   watchChannel: (channel) ->
     mixpanel.track "Channel:Watch",

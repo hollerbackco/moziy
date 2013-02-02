@@ -8,6 +8,9 @@ class App.Keyboard
         @_modalsClose()
 
       if ! @_formFocus e
+        @register e, 38, =>
+          @_toggleFullscreen()
+
         @register e, 110, =>
           @_nextVideo()
 
@@ -46,3 +49,5 @@ class App.Keyboard
     App.vent.trigger "player:pause"
 
 
+  _toggleFullscreen: ->
+    App.vent.trigger "fullscreen"

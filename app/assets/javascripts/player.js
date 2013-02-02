@@ -25,5 +25,6 @@
 //= require_tree ./player/views
 //= require_tree ./player/controllers
 //= require_tree ./player/models
+//= require_tree ./player/utils
 //= require player/player
 //= require player/channels

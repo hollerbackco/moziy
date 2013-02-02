@@ -3,6 +3,7 @@ App.Views.ControlsPane = Backbone.View.extend
   events:
     "click #controls-right": "nextVideo"
     "click #controls-down": "pause"
+    "click #controls-up": "fullscreen"
 
   initialize: ->
     @render()
@@ -19,6 +20,9 @@ App.Views.ControlsPane = Backbone.View.extend
         @$el.removeClass("hover")
 
     @$(".dropdown-toggle").dropdown()
+
+  fullscreen: ->
+    App.vent.trigger "fullscreen"
 
   nextVideo: ->
     App.vent.trigger "player:next"
