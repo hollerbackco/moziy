@@ -28,4 +28,9 @@ namespace :video do
     end
   end
 
+  desc "cleanup old"
+  task :clean_requests do
+    AddVideoRequest.old.destroy_all
+  end
+
 end

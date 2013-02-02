@@ -8,5 +8,16 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require jquery.hoverIntent.min
+//= require bootstrap-modal
+//= require bootstrap-dropdown
+//= require underscore-min
+//= require backbone-min
 //= require cookie
+
+//= require handlebars.runtime
+//= require_tree ./manage/templates
+//= require_tree ./common/templates
+
+//= require manage/app
+//= require_tree ./common/models
 //= require_tree ./manage

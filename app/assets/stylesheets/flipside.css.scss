@@ -216,6 +216,19 @@
       height: 24px;
       border: 1px solid #ccc;
 
+      .loader {
+        display: none;
+        position: absolute;
+        bottom: 0;
+        right: 130px;
+      }
+
+      &.loading {
+        .loader {
+          display: inline-block;
+        }
+      }
+
       label {
         display: none;
       }
@@ -233,6 +246,7 @@
         border: 0;
         margin: 0;
         padding: 0 20px;
+        width: 130px;
 
         position: absolute;
         top: 0;

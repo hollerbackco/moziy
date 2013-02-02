@@ -213,6 +213,13 @@ i {
   &.on {
     background-position: bottom center;
   }
+
+  &.loader {
+    width: 20px;
+    height: 30px;
+    margin-top: -30px;
+    background: image-url("loader.gif") no-repeat -73px 1px;
+  }
 }
 
 .icon-on {

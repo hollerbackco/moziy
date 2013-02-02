@@ -20,6 +20,7 @@
 //= require player/app
 //= require player/keyboard
 //= require cookie
+//= require_tree ./common/models
 //= require_tree ./player/p
 //= require_tree ./player/views
 //= require_tree ./player/controllers

@@ -14,21 +14,18 @@ class Manage::VideosController < Manage::BaseController
 
   # accepts a list of comma separated links
   def create
-    vp = VideoProvider.new params[:links]
-    video_params = vp.get
 
-    airings = video_params.map do |v_params|
-      video = create_a_video v_params
-      airing = @channel.airings.create(:video_id => video.id, :position => 0 )
-      if airing.valid?
-        Activity.add :airing_add, actor: @channel, subject: airing
-      end
-      airing_json airing
+    if video_request = AddVideoRequest.create(urls: params[:links], channel: @channel)
+      Delayed::Job.enqueue AddVideoJob.new(
+        video_request.urls,
+        video_request.channel.id,
+        video_request.id
+      )
     end
 
     respond_to do |format|
       format.html { redirect_to manage_channel_path(@channel) }
-      format.json { render json: {airings: airings} }
+      format.json { render json: {job: video_request.id} }
     end
   end
 

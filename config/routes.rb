@@ -37,6 +37,7 @@ Puretv::Application.routes.draw do
   scope "/me", :module => :manage, :as => :manage do
     get "settings", :to => "settings#edit"
     put "settings", :to => "settings#update"
+    get "request/status/add_video", :to => "request_status#add_video"
 
     resources :likes, :only => [:index, :show]
     resources :channels do

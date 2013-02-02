@@ -16,6 +16,7 @@ App.Views.AddModal = Backbone.View.extend
     @$el.modal().modal("hide")
     @$el.html @template()
     @_setupChannels()
+    @$button = @$(".button.primary")
 
   show: (airing) ->
     @render()
@@ -29,18 +30,24 @@ App.Views.AddModal = Backbone.View.extend
     id = @$("#channel-id").val()
 
     if urls? and urls != "" and id?
-      get = $.ajax
-        url: "/me/channels/#{id}/videos.json"
-        type: "POST"
-        data:
-          links: urls
+      @loading()
+      video = new App.Models.Video()
+      get = video.create("/me/channels/#{id}/videos", urls)
 
-      get.done (results) =>
-        App.vent.trigger "airing:add", results.airings
+      get.done (msg) =>
+        App.vent.trigger "airing:add", msg
         @_clearForm()
         @close()
+
+      get.fail (msg) =>
+        @close()
+        App.vent.trigger "error", msg
+
     else
       @$(".modal-body").prepend $("<div>").html("Please add a url").delay(200).remove()
+
+  loading: ->
+    @$button.attr "disabled", "disabled"
 
   _clearForm: ->
      @$("#video-urls").val ""

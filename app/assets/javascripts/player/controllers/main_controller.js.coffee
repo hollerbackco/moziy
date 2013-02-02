@@ -14,6 +14,7 @@ class App.Controllers.MainController
     App.vent.on "modals:login", @showLoginModal, this
     App.vent.on "modals:add", @showAddModal, this
     App.vent.on "modals:invite", @showInviteModal, this
+    App.vent.on "error", @showError, this
 
     $("#mute").click ->
       $(this).toggleClass("on")
@@ -79,15 +80,10 @@ class App.Controllers.MainController
         @notice msg
         mixpanel.track "Video:Restream"
 
-  addAiring: (airings) ->
-    titleDivs = _.map airings, (airing) ->
-      "<div>#{airing.title}</div>"
-    if airings.length > 0
-      @notice "Added #{titleDivs.join()}"
-
-      mixpanel.track "Add:Video"
-    else
-      @notice "<div>Error adding</div>"
+  addAiring: (msg) ->
+    titleDivs = "<div>#{msg}</div>"
+    @notice "Added #{titleDivs}"
+    mixpanel.track "Add:Video"
 
   mute: ->
     App.playerManager.toggleMute()
@@ -101,3 +97,5 @@ class App.Controllers.MainController
   fivehundred: ->
     @notice "Something went wrong"
 
+  showError: (msg) ->
+    @notice msg
