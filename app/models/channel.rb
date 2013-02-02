@@ -30,7 +30,7 @@ class Channel < ActiveRecord::Base
   end
 
   def description
-    self[:description] || "i.e. #{airings.first.title}"
+    self[:description].blank? ? "i.e. #{airings.first.title}" : self[:description]
   end
 
   # grab likes from yesterday
