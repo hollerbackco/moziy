@@ -11,8 +11,6 @@ class App.Fullscreen
     else
       @goFullscreen(@el)
 
-      mixpanel.track "Fullscreen"
-
 
   goFullscreen: (element) ->
     if(element.requestFullScreen)
@@ -26,6 +24,8 @@ class App.Fullscreen
       App.disableHistory()
       element.webkitRequestFullScreen(element.AllOW_KEYBOARD_INPUT)
 
+    mixpanel.track "Fullscreen:Open"
+
   cancelFullscreen: (element) ->
     if(document.cancelFullScreen)
       document.cancelFullScreen()
@@ -37,6 +37,7 @@ class App.Fullscreen
       document.webkitCancelFullScreen()
       App.enableHistory()
       @state = 0
+    mixpanel.track "Fullscreen:Close"
 
   updateStatus: ->
     isFullScreen = document.fullscreen || document.mozFullScreen || document.webkitIsFullScreen || false
