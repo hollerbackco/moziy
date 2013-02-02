@@ -1,5 +1,6 @@
 #alert{style: "display:none"}
-
+- if @first_airing
+  %img{style: "display:none;", src: @first_airing.video.video_image_url }
 #channel-modal.modal
 #notes-modal.modal
 #restream-modal.modal

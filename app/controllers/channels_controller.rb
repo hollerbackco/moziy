@@ -15,6 +15,7 @@ class ChannelsController < ApplicationController
       Channel.find_by_slug!(params[:name]) : default_channel
 
     if params[:v] and @channel.airings.exists? params[:v]
+      @first_airing = Airing.find(params[:v])
       @first_airing_id = params[:v]
     end
 
