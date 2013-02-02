@@ -25,7 +25,10 @@ $ ->
       @setupPlayer bootstrap.channel, bootstrap.first_airing_id
 
     navigate: (href, replace=false) ->
-      Backbone.history.navigate(href, {replace: replace})
+      if @navigateEnabled
+        Backbone.history.navigate(href, {replace: replace})
+      else
+        @savedUrl = href
 
     setupExplore: (explore) ->
       App.exploreChannels = new App.Models.Channels(explore)
@@ -41,10 +44,21 @@ $ ->
       App.vent.on "channel:watch", (channel) ->
         $("title").html("#{channel.get "slug"} | moziy")
 
+    disableHistory: ->
+      @navigateEnabled = false
+
+    enableHistory: ->
+      if @savedUrl?
+        App.navigate @savedUrl, true
+      @navigateEnabled = true
+
     setupHistory: ->
+      @navigateEnabled = true
+
       Backbone.history.start
         pushState: true
         root: '/'
+
       App.vent.on "channel:watch", (channel) ->
         App.navigate "#{channel.get "slug"}"
       App.vent.on "airings:play", (airing, channel) ->

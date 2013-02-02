@@ -1,5 +1,6 @@
 class App.Fullscreen
   constructor: ->
+    _.bindAll this, "updateStatus"
     @state = 0 #nonfullscreen
     @el = document.documentElement
     $(@el).bind 'webkitfullscreenchange mozfullscreenchange fullscreenchange', @updateStatus
@@ -14,12 +15,13 @@ class App.Fullscreen
   goFullscreen: (element) ->
     if(element.requestFullScreen)
       @state = 1
-      element.requestFullScreen(element.AllOW_KEYBOARD_INPUT)
+      element.requestFullScreen(element)
     else if(element.mozRequestFullScreen)
       @state = 1
-      element.mozRequestFullScreen(element.AllOW_KEYBOARD_INPUT)
+      element.mozRequestFullScreen(element)
     else if(element.webkitRequestFullScreen)
       @state = 1
+      App.disableHistory()
       element.webkitRequestFullScreen(element.AllOW_KEYBOARD_INPUT)
 
   cancelFullscreen: (element) ->
@@ -31,6 +33,7 @@ class App.Fullscreen
       @state = 0
     else if(document.webkitCancelFullScreen)
       document.webkitCancelFullScreen()
+      App.enableHistory()
       @state = 0
 
   updateStatus: ->
@@ -39,4 +42,4 @@ class App.Fullscreen
     if isFullScreen
       @state = 1
     else
-      @state = 0
+      @cancelFullscreen()
