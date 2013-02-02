@@ -14,10 +14,6 @@
 //= require backbone-min
 //= require cookie
 
-//= require handlebars.runtime
-//= require_tree ./manage/templates
-//= require_tree ./common/templates
-
 //= require manage/app
 //= require_tree ./common/models
 //= require_tree ./manage/views
