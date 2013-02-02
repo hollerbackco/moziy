@@ -20,4 +20,4 @@
 
 //= require manage/app
 //= require_tree ./common/models
-//= require_tree ./manage
+//= require_tree ./manage/views
