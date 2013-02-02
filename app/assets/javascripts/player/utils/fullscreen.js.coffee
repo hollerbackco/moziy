@@ -11,9 +11,7 @@ class App.Fullscreen
     else
       @goFullscreen(@el)
 
-      mixpanel.track "Fullscreen",
-        slug: channel.get("slug"),
-        id: channel.get("id"),
+      mixpanel.track "Fullscreen"
 
 
   goFullscreen: (element) ->
