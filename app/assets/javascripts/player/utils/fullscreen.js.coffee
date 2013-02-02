@@ -14,13 +14,13 @@ class App.Fullscreen
   goFullscreen: (element) ->
     if(element.requestFullScreen)
       @state = 1
-      element.requestFullScreen()
+      element.requestFullScreen(element.AllOW_KEYBOARD_INPUT)
     else if(element.mozRequestFullScreen)
       @state = 1
-      element.mozRequestFullScreen()
+      element.mozRequestFullScreen(element.AllOW_KEYBOARD_INPUT)
     else if(element.webkitRequestFullScreen)
       @state = 1
-      element.webkitRequestFullScreen()
+      element.webkitRequestFullScreen(element.AllOW_KEYBOARD_INPUT)
 
   cancelFullscreen: (element) ->
     if(document.cancelFullScreen)
