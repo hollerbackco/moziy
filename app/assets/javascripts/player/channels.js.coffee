@@ -28,7 +28,7 @@ $ ->
       if @navigateEnabled
         Backbone.history.navigate(href, {replace: replace})
       else
-        @savedUrl = href
+        App.savedUrl = href
 
     setupExplore: (explore) ->
       App.exploreChannels = new App.Models.Channels(explore)
@@ -48,9 +48,9 @@ $ ->
       @navigateEnabled = false
 
     enableHistory: ->
-      if @savedUrl?
-        App.navigate @savedUrl, true
       @navigateEnabled = true
+      if App.savedUrl?
+        App.navigate App.savedUrl, true
 
     setupHistory: ->
       @navigateEnabled = true
