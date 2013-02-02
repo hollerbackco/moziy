@@ -29,6 +29,10 @@ class Channel < ActiveRecord::Base
     self.slug = self.slug.downcase if self.slug.present?
   end
 
+  def description
+    self[:description] || "i.e. #{airings.first.title}"
+  end
+
   # grab likes from yesterday
   def todays_likes
     dayEnd = DateTime.now.beginning_of_day
