@@ -12,7 +12,8 @@
     var channel = new App.Models.Channel(#{@channel.to_json})
 
     var bootstrap = {
-      channel: channel
+      channel: channel,
+      useInvite: false
     }
 
     App.initialize(bootstrap);

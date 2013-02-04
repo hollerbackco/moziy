@@ -20,7 +20,9 @@ $ ->
       if App.currentUser? and App.currentUser.loggedIn()
         App.vent.trigger "login", App.currentUser
       else
-        @setupInvite()
+        if bootstrap.noInvite? and bootstrap.noInvite
+        else
+          @setupInvite()
 
       @setupPlayer bootstrap.channel, bootstrap.first_airing_id
 
