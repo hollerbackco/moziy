@@ -1,7 +1,7 @@
 class ChannelInvite < ActiveRecord::Base
-  attr_accessible :channel_id, :recepient_email, :sender_id, :sent_at, :token
+  attr_accessible :channel_id, :recipient_email, :sender_id, :sent_at, :token
 
-  validates :recepient_email, :presence => true, :uniqueness => { :case_sensitive => false, :scope => [:channel_id] }, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create }
+  validates :recipient_email, :presence => true, :uniqueness => { :case_sensitive => false, :scope => [:channel_id] }, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create }
 
   belongs_to :channel
   belongs_to :sender, class_name: "User"
