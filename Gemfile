@@ -37,10 +37,6 @@ gem 'readable_random'
 # Exception Tracker
 gem 'honeybadger'
 
-group :production do
-  gem 'pg'
-end
-
 group :development do
   gem 'sqlite3'
   gem 'mailcatcher'
@@ -55,7 +51,9 @@ group :assets do
   gem 'handlebars_assets'
 end
 
-group :test do
+group :test, :development do
+  gem 'rspec'
+  gem "rspec-rails", "~> 2.0"
   # Pretty printed test output
   gem 'turn', :require => false
 end

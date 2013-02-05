@@ -42,7 +42,7 @@ class ChannelMailer < ApplicationMailer
     @sender = membership.sender
 
     mail :to => @recipient,
-         :subject => "#{@sender.username} would like you to collaborate on a channel"
+         :subject => "#{@sender.username} has invited you to join a stream"
   end
 
   private

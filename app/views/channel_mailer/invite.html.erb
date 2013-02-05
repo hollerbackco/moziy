@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <p>
+      <strong><%= @sender.username" %></strong> has invited you to join a stream, /<%= @channel.slug %>.
+    </p>
+
+    <p>
+      <%= link_to "Accept Invite", join_channel_url(@token) %>
+    </p>
+
+    <p><a href="<%= join_channel_url(@token) %>">moziy.com</a></p>
+  </body>
+</html>
