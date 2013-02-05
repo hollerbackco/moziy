@@ -44,6 +44,57 @@
     }
   }
 
+  #channel-invite {
+    margin: 20px 0;
+    text-align: center;
+
+    .invite-copy {
+      font-size: 20px;
+    }
+
+    #channel-card {
+      margin: 30px auto;
+      border: 1px solid #eee;
+      width: 500px;
+      text-align: left;
+
+      h2.title {
+        margin-top: 40px;
+        margin-bottom: 0;
+        font-size: 16px;
+      }
+
+      .slug {
+        font-weight: bold;
+        color: #999;
+      }
+
+      .description {
+        margin-top: 15px;
+        font-style: italic;
+      }
+
+      .followers {
+        color: #999;
+        margin-top: 30px;
+        margin-right: 20px;
+        text-align: right;
+      }
+
+    }
+    .button {
+      padding: 10px 30px;
+    }
+    .user {
+      font-weight: bold;
+    }
+    .player {
+      display: block;
+      float: left;
+      margin-right: 20px;
+    }
+  }
+
   .session {
     float: right;
 
@@ -208,7 +259,7 @@
       }
     }
 
-    #add-video {
+    .horizontal-form {
       background: #fff;
       position: relative;
       margin: 20px 0 0;
@@ -258,10 +309,12 @@
 
     .channels,
     .videos,
-    .activities {
+    .activities,
+    .items {
       padding: 0;
       margin-top: 20px;
       margin-bottom: 20px;
+      border: 1px solid #ddd;
 
       li {
         margin: 0 0 10px 0;
@@ -276,7 +329,6 @@
     }
 
     .activities {
-      border: 1px solid #ddd;
       border-right: 0;
 
       .activity {
@@ -330,9 +382,7 @@
       }
     }
 
-    .channels,
-    .videos {
-      border: 1px solid #ddd;
+    .items {
 
       .actions {
         display: none;
@@ -342,18 +392,6 @@
       }
 
       #channel-manage .channel a .action {float: right;}
-      .action {cursor:pointer; width: 25px; text-align: center;}
-      .action {height:24px; width:24px; display:inline-block; background-repeat: no-repeat;}
-      .action.star {background: image-url("icons/star_fav_empty.png") center center no-repeat;}
-      .action.star:hover {background: image-url("icons/star_fav_prompt.png") center center no-repeat;}
-      .action.edit, .favorited .action.edit, .load .action.edit {background: image-url("icons/cog.png") center center no-repeat !important; opacity: .5;}
-      .action.edit:hover, .favorited .action.edit:hover {opacity: 1;}
-      .load .action.star {background: image-url("icons/ajax-loader.gif") center center no-repeat !important}
-      .favorited .action.star {background: image-url("icons/star_fav.png") center center no-repeat;}
-      .favorited .action.star:hover {background: image-url("icons/star_fav_warn.png") center center no-repeat;}
-      .action.expand {background: image-url("icons/expand.png") center center no-repeat; opacity: .6;}
-      .action.expand:hover {opacity: 1;}
-      .action.trash {background: image-url("icons/star_fav_warn.png") center center no-repeat;}
 
       .liked-video {
         background-color: #fff;
@@ -389,12 +427,15 @@
         }
       }
 
-      .video, .video:hover {
+      .video {
+        cursor: move;
+      }
+
+      .item, .item:hover {
         background-color: #fff;
         border-bottom: 1px solid #E6E6E6;
         position: relative;
         margin-bottom: 0px;
-        cursor: move;
 
         .title {
           font-size: 14px;

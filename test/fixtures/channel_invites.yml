@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  sender_id: 1
+  channel_id: 1
+  recepient_email: MyString
+  token: MyString
+  sent_at: 2013-02-04 20:49:30
+
+two:
+  sender_id: 1
+  channel_id: 1
+  recepient_email: MyString
+  token: MyString
+  sent_at: 2013-02-04 20:49:30

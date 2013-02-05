@@ -4,7 +4,7 @@
   - if @channel.airings.blank?
     .empty No videos added yet.
   - else
-    %ul.videos
+    %ul.videos.items
       = render partial: 'manage/videos/video', collection: @channel.airings, as: :a
 :javascript
   $(".videos").sortable({items: ".video", axis: "y", cursor: "move",

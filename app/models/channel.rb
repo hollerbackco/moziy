@@ -11,7 +11,10 @@ class Channel < ActiveRecord::Base
 
   has_many :archived_airings, :class_name => "Airing", :conditions => "airings.state = 'archived'", :order => "position ASC, airings.created_at DESC"
   has_many :archived_videos, :source => :video,  :through => :archived_airings
+
   has_many :subscriptions, :dependent => :destroy
+  has_many :memberships,   :dependent => :destroy
+  has_many :members, through: :memberships, source: :user
 
   validates :title, uniqueness: true, presence: true
   validates :slug,  uniqueness: { :case_sensitive => false }, presence: true, :format => {:with => /^[a-zA-Z0-9_]*[a-zA-Z][a-zA-Z0-9_]*$/}
@@ -70,8 +73,12 @@ class Channel < ActiveRecord::Base
     airings.first.video
   end
 
+  def member?(user)
+    memberships.where(:user_id => user.id).any? || user.owns?(self)
+  end
+
   def has_airings?
-    airings.count > 0
+    airings.any?
   end
 
   def favorited?(user)

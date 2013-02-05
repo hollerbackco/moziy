@@ -35,6 +35,16 @@ class ChannelMailer < ApplicationMailer
     end
   end
 
+  def invite(membership)
+    @token = membership.token
+    @channel = membership.channel
+    @recipient = membership.recipient_email
+    @sender = membership.sender
+
+    mail :to => @recipient,
+         :subject => "#{@sender.username} would like you to collaborate on a channel"
+  end
+
   private
 
   def likers_string(likes)

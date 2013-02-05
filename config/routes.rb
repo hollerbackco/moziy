@@ -1,9 +1,4 @@
 Puretv::Application.routes.draw do
-  get "attachments/index"
-
-  get "settings/edit"
-
-  get "settings/update"
 
   ActiveAdmin.routes(self)
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -13,6 +8,9 @@ Puretv::Application.routes.draw do
   match :terms, to: "pages#terms"
   match :terms, to: "pages#privacy"
   post :invite, to: "invites#create"
+
+  match "join/:token", to: "channel_invites#show", as: :join_channel
+  match "join/:token/accept", to: "channel_invites#accept", as: :accept_join_channel
 
   # login
   scope :module => :auth do
@@ -44,6 +42,7 @@ Puretv::Application.routes.draw do
       collection do
         match :following
       end
+      resources :memberships, only: [:index, :create, :destroy]
       resources :activities, only: :index
       resources :airings, :only => [:create, :destroy] do
         member do

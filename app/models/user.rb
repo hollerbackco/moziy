@@ -28,8 +28,8 @@ class User < ActiveRecord::Base
   has_many :channels, :foreign_key => "creator_id", :order => "created_at ASC", :dependent => :destroy
   has_many :airings, through: :channels
 
-  #has_one :facebook_channel, :class_name => "Channel::Facebook", :foreign_key => "creator_id"
-  #has_one :twitter_channel, :class_name => "Channel::Twitter", :foreign_key => "creator_id"
+  has_many :memberships
+  has_many :collab_channels, through: :memberships, class_name: "Channel", source: :channel
 
   has_many :subscriptions, order: "last_added_airing_at DESC", :dependent => :destroy
   has_many :following_channels, through: :subscriptions, class_name: "Channel", source: :channel,
@@ -38,6 +38,10 @@ class User < ActiveRecord::Base
   has_many :likes, order: "likes.created_at DESC"
   has_many :liked_airings, through: :likes, source: :likeable, :source_type => "Airing",
     order: "likes.created_at DESC"
+
+  def managing_channels
+    channels + collab_channels
+  end
 
   def owns?(obj)
     self.id == obj.creator_id

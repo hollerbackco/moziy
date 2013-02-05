@@ -35,3 +35,11 @@ en:
   activities:
     index:
       title: "activities"
+
+  memberships:
+    index:
+      title: "members"
+
+  channel_invites:
+    show:
+      title: "invite"

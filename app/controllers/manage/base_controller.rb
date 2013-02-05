@@ -22,6 +22,6 @@ class Manage::BaseController < ActionController::Base
   end
 
   def set_my_channels
-    @channels = current_user.channels
+    @channels = current_user.managing_channels
   end
 end

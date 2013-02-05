@@ -1,0 +1,4 @@
+= form_tag manage_channel_memberships_path(@channel), id: "add-member", class: "horizontal-form" do
+  = label_tag :email, 'Add a member'
+  = text_area_tag :email, "", placeholder: "Invite to this Channel"
+  = submit_tag "Invite", class: "primary button"

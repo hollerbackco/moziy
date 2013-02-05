@@ -62,7 +62,7 @@ class Manage::ChannelsController < Manage::BaseController
 
   def check_ownership
     @channel = Channel.find(params[:id])
-    redirect_to root_path unless current_user.owns? @channel
+    redirect_to root_path unless @channel.member? current_user
   end
 
 end

@@ -1,0 +1,6 @@
+#members-manage
+  = render :partial => 'manage/channels/channel_menu'
+  = render :partial => 'manage/memberships/form'
+  %ul.members.items
+    = render partial: "manage/memberships/member", locals: {member: @channel.creator}
+    = render partial: "manage/memberships/member", collection: @members, as: :member
