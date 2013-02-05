@@ -33,8 +33,8 @@ namespace :db do
           puts `rm #{options[:dump]}`
         else
           puts "(2-3/4) skipping..."
-          puts "(3/4) restore snapshot"
-          puts `heroku pgbackups:restore DATABASE \`heroku pgbackups:url --remote #{options[:source]}\` --remote #{options[:target]}`
+          puts "(4/4) restore snapshot"
+          `heroku pgbackups:restore DATABASE $(heroku pgbackups:url --remote #{options[:source]}) --remote #{options[:target]}`
         end
       end
     end
