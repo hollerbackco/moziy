@@ -5,6 +5,7 @@ class Auth::RegistrationsController < ApplicationController
   # GET /users/new.xml
   def new
     @user = User.new
+    @token = params[:token] if params.key? :token
 
     respond_to do |format|
       format.html {}
@@ -15,22 +16,30 @@ class Auth::RegistrationsController < ApplicationController
   # POST /users
   # POST /users.xml
   def create
-    @user = User.new(params[:user])
-
-    if !InviteCode.not_used.exists?(code: params[:code])
+    if !params.key?(:code) and !params.key?(:token)
       flash.now[:alert] = "Invalid Registration Code"
+      render action: "new"
+      return
+    elsif params.key?(:code) and !InviteCode.not_used.exists?(code: params[:code])
+      flash.now[:alert] = "Invalid Registration Code"
+      render action: "new"
+      return
+    elsif params.key?(:token) and !ChannelInvite.exists?(token: params[:token])
+      flash.now[:alert] = "You must have an invite"
       render action: "new"
       return
     end
 
-    invite_code = InviteCode.find(:first, conditions: {code: params[:code]})
+    @user = User.new(params[:user])
 
     User.transaction do
       @user.save
 
-      invite_code.use
-      invite_code.user = @user
-      invite_code.save
+      if invite_code = InviteCode.where(code: params[:code]).first
+        invite_code.use
+        invite_code.user = @user
+        invite_code.save
+      end
 
       # create a primary channel
       @channel = @user.channels.create(:title => @user.username, :slug => @user.username)
@@ -44,7 +53,7 @@ class Auth::RegistrationsController < ApplicationController
     respond_to do |format|
       if @user.valid?
         auto_login(@user)
-        format.html { redirect_to(manage_channel_path(@channel), :notice => 'Registration successful.') }
+        format.html { redirect_back_or_to(manage_channel_path(@channel), :notice => 'Registration successful.') }
         format.xml { render :xml => @user, :status => :created, :location => @user }
       else
         format.html { render :action => "new" }

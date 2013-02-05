@@ -5,9 +5,12 @@
         %li= msg
       - flash.each do |key,msg|
         %li= msg
-  .field
-    = label_tag "Registration Code"
-    = text_field_tag :code
+  - if @token.present?
+    = hidden_field_tag :token, @token
+  - else
+    .field
+      = label_tag "Registration Code"
+      = text_field_tag :code
   .field
     = f.label :email
     = f.text_field :email

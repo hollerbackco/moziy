@@ -16,8 +16,9 @@ class ChannelInvitesController < ApplicationController
       end
       redirect_to manage_channel_path(channel)
     else
-      flash[:notice] = "Please make an account"
-      redirect_to register_path(:from => params[:token])
+      flash[:notice] = "Please register"
+      session[:return_to_url] = accept_join_channel_path(params[:token])
+      redirect_to register_path(:token => params[:token])
     end
   end
 
