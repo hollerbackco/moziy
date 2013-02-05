@@ -35,11 +35,11 @@ class ChannelMailer < ApplicationMailer
     end
   end
 
-  def invite(membership)
-    @token = membership.token
-    @channel = membership.channel
-    @recipient = membership.recipient_email
-    @sender = membership.sender
+  def invite(invite)
+    @token = invite.token
+    @channel = invite.channel
+    @recipient = invite.recipient_email
+    @sender = invite.sender
 
     mail :to => @recipient,
          :subject => "#{@sender.username} has invited you to join a stream"

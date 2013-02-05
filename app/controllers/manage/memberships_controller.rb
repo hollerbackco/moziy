@@ -15,6 +15,7 @@ class Manage::MembershipsController < Manage::BaseController
     respond_to do |format|
       if @invitation.valid?
         format.html do
+          ChannelMailer.invite(@invitation).deliver
           flash[:notice] = "Sent an email to #{params[:email]}."
           redirect_to manage_channel_memberships_path channel
         end
