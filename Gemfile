@@ -19,6 +19,9 @@ gem 'sorcery'  # Authentication
 gem 'webster'  # Random Dictionary Word
 gem 'paranoia'
 
+# Permissions
+gem 'cancan'
+
 # Image Uploader
 gem 'rmagick'
 gem 'fog'

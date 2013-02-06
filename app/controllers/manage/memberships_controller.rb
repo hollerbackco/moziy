@@ -1,11 +1,14 @@
 class Manage::MembershipsController < Manage::BaseController
 
   def index
+    authorize! :see_members, channel
     @members = channel.members
   end
 
   # invitation
   def create
+    authorize! :add_member, channel
+
     @invitation = ChannelInvite.where(
       channel_id: channel.id,
       sender_id: user.id,
@@ -29,6 +32,7 @@ class Manage::MembershipsController < Manage::BaseController
   end
 
   def destroy
+    authorize! :destroy, membership
     membership.destroy
     flash[:notice] = "Member has been removed"
     redirect_to :back

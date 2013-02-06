@@ -1,20 +1,22 @@
 class Manage::VideosController < Manage::BaseController
   before_filter :set_channel
   before_filter :set_default_title
-  before_filter :check_ownership, only: [:edit, :update]
-  before_filter :check_member, only: [:index, :create, :archived, :sort]
   before_filter :set_my_channels
 
   def index
+    authorize! :index, @channel
     @videos = @channel.videos
   end
 
   def archived
+    authorize! :index, @channel
     @videos = @channel.archived_videos
   end
 
   # accepts a list of comma separated links
   def create
+    authorize! :add_airing, @channel
+
     if video_request = AddVideoRequest.create(urls: params[:links], channel: @channel)
       Delayed::Job.enqueue AddVideoJob.new(
         video_request.urls,
@@ -32,11 +34,13 @@ class Manage::VideosController < Manage::BaseController
 
   def edit
     @airing = @channel.airings.find(params[:id])
+    authorize! :edit, @airing
     set_title @airing.title
   end
 
   def update
     @airing = @channel.airings.find(params[:id])
+    authorize! :update, @airing
 
     if @airing.video.update_attributes(params[:video])
       redirect_to edit_manage_channel_video_path(@channel, @video)
@@ -51,6 +55,7 @@ class Manage::VideosController < Manage::BaseController
   # end
 
   def sort
+    authorize! :sort, @channel
     order = params[:video]
     Airing.sort(order)
     render :text => true
@@ -80,14 +85,6 @@ class Manage::VideosController < Manage::BaseController
       video = Video.create v_params
     end
     video
-  end
-
-  def check_ownership
-    redirect_to root_path unless current_user.owns? @channel
-  end
-
-  def check_member
-    redirect_to root_path unless @channel.member? current_user
   end
 
   def set_default_title

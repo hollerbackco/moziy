@@ -10,6 +10,7 @@ if Rails.env.production?
   ActionMailer::Base.delivery_method = :smtp
 
 elsif Rails.env.staging?
+
   ActionMailer::Base.smtp_settings = {
     :address        => 'smtp.sendgrid.net',
     :port           => '587',

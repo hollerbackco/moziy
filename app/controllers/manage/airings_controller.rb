@@ -1,14 +1,15 @@
 class Manage::AiringsController < ApplicationController
   before_filter :require_login
-  before_filter :verify_ownership
+  before_filter :set_channel
 
   def create
     if params[:video_id]
+      authorize! :add_airing, @channel
 
       from = Airing.find(params[:video_id])
       video = from.video
 
-      if (! Airing.exists?(:channel_id => @channel.id, :video_id => video.id))
+      if !Airing.exists?(:channel_id => @channel.id, :video_id => video.id)
         airing = Airing.create({
           :user_id => current_user.id,
           :channel_id => @channel.id,
@@ -16,8 +17,6 @@ class Manage::AiringsController < ApplicationController
           :parent_id => from.id,
           :position => 0
         })
-
-        airing.go_live
 
         ChannelMailer.reaired(@channel, from.channel, video.title).deliver
 
@@ -42,20 +41,22 @@ class Manage::AiringsController < ApplicationController
 
   def archive
     @airing = Airing.find(params[:id])
+    authorize! :archive, @airing
+
     @airing.toggle_archive
     redirect_to :back
   end
 
   def destroy
-    @channel.airings.destroy(params[:id])
+    airing = @channel.airings.find params[:id]
+    authorize! :destroy, airing
+    airing.destroy
     redirect_to :back
   end
 
   private
 
-    def verify_ownership
-      @channel = Channel.find(params[:channel_id])
-      redirect_to root_path unless @channel.member? current_user
-    end
-
+  def set_channel
+    @channel = Channel.find(params[:channel_id])
+  end
 end

@@ -1,6 +1,6 @@
 class Manage::ChannelsController < Manage::BaseController
   before_filter :set_my_channels
-  before_filter :check_ownership, :except => [:index,:following, :new, :create]
+  before_filter :set_channel, :except => [:index,:following,:new,:create]
 
   def index
     channel = current_user.primary_channel
@@ -23,11 +23,6 @@ class Manage::ChannelsController < Manage::BaseController
     @channel = Channel.new
   end
 
-  def show
-    set_title @channel.title
-    @videos = @channel.videos
-  end
-
   def create
     @channel = Channel.new(params[:channel].merge(:creator => current_user))
 
@@ -38,10 +33,18 @@ class Manage::ChannelsController < Manage::BaseController
     end
   end
 
+  def show
+    authorize! :show, @channel
+    set_title @channel.title
+    @videos = @channel.videos
+  end
+
   def edit
+    authorize! :edit, @channel
   end
 
   def update
+    authorize! :update, @channel
     if @channel.update_attributes(params[:channel])
       redirect_to edit_manage_channel_path(@channel)
     else
@@ -50,6 +53,7 @@ class Manage::ChannelsController < Manage::BaseController
   end
 
   def destroy
+    authorize! :destroy, @channel
     if !current_user.primary? @channel
       @channel.destroy
       redirect_to manage_channels_path
@@ -60,9 +64,8 @@ class Manage::ChannelsController < Manage::BaseController
 
   private
 
-  def check_ownership
+  def set_channel
     @channel = Channel.find(params[:id])
-    redirect_to root_path unless @channel.member? current_user
   end
 
 end
