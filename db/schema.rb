@@ -100,7 +100,7 @@ ActiveRecord::Schema.define(:version => 20130205044930) do
   create_table "channel_invites", :force => true do |t|
     t.integer  "sender_id"
     t.integer  "channel_id"
-    t.string   "recepient_email"
+    t.string   "recipient_email"
     t.string   "token"
     t.datetime "sent_at"
     t.datetime "created_at",      :null => false
@@ -196,7 +196,7 @@ ActiveRecord::Schema.define(:version => 20130205044930) do
     t.datetime "created_at",                                              :null => false
     t.datetime "updated_at",                                              :null => false
     t.integer  "unread_count",         :default => 0
-    t.datetime "last_added_airing_at", :default => '2013-01-28 02:51:46', :null => false
+    t.datetime "last_added_airing_at", :default => '2013-01-25 23:39:45', :null => false
     t.integer  "last_played_id"
   end
 

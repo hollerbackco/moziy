@@ -9,7 +9,7 @@ class Manage::MembershipsController < Manage::BaseController
     @invitation = ChannelInvite.where(
       channel_id: channel.id,
       sender_id: user.id,
-      recepient_email: params[:email]
+      recipient_email: params[:email]
     ).first_or_create
 
     respond_to do |format|
