@@ -1,7 +1,8 @@
 class Manage::VideosController < Manage::BaseController
   before_filter :set_channel
   before_filter :set_default_title
-  before_filter :check_ownership
+  before_filter :check_ownership, only: [:edit, :update]
+  before_filter :check_member, only: [:index, :create, :archived, :sort]
   before_filter :set_my_channels
 
   def index
@@ -14,7 +15,6 @@ class Manage::VideosController < Manage::BaseController
 
   # accepts a list of comma separated links
   def create
-
     if video_request = AddVideoRequest.create(urls: params[:links], channel: @channel)
       Delayed::Job.enqueue AddVideoJob.new(
         video_request.urls,
@@ -83,6 +83,10 @@ class Manage::VideosController < Manage::BaseController
   end
 
   def check_ownership
+    redirect_to root_path unless current_user.owns? @channel
+  end
+
+  def check_member
     redirect_to root_path unless @channel.member? current_user
   end
 
