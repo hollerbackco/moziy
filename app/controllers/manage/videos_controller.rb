@@ -19,7 +19,8 @@ class Manage::VideosController < Manage::BaseController
       Delayed::Job.enqueue AddVideoJob.new(
         video_request.urls,
         video_request.channel.id,
-        video_request.id
+        video_request.id,
+        current_user.id
       )
     end
 

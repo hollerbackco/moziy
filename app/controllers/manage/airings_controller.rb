@@ -9,7 +9,13 @@ class Manage::AiringsController < ApplicationController
       video = from.video
 
       if (! Airing.exists?(:channel_id => @channel.id, :video_id => video.id))
-        airing = Airing.create(:channel_id => @channel.id, :video_id => video.id, :parent_id => from.id, :position => 0)
+        airing = Airing.create({
+          :user_id => current_user.id,
+          :channel_id => @channel.id,
+          :video_id => video.id,
+          :parent_id => from.id,
+          :position => 0
+        })
 
         airing.go_live
 

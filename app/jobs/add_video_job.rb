@@ -1,7 +1,10 @@
-class AddVideoJob < Struct.new(:urls,:channel_id,:add_video_request_id)
+class AddVideoJob < Struct.new(:urls,:channel_id,:add_video_request_id,:user_id)
   def perform
     @video_params = video_provider.get
     @video_request = AddVideoRequest.find(add_video_request_id)
+    @channel = Channel.find channel_id
+    @user = User.find(user_id)
+
     airings = create_airings
 
     if airings.any?
@@ -11,7 +14,7 @@ class AddVideoJob < Struct.new(:urls,:channel_id,:add_video_request_id)
     else
       @video_request.msg = "videos could not be added"
       @video_request.save
-      @video_request.error
+      @video_request.errored
     end
   end
 
@@ -21,13 +24,14 @@ class AddVideoJob < Struct.new(:urls,:channel_id,:add_video_request_id)
         video = create_a_video v_params
 
         @airing = Airing.create(
-          :channel_id => channel_id,
+          :user_id => @user.id,
+          :channel_id => @channel.id,
           :video_id => video.id,
           :position => 0)
 
         if @airing.valid?
-          Activity.add(:airing_add, actor_id: channel_id,
-            actor_type: "Channel",
+          Activity.add(:airing_add,
+            actor: @channel,
             subject: @airing
           )
         end
@@ -39,11 +43,10 @@ class AddVideoJob < Struct.new(:urls,:channel_id,:add_video_request_id)
   end
 
   def create_a_video(v_params)
-    video = Video.find_by_source_name_and_source_id(v_params[:source_name], v_params[:source_id])
-    if !video
-      video = Video.create v_params
-    end
-    video
+    Video.where({
+      :source_name => v_params[:source_name],
+      :source_id => v_params[:source_id]
+    }).first_or_create(v_params)
   end
 
   def video_provider

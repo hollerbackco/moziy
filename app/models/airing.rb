@@ -3,13 +3,14 @@ class Airing < ActiveRecord::Base
   acts_as_readable on: :created_at
 
   attr_accessible :video, :channel, :parent, :video_id, :channel_id,
-    :parent_id, :state, :position
+    :parent_id, :state, :position, :user_id
 
   has_many :attachments, class_name: "Activity", as: :subject, order: "created_at DESC"
   has_many :likes, as: :likeable
 
   belongs_to :video #, :counter_cache => true
   belongs_to :channel
+  belongs_to :user
 
   validates :video_id, :presence => true
   validates :channel_id, :presence => true, :uniqueness => {:scope => [:video_id]}
@@ -20,7 +21,7 @@ class Airing < ActiveRecord::Base
   after_create :increment_counts
   after_destroy :decrement_counts
 
-  state_machine :initial => :suggestion do
+  state_machine :initial => :live do
     after_transition to: :archived, do: :decrement_counts
     event :go_live do
       transition all => :live

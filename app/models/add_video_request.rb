@@ -10,7 +10,7 @@ class AddVideoRequest < ActiveRecord::Base
     event :complete do
       transition all => :success
     end
-    event :error do
+    event :errored do
       transition all => :error
     end
   end
