@@ -12,7 +12,7 @@ class ChannelInvite < ActiveRecord::Base
 
   def generate_token
     begin
-      self.token = ReadableRandom.base64(8)
+      self.token = SecureRandom.urlsafe_base64(8)
     end while self.class.exists?(token: self.token)
   end
 end

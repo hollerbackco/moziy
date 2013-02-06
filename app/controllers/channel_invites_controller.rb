@@ -1,7 +1,7 @@
 class ChannelInvitesController < ApplicationController
   def show
     @token = params[:token]
-    @channel = invite.channel
+    @channel = channel
     @user = invite.sender
   end
 
