@@ -55,7 +55,7 @@ class Manage::AiringsController < ApplicationController
 
     def verify_ownership
       @channel = Channel.find(params[:channel_id])
-      redirect_to root_path unless current_user.owns?(@channel) 
+      redirect_to root_path unless @channel.member? current_user
     end
 
 end
