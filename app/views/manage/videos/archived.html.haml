@@ -3,7 +3,7 @@
   - if @channel.archived_airings.blank?
     .empty Your trash is empty.
   - else
-    %ul.videos
+    %ul.videos.items
       = render partial: 'manage/videos/video', collection: @channel.archived_airings, as: :a
 :javascript
   $(".videos").sortable({items: ".video", axis: "y", cursor: "move", 
