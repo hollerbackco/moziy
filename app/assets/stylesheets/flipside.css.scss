@@ -261,7 +261,9 @@
         }
       }
 
-      li.right, li.right:hover {
+      li.right,
+      li.right:hover,
+      li.right.active {
         float: right;
         margin-left: 0;
         margin-right: 0;
@@ -500,7 +502,6 @@
       }
 
       .video:hover {
-        background: #fff image-url("icons/cursor_drag_arrow.png") 6px 12px no-repeat;
 
         .permalink {
           display: inline-block;
