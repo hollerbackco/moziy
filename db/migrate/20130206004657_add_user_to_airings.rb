@@ -14,7 +14,7 @@ class AddUserToAirings < ActiveRecord::Migration
       if airing.channel.present?
         airing.user = airing.channel.creator
         airing.save!
-        airing.go_live!
+        #airing.go_live!
       end
     end
   end
