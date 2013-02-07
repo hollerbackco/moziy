@@ -18,7 +18,10 @@ namespace :mail do
       p channel, channel.parties.count
       if channel.parties.count > 1
         channel.parties.each do |user|
+          p "user", user
+          p "airing", airing
           relevant_airings = airings.keep_if {|a| a.user_id != user.id}
+          p relevant_airings
 
           if relevant_airings.any?
             ChannelMailer.added(user, channel, relevant_airings).deliver
