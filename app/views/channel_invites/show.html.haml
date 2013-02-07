@@ -1,8 +1,9 @@
 #channel-invite
   .invite-copy
-    lucky you!
-    = @user.username
-    would like you to collaborate on this stream.
+    %p lucky you!
+    %p
+      %strong= @user.username
+      would like you to collaborate on this stream.
   #channel-card.clearfix
     = image_tag @channel.cover_art_url(:thumb_player), class: "player"
     %h2.title= "#{@channel.title}"
