@@ -5,11 +5,20 @@
   </head>
   <body>
     <p>
-      <strong><%= @sender.username %></strong> has invited you to join a stream, /<%= @channel.slug %>.
+      <strong><%= @sender.username %></strong> has invited you to join a stream called /<%= @channel.slug %> on moziy.
     </p>
 
     <p>
-      <%= link_to "Accept Invite", join_channel_url(@token) %>
+      moziy is a fun new way to share videos with your friends.
+    </p>
+
+    <p>
+      check out <%= @sender.username %>'s invite here:
+      <%= join_channel_url(@token) %>
+    </p>
+
+    <p>
+      <%= link_to "Check it Out", join_channel_url(@token) %>
     </p>
 
     <p><a href="<%= join_channel_url(@token) %>">moziy.com</a></p>
