@@ -9,7 +9,7 @@
   %li{:class => current_page?(manage_channel_path(@channel)) ? "active" : "" }
     = link_to 'Home', manage_channel_path(@channel), :class => "primary"
   %li{:class => current_page?(manage_channel_activities_path(@channel)) ? "active" : "" }
-    = link_to 'Activities', manage_channel_activities_path(@channel)
+    = link_to 'Activity', manage_channel_activities_path(@channel)
   %li{:class => current_page?(manage_channel_memberships_path(@channel)) ? "active" : "" }
     = link_to 'Collaborators', manage_channel_memberships_path(@channel)
   %li{:class => current_page?(edit_manage_channel_path(@channel)) ? "active" : "" }

@@ -1,12 +1,14 @@
 #video-manage
   = render :partial => 'manage/channels/channel_menu'
   - if @activities.blank?
-    .empty
+    %h1.empty
       - if @channel.airings.any?
-        %h1 When you someone likes or restreams your videos, you'll see them here.
+        When someone likes or restreams your videos or
+        %br
+        follows this stream, you'll see it here.
       - else
         = link_to manage_channel_path(@channel) do
-          = "Add videos to /#{@channel.slug}"
+          = "Add videos to /#{@channel.slug} for activity to start showing up"
   - else
     %ul.activities
       - for activity in @activities
