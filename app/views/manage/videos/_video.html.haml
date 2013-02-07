@@ -5,7 +5,7 @@
     = link_to pluralize(a.history.count, "attachments"), edit_manage_channel_video_path(@channel, a),
       class: "notes"
     - if a.user != current_user
-      = link_to "by /#{a.user.primary_channel.slug}", slug_path(a.primary_channel.slug), class: "poster"
+      = link_to "by /#{a.user.primary_channel.slug}", slug_path(a.user.primary_channel.slug), class: "poster"
     - if a.parent.present?
       = link_to "from /#{a.parent.channel.slug}", slug_path(a.parent.channel.slug), class: "parent"
     = link_to start_video_url(a.channel.slug, v: a.id), start_video_path(a.channel.slug, v: a.id),
