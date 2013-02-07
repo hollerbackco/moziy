@@ -10,7 +10,7 @@
       <p>
         <%= airing.user.username %>
         added a video:
-        <strong><%= link_to airing.title, start_video_url(airing.slug, v: airing.id) %></strong>.
+        <strong><%= link_to airing.title, start_video_url(airing.channel.slug, v: airing.id) %></strong>.
       </p>
     <% end %>
 
