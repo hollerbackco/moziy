@@ -9,7 +9,7 @@ namespace :mail do
 
   desc "send added to members"
   task :added => :environment do
-    airings = Airing.since(Time.now - 10.min).order("created_at ASC")
+    airings = Airing.since(Time.now - 10.minutes).order("created_at ASC")
     channel_with_airings = airings.group_by {|airing| airing.channel_id}
 
     channel_with_airings.each do |channel_id, airings|
