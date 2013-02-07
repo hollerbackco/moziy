@@ -1,8 +1,8 @@
 class Manage::ActivitiesController < Manage::BaseController
   before_filter :set_channel
-  before_filter :check_ownership
 
   def index
+    authorize! :see_activities, @channel
     @activities = @channel.activities
   end
 
@@ -10,10 +10,6 @@ class Manage::ActivitiesController < Manage::BaseController
 
   def set_channel
     @channel = Channel.includes(:airings => :video).find(params[:channel_id])
-  end
-
-  def check_ownership
-    redirect_to root_path unless current_user.owns?(@channel)
   end
 
   def my_channels

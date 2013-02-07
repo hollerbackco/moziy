@@ -220,6 +220,12 @@
       margin: 0;
       font-size: 18px;
 
+      .add-collaborator {
+        float: right;
+        margin-top: 15px;
+        font-size: 13px;
+        color: #04BBF5;
+      }
       .cover-art {
         display: block;
         float: left;
@@ -252,6 +258,18 @@
           display: block;
           padding: 10px 15px;
           text-decoration:none;
+        }
+      }
+
+      li.right, li.right:hover {
+        float: right;
+        margin-left: 0;
+        margin-right: 0;
+        background: #fff;
+        a {
+          padding: 10px 0 10px 15px;
+          background: #fff;
+          color: #999;
         }
       }
 

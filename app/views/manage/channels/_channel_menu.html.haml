@@ -1,18 +1,20 @@
 #secondary-title.clearfix
   = image_tag @channel.cover_art_url(:thumb_list), class: "cover-art"
+  = link_to "Add Collaborator +", manage_channel_memberships_path(@channel),
+    :class => "add-collaborator"
   = link_to "#{@channel.title}", manage_channel_videos_path(@channel)
   .followers= pluralize @channel.subscriptions.count, "follower"
 %ul#secondary-menu.clearfix
-  %li
-    = link_to 'Videos', manage_channel_path(@channel)
-  %li
-    = link_to 'Activity', manage_channel_activities_path(@channel)
-  %li
-    = link_to 'Members', manage_channel_memberships_path(@channel)
-  %li
+  %li{:class => current_page?(manage_channel_path(@channel)) ? "active" : "" }
+    = link_to 'Home', manage_channel_path(@channel), :class => "primary"
+  %li{:class => current_page?(manage_channel_activities_path(@channel)) ? "active" : "" }
+    = link_to 'Activities', manage_channel_activities_path(@channel)
+  %li{:class => current_page?(manage_channel_memberships_path(@channel)) ? "active" : "" }
+    = link_to 'Collaborators', manage_channel_memberships_path(@channel)
+  %li{:class => current_page?(edit_manage_channel_path(@channel)) ? "active" : "" }
     = link_to 'Watch Stream', "/#{@channel.slug}"
   - if can? :edit, @channel
-    %li{:class => current_page?(edit_manage_channel_path(@channel)) ? "active" : "" }
-      = link_to 'Stream Settings', edit_manage_channel_path(@channel)
-  %li{:class => current_page?(archived_manage_channel_videos_path(@channel)) ? "active" : "" }
-    = link_to 'Trash', archived_manage_channel_videos_path(@channel)
+    %li.right{:class => current_page?(edit_manage_channel_path(@channel)) ? "active" : "" }
+      = link_to 'Stream Settings', edit_manage_channel_path(@channel), class: "secondary"
+  %li.right{:class => current_page?(archived_manage_channel_videos_path(@channel)) ? "active" : "" }
+    = link_to 'Trash', archived_manage_channel_videos_path(@channel), class: "secondary"

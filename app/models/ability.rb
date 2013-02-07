@@ -14,7 +14,7 @@ class Ability
     end
 
     # channel members
-    can [:read, :add_airing, :add_member, :see_members], Channel do |channel|
+    can [:read, :add_airing, :add_member, :see_members, :see_activities], Channel do |channel|
       channel.member? user
     end
     can [:edit], Airing do |airing|
