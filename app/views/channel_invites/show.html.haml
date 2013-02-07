@@ -1,7 +1,8 @@
 #channel-invite
   .invite-copy
+    lucky you!
     = @user.username
-    would like you to collaborate on this channel.
+    would like you to collaborate on this stream.
   #channel-card.clearfix
     = image_tag @channel.cover_art_url(:thumb_player), class: "player"
     %h2.title= "#{@channel.title}"
@@ -10,3 +11,7 @@
     .followers= pluralize @channel.subscriptions.count, "follower"
   %p
     = link_to "Accept Invite", accept_join_channel_path(@token), class: "button primary"
+
+  - unless logged_in?
+    %p
+      moziy is a fun way to share videos with your friends.

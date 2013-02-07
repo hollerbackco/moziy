@@ -2,8 +2,8 @@
   = render :partial => 'manage/channels/channel_menu'
   = render :partial => 'manage/videos/form'
   - if @channel.airings.blank?
-    .empty
-      %h1 Add your favorite videos from youtube or vimeo to share them with your friends and followers.
+    %h1.empty
+      Add your favorite videos from youtube or vimeo to share them with your friends and followers on moziy.
   - else
     %ul.videos.items
       = render partial: 'manage/videos/video', collection: @channel.airings, as: :a
