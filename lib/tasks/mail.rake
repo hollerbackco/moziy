@@ -19,7 +19,7 @@ namespace :mail do
       if channel.parties.count > 1
         channel.parties.each do |user|
           p "user", user
-          p "airing", airing
+          p "airing", airings
           relevant_airings = airings.keep_if {|a| a.user_id != user.id}
           p relevant_airings
 
