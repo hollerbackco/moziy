@@ -7,10 +7,10 @@ class Ability
     # channel owner
     can :manage, Channel, :creator_id => user.id
     can :manage, Membership do |membership|
-      membership.channel.creator == user
+      user == membership.channel.creator
     end
-    can :manage, Airing do |airing|
-      airing.channel.creator == user
+    can [:manage, :archive, :delete], Airing do |airing|
+      user == airing.channel.creator
     end
 
     # channel members
