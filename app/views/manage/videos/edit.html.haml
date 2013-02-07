@@ -1,10 +1,10 @@
 #video-manage
   %h1= @airing.title
+  %p= link_to start_video_url(@channel.slug, v: @airing.id), start_video_path(@channel.slug, v: @airing.id)
   #viewer
     .holder{:style => "margin: 0 auto"}
       = sanitize @airing.video.body, :tags => %w(embed iframe p), :attributes => %w(src width height frameborder)
   #main-content
-    %h2= link_to start_video_url(@channel.slug, v: @airing.id), start_video_path(@channel.slug, v: @airing.id)
     - if @airing.history.any?
       %ul.activities
         - for activity in @airing.history
