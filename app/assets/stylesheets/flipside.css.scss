@@ -387,8 +387,13 @@
       .actions {
         display: none;
         position: absolute;
-        top: 5px;
+        top: 10px;
         right: 10px;
+        text-align: right;
+
+        .button_to {
+          display: inline-block;
+        }
       }
 
       #channel-manage .channel a .action {float: right;}
@@ -443,9 +448,11 @@
           padding-top: 11px;
         }
 
+        .poster,
         .parent,
         .notes {
-          margin-right: 20px;
+          margin-right: 30px;
+          color: #666;
         }
 
         .image {
@@ -454,7 +461,8 @@
         }
 
         .permalink {
-          color: #999;
+          display: none;
+          color: #666;
           font-size: 12px;
         }
 
@@ -472,6 +480,9 @@
       .video:hover {
         background: #fff image-url("icons/cursor_drag_arrow.png") 6px 12px no-repeat;
 
+        .permalink {
+          display: inline-block;
+        }
         .actions {
           display: block;
           input[type=submit] {
