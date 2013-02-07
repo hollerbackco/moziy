@@ -17,6 +17,9 @@ class Ability
     can [:read, :add_airing, :add_member, :see_members], Channel do |channel|
       channel.member? user
     end
+    can [:edit], Airing do |airing|
+      airing.channel.member? user
+    end
     can [:archive,:delete], Airing do |airing|
       user.id == airing.user_id
     end

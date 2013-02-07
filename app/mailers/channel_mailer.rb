@@ -6,7 +6,7 @@ class ChannelMailer < ApplicationMailer
     @likes = likes
     @users = likes.map(&:user)
 
-    subject = "#{usernames_string @users} liked #{@your_channel.slug}"
+    subject = "#{usernames_string @users} liked /#{@your_channel.slug}"
 
     mail to: @your_channel.parties.map(&:email), subject: subject
   end
@@ -17,7 +17,7 @@ class ChannelMailer < ApplicationMailer
     @airings = airings
     @users = airings.map(&:user)
 
-    subject = "#{usernames_string @users} added videos to #{@your_channel.slug}"
+    subject = "#{usernames_string @users} added videos to /#{@your_channel.slug}"
 
     mail to: @user.email, subject: subject
   end
