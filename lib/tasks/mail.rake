@@ -2,7 +2,7 @@ namespace :mail do
   desc "send like emails"
   task :likes => :environment do
     Channel.all.each do |channel|
-      likes = channel.likes_from_last 1.day
+      likes = channel.likes_from_last 1.hour
       send_likes likes, channel
     end
   end

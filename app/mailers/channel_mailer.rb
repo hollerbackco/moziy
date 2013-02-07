@@ -64,7 +64,7 @@ class ChannelMailer < ApplicationMailer
 
     string = "#{usernames.pop}"
     if usernames.any?
-      string = "#{string} and #{usernames.count - 1} others"
+      string = "#{string} and #{usernames.count} others"
     end
 
     string
