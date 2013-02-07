@@ -1,9 +1,10 @@
 #secondary-title.clearfix
   = image_tag @channel.cover_art_url(:thumb_list), class: "cover-art"
-  = link_to "Add Collaborator +", manage_channel_memberships_path(@channel),
-    :class => "add-collaborator"
   = link_to "#{@channel.title}", manage_channel_videos_path(@channel)
-  .followers= pluralize @channel.subscriptions.count, "follower"
+  .followers
+    = pluralize @channel.subscriptions.count, "follower"
+    = link_to "Add Collaborator +", manage_channel_memberships_path(@channel),
+      :class => "add-collaborator"
 %ul#secondary-menu.clearfix
   %li{:class => current_page?(manage_channel_path(@channel)) ? "active" : "" }
     = link_to 'Home', manage_channel_path(@channel), :class => "primary"
