@@ -12,16 +12,11 @@ namespace :mail do
     airings = Airing.since(Time.now - 10.minutes).order("created_at ASC")
     channel_with_airings = airings.group_by {|airing| airing.channel_id}
 
-    p "new airings", channel_with_airings
     channel_with_airings.each do |channel_id, airings|
       channel = Channel.find(channel_id)
-      p channel, channel.parties.count
       if channel.parties.count > 1
         channel.parties.each do |user|
-          p "user", user
-          p "airing", airings
-          relevant_airings = airings.keep_if {|a| a.user_id != user.id}
-          p relevant_airings
+          relevant_airings = airings.select {|a| a.user_id != user.id}
 
           if relevant_airings.any?
             ChannelMailer.added(user, channel, relevant_airings).deliver
