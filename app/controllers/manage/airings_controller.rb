@@ -13,6 +13,7 @@ class Manage::AiringsController < ApplicationController
         airing = Airing.create({
           :user_id => current_user.id,
           :channel_id => @channel.id,
+          :channel_slug => @channel.slug,
           :video_id => video.id,
           :parent_id => from.id,
           :position => 0

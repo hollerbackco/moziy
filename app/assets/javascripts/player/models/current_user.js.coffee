@@ -39,7 +39,7 @@ App.Models.CurrentUser = Backbone.Model.extend
       type: "POST"
       success: (results) =>
         if results.success
-          alert_message = "Restreamed to #{results.channel_title}"
+          alert_message = "Restreamed to /#{results.channel_slug}"
         else
           alert_message = results.msg
 
