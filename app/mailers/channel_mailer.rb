@@ -4,8 +4,20 @@ class ChannelMailer < ApplicationMailer
     @your_channel = channel
     @user = channel.creator
     @likes = likes
+    @users = likes.map(&:user)
 
-    subject = "#{likers_string @likes} liked #{@your_channel.slug}"
+    subject = "#{usernames_string @users} liked #{@your_channel.slug}"
+
+    mail to: @your_channel.parties.map(&:email), subject: subject
+  end
+
+  def added(recipient, channel, airings)
+    @your_channel = channel
+    @user = recipient
+    @airings = airings
+    @users = airings.map(&:user)
+
+    subject = "#{usernames_string @users} added videos to #{@your_channel.slug}"
 
     mail to: @user.email, subject: subject
   end
@@ -47,11 +59,12 @@ class ChannelMailer < ApplicationMailer
 
   private
 
-  def likers_string(likes)
-    string = "#{likes.first.user.username}"
+  def usernames_string(users)
+    usernames = users.map(&:username).uniq
 
-    if likes.count > 1
-      string = "#{string} and #{likes.count - 1} others"
+    string = "#{usernames.pop}"
+    if usernames.any?
+      string = "#{string} and #{usernames.count - 1} others"
     end
 
     string

@@ -21,6 +21,8 @@ class Airing < ActiveRecord::Base
   after_create :increment_counts
   after_destroy :decrement_counts
 
+  scope :since, lambda { |since| where("airings.created_at > ?", since) }
+
   state_machine :initial => :live do
     after_transition to: :archived, do: :decrement_counts
     event :go_live do

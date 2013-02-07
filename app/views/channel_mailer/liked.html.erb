@@ -4,8 +4,6 @@
     <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
   </head>
   <body>
-    <p><%= @user.username %>,</p>
-
     <% for like in @likes %>
       <p>
         <%= link_to like.user.username, slug_url(like.user.primary_channel.slug) %>

@@ -14,7 +14,7 @@ class Ability
     end
 
     # channel members
-    can [:show, :add_airing, :add_member, :see_members], Channel do |channel|
+    can [:read, :add_airing, :add_member, :see_members], Channel do |channel|
       channel.member? user
     end
     can [:archive,:delete], Airing do |airing|
@@ -23,6 +23,5 @@ class Ability
     can :delete, Membership do |membership|
       membership.user == user
     end
-
   end
 end

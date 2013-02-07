@@ -32,6 +32,10 @@ class Channel < ActiveRecord::Base
     self.slug = self.slug.downcase if self.slug.present?
   end
 
+  def parties
+    [creator] + members
+  end
+
   def description
     (self[:description].blank? and airings.any?) ? "i.e. #{airings.first.title}" : self[:description]
   end
