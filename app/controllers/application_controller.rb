@@ -19,4 +19,8 @@ class ApplicationController < ActionController::Base
     redirect_to manage_channels_path if logged_in?
   end
 
+  rescue_from CanCan::AccessDenied do |exception|
+    redirect_to manage_root_url, :alert => "You are not authorized to view that page"
+  end
+
 end
