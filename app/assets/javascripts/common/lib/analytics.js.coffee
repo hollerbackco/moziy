@@ -37,7 +37,7 @@ class App.Analytics
       slug: channel.get("slug"),
       id: channel.get("id"),
 
-  playerPing: (info, airing, channel) ->
+  playerPing: (airing, channel) ->
     _gaq.push ['_trackEvent', 'Videos', 'Watching', channel.get("slug")]
 
   playerPlay: (airing, channel) ->
