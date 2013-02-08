@@ -1,9 +1,21 @@
 namespace :mail do
   desc "send like emails"
   task :likes => :environment do
-    Channel.all.each do |channel|
-      likes = channel.likes_from_last 1.hour
-      send_likes likes, channel
+    likes = Like.since(Time.now - 1.hour).order("created_at ASC")
+    channel_with_likes = likes.group_by {|like| like.likeable.channel_id}
+
+    channel_with_likes.each do |channel_id, likes|
+      channel = Channel.find channel_id
+
+      channel.parties.each do |user|
+        relevant = likes.select {|like| like.user_id != user.id}
+
+        if relevant.any?
+          ChannelMailer.liked(user, channel, relevant).deliver
+          p user, channel, relevant
+        end
+      end
+
     end
   end
 
@@ -35,10 +47,4 @@ namespace :mail do
     end
   end
 
-  def send_likes(likes,channel)
-    if likes.any?
-      ChannelMailer.liked(channel, likes).deliver
-      p likes
-    end
-  end
 end

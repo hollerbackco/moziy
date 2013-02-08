@@ -7,6 +7,8 @@ class Like < ActiveRecord::Base
   validates_presence_of :user_id
   validates_presence_of :likeable_id
 
+  scope :since, lambda { |since| where("likes.created_at > ?", since) }
+
   def up
     update_attribute(:like_flag, true)
   end

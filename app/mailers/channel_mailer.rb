@@ -1,14 +1,14 @@
 class ChannelMailer < ApplicationMailer
 
-  def liked(channel, likes)
+  def liked(recipient, channel, likes)
     @your_channel = channel
-    @user = channel.creator
+    @user = recipient
     @likes = likes
     @users = likes.map(&:user)
 
     subject = "#{usernames_string @users} pratically highfived your video"
 
-    mail to: @your_channel.parties.map(&:email), subject: subject
+    mail to: @user.email, subject: subject
   end
 
   def added(recipient, channel, airings)
