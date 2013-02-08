@@ -81,7 +81,7 @@ class App.PlayerManager
     @timer = setInterval @_playerPing, 10000
 
   _playerPing: ->
-    App.analytics.vent.trigger "player:ping", @player.getInfo(), @airing, @channel
+    App.analytics.vent.trigger "player:ping", @airing, @channel
 
   _stopPlayers: ->
     Backbone.Events.trigger("player:stop")

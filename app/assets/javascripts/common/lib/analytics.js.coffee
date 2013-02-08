@@ -38,9 +38,7 @@ class App.Analytics
       id: channel.get("id"),
 
   playerPing: (info, airing, channel) ->
-    meta = _.extend {}, airing.toJSON(), info
-    _gaq.push ['_trackEvent', 'Videos', 'Watching', channel.get "slug"]
-
+    _gaq.push ['_trackEvent', 'Videos', 'Watching', channel.get("slug")]
 
   playerPlay: (airing, channel) ->
     mixpanel.track "Video:Play"
