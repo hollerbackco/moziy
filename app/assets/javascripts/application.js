@@ -12,7 +12,7 @@
 //= require bootstrap-dropdown
 //= require underscore-min
 //= require backbone-min
-//= require cookie
+//= require common/lib/cookie
 
 //= require manage/app
 //= require_tree ./common/models
