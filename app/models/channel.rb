@@ -16,6 +16,8 @@ class Channel < ActiveRecord::Base
   has_many :memberships,   :dependent => :destroy
   has_many :members, through: :memberships, source: :user
 
+  has_many :channel_invites
+
   validates :title, uniqueness: true, presence: true
   validates :slug,  uniqueness: { :case_sensitive => false }, presence: true, :format => {:with => /^[a-zA-Z0-9_]*[a-zA-Z][a-zA-Z0-9_]*$/}
 
