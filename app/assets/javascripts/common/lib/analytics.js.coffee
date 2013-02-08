@@ -38,6 +38,7 @@ class App.Analytics
       id: channel.get("id"),
 
   playerPing: (airing, channel) ->
+    console.log "track ping"
     _gaq.push ['_trackEvent', 'Videos', 'Watching', channel.get("slug")]
 
   playerPlay: (airing, channel) ->
