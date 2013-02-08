@@ -17,14 +17,17 @@ class Auth::RegistrationsController < ApplicationController
   # POST /users.xml
   def create
     if !params.key?(:code) and !params.key?(:token)
+      @user = User.new(params[:user])
       flash.now[:alert] = "Invalid Registration Code"
       render action: "new"
       return
     elsif params.key?(:code) and !InviteCode.not_used.exists?(code: params[:code])
+      @user = User.new(params[:user])
       flash.now[:alert] = "Invalid Registration Code"
       render action: "new"
       return
     elsif params.key?(:token) and !ChannelInvite.exists?(token: params[:token])
+      @user = User.new(params[:user])
       flash.now[:alert] = "You must have an invite"
       render action: "new"
       return
