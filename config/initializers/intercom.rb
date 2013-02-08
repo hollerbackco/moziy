@@ -67,3 +67,6 @@ end
 
 #mixpanel
 Rails.configuration.mixpanel_key = ENV["MIXPANEL_APP_ID"] || "6e0b5b5917fea0e3ebaaaaceff55c892"
+
+#google
+Rails.configuration.ga_key = ENV["GA_APP_ID"] || "UA-27201002-2"

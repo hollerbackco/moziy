@@ -13,6 +13,15 @@ class App.VimeoPlayer extends App.Player
     Backbone.Events.on("player:pause", @_pause, this)
     super()
 
+  getInfo: ->
+    if @_player?
+      current = @_player.api_getCurrentTime()
+      duration = @_player.api_getDuration()
+    {
+      currentTime: current,
+      totalTime: duration
+    }
+
   _mute: ->
     @_player.api_setVolume(0) if @_player?
     super()

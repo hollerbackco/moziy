@@ -12,7 +12,7 @@
 
 :javascript
   var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-27201002-1']);
+  _gaq.push(['_setAccount', "#{Rails.configuration.ga_key}"]);
   _gaq.push(['_trackPageview']);
 
   (function() {

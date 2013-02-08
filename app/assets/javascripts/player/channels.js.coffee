@@ -11,6 +11,7 @@ $ ->
 
       @setupTitleChanger()
       @setupViews()
+      @setupAnalytics()
       @setupHistory()
       @setupFullscreen()
       @setupKeyboard()
@@ -35,6 +36,9 @@ $ ->
     setupExplore: (explore) ->
       App.exploreChannels = new App.Models.Channels(explore)
       App.exploreChannels.url = "/channels.json"
+
+    setupAnalytics: ->
+      App.analytics = new App.Analytics()
 
     setupFullscreen: ->
       App.fullscreen = new App.Fullscreen()

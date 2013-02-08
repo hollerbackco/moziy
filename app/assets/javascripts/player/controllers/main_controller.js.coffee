@@ -1,15 +1,18 @@
 class App.Controllers.MainController
   constructor: ->
     self = this
-    _.bindAll this, "likeVideo", "restreamAiring", "followChannel", "notice", "addAiring"
+    _.bindAll this, "notice", "addAiring"
 
-    App.vent.on "airing:like", @likeVideo
-    App.vent.on "airing:restream", @restreamAiring
-    App.vent.on "channel:watch", @watchChannel, this
-    App.vent.on "channel:follow", @followChannel
-    App.vent.on "airing:add", @addAiring
+    App.vent.on "airing:add", @addAiring, this
+    App.vent.on "airing:like", @likeVideo, this
+    App.vent.on "airing:restream", @restreamAiring, this
+    App.vent.on "airings:play", @playVideo, this
+    App.vent.on "channel:watch", @channelWatch, this
+    App.vent.on "channel:follow", @channelFollow, this
     App.vent.on "invite:request", @requestInvite, this
-    App.vent.on "player:mute", @mute, this
+    App.vent.on "player:mute", @playerMute, this
+    App.vent.on "player:next", @playerNext, this
+    App.vent.on "player:pause", @playerTogglePause, this
     App.vent.on "modals:restream", @showRestreamModal, this
     App.vent.on "modals:login", @showLoginModal, this
     App.vent.on "modals:add", @showAddModal, this
@@ -27,10 +30,18 @@ class App.Controllers.MainController
   fullscreen: ->
     App.fullscreen.toggle()
 
-  watchChannel: (channel) ->
-    mixpanel.track "Channel:Watch",
-      slug: channel.get("slug"),
-      id: channel.get("id"),
+  channelWatch: (channel) ->
+    App.analytics.vent.trigger "channel:watch", channel
+
+  playVideo: (airing, channel) ->
+    App.analytics.vent.trigger "player:play", airing, channel
+
+  channelFollow: (channel) ->
+    @authenticate =>
+      App.currentUser.follow(channel).done (results) ->
+        channel.set("channel_subscribers_count", results.count)
+
+      App.analytics.vent.trigger "channel:follow", channel
 
   showAddModal: ->
     @authenticate App.modals.add.show
@@ -61,35 +72,37 @@ class App.Controllers.MainController
     post.fail =>
       @fivehundred()
 
-  followChannel: (channel) ->
-    @authenticate =>
-      App.currentUser.follow(channel).done (results) ->
-        channel.set("channel_subscribers_count", results.count)
-
-      mixpanel.track "Channel:Follow",
-        slug: channel.get("slug"),
-        id: channel.get("id"),
-
   likeVideo: (airing) ->
     @authenticate =>
       alert_message = "You liked <div>#{airing.get('title')}</div>"
       @notice alert_message
-      App.currentUser.like airing
 
-      mixpanel.track "Video:Like"
+      App.currentUser.like airing
+      App.analytics.vent.trigger "airing:like", airing
+
 
   restreamAiring: (airing, channel) ->
     if App.currentUser?
       App.currentUser.restream airing, channel, (msg) =>
         @notice msg
-        mixpanel.track "Video:Restream"
+        App.analytics.vent.trigger "airing:restream", airing
 
   addAiring: (msg) ->
     titleDivs = "<div>#{msg}</div>"
     @notice "Added #{titleDivs}"
-    mixpanel.track "Add:Video"
+    App.analytics.vent.trigger "airing:add", airing
 
-  mute: ->
+  playerNext: ->
+    App.analytics.vent.trigger "player:skip", App.playerManager.airing
+    App.playerManager.next()
+
+  playerTogglePause: ->
+    if App.playerManager.togglePause()
+      App.analytics.vent.trigger "player:unpause"
+    else
+      App.analytics.vent.trigger "player:pause"
+
+  playerMute: ->
     App.playerManager.toggleMute()
 
   authenticate: (callback) ->

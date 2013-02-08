@@ -13,6 +13,15 @@ class App.YouTubePlayer extends App.Player
     Backbone.Events.on("player:pause", @_pause, this)
     super()
 
+  getInfo: ->
+    if @_player?
+      current = @_player.getCurrentTime()
+      duration = @_player.getDuration()
+    {
+      currentTime: current,
+      totalTime: duration
+    }
+
   _loadVideo: ->
     @_player.loadVideoById @current_playing_id
 
@@ -25,7 +34,6 @@ class App.YouTubePlayer extends App.Player
        # @_onPause()
       when 3 then break #YT.PlayerState.BUFFERING
       when 5 then break #YT.PlayerState.CUED
-
 
   _unMute: ->
     @_player.unMute() if @_player?

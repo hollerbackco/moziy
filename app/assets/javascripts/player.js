@@ -18,13 +18,14 @@
 //= require_tree ./player/templates
 
 //= require player/app
-//= require player/keyboard
-//= require cookie
+//= require player/helpers/keyboard
+//= require common/lib/cookie
 //= require_tree ./common/models
+//= require_tree ./common/lib
 //= require_tree ./player/p
 //= require_tree ./player/views
 //= require_tree ./player/controllers
 //= require_tree ./player/models
-//= require_tree ./player/utils
+//= require_tree ./player/helpers
 //= require player/player
 //= require player/channels

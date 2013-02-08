@@ -9,10 +9,8 @@ class App.PlayerManager
 
     Backbone.Events.bind("player:finished", @next, this)
     Backbone.Events.bind("player:error", @errorPlayNext, this)
-    App.vent.on("channel:watch", @changeChannel, this)
-    App.vent.on("player:next", @next, this)
-    App.vent.on("player:pause", @togglePause, this)
 
+    App.vent.on("channel:watch", @changeChannel, this)
 
   changeChannel: (channel, airing_id) ->
     @channel = channel
@@ -27,12 +25,11 @@ class App.PlayerManager
 
   togglePause: ->
     if @playState
-      @playState = 0
-      Backbone.Events.trigger("player:pause")
+      Backbone.Events.trigger "player:pause"
+      @_stop()
     else
-      @playState = 1
       @player._play() if @player?
-      #Backbone.Events.trigger("player:play")
+      @_go()
 
   toggleMute: ->
     if @volumeState
@@ -68,14 +65,23 @@ class App.PlayerManager
     catch error
       @next()
 
-  _playerPlay: (player, airing) ->
-    @player = player
+  _playerPlay: (@player, @airing) ->
+    @_stop()
     @_stopPlayers()
-    @player.play airing.get "source_id"
-    @_notifyPlayers airing
+    @player.play @airing.get "source_id"
+    @_notifyPlayers @airing
+    @_go()
 
+  _stop: ->
+    @playState = 0
+    clearInterval @timer
+
+  _go: ->
     @playState = 1
-    mixpanel.track "Video:Play"
+    @timer = setInterval @_playerPing, 10000
+
+  _playerPing: ->
+    App.analytics.vent.trigger "player:ping", @player.getInfo(), @airing, @channel
 
   _stopPlayers: ->
     Backbone.Events.trigger("player:stop")
