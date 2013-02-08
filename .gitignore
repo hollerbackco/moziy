@@ -4,3 +4,8 @@ log/*.log
 tmp/
 .sass-cache/
 .rvmrc*
+doc/api
+doc/app
+*.swp
+*~
+.DS_Store

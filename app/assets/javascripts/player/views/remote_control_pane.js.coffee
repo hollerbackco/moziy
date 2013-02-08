@@ -2,7 +2,7 @@ App.Views.RemoteControlPane = Backbone.View.extend
   template: HandlebarsTemplates['player/templates/remote_control_pane']
   events:
     "click .menu-button" : "activateMenuItem"
-    "click .add"  : "showAdd"
+    #"click .add"  : "showAdd"
     "click .login": "showLogin"
     "click .invite": "showInvite"
 
