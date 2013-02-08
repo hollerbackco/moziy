@@ -6,7 +6,7 @@ class ChannelMailer < ApplicationMailer
     @likes = likes
     @users = likes.map(&:user)
 
-    subject = "#{usernames_string @users} liked /#{@your_channel.slug}"
+    subject = "#{usernames_string @users} pratically highfived your video"
 
     mail to: @your_channel.parties.map(&:email), subject: subject
   end
@@ -64,7 +64,7 @@ class ChannelMailer < ApplicationMailer
 
     string = "#{usernames.pop}"
     if usernames.any?
-      string = "#{string} and #{usernames.count} others"
+      string = "#{string}"
     end
 
     string
