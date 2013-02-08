@@ -1,6 +1,6 @@
 class App.PlayerManager
   constructor:  ->
-    _.bindAll(this, '_play')
+    _.bindAll(this, '_play', '_playerPing')
     @volumeState = 1
     @playState = 1 #0 is paused
 
