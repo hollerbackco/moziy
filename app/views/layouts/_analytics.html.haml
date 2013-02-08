@@ -6,9 +6,20 @@
 
 - if logged_in?
   - name_tag = "#{current_user.primary_channel.slug} #{current_user.email}"
-  :javascript
-    mixpanel.alias(#{current_user.id})
-    mixpanel.name_tag("#{name_tag}")
+  - if flash[:new_user]
+    :javascript
+      mixpanel.alias(#{current_user.id})
+      mixpanel.name_tag("#{name_tag}")
+  - else
+    :javascript
+      mixpanel.identify(#{current_user.id})
+      mixpanel.name_tag("#{name_tag}")
+      mixpanel.people.set({
+        "username": "#{current_user.username}",
+        "channels": "#{current_user.managing_channels_slugs}",
+        "likes": #{current_user.likes.count},
+        "following": #{current_user.subscriptions.count}
+      })
 
 :javascript
   var _gaq = _gaq || [];

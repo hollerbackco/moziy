@@ -43,6 +43,10 @@ class User < ActiveRecord::Base
     channels + collab_channels
   end
 
+  def managing_channels_slugs
+    managing_channels.map(&:slug).join(",")
+  end
+
   def owns?(obj)
     self.id == obj.creator_id
   end

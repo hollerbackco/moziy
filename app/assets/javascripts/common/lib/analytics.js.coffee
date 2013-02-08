@@ -39,9 +39,13 @@ class App.Analytics
 
   playerPing: (airing, channel) ->
     _gaq.push ['_trackEvent', 'Videos', 'Watching', channel.get("slug")]
+    mixpanel.people.increment
+      "seconds watched": 10
 
   playerPlay: (airing, channel) ->
     mixpanel.track "Video:Play"
+    mixpanel.people.increment
+      "videos watched": 1
 
   playerSkip: ->
     mixpanel.track "Video:Skip"
