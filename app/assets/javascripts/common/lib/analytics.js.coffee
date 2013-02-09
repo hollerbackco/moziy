@@ -22,20 +22,30 @@ class App.Analytics
     mixpanel.track "Add:Video"
 
   airingLike: (airing) ->
-    mixpanel.track "Video:Like"
+    mixpanel.track "Video:Like",
+      slug: airing.get("channel").slug
+      video: airing.get("title")
+      provider: airing.get("source_name")
+      provider_id: airing.get("source_id")
+      note_count: airing.get("note_count")
 
   airingRestream: (airing) ->
-    mixpanel.track "Video:Restream"
+    mixpanel.track "Video:Restream",
+      slug: airing.get("channel").slug
+      video: airing.get("title")
+      provider: airing.get("source_name")
+      provider_id: airing.get("source_id")
+      note_count: airing.get("note_count")
 
   channelWatch: (channel) ->
     mixpanel.track "Channel:Watch",
       slug: channel.get("slug"),
-      id: channel.get("id"),
+      id: channel.get("id")
 
   channelFollow: (channel) ->
     mixpanel.track "Channel:Follow",
       slug: channel.get("slug"),
-      id: channel.get("id"),
+      id: channel.get("id")
 
   playerPing: (airing, channel) ->
     _gaq.push ['_trackEvent', 'Videos', 'Watching', channel.get("slug")]
@@ -43,7 +53,13 @@ class App.Analytics
       "seconds watched": 10
 
   playerPlay: (airing, channel) ->
-    mixpanel.track "Video:Play"
+    mixpanel.track "Video:Play",
+      slug: channel.get("slug")
+      video: airing.get("title")
+      provider: airing.get("source_name")
+      provider_id: airing.get("source_id")
+      note_count: airing.get("note_count")
+
     mixpanel.people.increment
       "videos watched": 1
 
