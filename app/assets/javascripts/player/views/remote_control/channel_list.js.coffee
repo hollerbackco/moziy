@@ -19,9 +19,9 @@ App.Views.RemoteControlChannelList = Backbone.View.extend
     @subviews = []
 
   render: ->
+    @clear()
     @model.fetch
       success: =>
-        @clear()
         @model.each (channel) =>
           item =  new App.Views.RemoteControlChannelListItem
             model: channel
