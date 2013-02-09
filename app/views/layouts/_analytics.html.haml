@@ -16,7 +16,7 @@
       mixpanel.name_tag("#{name_tag}")
       mixpanel.people.set({
         "$email": "#{current_user.email}",
-        "$created" #{current_user.created_at.to_json},
+        "$created": #{current_user.created_at.to_json},
         "$username": "#{current_user.username}",
         "channels": "#{current_user.managing_channels_slugs}",
         "likes": #{current_user.likes.count},
