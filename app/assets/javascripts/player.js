@@ -13,6 +13,7 @@
 //= require underscore-min
 //= require backbone-min
 //= require swfobject
+//= require infinity.min
 
 //= require handlebars.runtime
 //= require_tree ./player/templates

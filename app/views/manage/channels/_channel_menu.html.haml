@@ -3,7 +3,7 @@
   = link_to "#{@channel.title}", manage_channel_videos_path(@channel)
   .followers
     = pluralize @channel.subscriptions.count, "follower"
-    = link_to "Add Collaborator +", manage_channel_memberships_path(@channel),
+    = link_to "Add People +", manage_channel_memberships_path(@channel),
       :class => "add-collaborator"
 %ul#secondary-menu.clearfix
   %li{:class => current_page?(manage_channel_path(@channel)) ? "active" : "" }
@@ -11,7 +11,7 @@
   %li{:class => current_page?(manage_channel_activities_path(@channel)) ? "active" : "" }
     = link_to 'Activity', manage_channel_activities_path(@channel)
   %li{:class => current_page?(manage_channel_memberships_path(@channel)) ? "active" : "" }
-    = link_to 'Collaborators', manage_channel_memberships_path(@channel)
+    = link_to 'People', manage_channel_memberships_path(@channel)
   %li{:class => current_page?(edit_manage_channel_path(@channel)) ? "active" : "" }
     = link_to 'Watch Stream', "/#{@channel.slug}"
   - if can? :edit, @channel

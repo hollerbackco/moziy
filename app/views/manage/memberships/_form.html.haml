@@ -1,5 +1,5 @@
 %h1= "Invite friends via email so they can add videos to \"#{@channel.slug}\""
 = form_tag manage_channel_memberships_path(@channel), id: "add-member", class: "horizontal-form" do
-  = label_tag :email, 'Add a member'
+  = label_tag :email, 'Add a person'
   = text_area_tag :email, "", placeholder: "john.doe@gmail.com"
   = submit_tag "Invite", class: "primary button"

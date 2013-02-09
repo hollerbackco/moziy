@@ -87,6 +87,6 @@ class App.YouTubePlayer extends App.Player
     firstScriptTag = document.getElementsByTagName('script')[0]
     firstScriptTag.parentNode.insertBefore tag, firstScriptTag
 
-window.onYouTubePlayerAPIReady = =>
-  App.playerManager.youtubePlayer.onAPIReady()
-  @_unMute()
+    window.onYouTubePlayerAPIReady = =>
+      App.playerManager.youtubePlayer.onAPIReady()
+      @_unMute()
