@@ -8,8 +8,4 @@
   $(document).ready(function() {
     App.videoForm = new App.Views.AddVideo({el: "#add-video"})
 
-    $("form#add-video").submit(function() {
-      mixpanel.track("Add:Video")
-    })
-
   })
