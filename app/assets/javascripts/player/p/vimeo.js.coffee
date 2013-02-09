@@ -76,3 +76,4 @@ class App.VimeoPlayer extends App.Player
 
     window.onVimeoPlayerLoaded = =>
       @_onReady()
+      @_unMute()
