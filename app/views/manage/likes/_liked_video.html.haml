@@ -5,5 +5,5 @@
     = link_to a.channel.title, slug_path(a.channel.slug),
       class: "channel-link channel"
     %span.notes= pluralize a.history.count, "attachments"
-    = link_to start_video_url(a.channel.slug, v: a.video.id), start_video_path(a.channel.slug, v: a.video.id),
+    = link_to start_video_url(a.channel.slug, v: a.id), start_video_path(a.channel.slug, v: a.id),
       class: "permalink"

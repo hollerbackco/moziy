@@ -7,14 +7,12 @@ App.Views.RemoteControlChannelList = Backbone.View.extend
   subviews: []
 
   initialize: ->
-    @$list = new infinity.ListView @$el
     @render()
 
   show: (@model) ->
     @render()
 
   clear: ->
-    @$list.cleanup()
     @$el.html ""
     for view in @subviews
       view.remove()
@@ -23,9 +21,10 @@ App.Views.RemoteControlChannelList = Backbone.View.extend
   render: ->
     @model.fetch
       success: =>
+        @clear()
         @model.each (channel) =>
           item =  new App.Views.RemoteControlChannelListItem
             model: channel
-          @$list.append(item.$el)
+          @$el.append item.$el
           @subviews.push item
     this
