@@ -13,7 +13,6 @@ class Manage::AiringsController < ApplicationController
         airing = Airing.create({
           :user_id => current_user.id,
           :channel_id => @channel.id,
-          :channel_slug => @channel.slug,
           :video_id => video.id,
           :parent_id => from.id,
           :position => 0
@@ -28,7 +27,8 @@ class Manage::AiringsController < ApplicationController
 
         re = {
           :success => true,
-          :channel_title => @channel.title
+          :channel_title => @channel.title,
+          :channel_slug => @channel.slug
         }
       else
         re = {:success => false, :msg => "already exists"}
