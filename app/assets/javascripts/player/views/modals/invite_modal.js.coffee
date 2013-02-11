@@ -33,6 +33,7 @@ App.Views.InviteModal = Backbone.View.extend
 
   _success: ->
     @$("form").addClass "submitted"
+    App.analytics.vent.trigger "invite:request"
 
   _showErrors: (errors) ->
     @$("form").addClass "has-errors"
