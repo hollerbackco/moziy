@@ -74,7 +74,7 @@ class App.Controllers.MainController
 
   likeVideo: (airing) ->
     @authenticate =>
-      alert_message = "You liked <div>#{airing.get('title')}</div>"
+      alert_message = "liked <div>#{airing.get('title')}</div>"
       @notice alert_message
 
       App.currentUser.like airing
