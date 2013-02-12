@@ -108,7 +108,7 @@ class App.Controllers.MainController
     if App.currentUser.loggedIn()
       callback()
     else
-      @showLoginModal()
+      @showInviteModal()
 
   fivehundred: ->
     @notice "Something went wrong"
