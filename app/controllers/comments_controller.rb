@@ -15,11 +15,13 @@ class CommentsController < ApplicationController
         subject: comment,
         secondary_subject: comment.commentable.channel
 
-      ChannelMailer.commented(comment.commentable.user, comment).deliver
+      airing.comment_receivers.select {|u| u != current_user}.each do |user|
+        ChannelMailer.commented(user, comment).deliver
+      end
 
       render nothing: true, status: :ok
     else
-      render nothing: true, status: 400
+      render text: "Something went wrong", status: 400
     end
   end
 

@@ -8,6 +8,7 @@ class Airing < ActiveRecord::Base
   has_many :attachments, class_name: "Activity", as: :subject, order: "created_at DESC"
   has_many :likes,    as: :likeable
   has_many :comments, as: :commentable
+  has_many :commenters, through: :comments, source: :user
 
   belongs_to :video #, :counter_cache => true
   belongs_to :channel
@@ -40,6 +41,9 @@ class Airing < ActiveRecord::Base
     state :archived
   end
 
+  def comment_receivers
+   (channel.parties + commenters).uniq
+  end
 
   def history
     top_node = root? ? self : root
