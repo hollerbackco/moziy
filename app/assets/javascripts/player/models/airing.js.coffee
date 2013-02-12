@@ -5,7 +5,7 @@ App.Models.Airing = Backbone.Model.extend
 
   comment: (body) ->
     $.ajax
-      url: "/airings/#{@id}/comments"
+      url: "/airings/#{@id}/comments.json"
       type: "POST"
       data:
         body: body

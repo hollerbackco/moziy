@@ -9,19 +9,23 @@ class CommentsController < ApplicationController
       :body => params[:body]
     )
 
-    if comment.save
-      Activity.add :airing_comment,
-        actor: current_user.primary_channel,
-        subject: comment,
-        secondary_subject: comment.commentable.channel
+    respond_to do |format|
+      if comment.save
+        Activity.add :airing_comment,
+          actor: current_user.primary_channel,
+          subject: comment,
+          secondary_subject: comment.commentable.channel
 
-      airing.comment_receivers.select {|u| u != current_user}.each do |user|
-        ChannelMailer.delay.commented(user, comment)
+        airing.comment_receivers.select {|u| u != current_user}.each do |user|
+          ChannelMailer.delay.commented(user, comment)
+        end
+
+        format.html {redirect_to :back}
+        format.json {render nothing: true, status: :ok}
+      else
+        format.html {redirect_to :back}
+        format.json {render text: "Something went wrong", status: 400}
       end
-
-      render nothing: true, status: :ok
-    else
-      render text: "Something went wrong", status: 400
     end
   end
 

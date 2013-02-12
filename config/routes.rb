@@ -38,6 +38,8 @@ Puretv::Application.routes.draw do
     get "request/status/add_video", :to => "request_status#add_video"
 
     resources :likes, :only => [:index, :show]
+    resources :airings, :only => [:show]
+
     resources :channels do
       collection do
         match :following

@@ -1,6 +1,10 @@
-class Manage::AiringsController < ApplicationController
-  before_filter :require_login
-  before_filter :set_channel
+class Manage::AiringsController < Manage::BaseController
+  before_filter :set_channel, except: :show
+
+  def show
+    @airing = Airing.find(params[:id])
+    set_title @airing.title
+  end
 
   def create
     if params[:video_id]

@@ -5,6 +5,7 @@
     .holder{:style => "margin: 0 auto"}
       = sanitize @airing.video.body, :tags => %w(embed iframe p), :attributes => %w(src width height frameborder)
   #main-content
+    = render :partial => 'manage/common/comments/form'
     - if @airing.history.any?
       %ul.activities
         - for activity in @airing.history
