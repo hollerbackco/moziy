@@ -210,6 +210,10 @@ i {
     background: transparent image-url("icons/restream_sprite_white.png") top center no-repeat;
   }
 
+  &.commented {
+    background: transparent image-url("icons/comment_sprite.png") top center no-repeat;
+  }
+
   &.on {
     background-position: bottom center;
   }

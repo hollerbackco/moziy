@@ -362,10 +362,7 @@
       .activity {
         padding: 0;
         margin: 0;
-        border-bottom: 1px solid #ddd;
         line-height: 48px;
-        height: 48px;
-        overflow: hidden;
 
         i {
           float: right;
@@ -387,10 +384,24 @@
           font-weight: bold;
         }
 
+        .body {
+          padding-left: 15px;
+          overflow-x: hidden;
+          border-bottom: 1px solid #ddd;
+          border-left: 1px solid #ddd;
+          border-right: 1px solid #ddd;
+
+          .comment {
+            margin: 0;
+            margin-bottom: 10px;
+            padding: 0 20px 10px;
+            line-height: 24px;
+            font-size: 16px;
+          }
+        }
 
         .primary {
           float: left;
-          margin-right: 15px;
           width: 48px;
           height: 48px;
         }
@@ -398,7 +409,6 @@
           float: right;
           width: 48px;
           height: 48px;
-          border-left: 1px solid #ddd;
         }
 
         &:last-child {

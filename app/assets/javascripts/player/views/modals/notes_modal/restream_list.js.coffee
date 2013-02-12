@@ -8,7 +8,6 @@ App.Views.RestreamList = Backbone.View.extend
 
   # should be a collection
   refresh: (restreams) ->
-
     @_clear()
 
     for obj in restreams

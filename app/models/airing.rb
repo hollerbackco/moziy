@@ -6,7 +6,8 @@ class Airing < ActiveRecord::Base
     :parent_id, :state, :position, :user_id
 
   has_many :attachments, class_name: "Activity", as: :subject, order: "created_at DESC"
-  has_many :likes, as: :likeable
+  has_many :likes,    as: :likeable
+  has_many :comments, as: :commentable
 
   belongs_to :video #, :counter_cache => true
   belongs_to :channel
@@ -39,9 +40,11 @@ class Airing < ActiveRecord::Base
     state :archived
   end
 
+
   def history
     top_node = root? ? self : root
-    Activity.where(:subject_id => top_node.self_and_descendants, :subject_type => "Airing")
+    Activity.where("(subject_type = 'Airing' and subject_id IN (?)) or (subject_type = 'Comment' and subject_id IN (?))", top_node.self_and_descendants, comments)
+    #Activity.where(:subject_id => top_node.self_and_descendants, :subject_type => "Airing")
   end
 
   def note_count

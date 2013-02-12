@@ -13,9 +13,14 @@ App.Views.NotesModal = Backbone.View.extend
     @$el.modal().modal("hide")
     @$el.html @template()
     @restreamList = new App.Views.RestreamList(el: $("#notes-restreams"))
+    @commentForm = new App.Views.CommentForm
+      el: $("#comment-form")
+
+    @commentForm.on "success", @_refreshNotes
 
   show: (airing) ->
     @model = airing
+    @commentForm.model = @model
 
     @$(".airing-title").html @model.get("title")
     @_refreshNotes()

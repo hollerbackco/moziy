@@ -80,7 +80,6 @@ class App.Controllers.MainController
       App.currentUser.like airing
       App.analytics.vent.trigger "airing:like", airing
 
-
   restreamAiring: (airing, channel) ->
     if App.currentUser?
       App.currentUser.restream airing, channel, (msg) =>
