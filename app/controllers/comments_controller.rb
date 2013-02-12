@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
         secondary_subject: comment.commentable.channel
 
       airing.comment_receivers.select {|u| u != current_user}.each do |user|
-        ChannelMailer.commented(user, comment).deliver
+        ChannelMailer.delay.commented(user, comment)
       end
 
       render nothing: true, status: :ok
