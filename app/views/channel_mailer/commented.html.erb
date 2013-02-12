@@ -5,14 +5,14 @@
   </head>
   <body>
     <p>
-      <%= link_to @comment.user.username, slug_url(@comment.user.primary_channel.slug) %>
+      <%= link_to "/#{@comment.user.username}", slug_url(@comment.user.primary_channel.slug) %>
       commented on <strong><%= @airing.title %></strong>:
     <p>
       "<%= @comment.body %>"
     </p>
 
     <p>
-      <%= link_to "Reply", edit_manage_channel_video_path(@channel, @comment.commentable)%>
+      <%= link_to "Reply", edit_manage_channel_video_url(@airing.channel, @comment.commentable)%>
     </p>
 
     <p><a href="<%= root_url %>">moziy.com</a></p>

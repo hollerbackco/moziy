@@ -11,6 +11,17 @@ class ChannelMailer < ApplicationMailer
     mail to: @user.email, subject: subject
   end
 
+  def commented(recipient, comment)
+    @user = recipient
+    @comment = comment
+    @airing = comment.commentable
+    @speaker = comment.user
+
+    subject = "/#{@speaker.username} commented on #{@airing.title}"
+
+    mail to: @user.email, subject: subject
+  end
+
   def added(recipient, channel, airings)
     @your_channel = channel
     @user = recipient

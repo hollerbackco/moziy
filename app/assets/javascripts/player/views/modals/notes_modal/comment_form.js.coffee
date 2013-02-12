@@ -26,6 +26,7 @@ App.Views.CommentForm = Backbone.View.extend
       get.fail (msg) =>
         @trigger "fail", msg
         App.vent.trigger "error", msg
+        @ready()
 
   resetForm: ->
     @_clearForm()

@@ -15,7 +15,7 @@ class CommentsController < ApplicationController
         subject: comment,
         secondary_subject: comment.commentable.channel
 
-      ChannelMailer.commented(comment.commentable.user,comment).deliver
+      ChannelMailer.commented(comment.commentable.user, comment).deliver
 
       render nothing: true, status: :ok
     else
