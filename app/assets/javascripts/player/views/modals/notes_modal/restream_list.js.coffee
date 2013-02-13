@@ -12,7 +12,7 @@ App.Views.RestreamList = Backbone.View.extend
 
     for obj in restreams
       restream = new App.Models.Channel(obj.channel)
-      subview = new App.Views.RestreamItem(model: restream, type: obj.type)
+      subview = new App.Views.RestreamItem(model: restream, type: obj.type, body: obj.body)
       @_add subview
 
   _clear: ->

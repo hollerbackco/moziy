@@ -7,7 +7,7 @@ class Airing < ActiveRecord::Base
 
   has_many :attachments, class_name: "Activity", as: :subject, order: "created_at DESC"
   has_many :likes,    as: :likeable
-  has_many :comments, as: :commentable
+  has_many :comments, as: :commentable, order: "created_at DESC"
   has_many :commenters, through: :comments, source: :user
 
   belongs_to :video #, :counter_cache => true
@@ -61,6 +61,7 @@ class Airing < ActiveRecord::Base
     channels = top_node.descendants.map {|a| {type: "Restream", channel: a.channel} }
     channels = channels + likes.map {|like| {type: "Like", channel: like.user.primary_channel} }
     channels = channels + [{type: "Add", channel: top_node.channel}]
+    channels = channels + comments.map {|comment| {type: "Comment", channel: comment.user.primary_channel, body: comment.body} }
     channels.as_json
   end
 

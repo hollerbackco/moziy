@@ -21,7 +21,7 @@ class CommentsController < ApplicationController
         end
 
         format.html {redirect_to :back}
-        format.json {render nothing: true, status: :ok}
+        format.json {render json: [], status: :ok}
       else
         format.html {redirect_to :back}
         format.json {render text: "Something went wrong", status: 400}

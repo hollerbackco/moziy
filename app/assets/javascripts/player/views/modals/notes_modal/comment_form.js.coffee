@@ -56,4 +56,4 @@ App.Views.CommentForm = Backbone.View.extend
       @restreamList.refresh msg.notes
 
   _clearForm: ->
-     @$("#comment-body").val ""
+     @$body.val ""

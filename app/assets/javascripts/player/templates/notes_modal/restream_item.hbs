@@ -8,9 +8,15 @@
   {{#if add}}
     <i class="add on" />
   {{/if}}
+  {{#if comment}}
+    <i class="commented" />
+  {{/if}}
 </div>
 <img class="restream-channel-cover-art" src="{{cover_art.thumb_player.url}}" width=150 height=150 />
 <div class="restream-channel-info">
-  <div class="restream-channel-title">{{title}}</div>
+  <div class="restream-channel-title">/{{title}}</div>
+  {{#if comment}}
+    <div class="restream-channel-body">{{body}}</div>
+  {{/if}}
   <div class="restream-channel-followers">{{channel_subscribers_count}} followers</div>
 </div>

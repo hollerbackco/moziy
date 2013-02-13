@@ -9,6 +9,7 @@ App.Views.RestreamItem = Backbone.View.extend
   initialize: ->
     _.bindAll this, "moreInfo"
     @type = @options.type
+    @body = @options.body
     @render()
 
   render: ->
@@ -16,8 +17,11 @@ App.Views.RestreamItem = Backbone.View.extend
       restream: (@type == "Restream")
       like: (@type == "Like")
       add: (@type == "Add")
+      comment: (@type == "Comment")
+      body: @body
 
     @$el.html @template json
+    @$el.addClass "note-type-#{@type}"
 
   moreInfo: ->
     App.vent.trigger "modals:channel", @model
