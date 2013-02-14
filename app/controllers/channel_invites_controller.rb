@@ -9,6 +9,7 @@ class ChannelInvitesController < ApplicationController
     if logged_in?
       unless channel.member? current_user
         membership = channel.memberships.where(user_id: current_user.id).first_or_create
+        channel.subscribed_by current_user
 
         flash[:notice] = "You have joined /#{channel.slug}"
       else
