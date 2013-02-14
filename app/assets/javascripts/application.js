@@ -10,6 +10,7 @@
 //= require jquery.hoverIntent.min
 //= require bootstrap-modal
 //= require bootstrap-dropdown
+//= require bootstrap-tooltip
 //= require underscore-min
 //= require backbone-min
 //= require common/lib/cookie

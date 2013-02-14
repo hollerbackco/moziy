@@ -1,16 +1,26 @@
 #secondary-title.clearfix
-  = image_tag @channel.cover_art_url(:thumb_list), class: "cover-art"
+  = image_tag @channel.cover_art_url(:thumb_player), class: "cover-art", width: 80, height: 80
   = link_to "#{@channel.title}", slug_path(@channel.slug)
   .followers
     = pluralize @channel.subscriptions.count, "follower"
-    = link_to "Add People +", manage_channel_memberships_path(@channel),
+%ul#members.clearfix
+  - for member in @channel.parties
+    %li.member
+      = link_to slug_path(member.primary_channel.slug) do
+        = image_tag member.primary_channel.cover_art_url(:thumb_player), :width => 48, :height => 48,
+          "data-toggle" => "tooltip", :title =>  "/#{member.username}"
+  %li.member.add
+    = link_to "Add More People +", manage_channel_memberships_path(@channel),
       :class => "add-collaborator"
+:javascript
+  $(".member img").tooltip()
+
 %ul#secondary-menu.clearfix
   %li{:class => current_page?(manage_channel_path(@channel)) ? "active" : "" }
     = link_to 'Home', manage_channel_path(@channel), :class => "primary"
   %li{:class => current_page?(manage_channel_activities_path(@channel)) ? "active" : "" }
     = link_to 'Activity', manage_channel_activities_path(@channel)
-  %li{:class => current_page?(manage_channel_memberships_path(@channel)) ? "active" : "" }
+  -#%li{:class => current_page?(manage_channel_memberships_path(@channel)) ? "active" : "" }
     = link_to 'People', manage_channel_memberships_path(@channel)
   %li{:class => current_page?(edit_manage_channel_path(@channel)) ? "active" : "" }
     = link_to 'Watch Stream', "/#{@channel.slug}"
@@ -19,3 +29,4 @@
       = link_to 'Stream Settings', edit_manage_channel_path(@channel), class: "secondary"
   %li.right{:class => current_page?(archived_manage_channel_videos_path(@channel)) ? "active" : "" }
     = link_to 'Trash', archived_manage_channel_videos_path(@channel), class: "secondary"
+

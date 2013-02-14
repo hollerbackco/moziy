@@ -220,21 +220,15 @@
 
     #secondary-title {
       list-style: none;
-      padding: 12px 0 8px;
+      padding: 0 0 8px;
       margin: 0;
-      font-size: 18px;
+      font-size: 32px;
 
-      .add-collaborator {
-        font-weight: bold;
-        margin-left: 15px;
-        font-size: 13px;
-        color: #04BBF5;
-      }
       .cover-art {
         display: block;
         float: left;
-        width: 48px;
-        height: 48px;
+        width: 80px;
+        height: 80px;
         margin-right: 15px;
       }
 
@@ -265,6 +259,7 @@
         }
       }
 
+
       li.right,
       li.right:hover,
       li.right.active {
@@ -283,6 +278,36 @@
         a {
           color: #fff;
           background: #282828;
+        }
+      }
+    }
+
+    #members {
+      margin: 20px 0;
+      padding: 13px;
+      background: #efefef;
+      list-style-type: none;
+
+      .member.add {
+        margin-left: 10px;
+        padding: 14px 0 0;
+      }
+
+      .add-collaborator {
+        display: block;
+        font-weight: bold;
+        font-size: 13px;
+        color: #04BBF5;
+      }
+
+      .member {
+        margin: 0;
+        padding: 0;
+        float: left;
+        margin-right: 10px;
+
+        a, img {
+          display: block;
         }
       }
     }

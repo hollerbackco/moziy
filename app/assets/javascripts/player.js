@@ -11,6 +11,7 @@
 //= require bootstrap-modal
 //= require bootstrap-modalmanager
 //= require bootstrap-dropdown
+//= require bootstrap-tooltip
 //= require underscore-min
 //= require backbone-min
 //= require swfobject
