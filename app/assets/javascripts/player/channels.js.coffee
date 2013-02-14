@@ -82,6 +82,7 @@ $ ->
         channel:  new App.Views.ChannelModal(el: "#channel-modal")
         notes:    new App.Views.NotesModal(el: "#notes-modal")
         restream: new App.Views.RestreamModal(el: "#restream-modal")
+        sharing:  new App.Views.SharingModal(el: "#sharing-modal")
         add:      new App.Views.AddModal(el: "#add-modal")
         login:    new App.Views.LoginModal(el: "#login-modal")
         invite:   new App.Views.InviteModal(el: "#invite-modal")

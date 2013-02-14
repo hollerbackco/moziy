@@ -1,0 +1,19 @@
+<div class="modal-header">
+  <span class="title">{{title}}</spaN>
+</div>
+<div class="start modal-body">
+  <div class="share-url">
+    <strong>Share Url</strong>
+    <input type="text" value="{{url}}" onclick="$(this).select()" />
+  </div>
+  <div class="share-items">
+    <div id="share-twitter" class="share-item twitter">
+      <a href="https://twitter.com/share?url={{url}}&text={{title}}" class="twitter-share-button&via=moziymoziy">
+        <img src="/assets/icons/twitter.png" width=80 height=80 />
+      </a>
+    </div>
+    <div id="share-facebook" class="share-item facebook">
+      <img src="/assets/icons/facebook.png" width=80 height=80 />
+    </div>
+  </div>
+</div>

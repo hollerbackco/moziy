@@ -1,7 +1,10 @@
 App.Views.CurrentlyPlayingPane = Backbone.View.extend
   initialize: ->
-    @currentAiringPane = new App.Views.CurrentAiring(el: @$("#current-video"))
-    @currentChannelPane = new App.Views.CurrentChannel(el: @$("#current-channel"))
+    if App.currentUser.loggedIn()
+      @currentAiringPane = new App.Views.CurrentAiring(el: @$("#current-video"))
+      @currentChannelPane = new App.Views.CurrentChannel(el: @$("#current-channel"))
+    else
+      @currentSharingPane = new App.Views.CurrentSharing(el: @$("#current-sharing"))
 
     @$el.hoverIntent
       over: ->

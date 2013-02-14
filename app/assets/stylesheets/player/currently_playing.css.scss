@@ -79,6 +79,21 @@
     border-right: 1px solid #ccc;
   }
 
+  #current-sharing {
+    margin-right: 10px;
+    background: rgba(255,255,255,.7);
+
+    #sharing-button {
+      float: right;
+      padding: 7px 20px;
+    }
+
+    #sharing-video-title {
+      padding: 5px 10px;
+      font-size: 14px;
+    }
+  }
+
   #currently-playing {
 
     #video-info {

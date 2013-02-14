@@ -14,9 +14,11 @@ class App.Controllers.MainController
     App.vent.on "player:next", @playerNext, this
     App.vent.on "player:pause", @playerTogglePause, this
     App.vent.on "modals:restream", @showRestreamModal, this
+    App.vent.on "modals:share", @showSharingModal, this
     App.vent.on "modals:login", @showLoginModal, this
     App.vent.on "modals:add", @showAddModal, this
     App.vent.on "modals:invite", @showInviteModal, this
+    App.vent.on "notice", @notice, this
     App.vent.on "error", @showError, this
     App.vent.on "fullscreen", @fullscreen, this
 
@@ -49,6 +51,9 @@ class App.Controllers.MainController
   showRestreamModal: (airing) ->
     @authenticate =>
       App.modals.restream.show(airing)
+
+  showSharingModal: (airing) ->
+    App.modals.sharing.show airing
 
   showLoginModal: ->
     App.modals.login.show()
