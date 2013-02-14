@@ -6,7 +6,11 @@ module ApplicationHelper
     separator  = t 'common.title_separator'
     "#{page_title}#{separator}#{base_title}"
   end
-  
+
+  def description
+    @description || "find and share videos on moziy"
+  end
+
   def body_id
     "#{controller_name}-#{action_name}"
   end

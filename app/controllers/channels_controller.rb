@@ -28,7 +28,10 @@ class ChannelsController < ApplicationController
       Channel.publik.explore_for(current_user) :
       Channel.publik.explore
 
-    set_title @channel.title
+    set_title @first_airing ? @first_airing.title : @channel.title
+    if @first_airing
+      set_description @first_airing.description
+    end
     render :layout => "player"
 
   rescue ActiveRecord::RecordNotFound

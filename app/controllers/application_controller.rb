@@ -11,6 +11,10 @@ class ApplicationController < ActionController::Base
      @title = [!title, title || "#{controller_name}.#{action_name}.title"]
   end
 
+  def set_description(description = "")
+     @description = description
+  end
+
   def not_authenticated
     redirect_to login_path, :alert => "Please login first."
   end

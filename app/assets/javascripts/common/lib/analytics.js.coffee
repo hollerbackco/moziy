@@ -5,6 +5,7 @@ class App.Analytics
     "airing:like":      "airingLike"
     "airing:restream":  "airingRestream"
     "airing:add":       "airingAdd"
+    "airing:share":     "airingShare"
     "player:play":      "playerPlay"
     "player:ping":      "playerPing"
     "player:skip":      "playerSkip"
