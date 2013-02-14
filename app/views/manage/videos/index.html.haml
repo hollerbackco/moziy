@@ -1,12 +1,10 @@
 #video-manage
   = render :partial => 'manage/channels/channel_menu'
   = render :partial => 'manage/videos/form'
-  - if @channel.airings.blank?
-    %h1.empty
-      Add your favorite videos from youtube or vimeo to share them with your friends and followers on moziy.
-  - else
-    %ul.videos.items
-      = render partial: 'manage/videos/video', collection: @channel.airings, as: :a
+  %ul.videos.items
+    = render partial: 'manage/videos/video', collection: @channel.airings, as: :a
+  %h1.empty
+    Add your favorite videos from youtube or vimeo to share them with your friends and followers on moziy.
 :javascript
   $(".videos").sortable({items: ".video", axis: "y", cursor: "move",
     update: function() {

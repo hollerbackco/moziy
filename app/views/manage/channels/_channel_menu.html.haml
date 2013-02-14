@@ -1,6 +1,6 @@
 #secondary-title.clearfix
   = image_tag @channel.cover_art_url(:thumb_list), class: "cover-art"
-  = link_to "#{@channel.title}", manage_channel_videos_path(@channel)
+  = link_to "#{@channel.title}", slug_path(@channel.slug)
   .followers
     = pluralize @channel.subscriptions.count, "follower"
     = link_to "Add People +", manage_channel_memberships_path(@channel),
