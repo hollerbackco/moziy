@@ -23,6 +23,9 @@ class App.Analytics
   airingAdd: (airing) ->
     mixpanel.track "Add:Video"
 
+  airingShare: (airing) ->
+    mixpanel.track "Video:Share"
+
   airingLike: (airing) ->
     mixpanel.track "Video:Like",
       slug: airing.get("channel").slug
