@@ -81,16 +81,22 @@
 
   #current-sharing {
     margin-right: 10px;
-    background: rgba(255,255,255,.7);
 
     #sharing-button {
       float: right;
-      padding: 7px 20px;
+      padding: 0 20px;
     }
 
     #sharing-video-title {
+      margin-right: 127px;
+      display: none;
       padding: 5px 10px;
       font-size: 14px;
+    }
+
+    &:hover #sharing-video-title {
+      background: rgba(255,255,255,.7);
+      display: block;
     }
   }
 

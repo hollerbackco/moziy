@@ -19,9 +19,8 @@ App.Views.SharingModal = Backbone.View.extend
   show: (model) ->
     @model = model
     App.vent.trigger "modals:close"
-    @$el.modal("show")
-
     @render()
+    @$el.modal("show")
 
   close: ->
     @$el.modal("hide")

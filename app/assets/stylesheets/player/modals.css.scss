@@ -383,6 +383,11 @@
     filter: alpha(opacity=80);
   }
 
+  .modal-overflow.modal.in {
+    margin-top: 10px;
+    top: 1%;
+  }
+
   .modal-scrollable {
     position: fixed;
     top: 0;
@@ -394,18 +399,18 @@
 
   .modal {
     position: absolute;
-    top: 150px;
+    margin-top: 0;
     left: 50%;
+    top: 40%;
     z-index: 1050;
     width: 480px;
     margin-left: -240px;
-    margin-bottom: 150px;
     background-color: #ffffff;
     border: 1px solid #999;
     border: 1px solid rgba(0, 0, 0, 0.3);
     *border: 1px solid #999;
     outline: none;
-    overflow: auto;
+    overflow: visible;
     -webkit-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
        -moz-box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
             box-shadow: 0 3px 7px rgba(0, 0, 0, 0.3);
