@@ -41,6 +41,7 @@ App.Views.SharingModal = Backbone.View.extend
 
     FB.ui obj, (response) =>
       if response and response.post_id
+        App.analytics.vent.trigger "airing:share", @model
         App.vent.trigger "notice", "post was published"
       else
         App.vent.trigger "error", 'Post was not published.'
