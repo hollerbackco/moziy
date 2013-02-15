@@ -1,0 +1,10 @@
+%meta{name: "title", content: title }
+%meta{:name => "keywords", :content => t("meta.keywords")}
+
+- if content_for? :meta
+  = content_for :meta
+- else
+  %meta{:name => "description", :content => description}
+  %meta{:property => "fb:app_id", :content => "442289749178796"}
+  %meta{:property => "og:site_name", :content => t("meta.facebook.site_name")}
+

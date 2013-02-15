@@ -2,6 +2,13 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
+  meta:
+    description: "moziy is a fun new way to discover and share videos with your friends"
+    keywords: "moziy, video, videos, video sharing, channel, stream, moziytv, share videos with friends"
+    facebook:
+      site_name: "moziy"
+      title: "moziy - discover and share videos with your friends"
+
   common:
     title_prefix:    "moziy"
     title_separator: " | "

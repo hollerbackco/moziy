@@ -3,9 +3,8 @@
   %head
     %title= title
     %link{ :rel => "shortcut icon", :href => "/assets/fallback/thumb_favicon_default.jpg", :type => "image/x-icon"}
-    %meta{name: "title", content: title }
-    %meta{name: "description", content: description}
-    %meta{name: "keywords", content: "video, moziy, moziytv, channel, stream, sharing"}
+    = render "layouts/meta"
+
     = stylesheet_link_tag "application"
     = javascript_include_tag "application"
     = csrf_meta_tags

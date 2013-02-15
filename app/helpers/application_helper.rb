@@ -8,7 +8,7 @@ module ApplicationHelper
   end
 
   def description
-    @description || "find and share videos on moziy"
+    @description || t("meta.description")
   end
 
   def body_id

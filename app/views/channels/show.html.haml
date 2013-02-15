@@ -1,3 +1,10 @@
+- content_for :meta do
+  = render :partial => "layouts/meta_video", :locals => { :og_type => "video.other",
+    :og_title => @first_airing.title,
+    :og_url => start_video_path(@first_airing.channel.slug, v: @first_airing.id),
+    :og_description => @first_airing.description,
+    :og_image => @first_airing.video.video_image_url(:thumb_list)}
+
 #alert{style: "display:none"}
 - if @first_airing
   %img{style: "position: absolute; top: -9999px", src: @first_airing.video.video_image_url }

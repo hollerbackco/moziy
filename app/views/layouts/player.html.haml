@@ -3,6 +3,7 @@
   %head
     %title= title
     %link{ :rel => "shortcut icon", :href => @channel.cover_art_url(:thumb_favicon), :type => "image/x-icon"}
+    = render "layouts/meta"
     = stylesheet_link_tag    "player"
     = javascript_include_tag "player"
     = csrf_meta_tags

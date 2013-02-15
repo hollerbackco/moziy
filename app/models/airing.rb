@@ -17,7 +17,7 @@ class Airing < ActiveRecord::Base
   validates :video_id, :presence => true
   validates :channel_id, :presence => true, :uniqueness => {:scope => [:video_id]}
 
-  delegate :title, :source_id, :source_name, to: :video
+  delegate :title, :description, :source_id, :source_name, to: :video
 
   before_create :set_position_to_default
   after_create :increment_counts

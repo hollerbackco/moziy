@@ -21,12 +21,13 @@ App.Views.AddVideo = Backbone.View.extend
       get = video.create(@action, urls)
 
       get.done (state, msg) =>
+        if mixpanel?
+          mixpanel.track("Add:Video")
+
         window.location.reload()
         @_clearForm()
         @_ready()
 
-        if mixpanel?
-          mixpanel.track("Add:Video")
 
       get.fail (msg) =>
         alert msg
