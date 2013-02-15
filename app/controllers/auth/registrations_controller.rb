@@ -36,21 +36,21 @@ class Auth::RegistrationsController < ApplicationController
     @user = User.new(params[:user])
 
     User.transaction do
-      @user.save
+      if @user.save
+        if invite_code = InviteCode.where(code: params[:code]).first
+          invite_code.use
+          invite_code.user = @user
+          invite_code.save
+        end
 
-      if invite_code = InviteCode.where(code: params[:code]).first
-        invite_code.use
-        invite_code.user = @user
-        invite_code.save
+        # create a primary channel
+        @channel = @user.channels.create(:title => @user.username, :slug => @user.username)
+        @user.primary_channel = @channel
+        @user.save
+
+        # subscribe user; happens last because it is the subscriber
+        Channel.default.subscribed_by(@user)
       end
-
-      # create a primary channel
-      @channel = @user.channels.create(:title => @user.username, :slug => @user.username)
-      @user.primary_channel = @channel
-      @user.save
-
-      # subscribe user; happens last because it is the subscriber
-      Channel.default.subscribed_by(@user)
     end
 
     respond_to do |format|
