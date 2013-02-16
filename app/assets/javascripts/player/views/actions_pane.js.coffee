@@ -18,7 +18,7 @@ App.Views.ActionsPane = Backbone.View.extend
     @$el.html @template()
     timer = 0
 
-    $("#player,.player").mousemove =>
+    $("#player .mask").mousemove =>
       if timer
         clearTimeout timer
         timer = 0
@@ -30,7 +30,7 @@ App.Views.ActionsPane = Backbone.View.extend
           @$el.fadeOut(200)
           @$el.removeClass("hover")
 
-      timer = setTimeout callback, 750
+      timer = setTimeout callback, 500
 
 
   like: ->

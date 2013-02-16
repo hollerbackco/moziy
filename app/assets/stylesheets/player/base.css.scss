@@ -133,7 +133,7 @@ overflow: hidden;
     user-select: none;
   }
 
-  #player, .player, .mask {
+  #player, .player {
     position: absolute;
     top: 0px;
     left: 0px;
@@ -148,6 +148,11 @@ overflow: hidden;
   }
 
   .mask {
+    position: absolute;
+    top: 20%;
+    right: 20%;
+    left: 20%;
+    bottom: 20%;
     z-index: 1;
   }
 
