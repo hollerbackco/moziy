@@ -5,6 +5,7 @@ class Auth::RegistrationsController < ApplicationController
   # GET /users/new.xml
   def new
     @user = User.new
+    @code = params[:code] if params.key? :code
     @token = params[:token] if params.key? :token
 
     respond_to do |format|
