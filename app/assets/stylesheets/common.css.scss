@@ -190,8 +190,17 @@ i {
   width: 18px;
   height: 18px;
 
+  &.big {
+    width: 36px;
+    height: 36px;
+  }
+
   &.restream {
     background: transparent image-url("icons/left_sprite.png") top center no-repeat;
+  }
+
+  &.restream.big {
+    background: transparent image-url("icons/restream_big_sprite.png") top center no-repeat;
   }
 
   &.add {
@@ -200,6 +209,10 @@ i {
 
   &.like {
     background: transparent image-url("icons/heart_sprite.png") top center no-repeat;
+  }
+
+  &.like.big {
+    background: transparent image-url("icons/heart_big_sprite.png") top center no-repeat;
   }
 
   &.follow-white {
