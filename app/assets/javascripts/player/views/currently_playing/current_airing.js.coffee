@@ -5,12 +5,11 @@ App.Views.CurrentAiring = Backbone.View.extend
     "click .like" : "like"
     "click .restream" : "restream"
     "click #video-notes" : "notes"
-    "click .restream-from" : "showRestreamFrom"
-    "click #next-playing" : "next"
     "click .channel-from" : "showChannelFrom"
+    "click .restream-from" : "showRestreamFrom"
 
   initialize: ->
-    _.bindAll this, "like", "restream", "show", "next"
+    _.bindAll this, "like", "restream", "show"
     @listenTo App.vent, "airings:play", @show
 
   show: (airing) ->
@@ -39,6 +38,3 @@ App.Views.CurrentAiring = Backbone.View.extend
     e.preventDefault()
     channel = new App.Models.Channel @model.get("parent")
     App.vent.trigger "modals:channel", channel
-
-  next: ->
-    App.vent.trigger "player:next"

@@ -35,8 +35,7 @@ App.Views.SharingModal = Backbone.View.extend
       method: 'feed'
       name: @model.get("title")
       caption: @model.get("description")
-      url: @_airingUrl()
-      picture: @model.get("channel").cover_art.url
+      link: @_airingUrl()
 
     FB.ui obj, (response) =>
       if response and response.post_id
