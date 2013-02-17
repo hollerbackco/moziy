@@ -8,6 +8,7 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require jquery.hoverIntent.min
+//= require jquery.isotope.min
 //= require bootstrap-modal
 //= require bootstrap-modalmanager
 //= require bootstrap-dropdown

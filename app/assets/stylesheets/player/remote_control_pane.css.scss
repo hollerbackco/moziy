@@ -163,6 +163,8 @@
       left: 0;
       right: 0;
       bottom: 0px;
+      overflow-y: scroll;
+      overflow-x: hidden;
     }
 
     &.hover {
@@ -195,69 +197,60 @@
     #explore-list  {
       margin: 0;
       padding: 0;
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      overflow-y: scroll;
-      overflow-x: hidden;
       background: #efefef;
 
       li {
+        float: left;
         background: #fff;
+        width: 203px;
+        margin: 10px 0 0 10px;
         position: relative;
         list-style: none;
-        float: none;
-        margin: 10px 0;
         border: 1px solid #eee;
 
         .channel-image {
           float:left;
           border-right: 1px solid #eee;
-          margin-right: 20px;
+        }
+
+        .follower-count {
+          color: #999;
+          font-size: 12px;
+          font-weight: normal;
         }
 
         .channel-title {
-          font-size: 16px;
+          cursor: pointer;
+          padding: 5px 10px;
           font-weight: bold;
-          padding-top: 15px;
+          overflow: hidden;
         }
 
-        .user {
-          font-size: 13px;
-          color: #666;
-        }
-
-        .channel-description {font-size: 13px; margin-top: 10px; font-style: italic}
-
-        .action-bar {
+        .channel-description {
           border-top: 1px solid #eee;
-          &>div {position: relative; height: 57px}
-          .part1 {float: left; width: 30%; border-right: 1px solid #eee; margin-right: -1px;}
-          .part2 {float: left; width: 45%; border-right: 1px solid #eee; margin-right: -1px;}
-          .part3 {float: left; width: 25%;}
+          border-bottom: 1px solid #ddd;
+          color: #666;
+          font-size: 12px;
+          font-style: italic;
+          padding: 10px;
         }
-
-        .slug,
-        .count,
-        .follow-button {font-weight: bold}
-
-        .channel-slug,
-        .follower-count {padding: 10px}
 
         .watch-button {
           cursor: pointer;
         }
 
         .follow-button {
-          fong-weight: normal;
-          line-height: 57px;
+          font-weight: normal;
+          line-height: 48px;
           width: 100%;
           cursor: pointer;
           text-align: center;
           padding: 0;
-          border-left: 1px solid #eee;
+          border-top: 1px solid #fafafa;
+
+          &:hover {
+            background: #fafafa;
+          }
         }
 
         .now-playing {border-top: 1px solid #eee; padding: 20px;}
