@@ -7,13 +7,6 @@
         %li= msg
   - if @token.present?
     = hidden_field_tag :token, @token
-  - else
-    - if @code.present?
-      = hidden_field_tag :code, @code
-    - else
-      .field
-        = label_tag "Registration Code"
-        = text_field_tag :code
   .field
     = f.label :email
     = f.text_field :email
