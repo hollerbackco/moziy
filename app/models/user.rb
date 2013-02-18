@@ -39,6 +39,10 @@ class User < ActiveRecord::Base
   has_many :liked_airings, through: :likes, source: :likeable, :source_type => "Airing",
     order: "likes.created_at DESC"
 
+  def unwatched_feed
+    Airing.where(:channel_id => following_channels).unread_by(self).order("created_at DESC")
+  end
+
   def managing_channels
     channels + collab_channels
   end
@@ -104,6 +108,7 @@ class User < ActiveRecord::Base
   def primary?(channel)
     primary_channel == channel
   end
+
 
   private
 

@@ -8,9 +8,9 @@ App.Views.CurrentChannel = Backbone.View.extend
 
   initialize: ->
     _.bindAll this, "follow", "edit", "show", "render", "modal"
-    @listenTo App.vent, "channel:watch", @show
+    @listenTo App.vent, "airings:play", @show
 
-  show: (channel) ->
+  show: (airing, channel) ->
     @stopListening channel, "change"
     @model = channel
     @listenTo @model, "change", @render
