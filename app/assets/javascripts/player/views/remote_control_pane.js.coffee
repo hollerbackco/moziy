@@ -17,6 +17,7 @@ App.Views.RemoteControlPane = Backbone.View.extend
     @$el.hoverIntent
       over: =>
         @$el.addClass("hover")
+        @channelListView.sort()
       sensitivity: 12
       timeout: 100
       out: =>

@@ -17,6 +17,11 @@ App.Views.RemoteControlExploreList = Backbone.View.extend
       view.remove()
     @subviews = []
 
+  sort: ->
+    @$el.isotope
+      layoutMode: "masonry"
+      itemSelector: "li"
+
   render: ->
     @clear()
     @model.fetch
@@ -28,7 +33,6 @@ App.Views.RemoteControlExploreList = Backbone.View.extend
           @$el.append item.$el
           @subviews.push item
 
-        @$el.isotope
-          layoutMode: "masonry"
-          itemSelector: "li"
+        @sort()
+
     this

@@ -11,7 +11,12 @@ App.Views.RemoteControlChannelMenu = Backbone.View.extend
     @myChannels = App.currentUser.channels
 
     @render()
-    @showHome()
+
+    if @homeChannels.length > 1
+      @showHome()
+    else
+      @$(".explore").click()
+      @showExplore()
 
   render: ->
     @$el.html @template()
@@ -23,6 +28,10 @@ App.Views.RemoteControlChannelMenu = Backbone.View.extend
       model: @homeChannels
 
     @$container = @$("#channels-container")
+
+
+  sort: ->
+    @exploreListView.sort()
 
   showHome: ->
     @$container.html @channelListView.show(@homeChannels).$el

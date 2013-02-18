@@ -36,7 +36,6 @@ class App.Analytics
       slug: airing.get("channel").slug
       video: airing.get("title")
 
-
   airingLike: (airing) ->
     mixpanel.track "Video:Like",
       slug: airing.get("channel").slug

@@ -58,7 +58,7 @@ class Auth::RegistrationsController < ApplicationController
       if @user.valid?
         auto_login(@user)
         flash[:new_user] = true
-        format.html { redirect_back_or_to(manage_channel_path(@channel), :notice => 'Registration successful.') }
+        format.html { redirect_back_or_to(root_path, :notice => 'Registration successful.') }
         format.xml { render :xml => @user, :status => :created, :location => @user }
       else
         format.html { render :action => "new" }

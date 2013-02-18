@@ -1,11 +1,8 @@
 App.Views.InviteModal = Backbone.View.extend
   template: HandlebarsTemplates['player/templates/invite_modal']
 
-  events: ->
-    "submit form" : "invite"
-
   initialize: ->
-    _.bindAll this, "show", "close", "_showErrors", "invite", "_success", "_validateForm"
+    _.bindAll this, "show", "close", "invite", "_showErrors", "_success", "_validateForm"
 
     @listenTo App.vent, "modals:close", @close
     @render()
