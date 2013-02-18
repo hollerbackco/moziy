@@ -1,8 +1,9 @@
 #video-manage
   = render :partial => 'manage/channels/channel_menu'
   = render :partial => 'manage/videos/form'
-  %ul.videos.items
-    = render partial: 'manage/videos/video', collection: @channel.airings, as: :a
+  - if @channel.airings.any?
+    %ul.videos.items
+      = render partial: 'manage/videos/video', collection: @channel.airings, as: :a
   %h1.empty
     Add cool videos to this stream to
     %br
