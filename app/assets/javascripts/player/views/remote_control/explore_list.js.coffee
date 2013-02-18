@@ -8,6 +8,7 @@ App.Views.RemoteControlExploreList = Backbone.View.extend
   initialize: ->
     @subviews = []
 
+
   show: (@model) ->
     @render()
 
@@ -26,7 +27,6 @@ App.Views.RemoteControlExploreList = Backbone.View.extend
     @clear()
     @model.fetch
       success: =>
-
         @model.each (channel) =>
           item =  new App.Views.RemoteControlExploreListItem
             model: channel

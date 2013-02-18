@@ -29,7 +29,6 @@ App.Views.RemoteControlChannelMenu = Backbone.View.extend
 
     @$container = @$("#channels-container")
 
-
   sort: ->
     @exploreListView.sort()
 
