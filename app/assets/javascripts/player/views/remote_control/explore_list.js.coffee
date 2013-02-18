@@ -6,11 +6,13 @@ App.Views.RemoteControlExploreList = Backbone.View.extend
     class: "clearfix"
 
   initialize: ->
+    _.bindAll this, "sort"
     @subviews = []
 
 
   show: (@model) ->
     @render()
+
 
   clear: ->
     @$el.html ""
@@ -19,9 +21,7 @@ App.Views.RemoteControlExploreList = Backbone.View.extend
     @subviews = []
 
   sort: ->
-    @$el.isotope
-      layoutMode: "masonry"
-      itemSelector: "li"
+    @$el.isotope("reLayout")
 
   render: ->
     @clear()
@@ -33,6 +33,8 @@ App.Views.RemoteControlExploreList = Backbone.View.extend
           @$el.append item.$el
           @subviews.push item
 
-        @sort()
+        @$el.isotope
+          layoutMode: "masonry"
+          itemSelector: "li"
 
     this
