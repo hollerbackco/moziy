@@ -4,14 +4,13 @@ html,body {
 }
 
 .modal-open {
-overflow: hidden;
+  overflow: hidden;
 }
 
 #stage {
   overflow: hidden;
   padding: 0px;
   margin: 0px;
-
 
   .caret {
     display: inline-block;
@@ -71,7 +70,6 @@ overflow: hidden;
           span {display: inline-block}
         }
       }
-     
     }
   }
 
@@ -253,6 +251,7 @@ overflow: hidden;
         display: block;
       }
     }
+
     .row {
       text-align: center;
 
@@ -268,9 +267,6 @@ overflow: hidden;
       #controls-up { background: image-url("keyboard/up.png") center center no-repeat; }
       #controls-down { background: image-url("keyboard/down.png") center center no-repeat; }
       #controls-right { background: image-url("keyboard/right.png") center center no-repeat; }
-
     }
-
   }
-
 }
