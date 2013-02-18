@@ -2,6 +2,8 @@ class App.Analytics
   vent: _.extend {}, Backbone.Events
 
   events:
+    "ui:whotofollow":   "whoToFollow"
+    "ui:mychannels":    "myChannels"
     "airing:like":      "airingLike"
     "airing:restream":  "airingRestream"
     "airing:add":       "airingAdd"
@@ -19,6 +21,12 @@ class App.Analytics
 
   constructor: ->
     @_setupEvents @events
+
+  whoToFollow: ->
+    mixpanel.track "UI:Whotofollow"
+
+  myChannels: ->
+    mixpanel.track "UI:MyChannels"
 
   airingAdd: (airing) ->
     mixpanel.track "Add:Video"

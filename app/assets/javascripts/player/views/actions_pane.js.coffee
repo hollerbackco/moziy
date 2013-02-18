@@ -18,7 +18,7 @@ App.Views.ActionsPane = Backbone.View.extend
     @$el.html @template()
     timer = 0
 
-    $("#player .mask").mousemove =>
+    $("#player .mask-affordance").mousemove =>
       if timer
         clearTimeout timer
         timer = 0
