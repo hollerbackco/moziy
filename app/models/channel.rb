@@ -110,7 +110,6 @@ class Channel < ActiveRecord::Base
     random_string
   end
 
-
   def needs_crawl?
     false
   end

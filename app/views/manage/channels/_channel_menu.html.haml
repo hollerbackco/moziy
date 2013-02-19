@@ -5,15 +5,16 @@
     - if can? :edit, @channel
       = link_to 'Edit Stream', edit_manage_channel_path(@channel), class: "secondary"
     = pluralize @channel.subscriptions.count, "follower"
-%ul#members.clearfix
-  - for member in @channel.parties
-    %li.member
-      = link_to slug_path(member.primary_channel.slug) do
-        = image_tag member.primary_channel.cover_art_url(:thumb_player), :width => 48, :height => 48,
-          "data-toggle" => "tooltip", :title =>  "/#{member.username}"
-  %li.member.add
-    = link_to "Add More People +", manage_channel_memberships_path(@channel),
-      :class => "add-collaborator"
+-  current_user.primary_channel? @channel
+  %ul#members.clearfix
+    - for member in @channel.parties
+      %li.member
+        = link_to slug_path(member.primary_channel.slug) do
+          = image_tag member.primary_channel.cover_art_url(:thumb_player), :width => 48, :height => 48,
+            "data-toggle" => "tooltip", :title =>  "/#{member.username}"
+    %li.member.add
+      = link_to "Add More People +", manage_channel_memberships_path(@channel),
+        :class => "add-collaborator"
 :javascript
   $(".member img").tooltip()
 

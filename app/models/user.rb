@@ -55,6 +55,10 @@ class User < ActiveRecord::Base
     self.id == obj.creator_id
   end
 
+  def primary_channel?(channel)
+    self.primary_channel == channel
+  end
+
   def add_social(params)
     if authentications.create(params)
 
