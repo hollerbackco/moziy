@@ -43,8 +43,8 @@ WelcomeApp.Views.Main = Backbone.View.extend
       @hideNext()
 
     else
-      @suggestFollowersView.hide()
-      @hideNext()
+      window.location = "/"
+
 
   showNext: ->
     @$next.fadeIn(100)

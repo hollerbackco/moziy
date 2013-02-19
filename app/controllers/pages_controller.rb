@@ -12,7 +12,7 @@ class PagesController < ApplicationController
   end
 
   def welcome
-    @explore = Channel.publik.explore.limit(20)
+    @explore = Channel.publik.explore_for(current_user).limit(20)
     render :layout => "noheader"
   end
 end
