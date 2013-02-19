@@ -14,4 +14,12 @@ module ApplicationHelper
   def body_id
     "#{controller_name}-#{action_name}"
   end
+
+  def current_user_json
+    if logged_in?
+      current_user.as_json.merge({loggedIn: true}).to_json
+    else
+      "null"
+    end
+  end
 end

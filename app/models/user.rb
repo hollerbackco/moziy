@@ -101,7 +101,7 @@ class User < ActiveRecord::Base
   end
 
   def as_json(options={})
-    options = {only: [:username], includes: :channels}.merge options
+    options = {only: [:username, :primary_channel_id], includes: :channels}.merge options
     super
   end
 

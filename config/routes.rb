@@ -1,12 +1,12 @@
 Puretv::Application.routes.draw do
-
   ActiveAdmin.routes(self)
   devise_for :admin_users, ActiveAdmin::Devise.config
 
   root :to => "channels#show_root"
 
   match :terms, to: "pages#terms"
-  match :terms, to: "pages#privacy"
+  match :welcome, to: "pages#welcome"
+
   post :invite, to: "invites#create"
 
   match "join/:token", to: "channel_invites#show", as: :join_channel

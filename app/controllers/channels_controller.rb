@@ -5,6 +5,7 @@ class ChannelsController < ApplicationController
     @channels = logged_in? ?
       Channel.publik.explore_for(current_user) :
       Channel.publik.explore
+
     respond_to do |format|
       format.json { render json: @channels.as_json }
     end

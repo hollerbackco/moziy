@@ -1,6 +1,6 @@
-App.Models.Video = Backbone.View.extend
+App.Models.Video = Backbone.Model.extend
 
-  create: (action,links) ->
+  create: (action,links,checkStatus=true) ->
     @deferred = $.Deferred()
 
     get = $.ajax
@@ -10,9 +10,12 @@ App.Models.Video = Backbone.View.extend
         links: links
 
     get.done (results) =>
-      @checkStatus(results.job)
+      @checkStatus(results.job) if checkStatus
 
-    @deferred
+    if checkStatus
+      @deferred
+    else
+      get
 
   checkStatus: (id) ->
     get = $.ajax

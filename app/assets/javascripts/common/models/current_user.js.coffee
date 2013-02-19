@@ -7,6 +7,8 @@ App.Models.CurrentUser = Backbone.Model.extend
 
     if @has("channel_list")
       @setChannelList @get "channel_list"
+    else
+      @setChannelList []
 
   loggedIn: ->
     @get("loggedIn") || false

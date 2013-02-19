@@ -1,0 +1,18 @@
+!!!
+%html
+  %head
+    %title= title
+    %link{ :rel => "shortcut icon", :href => "/assets/fallback/thumb_favicon_default.jpg", :type => "image/x-icon"}
+    = render "layouts/meta"
+
+    = stylesheet_link_tag "application"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+    = render "layouts/analytics"
+
+  %body#welcome{:class => body_id}
+    = render "layouts/facebook"
+    .container
+      = yield
+    - if content_for? :footer
+      = content_for :footer

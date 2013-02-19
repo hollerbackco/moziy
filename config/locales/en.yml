@@ -13,6 +13,11 @@ en:
     title_prefix:    "moziy"
     title_separator: " | "
 
+  pages:
+    welcome:
+      title:  "welcome"
+      heading: "welcome to moziy"
+
   likes:
     index:
       title:  "my likes"

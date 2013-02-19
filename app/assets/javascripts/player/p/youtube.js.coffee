@@ -55,7 +55,10 @@ class App.YouTubePlayer extends App.Player
     super()
 
   _onReady: =>
-    @_player.mute() unless @volumeState
+    if @volumeState
+      @_player.unMute()
+    else
+      @_player.mute()
 
   onAPIReady: ->
     @_player = new YT.Player @divId, {
@@ -78,9 +81,6 @@ class App.YouTubePlayer extends App.Player
         'onError': @_onError
     }
 
-    $("iframe").contents().find("body").focus ->
-      alert "iframe focus"
-
   _bootstrap: ->
     tag = document.createElement('script')
     tag.src = "//www.youtube.com/player_api"
@@ -89,4 +89,3 @@ class App.YouTubePlayer extends App.Player
 
     window.onYouTubePlayerAPIReady = =>
       App.playerManager.youtubePlayer.onAPIReady()
-      @_unMute()

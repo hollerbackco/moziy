@@ -3,7 +3,7 @@ class Channel < ActiveRecord::Base
 
   belongs_to :creator, :class_name => "User"
   has_many :airings, :conditions => "airings.state != 'archived'", :order => "position ASC, airings.created_at DESC"
-  has_many :videos, :through => :airings
+  has_many :videos, :through => :airings, :order => "airings.created_at DESC"
 
   has_many :activities, class_name: "Activity", as: :secondary_subject, :order => "created_at DESC"
 
@@ -40,6 +40,10 @@ class Channel < ActiveRecord::Base
 
   def description
     (self[:description].blank? and airings.any?) ? "i.e. #{airings.first.title}" : self[:description]
+  end
+
+  def last_three_videos
+    videos.limit(3)
   end
 
   # grab likes from yesterday

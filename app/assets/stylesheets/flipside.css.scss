@@ -316,53 +316,6 @@
       }
     }
 
-    .horizontal-form {
-      background: #fff;
-      position: relative;
-      margin: 20px 0 0;
-      padding: 10px;
-      height: 24px;
-      border: 1px solid #ccc;
-
-      .loader {
-        display: none;
-        position: absolute;
-        bottom: 0;
-        right: 130px;
-      }
-
-      &.loading {
-        .loader {
-          display: inline-block;
-        }
-      }
-
-      label {
-        display: none;
-      }
-
-      textarea {
-        border: 0;
-        width: 100%;
-        font-size: 18px;
-        height: 24px;
-        line-height: 24px;
-        outline: none;
-      }
-
-      .button {
-        border: 0;
-        margin: 0;
-        padding: 0 20px;
-        width: 130px;
-
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        text-align: center;
-      }
-    }
 
     .channels,
     .videos,

@@ -40,6 +40,25 @@ background-color: #EEE;
   background: image-url('moziy-logo-big.png') transparent top left no-repeat;
 }
 
+/*--- lists*/
+
+.list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+
+  li {
+    padding: 0;
+    margin: 0;
+  }
+}
+
+.card-list {
+  li {
+    float: left;
+  }
+}
+
 /*--- buttons*/
 button,
 .button {
@@ -156,163 +175,212 @@ form.button_to {
   }
 }
 
+.horizontal-form {
+  background: #fff;
+  position: relative;
+  margin: 20px 0 0;
+  padding: 10px;
+  height: 24px;
+  border: 1px solid #ccc;
+
+  .loader {
+    display: none;
+    position: absolute;
+    bottom: 0;
+    right: 130px;
+  }
+
+  &.loading {
+    .loader {
+      display: inline-block;
+    }
+  }
+
+  label {
+    display: none;
+  }
+
+  textarea,
+  input[type=text] {
+    border: 0;
+    width: 100%;
+    font-size: 18px;
+    height: 24px;
+    line-height: 24px;
+    outline: none;
+  }
+
+  .button {
+    border: 0;
+    margin: 0;
+    padding: 0 20px;
+    width: 130px;
+
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    text-align: center;
+  }
+}
+
 .slug-field {
-  label {display: inline-block;}
-  input[type=text] {width: 275px;}
+label {display: inline-block;}
+input[type=text] {width: 275px;}
 }
 
 .fields {
-  margin-bottom: 60px;
+margin-bottom: 60px;
 }
 
 .right {
-  float: right;
+float: right;
 }
 
 #composer {
-  margin-bottom: 20px;
+margin-bottom: 20px;
 }
 
 #error-explanation {
-  padding: 0;
-  display: 0;
-  list-style-type: none;
+padding: 0;
+display: 0;
+list-style-type: none;
 
-  li {
-    padding: 10px 0;
-    margin: 0;
-    color: red;
-  }
+li {
+  padding: 10px 0;
+  margin: 0;
+  color: red;
+}
 }
 
 i {
-  display: inline-block;
-  width: 18px;
-  height: 18px;
+display: inline-block;
+width: 18px;
+height: 18px;
 
-  &.big {
-    width: 36px;
-    height: 36px;
-  }
+&.big {
+  width: 36px;
+  height: 36px;
+}
 
-  &.restream {
-    background: transparent image-url("icons/left_sprite.png") top center no-repeat;
-  }
+&.restream {
+  background: transparent image-url("icons/left_sprite.png") top center no-repeat;
+}
 
-  &.restream.big {
-    background: transparent image-url("icons/restream_big_sprite.png") top center no-repeat;
-  }
+&.restream.big {
+  background: transparent image-url("icons/restream_big_sprite.png") top center no-repeat;
+}
 
-  &.add {
-    background: transparent image-url("icons/plus_sprite_white.png") top center no-repeat;
-  }
+&.add {
+  background: transparent image-url("icons/plus_sprite_white.png") top center no-repeat;
+}
 
-  &.like {
-    background: transparent image-url("icons/heart_sprite.png") top center no-repeat;
-  }
+&.like {
+  background: transparent image-url("icons/heart_sprite.png") top center no-repeat;
+}
 
-  &.like.big {
-    background: transparent image-url("icons/heart_big_sprite.png") top center no-repeat;
-  }
+&.like.big {
+  background: transparent image-url("icons/heart_big_sprite.png") top center no-repeat;
+}
 
-  &.follow-white {
-    background: transparent image-url("icons/follow_sprite.png") top center no-repeat;
-  }
+&.follow-white {
+  background: transparent image-url("icons/follow_sprite.png") top center no-repeat;
+}
 
-  &.follow {
-    background: transparent image-url("icons/restream_sprite_white.png") top center no-repeat;
-  }
+&.follow {
+  background: transparent image-url("icons/restream_sprite_white.png") top center no-repeat;
+}
 
-  &.commented {
-    background: transparent image-url("icons/comment_sprite.png") top center no-repeat;
-  }
+&.commented {
+  background: transparent image-url("icons/comment_sprite.png") top center no-repeat;
+}
 
-  &.on {
-    background-position: bottom center;
-  }
+&.on {
+  background-position: bottom center;
+}
 
-  &.loader {
-    width: 20px;
-    height: 30px;
-    margin-top: -30px;
-    background: image-url("loader.gif") no-repeat -73px 1px;
-  }
+&.loader {
+  width: 20px;
+  height: 30px;
+  margin-top: -30px;
+  background: image-url("loader.gif") no-repeat -73px 1px;
+}
 }
 
 .icon-on {
-  i {
-    &.restream {
-      background: transparent image-url("icons/restream_sprite.gif") bottom center no-repeat;
-    }
+i {
+  &.restream {
+    background: transparent image-url("icons/restream_sprite.gif") bottom center no-repeat;
   }
+}
 }
 
 
 .info {
-  position: absolute;
-  height: 20px;
-  padding: 0 10px;
-  left: 0px;
-  right: 0px;
-  bottom: 0px;
-  .actions {
-    float: right;
-  }
+position: absolute;
+height: 20px;
+padding: 0 10px;
+left: 0px;
+right: 0px;
+bottom: 0px;
+.actions {
+  float: right;
+}
 }
 
 .body {
-  overflow: hidden;
+overflow: hidden;
 }
 
 .username {
-  font-size: .85em;
+font-size: .85em;
+color:#ccc;
+a {
   color:#ccc;
-  a {
-    color:#ccc;
-    font-weight: bold;
-  }
+  font-weight: bold;
+}
 }
 
 .tooltip {
-  position: absolute;
-  z-index: 1030;
-  display: block;
-  padding: 5px;
-  font-size: 11px;
-  opacity: 0;
-  filter: alpha(opacity=0);
-  visibility: visible;
+position: absolute;
+z-index: 1030;
+display: block;
+padding: 5px;
+font-size: 11px;
+opacity: 0;
+filter: alpha(opacity=0);
+visibility: visible;
 }
 
 .tooltip.in {
-  opacity: 0.8;
-  filter: alpha(opacity=80);
+opacity: 0.8;
+filter: alpha(opacity=80);
 }
 
 .tooltip.top {
-  margin-top: -3px;
+margin-top: -3px;
 }
 
 .tooltip.right {
-  margin-left: 3px;
+margin-left: 3px;
 }
 
 .tooltip.bottom {
-  margin-top: 3px;
+margin-top: 3px;
 }
 
 .tooltip.left {
-  margin-left: -3px;
+margin-left: -3px;
 }
 
 .tooltip-inner {
-  max-width: 200px;
-  padding: 3px 8px;
-  color: #ffffff;
-  text-align: center;
-  text-decoration: none;
-  background-color: #000000;
-  -webkit-border-radius: 4px;
+max-width: 200px;
+padding: 3px 8px;
+color: #ffffff;
+text-align: center;
+text-decoration: none;
+background-color: #000000;
+-webkit-border-radius: 4px;
      -moz-border-radius: 4px;
           border-radius: 4px;
 }

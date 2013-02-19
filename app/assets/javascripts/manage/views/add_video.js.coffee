@@ -27,7 +27,6 @@ App.Views.AddVideo = Backbone.View.extend
             @_ready()
             window.location.reload()
 
-
       get.fail (msg) =>
         alert msg
         @_clearForm()
