@@ -30,4 +30,8 @@ class VideoImageUploader < CarrierWave::Uploader::Base
   version :thumb_list do
     process :resize_to_fill => [100,100]
   end
+
+  version :large do
+    process :resize_to_fill => [300,200]
+  end
 end
