@@ -41,6 +41,7 @@ WelcomeApp.Views.Main = Backbone.View.extend
       @addVideosView.hide()
       @suggestFollowersView.show()
       @hideNext()
+      @state = "follow"
 
     else
       window.location = "/"
