@@ -4,7 +4,7 @@ App.Views.AddVideo = Backbone.View.extend
 
   initialize: ->
     _.bindAll this, "add"
-    @$links = @$("textarea[name=links]")
+    @$links = @$("input[name=links]")
     @$button = @$(".button.primary")
     @action = @$el.attr("action")
 
