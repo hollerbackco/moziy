@@ -41,7 +41,7 @@ class ChannelsController < ApplicationController
 
   def show_root
     if logged_in?
-      redirect_to slug_path(default_channel.slug)
+      redirect_to manage_channels_path
       return
     end
 
