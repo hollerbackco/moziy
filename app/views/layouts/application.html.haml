@@ -40,6 +40,8 @@
                   %i.like
                   = "Liked #{current_user.likes.count} Videos"
             %ul.sidebar-menu
+              - for channel in (current_user.managing_channels - [@channel])
+                %li.menu-item= link_to "/#{channel.slug}", manage_channel_path(channel)
               %li.menu-item= link_to "Create a Stream", new_manage_channel_path
           %section#main-content
             = yield

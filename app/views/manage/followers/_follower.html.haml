@@ -1,6 +1,7 @@
 %li.member.item.clearfix{:id => "member_#{member.id.to_s}"}
   = image_tag member.primary_channel.cover_art_url(:thumb_list), class: :image, width: 48, height: 48
-  .title= member.primary_channel.slug
+  .title
+    = link_to "/#{member.primary_channel.slug}", slug_path(member.primary_channel.slug)
   - if current_user.owns?(@channel) and member != current_user
     .actions
       = button_to "remove",
