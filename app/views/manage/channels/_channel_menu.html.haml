@@ -5,7 +5,7 @@
     - if can? :edit, @channel
       = link_to 'Edit Stream', edit_manage_channel_path(@channel), class: "secondary"
     = pluralize @channel.subscriptions.count, "follower"
--  current_user.primary_channel? @channel
+- unless current_user.primary_channel? @channel
   %ul#members.clearfix
     - for member in @channel.parties
       %li.member
