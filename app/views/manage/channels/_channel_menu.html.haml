@@ -1,11 +1,30 @@
 #secondary-title.clearfix
-  = image_tag @channel.cover_art_url(:thumb_player), class: "cover-art", width: 80, height: 80
-  = link_to "#{@channel.title}", slug_path(@channel.slug)
-  .followers
-    - if can? :edit, @channel
-      = link_to 'Edit Stream', edit_manage_channel_path(@channel), class: "secondary"
-    = pluralize @channel.subscriptions.count, "follower"
-- unless current_user.primary_channel? @channel
+  = image_tag @channel.cover_art_url(:thumb_player), class: "cover-art", width: 200, height: 200
+
+%ul#secondary-menu.sidebar-menu.clearfix
+  %li{:class => current_page?(manage_channel_activities_path(@channel)) ? "active" : "" }
+    = link_to manage_channel_activities_path(@channel), class: "home" do
+      = @channel.slug
+    = link_to slug_url(@channel.slug), class: "slug" do
+      = slug_url(@channel.slug)
+  %li{:class => current_page?(manage_channel_followers_path(@channel)) ? "active" : "" }
+    = link_to manage_channel_followers_path(@channel) do
+      %span.count= @channel.subscriptions.count
+      = "Followers"
+  %li{:class => current_page?(manage_channel_path(@channel)) ? "active" : "" }
+    = link_to manage_channel_path(@channel), :class => "primary" do
+      %span.count= @channel.airings.count
+      = "Videos"
+  - unless current_user.primary_channel? @channel
+    %li{:class => current_page?(manage_channel_memberships_path(@channel)) ? "active" : "" }
+      = link_to manage_channel_memberships_path(@channel) do
+        %span.count= @channel.parties.count
+        Members
+  - if can? :edit, @channel
+    %li{:class => current_page?(archived_manage_channel_videos_path(@channel)) ? "active" : "" }
+      = link_to 'Stream Settings', edit_manage_channel_path(@channel), class: "secondary"
+
+-#- unless current_user.primary_channel? @channel
   %ul#members.clearfix
     - for member in @channel.parties
       %li.member
@@ -15,18 +34,5 @@
     %li.member.add
       = link_to "Add More People +", manage_channel_memberships_path(@channel),
         :class => "add-collaborator"
-:javascript
-  $(".member img").tooltip()
-
-%ul#secondary-menu.clearfix
-  %li{:class => current_page?(manage_channel_path(@channel)) ? "active" : "" }
-    = link_to 'Home', manage_channel_path(@channel), :class => "primary"
-  %li{:class => current_page?(manage_channel_activities_path(@channel)) ? "active" : "" }
-    = link_to 'Activity', manage_channel_activities_path(@channel)
-  -#%li{:class => current_page?(manage_channel_memberships_path(@channel)) ? "active" : "" }
-    = link_to 'People', manage_channel_memberships_path(@channel)
-  %li{:class => current_page?(edit_manage_channel_path(@channel)) ? "active" : "" }
-    = link_to 'Watch Stream', "/#{@channel.slug}"
-  %li.right{:class => current_page?(archived_manage_channel_videos_path(@channel)) ? "active" : "" }
-    = link_to 'Trash', archived_manage_channel_videos_path(@channel), class: "secondary"
-
+  :javascript
+    $(".member img").tooltip()

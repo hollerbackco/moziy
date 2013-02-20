@@ -1,5 +1,7 @@
-#video-manage
+- content_for :sidebar do
   = render :partial => 'manage/channels/channel_menu'
+#video-manage
+  = render :partial => 'manage/videos/form'
   - if @activities.blank?
     %h1.empty
       - if @channel.airings.any?
@@ -7,8 +9,7 @@
         %br
         follows this stream, you'll see it here.
       - else
-        = link_to manage_channel_path(@channel) do
-          = "Add videos to /#{@channel.slug} for activity to start showing up"
+        = "Add videos for activity to start showing up"
   - else
     %ul.activities
       - for activity in @activities

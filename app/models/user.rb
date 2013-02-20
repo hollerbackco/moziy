@@ -33,7 +33,8 @@ class User < ActiveRecord::Base
 
   has_many :subscriptions, order: "last_added_airing_at DESC", :dependent => :destroy
   has_many :following_channels, through: :subscriptions, class_name: "Channel", source: :channel,
-    order: "subscriptions.last_added_airing_at DESC"
+    order: "subscriptions.last_added_airing_at DESC",
+    select: "channels.*, subscriptions.unread_count"
 
   has_many :likes, order: "likes.created_at DESC"
   has_many :liked_airings, through: :likes, source: :likeable, :source_type => "Airing",

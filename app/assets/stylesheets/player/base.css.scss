@@ -12,6 +12,32 @@ html,body {
   padding: 0px;
   margin: 0px;
 
+  ::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+  }
+  ::-webkit-scrollbar-button:start:decrement, ::-webkit-scrollbar-button:end:increment {
+  display: block;
+  height: 0;
+  background-color: transparent;
+  }
+  ::-webkit-scrollbar-track-piece {
+  background-color: #FEFEFE;
+  -webkit-border-radius: 0;
+  -webkit-border-bottom-right-radius: 8px;
+  -webkit-border-bottom-left-radius: 8px;
+  }
+  ::-webkit-scrollbar-thumb:vertical {
+  height: 100px;
+  background-color: #EEE;
+  -webkit-border-radius: 8px;
+  }
+  ::-webkit-scrollbar-thumb:horizontal {
+  width: 100px;
+  background-color: #EEE;
+  -webkit-border-radius: 8px;
+  }
+
   .caret {
     display: inline-block;
     width: 0;

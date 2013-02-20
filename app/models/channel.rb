@@ -13,6 +13,8 @@ class Channel < ActiveRecord::Base
   has_many :archived_videos, :source => :video,  :through => :archived_airings
 
   has_many :subscriptions, :dependent => :destroy
+  has_many :subscribers, :through => :subscriptions, source: :user
+
   has_many :memberships,   :dependent => :destroy
   has_many :members, through: :memberships, source: :user
 

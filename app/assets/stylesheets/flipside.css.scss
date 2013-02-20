@@ -1,7 +1,15 @@
+html {
+  height: 100%;
+  width: 100%;
+}
+
 #flipside {
+  position: relative;
   padding: 0;
   margin: 0;
-  overflow-y: hidden;
+  height: 100%;
+  width: 100%;
+  min-width: 1100px;
 
   .tagline {
     float: left;
@@ -13,6 +21,26 @@
 
   form {
     margin: 20px 0;
+  }
+
+  #remote-control-pane {
+    position: absolute;
+    background: #eee;
+    top: 0;
+    width: 200px;
+    right: 0;
+    bottom: 0;
+    border-right: 1px solid #eee;
+    overflow-y: auto;
+  }
+
+  #stage {
+    margin-right: 201px;
+    padding: 0 20px;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
   }
 
   #register {
@@ -113,7 +141,7 @@
   }
 
   .container {
-    width: 960px;
+    width: 860px;
     margin: 0 auto;
   }
 
@@ -141,10 +169,6 @@
     nav {
       float: left;
 
-      &.menu {
-
-      }
-
       ul {
         margin: 0;
         padding: 0;
@@ -168,33 +192,60 @@
   section#sidebar {
     float: left;
     width: 200px;
+  }
 
-    .sidebar-menu {
-      padding: 0;
-      margin: 0 0 30px;
-      list-style-type: none;
-      border: 1px solid #ddd;
+  .sidebar-menu {
+    padding: 0;
+    margin: 0 0 30px;
+    list-style-type: none;
+    border: 1px solid #ddd;
 
-      li {
-        border-top: 1px solid #ddd;
-        margin: 0;
+    .unread {
+      float: right;
+      background: #eee;
+      color: #aaa;
+      padding: 0px 4px;
+      font-size: 11px;
+    }
 
-        &:first-child {
-          border-top: 0;
+    li {
+      border-top: 1px solid #ddd;
+      margin: 0;
+      padding: 10px 15px;
+
+      i {
+        margin-bottom: -4px;
+      }
+
+      &:first-child {
+        border-top: 0;
+      }
+
+      a {
+        display: block;
+        text-decoration: none;
+        font-weight: bold;
+        line-height: 18px;
+
+        &.home {
+          font-size: 16px;
         }
 
-        a {
-          display: block;
-          text-decoration: none;
-          font-weight: bold;
-          line-height: 16px;
-          padding: 10px;
+        &.slug {
+          margin-top: 5px;
+          color: #666;
+          font-weight: normal;
+        }
 
-          img {
-            display: block;
-            float: left;
-            margin-right: 10px;
-          }
+        .count {
+          color: #333;
+          float: right;
+        }
+
+        img {
+          display: block;
+          float: left;
+          margin-right: 10px;
         }
       }
     }
@@ -216,6 +267,10 @@
       margin-top: 20px;
       background: #fafafa;
       padding: 30px;
+    }
+
+    #add-video {
+      margin-top: 0;
     }
 
     #video-manage {
@@ -322,7 +377,7 @@
     .activities,
     .items {
       padding: 0;
-      margin-top: 20px;
+      margin-top: 0;
       margin-bottom: 20px;
       border: 1px solid #ddd;
 
@@ -334,8 +389,8 @@
 
     iframe {
       display: block;
-      width: 730px;
-      height: 540px;
+      width: 630px;
+      height: 440px;
     }
 
     .activities {
@@ -387,6 +442,7 @@
           width: 48px;
           height: 48px;
         }
+
         .secondary {
           float: right;
           width: 48px;

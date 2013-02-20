@@ -46,6 +46,7 @@ Puretv::Application.routes.draw do
       end
       resources :memberships, only: [:index, :create, :destroy]
       resources :activities, only: :index
+      resources :followers, only: :index
       resources :airings, :only => [:create, :destroy] do
         member do
           put :archive

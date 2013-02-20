@@ -1,6 +1,6 @@
 #main-content
-  %h1 Settings
   = form_for @user, url: manage_settings_path do |f|
+    %h2 Settings
     .field
       = f.label :username
       = f.text_field :username

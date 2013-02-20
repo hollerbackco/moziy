@@ -12,26 +12,34 @@
 
   %body#flipside{:class => body_id}
     = render "layouts/facebook"
-    .container
-      %header.clearfix
-        %h1= link_to "mosey", root_path
-        %nav.session
-          %ul
-            - if logged_in?
-              %li= link_to 'Settings', manage_settings_path
-              %li= link_to 'Log out', logout_path
-            - else
-              %li= link_to 'Log in', login_path
-              %li= link_to 'Join', root_path
-      %section#main
-        %section#sidebar
-          %ul#menu-options.sidebar-menu
-            %li.menu-item=link_to "Watch Streams", root_path, class: "blue"
-            %li.menu-item=link_to "Likes", manage_likes_path
-          %ul#my-channels.sidebar-menu
-            %li.menu-item= link_to "Create a Stream", new_manage_channel_path
-            = render partial: "layouts/application/sidebar_channel_item",
-                collection: @channels,
-                as: :channel
-        %section#main-content
-          = yield
+    #remote-control-pane
+      %ul#my-channels.sidebar-menu
+        %li.menu-item=link_to "Watch Streams", root_path, class: "blue"
+        = render partial: "layouts/application/sidebar_channel_item",
+            collection: @channels,
+            as: :channel
+    #stage
+      .container
+        %header.clearfix
+          %h1= link_to "mosey", manage_channel_path(current_user.primary_channel)
+          %nav.session
+            %ul
+              - if logged_in?
+                %li= link_to 'Settings', manage_settings_path
+                %li= link_to 'Log out', logout_path
+              - else
+                %li= link_to 'Log in', login_path
+                %li= link_to 'Join', root_path
+        %section#main
+          %section#sidebar
+            - if content_for? :sidebar
+              = content_for :sidebar
+            %ul#menu-options.sidebar-menu
+              %li.menu-item
+                = link_to manage_likes_path do
+                  %i.like
+                  = "Liked #{current_user.likes.count} Videos"
+            %ul.sidebar-menu
+              %li.menu-item= link_to "Create a Stream", new_manage_channel_path
+          %section#main-content
+            = yield

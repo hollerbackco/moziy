@@ -1,0 +1,16 @@
+- content_for :sidebar do
+  = render :partial => 'manage/channels/channel_menu'
+#members-manage
+  - if @members.any?
+    %ul.members.items
+      = render partial: "manage/followers/follower", collection: @members, as: :member
+  - else
+    %h1.empty
+      - if @channel.airings.any?
+        when someone likes follows this stream,
+        %br
+        you'll see it here
+      - else
+        0 followers
+        %br
+        add videos to get more followers
