@@ -35,8 +35,14 @@ html {
   }
 
   #stage {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     margin-right: 201px;
     padding: 0 20px;
+    overflow-y: scroll;
 
     &::-webkit-scrollbar {
       display: none;

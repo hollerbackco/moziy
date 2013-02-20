@@ -52,6 +52,10 @@ en:
     index:
       title: "members"
 
+  followers:
+    index:
+      title: "followers"
+
   channel_invites:
     show:
       title: "invite"
