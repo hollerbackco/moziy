@@ -2,5 +2,5 @@
   = link_to slug_path(channel.slug) do
     - if channel.unread_count.to_i > 0
       %span.unread.rounded= channel.unread_count
-    = image_tag channel.cover_art_url(:thumb_favicon), width: 16, height: 16
+    = image_tag channel.cover_art_url(:thumb_favicon), width: 24, height: 24
     = "/#{channel.slug}"

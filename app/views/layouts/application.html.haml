@@ -13,8 +13,8 @@
   %body#flipside{:class => body_id}
     = render "layouts/facebook"
     #remote-control-pane
-      %ul#my-channels.sidebar-menu
-        %li.menu-item=link_to "Watch Streams", root_path, class: "blue"
+      %ul#my-channels.sidebar-menu.light
+        %li.menu-item=link_to "Watch Streams", root_path, class: "blue strong"
         = render partial: "layouts/application/sidebar_channel_item",
             collection: @channels,
             as: :channel
@@ -41,7 +41,10 @@
                   = "Liked #{current_user.likes.count} Videos"
             %ul.sidebar-menu
               - for channel in (current_user.managing_channels - [@channel])
-                %li.menu-item= link_to "/#{channel.slug}", manage_channel_path(channel)
-              %li.menu-item= link_to "Create a Stream", new_manage_channel_path
+                %li.menu-item
+                  = link_to manage_channel_path(channel) do
+                    = image_tag channel.cover_art_url(:thumb_favicon), width: 18, height: 18
+                    = "/#{channel.slug}"
+              %li.menu-item= link_to "Create a New Stream", new_manage_channel_path
           %section#main-content
             = yield

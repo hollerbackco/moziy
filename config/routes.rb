@@ -2,7 +2,7 @@ Puretv::Application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :admin_users, ActiveAdmin::Devise.config
 
-  root :to => "channels#show_root"
+  root :to => "manage/channels#index"
 
   match :terms, to: "pages#terms"
   match :welcome, to: "pages#welcome"

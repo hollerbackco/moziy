@@ -11,6 +11,10 @@ html {
   width: 100%;
   min-width: 1100px;
 
+  .strong {
+    font-weight: bold !important;
+  }
+
   .tagline {
     float: left;
   }
@@ -25,7 +29,7 @@ html {
 
   #remote-control-pane {
     position: absolute;
-    background: #eee;
+    background: #fafafa;
     top: 0;
     width: 200px;
     right: 0;
@@ -42,6 +46,7 @@ html {
     left: 0;
     margin-right: 201px;
     padding: 0 20px;
+    border-right: 1px solid #ccc;
     overflow-y: scroll;
 
     &::-webkit-scrollbar {
@@ -205,6 +210,20 @@ html {
     margin: 0 0 30px;
     list-style-type: none;
     border: 1px solid #ddd;
+    overflow: hidden;
+
+    &.light {
+      border: 0;
+      border-bottom: 1px solid #ddd;
+
+      li {
+        padding: 7px;
+        a {
+          font-weight: normal;
+          line-height: 24px;
+        }
+      }
+    }
 
     .unread {
       float: right;
@@ -235,6 +254,7 @@ html {
 
         &.home {
           font-size: 16px;
+          font-weight: bold;
         }
 
         &.slug {
