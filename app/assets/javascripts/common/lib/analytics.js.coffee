@@ -15,6 +15,7 @@ class App.Analytics
     "player:unpause":   "playerUnpause"
     "channel:watch":    "channelWatch"
     "channel:follow":   "channelFollow"
+    "user:signup":      "userSignup"
     "invite:request":   "inviteRequest"
     "fullscreen:open":  "fullscreenOpen"
     "fullscreen:close": "fullscreenClose"
@@ -61,6 +62,10 @@ class App.Analytics
     mixpanel.track "Channel:Follow",
       slug: channel.get("slug"),
       id: channel.get("id")
+
+  userSignup: ->
+    mixpanel.track "User:Signup"
+    _gaq.push ['_trackEvent', 'User', 'Signup']
 
   inviteRequest: ->
     mixpanel.track "Invite:Request"

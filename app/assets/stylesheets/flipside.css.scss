@@ -212,7 +212,7 @@
     padding-left: 30px;
     overflow-y: hidden;
 
-    form {
+    form:not(.horizontal-form) {
       margin-top: 20px;
       background: #fafafa;
       padding: 30px;
