@@ -27,6 +27,8 @@ WelcomeApp.Views.SuggestChannels = Backbone.View.extend
   addOne: ->
     @counter++
 
+    WelcomeApp.analytics.welcomeFollow()
+
     if @counter > 2
       WelcomeApp.vent.trigger "follow:complete"
 

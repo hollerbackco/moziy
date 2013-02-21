@@ -38,6 +38,7 @@ WelcomeApp.Views.AddVideos = Backbone.View.extend
 
           for video in videos
             @addVideoListView.append video
+            WelcomeApp.analytics.welcomeAdd()
 
           if @counter > 2
             WelcomeApp.vent.trigger "add:complete"

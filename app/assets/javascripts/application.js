@@ -14,13 +14,13 @@
 //= require bootstrap-tooltip
 //= require underscore-min
 //= require backbone-min
-//= require common/lib/cookie
 
 //= require handlebars.runtime
 //= require_tree ./welcome/templates
 
 //= require manage/app
 
+//= require_tree ./common/lib
 //= require_tree ./common/models
 //= require_tree ./manage/views
 

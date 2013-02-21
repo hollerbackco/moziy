@@ -19,6 +19,10 @@ class App.Analytics
     "invite:request":   "inviteRequest"
     "fullscreen:open":  "fullscreenOpen"
     "fullscreen:close": "fullscreenClose"
+    "welcome:add":             "welcomeAdd"
+    "welcome:add:complete":    "welcomeAddComplete"
+    "welcome:follow":          "welcomeFollow"
+    "welcome:follow:complete": "welcomeFollowComplete"
 
   constructor: ->
     @_setupEvents @events
@@ -101,6 +105,18 @@ class App.Analytics
 
   fullscreenClose: ->
     mixpanel.track "Fullscreen:Close"
+
+  welcomeAdd: ->
+    mixpanel.track "Welcome:Add:Video"
+
+  welcomeAddComplete: ->
+    mixpanel.track "Welcome:Add:Complete"
+
+  welcomeFollow: ->
+    mixpanel.track "Welcome:Follow:Channel"
+
+  welcomeFollowComplete: (callback) ->
+    mixpanel.track "Welcome:Follow:Complete", callback
 
   _setupEvents: (events) ->
     _.each events, (method, key) =>

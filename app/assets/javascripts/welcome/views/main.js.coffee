@@ -23,10 +23,12 @@ WelcomeApp.Views.Main = Backbone.View.extend
     @$next = @$("#next").hide()
 
   addComplete: ->
+    WelcomeApp.analytics.welcomeAddComplete()
     @showNext()
 
   followComplete: ->
-    @$next.find("h1").html "you're done!"
+    WelcomeApp.analytics.welcomeFollowComplete()
+    @$next.find("h1").html ""
     @$next.find(".button").html "start watching"
     @showNext()
 
