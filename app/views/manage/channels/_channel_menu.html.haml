@@ -1,5 +1,8 @@
 #secondary-title.clearfix
-  = image_tag @channel.cover_art_url(:thumb_player), class: "cover-art", width: 200, height: 200
+  = image_tag @channel.cover_art_url(:thumb_player),
+    class: "cover-art",
+    width: 200,
+    height: 200
 
 %ul#secondary-menu.sidebar-menu.clearfix
   %li{:class => current_page?(manage_channel_activities_path(@channel)) ? "active" : "" }

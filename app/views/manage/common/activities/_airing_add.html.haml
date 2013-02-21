@@ -6,4 +6,7 @@
   .body
     %i.add.on
     = link_to "/#{activity.actor.slug}", slug_url(activity.actor.slug), class: "channel-link"
-    %span.activity-action added this
+    %span.activity-action added a video
+    %p
+      = link_to start_video_url(activity.subject.channel.slug, v: activity.subject.id) do
+        = image_tag activity.subject.video.video_image_url(:large)

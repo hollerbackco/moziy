@@ -286,7 +286,9 @@ html,body {
         cursor: pointer;
         width: 73px;
         height: 73px;
-        opacity: 1;
+        opacity: .9;
+
+        &:hover { opacity: 1}
       }
 
       #controls-left { background: image-url("keyboard/left.png") center center no-repeat; }
