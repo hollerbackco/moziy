@@ -429,8 +429,6 @@ html {
         i {
           float: right;
           position: relative;
-          top: 4px;
-          margin: 10px;
         }
 
         .activity-action {
@@ -447,8 +445,8 @@ html {
         }
 
         .body {
-          padding: 15px;
-          line-height: 18px;
+          padding: 15px 10px;
+          line-height: 16px;
           overflow-x: hidden;
           border-bottom: 1px solid #ddd;
           border-left: 1px solid #ddd;
