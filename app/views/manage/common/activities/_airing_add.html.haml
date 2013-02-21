@@ -10,3 +10,5 @@
     %p
       = link_to start_video_url(activity.subject.channel.slug, v: activity.subject.id) do
         = image_tag activity.subject.video.video_image_url(:large)
+      %br
+      %strong= activity.subject.title
