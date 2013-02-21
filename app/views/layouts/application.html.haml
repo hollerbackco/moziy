@@ -42,7 +42,7 @@
             %ul.sidebar-menu
               - for channel in (current_user.managing_channels - [@channel])
                 %li.menu-item
-                  = link_to manage_channel_path(channel) do
+                  = link_to manage_channel_activities_path(channel) do
                     = image_tag channel.cover_art_url(:thumb_favicon), width: 18, height: 18
                     = "/#{channel.slug}"
               %li.menu-item= link_to "Create a New Stream", new_manage_channel_path
