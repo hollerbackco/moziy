@@ -2,8 +2,8 @@
   #remote-control-pane {
     position: absolute;
     top: 0px;
-    left: 0px;
-    width: 450px;
+    right: 0px;
+    width: 300px;
     bottom: 0px;
 
     &.logged-in {
@@ -42,11 +42,11 @@
       margin: 10px 8px 6px;
 
       a {
-        float: left;
-        margin: 2px 5px;
+        float: right;
+        margin: 2px;
         text-indent: -9999px;
         display: block;
-        width: 100px;
+        width: 28px;
         padding-right: 0;
         height: 23px;
         background: image-url('moziy-logo.png') transparent bottom left no-repeat;

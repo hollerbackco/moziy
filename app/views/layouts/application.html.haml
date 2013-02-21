@@ -14,7 +14,7 @@
     = render "layouts/facebook"
     #remote-control-pane
       %ul#my-channels.sidebar-menu.light
-        %li.menu-item=link_to "Watch Streams", slug_path(Channel.default.slug), class: "blue strong"
+        %li.title.menu-item.strong= "Watch Streams"
         = render partial: "layouts/application/sidebar_channel_item",
             collection: @channels,
             as: :channel
