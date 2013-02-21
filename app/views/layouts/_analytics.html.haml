@@ -15,14 +15,15 @@
     :javascript
       mixpanel.identify(#{current_user.id})
       mixpanel.name_tag("#{name_tag}")
-      mixpanel.people.set({
-        "$email": "#{current_user.email}",
-        "$created": #{current_user.created_at.to_json},
-        "$username": "#{current_user.username}",
-        "channels": "#{current_user.managing_channels_slugs}",
-        "likes": #{current_user.likes.count},
-        "following": #{current_user.subscriptions.count}
-      })
+  :javascript
+    mixpanel.people.set({
+      "$email": "#{current_user.email}",
+      "$created": #{current_user.created_at.to_json},
+      "$username": "#{current_user.username}",
+      "channels": "#{current_user.managing_channels_slugs}",
+      "likes": #{current_user.likes.count},
+      "following": #{current_user.subscriptions.count}
+    })
 
 :javascript
   var _gaq = _gaq || [];
