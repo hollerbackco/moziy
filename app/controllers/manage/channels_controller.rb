@@ -6,7 +6,7 @@ class Manage::ChannelsController < Manage::BaseController
     channel = current_user.primary_channel
     respond_to do |format|
       format.html { redirect_to manage_channel_activities_path channel}
-      format.json { render json: @channels}
+      format.json { render json: current_user.channels}
     end
   end
 
@@ -27,16 +27,18 @@ class Manage::ChannelsController < Manage::BaseController
     @channel = Channel.new(params[:channel].merge(:creator => current_user))
 
     if @channel.save
-      redirect_to manage_channel_videos_path(@channel)
+      redirect_to manage_channel_path(@channel)
     else
       render :action => :new
     end
   end
 
   def show
-    authorize! :show, @channel
+    authorize! :see_activities, @channel
+    @activities = @channel.activities
     set_title @channel.title
-    @videos = @channel.videos
+
+    render "manage/activities/index"
   end
 
   def edit
@@ -65,7 +67,7 @@ class Manage::ChannelsController < Manage::BaseController
   private
 
   def set_channel
-    @channel = Channel.find(params[:id])
+    @channel = Channel.find_by_slug!(params[:id])
   end
 
 end

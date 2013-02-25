@@ -49,11 +49,6 @@ class Manage::VideosController < Manage::BaseController
     end
   end
 
-  # def destroy
-  #   @video = Video.destroy(params[:id])
-  #   redirect_to manage_channel_videos_path(@channel)
-  # end
-
   def sort
     authorize! :sort, @channel
     order = params[:video]
@@ -92,6 +87,6 @@ class Manage::VideosController < Manage::BaseController
   end
 
   def set_channel
-    @channel = Channel.includes(:airings => :video).find(params[:channel_id])
+    @channel = Channel.includes(:airings => :video).find_by_slug!(params[:channel_id])
   end
 end

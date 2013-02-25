@@ -37,16 +37,17 @@ Puretv::Application.routes.draw do
     put "settings", :to => "settings#update"
     get "request/status/add_video", :to => "request_status#add_video"
 
-    resources :likes, :only => [:index, :show]
+    resources :likes, :only => [:index, :show, :create, :destroy]
     resources :airings, :only => [:show]
 
-    resources :channels do
+    resources :channels, :path => "streams" do
       collection do
         match :following
       end
       resources :memberships, only: [:index, :create, :destroy]
       resources :activities, only: :index
       resources :followers, only: :index
+
       resources :airings, :only => [:create, :destroy] do
         member do
           put :archive
@@ -64,13 +65,13 @@ Puretv::Application.routes.draw do
     resources :memberships, :only => [:create, :destroy]
   end
 
+
   resources :channels, :only => [:index] do
     member do
       match :chromeless, :to => "channels#show_chromeless"
       match :subscribe
       match :unsubscribe, :to => "channels#subscribe"
     end
-    resources :likes, :only => [:create, :destroy]
     resources :videos, :only => [:show] do
       collection do
         get :first

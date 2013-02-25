@@ -3,5 +3,6 @@
  *= require common
  *= require typo
  *= require grid
+ *= require remote_control
  *= require_tree ./player
 */

@@ -1,0 +1,17 @@
+%li.activity.restream.clearfix
+  .secondary
+    = link_to edit_manage_channel_video_path(activity.secondary_subject.channel, activity.secondary_subject) do
+      = image_tag(activity.secondary_subject.video.video_image_url(:thumb_list), class: "secondary", width: 48, height: 48)
+  .primary
+    = link_to slug_url(activity.actor.slug) do
+      = image_tag(activity.actor.cover_art_url(:thumb_list), class: "primary", width: 48, height: 48)
+  .body
+    %i.restream
+    = link_to "/#{activity.actor.slug}", slug_url(activity.actor.slug), class: "channel-link"
+    %span.activity-action
+      restreamed a video from /#{activity.secondary_subject.parent.channel.slug}
+    %p
+      = link_to start_video_url(activity.secondary_subject.channel.slug, v: activity.secondary_subject.id) do
+        = image_tag activity.secondary_subject.video.video_image_url(:large)
+      %br
+      %strong= activity.secondary_subject.title

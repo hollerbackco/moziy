@@ -25,9 +25,14 @@ class Manage::AiringsController < Manage::BaseController
         ChannelMailer.reaired(@channel, from.channel, video.title).deliver
 
         Activity.add :airing_restream,
-          actor: @channel,
+          actor: current_user.primary_channel,
           subject: from,
           secondary_subject: from.channel
+
+        Activity.add :airing_add_restream,
+          actor: current_user.primary_channel,
+          subject: @channel,
+          secondary_subject: airing
 
         re = {
           :success => true,
@@ -62,6 +67,6 @@ class Manage::AiringsController < Manage::BaseController
   private
 
   def set_channel
-    @channel = Channel.find(params[:channel_id])
+    @channel = Channel.find_by_slug!(params[:channel_id])
   end
 end

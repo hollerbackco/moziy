@@ -2,7 +2,7 @@ App.Views.RemoteControlChannelList = Backbone.View.extend
   tagName: "ul"
 
   attributes:
-    class: "channels"
+    class: "channels secondary-menu channel-list"
 
   subviews: []
 

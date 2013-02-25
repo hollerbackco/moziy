@@ -10,10 +10,10 @@ class Channel < ActiveRecord::Base
   has_many :archived_videos, :source => :video,  :through => :archived_airings
 
   #has_many :activities, class_name: "Activity", as: :secondary_subject, :order => "created_at DESC"
-  has_many :activities, :through => :airings, :source => :attachments, class_name: "Activity", :order => "created_at DESC"
+  has_many :activities, :through => :airings, :source => :attachments,
+    class_name: "Activity", :order => "created_at DESC"
 
   has_many :likes, :through => :airings
-
 
   has_many :subscriptions, :dependent => :destroy
   has_many :subscribers, :through => :subscriptions, source: :user
@@ -41,6 +41,10 @@ class Channel < ActiveRecord::Base
 
   def parties
     [creator] + members
+  end
+
+  def activities
+    Activity.where("(subject_type = 'Airing' and subject_id IN (?)) or (subject_type = 'Channel' and subject_id = (?))", airings, self.id)
   end
 
   def description
@@ -190,6 +194,10 @@ class Channel < ActiveRecord::Base
       only: [:id, :title, :description, :cover_art, :slug]
     }.merge options
     super
+  end
+
+  def to_param
+    slug
   end
 
   private

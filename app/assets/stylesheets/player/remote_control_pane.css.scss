@@ -3,7 +3,7 @@
     position: absolute;
     top: 0px;
     right: 0px;
-    width: 300px;
+    width: 200px;
     bottom: 0px;
 
     &.logged-in {
@@ -23,6 +23,7 @@
     &.hover {
       #mosey {
         a {
+          float: left;
           background: image-url('moziy-logo.png') transparent top left no-repeat;
         }
       }
@@ -73,7 +74,7 @@
         position: relative;
         cursor: pointer;
         line-height: 20px;
-        padding: 14px 30px 14px 0;
+        padding: 14px 10px 14px 0;
         font-size: 13px;
 
         &.add {
@@ -135,7 +136,7 @@
         color: #666;
         text-align: center;
         cursor: pointer;
-        width: 33%;
+        width: 49%;
         padding: 15px 0;
         margin: 0;
         list-style-type: none;
@@ -256,74 +257,6 @@
         }
 
         .now-playing {border-top: 1px solid #eee; padding: 20px;}
-      }
-    }
-
-    .channels {
-      margin: 0;
-      padding: 0;
-
-      li {
-        position: relative;
-        cursor: pointer;
-        list-style: none;
-        float: none;
-        margin: 0;
-        border-bottom: 1px solid #eee;
-
-        .unread-count {
-          position: absolute;
-          top: 30px;
-          right: 10px;
-          padding: 2px 4px;
-          background: #999;
-          color: #fff;
-          font-weight: bold;
-          font-size: 10px;
-          line-height: 14px;
-        }
-
-        .icon {
-          position: relative;
-          float: left;
-          padding-right: 20px;
-
-          img {display: block; width: 80px; height: 80px; border-right: 1px solid #ddd;}
-        }
-
-        .text-info {
-          overflow: hidden;
-          padding: 20px 0 0;
-          margin: 0 40px 20px 20px;
-          height: 40px;
-        }
-
-        .title {
-          white-space: nowrap;
-          font-weight: bold;
-          font-size: 13px;
-          text-overflow: ellipsis;
-
-          .slug {
-            color: #666;
-            font-size: 12px;
-            font-weight: normal;
-          }
-        }
-
-        .description {
-          color: #666;
-          font-style: italic;
-        }
-
-        a {
-          color: #000;
-          text-decoration: none;
-          font-size: 12px;
-          &.color0 { background: #333;}
-          &.color1 { background: #333;}
-          &.color2 { background: #333;}
-        }
       }
     }
   }

@@ -45,7 +45,7 @@ class Manage::MembershipsController < Manage::BaseController
   end
 
   def channel
-    @channel ||= Channel.find(params[:channel_id])
+    @channel ||= Channel.find_by_slug!(params[:channel_id])
   end
 
   def membership

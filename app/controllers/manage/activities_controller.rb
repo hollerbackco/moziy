@@ -9,7 +9,7 @@ class Manage::ActivitiesController < Manage::BaseController
   private
 
   def set_channel
-    @channel = Channel.includes(:airings => :video).find(params[:channel_id])
+    @channel = Channel.includes(:airings => :video).find_by_slug!(params[:channel_id])
   end
 
   def my_channels

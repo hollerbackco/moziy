@@ -1,6 +1,6 @@
 App.Views.RemoteControlChannelListItem = Backbone.View.extend
   tagName: "li"
-  className: "channel clearfix"
+  className: "menu-item channel clearfix"
   template: HandlebarsTemplates['player/templates/channel_list_item']
 
   events:

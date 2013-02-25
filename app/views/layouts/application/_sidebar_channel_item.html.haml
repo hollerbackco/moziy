@@ -1,5 +1,5 @@
 %li.menu-item.channel.clearfix{:id => "channel_#{channel.id.to_s}", "data-channel-id" => channel.id.to_s}
-  = link_to slug_path(channel.slug) do
+  = link_to slug_path(channel.slug), class: "channel-item" do
     - if channel.unread_count.to_i > 0
       %span.unread.rounded= channel.unread_count
     = image_tag channel.cover_art_url(:thumb_favicon), width: 24, height: 24

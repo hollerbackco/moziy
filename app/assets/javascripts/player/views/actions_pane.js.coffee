@@ -16,6 +16,7 @@ App.Views.ActionsPane = Backbone.View.extend
 
   render: ->
     @$el.html @template()
+
     timer = 0
 
     $("#player .mask-affordance").mousemove =>

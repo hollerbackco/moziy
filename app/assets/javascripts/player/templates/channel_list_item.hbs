@@ -1,15 +1,7 @@
-{{#if unread_count}}
-  <div class="unread-count">{{unread_count}}</div>
-{{/if}}
-<div class="icon">
-  <img src="{{cover_art.thumb_list.url}}" />
-</div>
-<div class="text-info">
-  <div class="title">
-    {{title}}
-    <span class="slug">/{{slug}}</span>
-  </div>
-  <div class="description">
-    {{description}}
-  </div>
+<div class="channel-item">
+  {{#if unread_count}}
+    <span class="unread-count unread rounded">{{unread_count}}</div>
+  {{/if}}
+  <img src="{{cover_art.thumb_favicon.url}}" width=24 height=24 />
+  <span class="slug">/{{slug}}</span>
 </div>

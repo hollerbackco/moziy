@@ -26,5 +26,4 @@ class ApplicationController < ActionController::Base
   rescue_from CanCan::AccessDenied do |exception|
     redirect_to manage_root_url, :alert => "You are not authorized to view that page"
   end
-
 end

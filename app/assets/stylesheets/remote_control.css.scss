@@ -1,0 +1,53 @@
+.channel-list {
+  padding: 0;
+  margin: 0 0 30px;
+  list-style-type: none;
+  overflow: hidden;
+
+
+  .unread {
+    float: right;
+    background: #eee;
+    color: #aaa;
+    padding: 0px 4px;
+    font-size: 11px;
+  }
+
+  li {
+    border-bottom: 1px solid #ddd;
+    margin: 0;
+    padding: 10px 15px;
+    cursor: pointer;
+
+    &:first-child {
+      border-top: 0;
+    }
+
+    i {
+      margin-bottom: -4px;
+    }
+
+    .channel-item {
+      display: block;
+      text-decoration: none;
+      line-height: 24px;
+
+      &.slug {
+        margin-top: 5px;
+        color: #666;
+        font-weight: normal;
+      }
+
+      .count {
+        color: #333;
+        float: right;
+      }
+
+      img {
+        display: block;
+        float: left;
+        margin-right: 10px;
+      }
+    }
+  }
+}

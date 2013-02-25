@@ -101,5 +101,4 @@ class ChannelsController < ApplicationController
     channel = logged_in? ? current_user.subscriptions.first : Channel.default
     channel || Channel.default
   end
-
 end
