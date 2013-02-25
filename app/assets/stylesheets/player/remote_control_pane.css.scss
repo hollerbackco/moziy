@@ -225,6 +225,12 @@
         list-style: none;
         border: 1px solid #ddd;
 
+        .header {
+          cursor: pointer;
+          &:hover {
+            background: #fafafa;
+          }
+        }
         .channel-image {
           float:left;
           border-right: 1px solid #eee;
@@ -237,7 +243,6 @@
         }
 
         .channel-title {
-          cursor: pointer;
           padding: 5px 10px;
           font-weight: bold;
           overflow: hidden;
