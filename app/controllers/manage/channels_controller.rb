@@ -5,7 +5,7 @@ class Manage::ChannelsController < Manage::BaseController
   def index
     channel = current_user.primary_channel
     respond_to do |format|
-      format.html { redirect_to manage_channel_activities_path channel}
+      format.html { redirect_to manage_channel_path channel}
       format.json { render json: current_user.channels}
     end
   end
