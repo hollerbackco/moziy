@@ -105,8 +105,12 @@ class User < ActiveRecord::Base
     "tw-#{self.username}"
   end
 
+  def primary_channel_slug
+    primary_channel.slug
+  end
+
   def as_json(options={})
-    options = {only: [:username, :primary_channel_id], includes: :channels}.merge options
+    options = {only: [:username, :primary_channel_id], methods: [:primary_channel_slug], includes: :channels}.merge options
     super
   end
 
