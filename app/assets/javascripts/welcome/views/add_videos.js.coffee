@@ -9,7 +9,7 @@ WelcomeApp.Views.AddVideos = Backbone.View.extend
     @$form = @$("form")
     @$links = @$("input[name=links]")
     @$button = @$(".button.primary")
-    @action = "/me/channels/#{WelcomeApp.currentUser.get "primary_channel_id"}/videos"
+    @action = "/me/streams/#{WelcomeApp.currentUser.get "primary_channel_id"}/videos"
 
     @addVideoListView = new WelcomeApp.Views.AddVideoList
       el: @$("#video-list")
