@@ -150,7 +150,7 @@ html,body {
     top: 20%;
     right: 20%;
     left: 20%;
-    bottom: 20%;
+    bottom: 0;
     z-index: 2;
   }
 
@@ -203,8 +203,8 @@ html,body {
     width: 100px;
     padding: 30px;
     left: 50%;
+    margin-left: -80px;
     top: 45%;
-    margin-left: -65px;
     margin-top: -115px;
     z-index: 10;
 
@@ -236,8 +236,9 @@ html,body {
 
   #controls-pane {
     position: absolute;
-    bottom: 0px;
-    right: 0px;
+    bottom: 0;
+    left: 50%;
+    margin-left: -150px;
     width: 300px;
     height: 250px;
 
@@ -260,7 +261,7 @@ html,body {
         cursor: pointer;
         width: 73px;
         height: 73px;
-        opacity: .9;
+        opacity: .8;
 
         &:hover { opacity: 1}
       }

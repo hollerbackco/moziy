@@ -11,15 +11,30 @@ App.Views.ControlsPane = Backbone.View.extend
   render: ->
     @$el.html @template()
 
-    @$el.hoverIntent
-      over: =>
-        @$el.addClass("hover")
-      sensitivity: 12
-      timeout: 100
-      out: =>
-        @$el.removeClass("hover")
+    #@$el.hoverIntent
+      #over: =>
+      #sensitivity: 12
+      #timeout: 100
+      #out: =>
+        #@$el.removeClass("hover")
 
-    @$(".dropdown-toggle").dropdown()
+    timer = 0
+
+    $("#player .mask-affordance").mousemove =>
+      if timer
+        clearTimeout timer
+        timer = 0
+        @$el.show()
+        @$el.addClass("hover")
+
+      callback = =>
+        if !@$el.is(":hover")
+          @$el.fadeOut(200)
+          #@$el.removeClass("hover")
+
+      timer = setTimeout callback, 600
+
+    #@$(".dropdown-toggle").dropdown()
 
   fullscreen: ->
     App.vent.trigger "fullscreen"

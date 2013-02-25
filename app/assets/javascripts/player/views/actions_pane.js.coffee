@@ -31,7 +31,7 @@ App.Views.ActionsPane = Backbone.View.extend
           @$el.fadeOut(200)
           @$el.removeClass("hover")
 
-      timer = setTimeout callback, 500
+      timer = setTimeout callback, 600
 
 
   like: ->
