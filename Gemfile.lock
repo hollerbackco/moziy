@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:jnoh/feedzirra.git
+  remote: git://github.com/jnoh/feedzirra.git
   revision: d0f7948d58f598582da8d91be639b3c87cde453d
   specs:
     feedzirra (0.2.0.rc2)

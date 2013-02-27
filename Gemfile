@@ -31,7 +31,7 @@ gem 'carrierwave'
 gem 'embedly'
 gem 'mini_fb'
 gem 'delayed_job_active_record'
-gem 'feedzirra', :git => 'git@github.com:jnoh/feedzirra.git'
+gem 'feedzirra', :git => 'git://github.com/jnoh/feedzirra.git'
 gem 'nokogiri'
 
 # Admin
