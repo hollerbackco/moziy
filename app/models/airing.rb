@@ -3,7 +3,7 @@ class Airing < ActiveRecord::Base
   acts_as_readable on: :created_at
 
   attr_accessible :video, :channel, :parent, :video_id, :channel_id,
-    :parent_id, :state, :position, :user_id
+    :parent_id, :state, :position, :user_id, :content
 
   has_many :attachments, class_name: "Activity", as: :subject, order: "created_at DESC"
   has_many :likes,    as: :likeable

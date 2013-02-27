@@ -1,0 +1,63 @@
+website:
+  - slug:         devour
+    title:        Devour
+    description: >
+      Using a scientifically technologically artificially intelligently 
+      awesomely robotically humanly system (we hand-pick every video on the site), 
+      Devour sifts out the best videos and posts the well-curated collection 
+      every weekday.
+    source_name:  devour
+    source_url:   http://feeds.feedburner.com/devourfeed
+youtube:
+  - slug:         vice
+    title:        Vice
+    description: >
+      VICE specializes in exploring uncomfortable truths and 
+      going to places we don't belong. Now, thanks to YouTube, 
+      we have compressed two decades of our unique ...
+    source_name:  vice
+  - slug:         birchboxtv
+    title:        Birchbox TV
+    description: >
+      Makeup tutorials, hair how-tos, skincare do's and don'ts, 
+      plus an inside look at Birchbox HQ.
+    source_name:  birchboxtv
+  - slug:         grantlandnetwork
+    title:        Grantland Network
+    description: >
+      grantland.com
+    source_name:  GrantlandNetwork
+  - slug:         iamother
+    title:        iamOTHER
+    description: >
+      Brought to you by Pharrell Williams, i am OTHER is a new channel 
+      and cultural movement dedicated to Thinkers, Innovators and 
+      Outcasts—in short, OTHERS.
+    source_name:  iamOTHER
+  - slug:         theonion
+    title:        the ONION
+    description: >
+      The Onion is America's Finest News Source.
+    source_name:  theonion
+  - slug:         complexmagazine
+    title:        Complex Video
+    description: >
+      Complex Video offers up a look at our exclusive on-camera interviews, 
+      behind-the-scenes footage of our hottest photo shoots and the latest 
+      style news to come out of every issue of Complex Magazine (www.complex.com)
+    source_name:  complexmagazine
+  - slug:         jayz
+    title:        JAY-Z's Life and Times
+    description: >
+      Curated by Shawn "JAY Z" Carter, JAY Z's Life+Times is a digital experience 
+      covering art, sports, music, fashion and culture.
+    source_name:  jayz
+
+vimeo:
+  - slug:         coolhunting
+    title:        Cool Hunting
+    description: >
+      Cool Hunting Video goes onsite meeting artists, designers and 
+      other innovators to get an insider look at their inspiration 
+      and process.
+    source_name:  coolhunting

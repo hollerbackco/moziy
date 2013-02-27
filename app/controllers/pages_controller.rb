@@ -5,6 +5,11 @@ class PagesController < ApplicationController
     redirect_to Channel.order("subscriptions_count DESC, updated_at DESC").first
   end
 
+  def home_beta
+    slugs = ["devour", "jayz", "vice", "grantlandnetwork", "complexmagazine", "coolhunting", "iamother"]
+    @channels = Channel.where(:slug => slugs)
+  end
+
   def terms
   end
 

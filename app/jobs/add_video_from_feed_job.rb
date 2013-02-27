@@ -2,34 +2,50 @@ class AddVideoFromFeedJob < Struct.new(:entries)
   def perform
     for entry in entries
       channel = Channel.find_by_slug entry[:channel_slug]
-      provider_params = video_provider.get entry[:url]
-      provider_params.each {|p| create_airing p, channel, entry[:description] }
+      provider_params = video_provider(entry[:url]).get
+      provider_params.each do |p|
+        create_airing p, channel, entry[:content], entry[:created_at]
+      end
     end
   end
 
-  def create_airings(params, channel, user)
+  def create_airing(v_params, channel, content, created_at=nil)
 
-    airings = @video_params.map do |v_params|
-      Video.transaction do
-        video = create_a_video v_params
+    Video.transaction do
+      video = create_a_video v_params
 
-        @airing = Airing.create(
-          :user_id => @user.id,
-          :channel_id => @channel.id,
-          :video_id => video.id,
-          :position => 0)
+      airing = Airing.new(
+        :user_id => channel.creator.id,
+        :channel_id => channel.id,
+        :video_id => video.id,
+        :content => content,
+        :position => 0)
 
-        if @airing.valid?
-          Activity.add(:airing_add,
-            actor: @channel,
-            subject: @airing
-          )
+      if created_at
+        class << airing
+          def record_timestamps
+            false
+          end
         end
+        airing.created_at = created_at
+        airing.updated_at = created_at
       end
 
-      @airing
+      if airing.save
+        Activity.add(:airing_add,
+          actor: channel,
+          subject: airing
+        )
+      end
+
+      if created_at
+        class << airing
+          def record_timestamps
+            true
+          end
+        end
+      end
     end
-    airings
   end
 
   def create_a_video(v_params)
@@ -39,7 +55,7 @@ class AddVideoFromFeedJob < Struct.new(:entries)
     }).first_or_create(v_params)
   end
 
-  def video_provider
-    @vp ||= VideoProvider.new urls
+  def video_provider(url)
+    @vp ||= VideoProvider.new url
   end
 end

@@ -27,6 +27,20 @@ class VideoProvider
 
   private
 
+  def split_csv(links)
+    arr = links.split(',').map{|r| r.strip}
+    arr.select{|r| check_regex r}.map {|r| normal_url r}
+  end
+
+  def normal_url(link)
+    if YOUTUBE_REGEX.match(link) or YOUTUBE2_REGEX.match(link)
+      "http://www.youtube.com/watch?v=#{$1}"
+    elsif VIMEO_REGEX.match(link)
+      "http://www.vimeo.com/#{$1}"
+    end
+    link
+  end
+
   def parse_id(html)
     # find the id and source from body (embed code)
     if YOUTUBE_REGEX.match(html)
@@ -52,13 +66,9 @@ class VideoProvider
     end
   end
 
-  def split_csv(links)
-    arr = links.split(',').map{|r| r.strip}
-    arr.select{|r| check_regex r}
-  end
 
   def check_regex(s)
-    embedly_re = Regexp.new(/((\/\/(.*youtube\.com\/watch.*|.*\.youtube\.com\/v\/.*|youtu\.be\/.*|.*\.youtube\.com\/user\/.*|.*\.youtube\.com\/.*#.*\/.*|m\.youtube\.com\/watch.*|m\.youtube\.com\/index.*|.*\.youtube\.com\/profile.*|.*\.youtube\.com\/view_play_list.*|.*\.youtube\.com\/playlist.*|www\.vimeo\.com\/groups\/.*\/videos\/.*|www\.vimeo\.com\/.*|vimeo\.com\/groups\/.*\/videos\/.*|vimeo\.com\/.*|vimeo\.com\/m\/#\/.*))|(https:\/\/(.*youtube\.com\/watch.*|.*\.youtube\.com\/v\/.*)))/i)
+    embedly_re = Regexp.new(/((\/\/(.*youtube\.com\/watch.*|.*\.youtube\.com\/v\/.*|.*\.youtube\.com\/embed\/.*|youtu\.be\/.*|.*\.youtube\.com\/user\/.*|.*\.youtube\.com\/.*#.*\/.*|m\.youtube\.com\/watch.*|m\.youtube\.com\/index.*|.*\.youtube\.com\/profile.*|.*\.youtube\.com\/view_play_list.*|.*\.youtube\.com\/playlist.*|www\.vimeo\.com\/groups\/.*\/videos\/.*|www\.vimeo\.com\/.*|vimeo\.com\/groups\/.*\/videos\/.*|.*\/video\/.*|vimeo\.com\/.*|vimeo\.com\/m\/#\/.*))|(https:\/\/(.*youtube\.com\/watch.*|.*\.youtube\.com\/v\/.*)))/i)
     s.match(embedly_re)
   end
 

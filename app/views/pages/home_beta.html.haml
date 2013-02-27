@@ -1,0 +1,11 @@
+.header
+  %h1 moziy is your destination for men’s lifestyle video. welcome.
+  %h2 please follow a few streams you think you’ll like.
+.channels.clearfix
+  - for channel in @channels
+    .channel
+      = link_to slug_path(channel.slug) do
+        = image_tag channel.cover_art_url(:thumb_player), width: 150, height: 150
+        .meta
+          .title= channel.title
+          .description= channel.description
