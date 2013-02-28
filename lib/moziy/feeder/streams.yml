@@ -56,8 +56,12 @@ youtube:
     title:        Thrasher Magazine
     description: >
       100% skateboarding
-    source_name: ThrasherMagazine
-
+    source_name:  ThrasherMagazine
+  - slug:         pitchforktv
+    title:        Pitchfork TV
+    description: >
+      Dedicated to documenting independent music as it happens.
+    source_name:  PitchforkTV
 vimeo:
   - slug:         coolhunting
     title:        Cool Hunting
