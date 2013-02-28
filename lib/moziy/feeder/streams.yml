@@ -8,6 +8,12 @@ website:
       every weekday.
     source_name:  devour
     source_url:   http://feeds.feedburner.com/devourfeed
+  - slug:         foodcurated
+    title:        Food Curated
+    description: >
+      Food. Curated. is my dream series. An outlet for me to share what I enjoy doing most in this world.
+    source_name:  foodcurated
+    source_url:   http://feeds.feedburner.com/foodcurated
 youtube:
   - slug:         vice
     title:        Vice

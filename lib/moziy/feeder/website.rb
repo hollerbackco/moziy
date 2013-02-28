@@ -13,6 +13,7 @@ module Moziy
 
       src = doc.search("iframe").attribute("src")
 
+      puts src.to_s
       feed_params = {
         :channel_slug => @channel.slug,
         :url => src.to_s,
