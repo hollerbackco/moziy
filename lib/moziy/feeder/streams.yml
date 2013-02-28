@@ -52,6 +52,11 @@ youtube:
       Curated by Shawn "JAY Z" Carter, JAY Z's Life+Times is a digital experience 
       covering art, sports, music, fashion and culture.
     source_name:  jayz
+  - slug:         thrashermagazine
+    title:        Thrasher Magazine
+    description: >
+      100% skateboarding
+    source_name: ThrasherMagazine
 
 vimeo:
   - slug:         coolhunting
