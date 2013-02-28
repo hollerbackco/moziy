@@ -6,7 +6,7 @@ class PagesController < ApplicationController
   end
 
   def home_beta
-    slugs = ["devour", "jayz", "vice", "grantlandnetwork", "complexmagazine", "coolhunting", "iamother"]
+    slugs = ["devour", "theonion", "dudefood", "thrashermagazine", "jayz", "vice", "grantlandnetwork", "complexmagazine", "coolhunting", "iamother"]
     best = Channel.where(:slug => slugs)
 
     @channels = (best + Channel.order("airings_count DESC").limit(30)).uniq
