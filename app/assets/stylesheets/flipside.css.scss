@@ -16,46 +16,48 @@ html {
     h2 { font-size: 15px; font-weight: normal }
   }
 
-  .channels {
-    margin-right: -25px;
-    padding-bottom: 25px;
-  }
-
-  .channel {
-    float: left;
-    width: 415px;
-    margin-right: 25px;
-    margin-top: 25px;
-    height: 150px;
-    border: 1px solid #eee;
-
-    a { text-decoration: none}
-
-    &:hover {
-      border: 1px solid #ccc;
+  #home-beta {
+    .channels {
+      margin-right: -25px;
+      padding-bottom: 25px;
     }
 
-    .title {
-      margin-top: 15px;
-      font-weight: bold;
-      font-size: 16px;
-    }
-
-    .description {
-      color: #666;
-      font-size: 12px;
-      margin-top: 5px;
-      margin-right: 10px;
-    }
-
-    img {
+    .channel {
       float: left;
-      margin-right: 15px;
-      border-right: 1px solid #eee;
-    }
+      width: 415px;
+      margin-right: 25px;
+      margin-top: 25px;
+      height: 150px;
+      border: 1px solid #eee;
 
-    .meta {
-      margin: 10px;
+      a { text-decoration: none}
+
+      &:hover {
+        border: 1px solid #ccc;
+      }
+
+      .title {
+        margin-top: 15px;
+        font-weight: bold;
+        font-size: 16px;
+      }
+
+      .description {
+        color: #666;
+        font-size: 12px;
+        margin-top: 5px;
+        margin-right: 10px;
+      }
+
+      img {
+        float: left;
+        margin-right: 15px;
+        border-right: 1px solid #eee;
+      }
+
+      .meta {
+        margin: 10px;
+      }
     }
   }
 
