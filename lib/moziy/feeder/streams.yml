@@ -32,12 +32,22 @@ youtube:
       going to places we don't belong. Now, thanks to YouTube, 
       we have compressed two decades of our unique ...
     source_name:  vice
+  - slug:         lablogotheque
+    title:        LaBlogotheque
+    description: >
+      You've never seen music like this.
+    source_name:  lablogotheque
   - slug:         birchboxtv
     title:        Birchbox TV
     description: >
       Makeup tutorials, hair how-tos, skincare do's and don'ts, 
       plus an inside look at Birchbox HQ.
     source_name:  birchboxtv
+  - slug:         dominorecords
+    title:        DominoRecords
+    description: >
+      an independent record label since 1993.
+    source_name:  DominoRecords
   - slug:         grantlandnetwork
     title:        Grantland Network
     description: >
