@@ -15,6 +15,16 @@ website:
     source_name:  foodcurated
     source_url:   http://feeds.feedburner.com/foodcurated
 youtube:
+  - slug:         noisey
+    title:        Noisey
+    description: >
+      The World's Greatest Music Site of All Time.
+    source_name:  noisey
+  - slug:         deadmau5
+    title:        Deadmau5 TV
+    description: >
+      random carnage a la deadmau5.
+    source_name:  deadmau5
   - slug:         vice
     title:        Vice
     description: >
