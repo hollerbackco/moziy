@@ -33,12 +33,12 @@ class VideoProvider
   end
 
   def normal_url(link)
-    if YOUTUBE_REGEX.match(link) or YOUTUBE2_REGEX.match(link)
+    new_link = if YOUTUBE_REGEX.match(link) or YOUTUBE2_REGEX.match(link)
       "http://www.youtube.com/watch?v=#{$1}"
     elsif VIMEO_REGEX.match(link)
       "http://www.vimeo.com/#{$1}"
     end
-    link
+    new_link || link
   end
 
   def parse_id(html)
