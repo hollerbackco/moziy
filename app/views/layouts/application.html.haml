@@ -18,6 +18,7 @@
         = render partial: "layouts/application/sidebar_channel_item",
             collection: @channels,
             as: :channel
+      .explore= link_to "discover more streams", welcome_path, class: "blue"
     #stage
       .container
         %header.clearfix
