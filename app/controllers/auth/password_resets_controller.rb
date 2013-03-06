@@ -9,8 +9,10 @@ class Auth::PasswordResetsController < ApplicationController
     # This line sends an email to the user with instructions on how to reset their password (a url with a random token)
     if @user and @user.deliver_reset_password_instructions!
       UserMailer.reset_password_email(@user).deliver
+      redirect_to(login_path, :notice => 'Instructions have been sent to your email.')
+    else
+      redirect_to(login_path, :notice => 'Instructions have already been sent.')
     end
-    redirect_to(login_path, :notice => 'Instructions have been sent to your email.')
   end
 
   # This is the reset password form.
