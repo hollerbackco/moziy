@@ -1,7 +1,7 @@
 #home-beta
   .header
-    %h1 moziy is your destination for men’s lifestyle video. welcome.
-    %h2 please follow a few streams you think you’ll like.
+    %h1= t "pages.welcome.tagline"
+    %h2= t "pages.welcome.instructions"
   .channels.clearfix
     - for channel in @channels
       .channel
@@ -10,3 +10,9 @@
           .meta
             .title= channel.title
             .description= channel.description
+        .follow-button.button.primary.action-button
+          %span.follow-text
+            %i.follow
+            follow
+          %span.following-text following
+          %span.unfollow-text unfollow

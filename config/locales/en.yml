@@ -15,9 +15,12 @@ en:
 
   pages:
     welcome:
-      title:  "welcome"
-      heading: "welcome to moziy"
+      title:         welcome
+      heading:       welcome to moziy
+      tagline:       moziy is your destination for men’s lifestyle video. welcome.
+      instructions:  please follow a few streams you think you’ll like.
 
+ 
   likes:
     index:
       title:  "my likes"

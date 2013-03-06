@@ -19,7 +19,12 @@ class PagesController < ApplicationController
   end
 
   def welcome
-    @explore = Channel.publik.explore_for(current_user).limit(20)
+    slugs = ["devour", "theonion", "dudefood", "thrashermagazine", "jayz", "vice", "grantlandnetwork", "complexmagazine", "coolhunting", "iamother"]
+    best = Channel.where(:slug => slugs)
+
+    @explore = (best + Channel.publik.order("airings_count DESC").limit(30)).uniq
+
+    #@explore = Channel.publik.explore_for(current_user).limit(20)
     render :layout => "noheader"
   end
 end

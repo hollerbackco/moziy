@@ -3,7 +3,7 @@
     $(document).ready(function() {
       var bootstrap = {
         currentUser: #{current_user_json},
-        exploreChannels: #{@explore.as_json(methods: [:last_three_videos,:channel_subscribers_count]).to_json}
+        exploreChannels: #{@explore.as_json(methods: [:channel_subscribers_count]).to_json}
       };
 
       WelcomeApp.initialize(bootstrap);

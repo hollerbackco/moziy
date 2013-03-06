@@ -10,7 +10,7 @@ WelcomeApp.Views.SuggestChannels = Backbone.View.extend
       el: @$("#channel-list")
       model: @model
 
-    @$el.hide()
+    #@$el.hide()
 
     @listenTo WelcomeApp.vent, "channel:follow", @addOne
     @listenTo WelcomeApp.vent, "channel:unfollow", @removeOne

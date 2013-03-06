@@ -5,18 +5,18 @@ WelcomeApp.Views.Main = Backbone.View.extend
     "click #next-button" : "next"
 
   initialize: ->
-    @state = "add"
+    @state = "follow"
 
     @render()
 
-    @addVideosView = new WelcomeApp.Views.AddVideos
-      el: @$("#add-videos")
+    # @addVideosView = new WelcomeApp.Views.AddVideos
+    #   el: @$("#add-videos")
 
     @suggestFollowersView = new WelcomeApp.Views.SuggestChannels
       el: @$("#suggest-followers")
       model: WelcomeApp.exploreChannels
 
-    @listenTo WelcomeApp.vent, "add:complete", @addComplete
+    # @listenTo WelcomeApp.vent, "add:complete", @addComplete
     @listenTo WelcomeApp.vent, "follow:complete", @followComplete
     @listenTo WelcomeApp.vent, "follow:incomplete", @followIncomplete
 

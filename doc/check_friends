@@ -1,0 +1,18 @@
+checking for friends in gmail
+-----------------------------
+
+frontend approach:
+
+1. grab list of emails
+2. post and return list of channels related to friends via json
+3. follow or unfollow
+
+backend approach:
+
+1. oauth
+2. get access_token
+3. poll backend for completion of find_friends backend job
+4. grab list of emails and return channels
+
+
+

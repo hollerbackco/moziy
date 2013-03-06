@@ -23,7 +23,7 @@ gem 'paranoia'
 gem 'cancan'
 
 # Image Uploader
-gem 'rmagick'
+gem 'mini_magick'
 gem 'fog'
 gem 'carrierwave'
 

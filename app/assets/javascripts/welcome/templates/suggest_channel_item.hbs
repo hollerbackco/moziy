@@ -1,3 +1,12 @@
+<div class="header modal-no-padding clearfix">
+  <div class="channel-info">
+    <img class="channel-image" width=150 height=150 src="{{cover_art.thumb_player.url}}" />
+    <div class="channel-title channel-play">
+      <div class="channel-slug">{{title}}</div>
+      <div class="channel-description">{{description}}</div>
+    </div>
+  </div>
+</div>
 <div class="follow-button button primary action-button">
   <span class="follow-text">
     <i class="follow" />
@@ -5,20 +14,4 @@
   </span>
   <span class="following-text">following</span>
   <span class="unfollow-text">unfollow</span>
-</div>
-<div class="header modal-no-padding clearfix">
-  <div class="channel-info">
-    <img class="channel-image" width=48 height=48 src="{{cover_art.thumb_player.url}}" />
-    <div class="channel-title channel-play">
-      <div class="channel-slug">{{title}}</div>
-      <div class="follower-count show-followers">
-        <span class="slug">/{{slug}}</span>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="video-images">
-  {{#each last_three_videos}}
-    <img src="{{video_image.large.url}}" width=300 height=200 />
-  {{/each}}
 </div>

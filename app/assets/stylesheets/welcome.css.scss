@@ -15,10 +15,17 @@
     padding: 30px 0;
 
     h1 {
-      font-size: 36px;
+      text-align: center;
+      font-size: 30px;
       margin: 0;
       margin-right: 20px;
     }
+  }
+
+  h3 {
+    font-size: 16px;
+    font-weight: none;
+    text-align: center;
   }
 
   #next {
@@ -46,23 +53,39 @@
   }
 
   #channel-list {
+    margin-right: -35px;
+    padding: 0 25px;
+    padding-bottom: 35px;
 
     li {
-      border-top: 1px solid #eaeaea;
-      padding: 20px 0;
+      float: left;
+      width: 430px;
+      margin-right: 35px;
+      margin-top: 35px;
+      border: 1px solid #eee;
+
+      .header {
+        height: 150px;
+      }
+
+      .channel-slug {
+        padding-top: 15px;
+        padding-bottom: 5px;
+      }
 
       .follow-button {
-        float: right;
-        padding: 0 30px;
+        border-top: 1px solid #ccc;
+        width: 100%;
+        text-align: center;
+        padding: 0;
 
         &.following {
-          background: #eee;
+          background: #ddd;
         }
       }
 
       .video-images {
         margin-right: -30px;
-        margin-top: 20px;
 
         img {
           float: left;
@@ -72,9 +95,15 @@
       }
 
       .channel-info {
+        margin-right: 15px;
+
         .channel-slug {
           font-size: 16px;
           font-weight: bold;
+        }
+
+        .channel-description {
+          color: #666;
         }
 
         img {
