@@ -6,8 +6,7 @@
 
   .unread {
     float: right;
-    background: #eee;
-    color: #aaa;
+    color: #999;
     padding: 0px 4px;
     font-size: 11px;
   }
@@ -15,8 +14,12 @@
   li {
     border-bottom: 1px solid #ddd;
     margin: 0;
-    padding: 10px 15px;
+    padding: 7px;
     cursor: pointer;
+
+    &:hover {
+      background: #eee;
+    }
 
     &:first-child {
       border-top: 0;
