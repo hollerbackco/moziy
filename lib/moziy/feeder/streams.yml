@@ -25,6 +25,11 @@ youtube:
     description: >
       Home of your favorite viral late night videos.
     source_name:  jimmykimmellive
+  - slug:         thenewyorktimes
+    title:        The New York Times
+    description: >
+      Check in daily to watch new videos from the acclaimed producers and editors of The New York Times.
+    source_name:  thenewyorktimes
   - slug:         deadmau5
     title:        Deadmau5 TV
     description: >
