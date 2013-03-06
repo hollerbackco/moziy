@@ -20,6 +20,11 @@ youtube:
     description: >
       The World's Greatest Music Site of All Time.
     source_name:  noisey
+  - slug:         jimmykimmellive
+    title:        Jimmy Kimmel Live
+    description: >
+      Home of your favorite viral late night videos.
+    source_name:  jimmykimmellive
   - slug:         deadmau5
     title:        Deadmau5 TV
     description: >
