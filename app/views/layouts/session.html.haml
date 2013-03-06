@@ -19,4 +19,6 @@
               %li= link_to 'Join', register_path
               %li= link_to 'Log in', login_path
       %section#main
+        - flash.each do |key, value|
+          .flash.alert.alert-{:class => key} #{value}
         = yield

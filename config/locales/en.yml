@@ -20,7 +20,7 @@ en:
       tagline:       moziy is your destination for men’s lifestyle video. welcome.
       instructions:  please follow a few streams you think you’ll like.
 
- 
+
   likes:
     index:
       title:  "my likes"
@@ -38,6 +38,10 @@ en:
       title:  "sign in"
     create:
       title:  "sign in"
+
+  password_resets:
+    new:
+      title:  "Reset Password"
 
   registrations:
     new:

@@ -6,6 +6,8 @@ class User < ActiveRecord::Base
 
   before_validation :downcase_attributes
 
+  validates_confirmation_of :password, :on => :create, :if => :password, :message => "should match confirmation"
+
   acts_as_reader
 
   authenticates_with_sorcery! do |config|
