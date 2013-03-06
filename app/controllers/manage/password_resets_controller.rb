@@ -1,4 +1,4 @@
-class Auth::PasswordResetsController < ApplicationController
+class PasswordResetsController < ApplicationController
   skip_before_filter :require_login
 
   # request password reset.
