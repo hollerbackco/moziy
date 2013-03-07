@@ -13,7 +13,7 @@ class ChannelsController < ApplicationController
 
   def show
     @channel = params.key?(:name) ?
-      Channel.find_by_slug!(params[:name]) : default_channel
+      Channel.find_by_slug!(params[:name]) : nil
 
     if params[:v] and @channel.airings.exists? params[:v]
       @first_airing = Airing.find(params[:v])
@@ -36,7 +36,7 @@ class ChannelsController < ApplicationController
     render :layout => "player"
 
   rescue ActiveRecord::RecordNotFound
-    redirect_to slug_path(Channel.default.slug)
+    redirect_to login_path
   end
 
   def show_root
