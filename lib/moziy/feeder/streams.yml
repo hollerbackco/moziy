@@ -20,6 +20,11 @@ youtube:
     description: >
       The World's Greatest Music Site of All Time.
     source_name:  noisey
+  - slug:         thethrashlab
+    title:        The Thrash Lab
+    description: >
+      Exploring and defining culture for this generation of creatives.
+    source_name:  thethrashlab
   - slug:         jimmykimmellive
     title:        Jimmy Kimmel Live
     description: >
