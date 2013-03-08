@@ -11,6 +11,8 @@ class Feed < ActiveRecord::Base
   validates :slug, presence: true, uniqueness: {scope: [:feed_type, :source_name, :source_url]}
   validates :feed_type, presence: true
 
+  before_create :channel
+
   def user
     user = Channel.default.creator
   end
