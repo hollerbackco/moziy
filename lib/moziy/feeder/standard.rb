@@ -3,6 +3,7 @@ module Moziy
   class Feeder::Standard < Feeder
     def initialize(feed)
       super(feed)
+      @source = feed.source_url
       @source_username = feed.source_name
     end
 
