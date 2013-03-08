@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
 
   serialize :preferences, ActiveRecord::Coders::Hstore
 
+  before_create :setup_preferences
   before_save :clean_preferences
 
   authenticates_with_sorcery! do |config|
@@ -136,6 +137,11 @@ class User < ActiveRecord::Base
     preferences.key? "email_followers" and preferences["email_followers"].to_i
   end
 
+  def setup_preferences
+    preferences["email_likes"] = 1
+    preferences["email_restreams"] = 1
+    preferences["email_followers"] = 1
+  end
 
   private
 
