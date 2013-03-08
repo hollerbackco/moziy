@@ -4,5 +4,19 @@ ActiveAdmin.register Feed do
     column :slug
     column :source_name
     column :source_url
+    column :channel_slug do |feed|
+      feed.channel.airings.count
+    end
+  end
+  form do |f|
+    f.inputs "Channel Slug" do
+      f.input :slug
+    end
+    f.inputs "Source Type" do
+      f.input :feed_type, :as => :select, :collection => Feed::FEED_TYPES
+      f.input :source_name, :hint => "Mandatory if feedtype is youtube or vimeo: enter a username here"
+      f.input :source_url, :hint => "Mandatory if feedtype is a website: enter the url to the rss feed"
+    end
+    f.buttons
   end
 end
