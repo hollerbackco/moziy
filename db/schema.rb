@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130306211601) do
+ActiveRecord::Schema.define(:version => 20130308200630) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -154,6 +154,18 @@ ActiveRecord::Schema.define(:version => 20130306211601) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
+
+  create_table "feeds", :force => true do |t|
+    t.string   "feed_type"
+    t.string   "slug"
+    t.string   "source_url"
+    t.string   "source_name"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "feeds", ["feed_type"], :name => "index_feeds_on_feed_type"
+  add_index "feeds", ["slug"], :name => "index_feeds_on_slug"
 
   create_table "invite_codes", :force => true do |t|
     t.integer  "user_id"

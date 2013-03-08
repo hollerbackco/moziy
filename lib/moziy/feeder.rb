@@ -2,14 +2,11 @@ module Moziy
   class Feeder
     class AbstractError < StandardError; end
 
-    def initialize(args)
-      user = Channel.default.creator
+    def initialize(feed)
+      @feed = feed
+      user = feed.user
 
-      @channel = user.channels.where(slug: args[:slug]).first_or_create do |channel|
-        channel.slug = args[:slug]
-        channel.title = args[:title]
-        channel.description = args[:description]
-      end
+      @channel = feed.channel
 
       @last_updated = (@channel.airings.count > 0) ?
         @channel.airings.first.created_at :

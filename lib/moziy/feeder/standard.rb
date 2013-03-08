@@ -1,10 +1,9 @@
 module Moziy
   # youtube and vimeo rss feeds
   class Feeder::Standard < Feeder
-
-    def initialize(args)
-      @source_username = args[:source_name]
-      super(args)
+    def initialize(feed)
+      super(feed)
+      @source_username = feed.source_name
     end
 
     def perform_on_entry(entry)

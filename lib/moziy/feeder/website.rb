@@ -1,9 +1,9 @@
 module Moziy
   # youtube and vimeo rss feeds
   class Feeder::Website < Feeder
-    def initialize(args)
-      @source = args[:source_url]
-      super(args)
+    def initialize(feed)
+      super(feed)
+      @source = feed.source_url
     end
 
     def perform_on_entry(entry)
