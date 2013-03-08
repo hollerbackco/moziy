@@ -5,6 +5,7 @@ gem 'thin'
 
 # Persistance
 gem 'pg'
+gem 'activerecord-postgres-hstore'
 
 # Views
 gem 'haml'

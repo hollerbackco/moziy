@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <table border="0" cellspacing="0" cellpadding="0" align="center" style="width:640px;padding-left:20px;padding-right:20px; font-family: Helvetica, Arial, Sans-Serif">
+      <tbody>
+        <tr>
+          <td style="padding: 20px 0;">
+            <img src="http://www.moziy.com/assets/moziy-logo-2.png" />
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <%= yield %>
+          </td>
+        </tr>
+        <tr>
+          <td style="padding: 20px 0;">
+            <p style="font-size: 11px; color: #999;"><%= link_to "Unsubscribe to these emails", manage_settings_url %></p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </body>
+</html>

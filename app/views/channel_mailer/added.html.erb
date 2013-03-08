@@ -1,19 +1,11 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
-  </head>
-  <body>
-    <p><%= @user.username %>,</p>
+<p><%= @user.username %>,</p>
 
-    <% for airing in @airings %>
-      <p>
-        <%= airing.user.username %>
-        added a video:
-        <strong><%= link_to airing.title, start_video_url(airing.channel.slug, v: airing.id) %></strong>.
-      </p>
-    <% end %>
+<% for airing in @airings %>
+  <p>
+    <%= airing.user.username %>
+    added a video:
+    <strong><%= link_to airing.title, start_video_url(airing.channel.slug, v: airing.id) %></strong>.
+  </p>
+<% end %>
 
-    <p><a href="<%= root_url %>">moziy.com</a></p>
-  </body>
-</html>
+<p><a href="<%= root_url %>">moziy.com</a></p>

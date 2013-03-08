@@ -4,10 +4,18 @@
     .field
       = f.label :username
       = f.text_field :username
-
     .field
       = f.label :email
       = f.text_field :email
+    .fields
+      %h2 Email Settings
+      %p
+        We'll send you a notification for each of the actions listed below. Uncheck the boxes and click save
+        if you'd like to disable emails.
 
+      - f.object.preferences.each do |key, value|
+        .field
+          = label_tag key
+          = check_box_tag "user[preferences][#{key}]", "1", value.to_i == 1
     .actions
       = f.submit :update, class: "button primary"

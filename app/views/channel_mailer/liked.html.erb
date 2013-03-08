@@ -1,20 +1,12 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
-  </head>
-  <body>
-    <% for like in @likes %>
-      <p>
-        <%= link_to like.user.username, slug_url(like.user.primary_channel.slug) %>
-        liked your video
-        <strong><%= like.likeable.title %></strong>
-        from <strong><%= @your_channel.title %></strong>.
-      </p>
-    <% end %>
+<% for like in @likes %>
+  <p>
+    <%= link_to like.user.username, slug_url(like.user.primary_channel.slug) %>
+    liked your video
+    <strong><%= like.likeable.title %></strong>
+    from <strong><%= @your_channel.title %></strong>.
+  </p>
+<% end %>
 
-    <p>Keep posting the goodness.</p>
+<p>Keep posting the goodness.</p>
 
-    <p><a href="<%= root_url %>">moziy.com</a></p>
-  </body>
-</html>
+<p><a href="<%= root_url %>">moziy.com</a></p>

@@ -17,4 +17,16 @@ class Manage::SettingsController < Manage::BaseController
       render :edit
     end
   end
+
+
+  def clean_params
+    user_params = params[:user]
+
+    preferences = user_params.delete :preferences
+
+    user_params[:preferences] = preferences.inject({}) {|memo, word| memo[word[0]] = word[1].to_i; memo}
+
+    logger.info user_params[:preferences]
+    user_params
+  end
 end

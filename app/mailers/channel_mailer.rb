@@ -3,6 +3,11 @@ class ChannelMailer < ApplicationMailer
   def liked(recipient, channel, likes)
     @your_channel = channel
     @user = recipient
+
+    if ! @user.email_likes?
+      return
+    end
+
     @likes = likes
     @users = likes.map(&:user)
 
@@ -25,6 +30,7 @@ class ChannelMailer < ApplicationMailer
   def added(recipient, channel, airings)
     @your_channel = channel
     @user = recipient
+
     @airings = airings
     @users = airings.map(&:user)
 
@@ -37,6 +43,10 @@ class ChannelMailer < ApplicationMailer
     @your_channel = from
     @user = from.creator
 
+    if ! @user.email_restreams?
+      return
+    end
+
     @their_name = to.creator.username
     @their_channel = to
     @video_title = video_title
@@ -48,6 +58,10 @@ class ChannelMailer < ApplicationMailer
   def subscribed(receiver_channel, subscriber)
     @channel = receiver_channel
     @user = receiver_channel.creator
+
+    if ! @user.email_followers?
+      return
+    end
 
     @subscriber = subscriber
     @subscriber_channel = subscriber.primary_channel

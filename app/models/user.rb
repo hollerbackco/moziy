@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :username, :password, :password_confirmation, :authentications_attributes, :primary_channel, :primary_channel_id
+  attr_accessible :email, :username, :password, :password_confirmation, :authentications_attributes, :primary_channel, :primary_channel_id, :preferences
 
   validates :email, :presence => true, :uniqueness => { :case_sensitive => false }, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create }
   validates :username, :presence => true, :uniqueness => { :case_sensitive => false }, :format => {:with => /^[a-zA-Z0-9_]*[a-zA-Z][a-zA-Z0-9_]*$/}
@@ -9,6 +9,10 @@ class User < ActiveRecord::Base
   validates_confirmation_of :password, :on => :create, :if => :password, :message => "should match confirmation"
 
   acts_as_reader
+
+  serialize :preferences, ActiveRecord::Coders::Hstore
+
+  before_save :clean_preferences
 
   authenticates_with_sorcery! do |config|
     config.authentications_class = Authentication
@@ -120,8 +124,28 @@ class User < ActiveRecord::Base
     primary_channel == channel
   end
 
+  def email_likes?
+    preferences.key? "email_likes" and preferences["email_likes"].to_i
+  end
+
+  def email_restreams?
+    preferences.key? "email_restreams" and preferences["email_restreams"].to_i
+  end
+
+  def email_followers?
+    preferences.key? "email_followers" and preferences["email_followers"].to_i
+  end
+
 
   private
+
+  def clean_preferences
+    preferences.delete_if {|key,value| ![:email_likes, :email_restreams, :email_followers].include? :"#{key}" }
+    preferences["email_likes"] = 0 unless preferences.key? "email_likes"
+    preferences["email_restreams"] = 0 unless preferences.key? "email_restreams"
+    preferences["email_followers"] = 0 unless preferences.key? "email_followers"
+    preferences
+  end
 
   def downcase_attributes
     self.email = self.email.downcase if self.email.present?
