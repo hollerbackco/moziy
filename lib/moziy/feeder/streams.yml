@@ -52,12 +52,6 @@ youtube:
     description: >
       You've never seen music like this.
     source_name:  lablogotheque
-  - slug:         birchboxtv
-    title:        Birchbox TV
-    description: >
-      Makeup tutorials, hair how-tos, skincare do's and don'ts, 
-      plus an inside look at Birchbox HQ.
-    source_name:  birchboxtv
   - slug:         dominorecords
     title:        DominoRecords
     description: >
