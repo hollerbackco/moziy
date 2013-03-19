@@ -5,6 +5,7 @@ App.Models.Channel = Backbone.Model.extend
 
     if @has "channel_id"
       @id = @get("channel_id")
+      @urlPrefix = "/channels/#{@id}/videos"
 
   startWatching: (airing_id) ->
     promise = if airing_id? then @_getAiring(airing_id) else @_getFirstAiring()
@@ -12,14 +13,12 @@ App.Models.Channel = Backbone.Model.extend
     promise
 
   watchNext: ->
-    airing = @nextup
-    @_watchAiring airing
+    @_watchAiring @nextup
 
   _watchAiring: (airing) ->
     @watching = airing
 
-    if @has("unread_count") and (@get("unread_count") > 0)
-      @set("unread_count", (@get("unread_count") - 1))
+    @_setUnreadCount()
 
     #get the next one
     promise = @_getNextAiring()
@@ -28,23 +27,27 @@ App.Models.Channel = Backbone.Model.extend
     @watching
 
   _getFirstAiring: ->
-    get = $.ajax({url: "/channels/#{@id}/videos/first"})
+    get = $.ajax({url: "#{@urlPrefix}/first"})
       .pipe (results) ->
         airing = new App.Models.Airing results
     get
 
   _getAiring: (airing_id) ->
-    get = $.ajax({url: "/channels/#{@id}/videos/#{airing_id}"})
+    get = $.ajax({url: "#{@urlPrefix}/#{airing_id}"})
       .pipe (results) ->
         airing = new App.Models.Airing results
     get
 
   # returns a promise
   _getNextAiring: ->
-    get = $.ajax({url: "/channels/#{@id}/videos/#{@watching.id}/next"})
+    get = $.ajax({url: "#{@urlPrefix}/#{@watching.id}/next"})
       .pipe (results) ->
         airing = new App.Models.Airing results
     get
 
   _setNextUp: (airing) ->
     @nextup = airing
+
+  _setUnreadCount: ->
+    if @has("unread_count") and (@get("unread_count") > 0)
+      @set("unread_count", (@get("unread_count") - 1))

@@ -38,8 +38,12 @@ Puretv::Application.routes.draw do
     put "settings", :to => "settings#update"
     get "request/status/add_video", :to => "request_status#add_video"
 
+
     resources :likes, :only => [:index, :show, :create, :destroy]
     resources :airings, :only => [:show]
+
+    get "feed/first", :to => "feed#first"
+    get "feed/:id/next", :to => "feed#next"
 
     resources :channels, :path => "streams" do
       collection do

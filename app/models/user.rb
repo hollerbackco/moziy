@@ -1,12 +1,22 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :username, :password, :password_confirmation, :authentications_attributes, :primary_channel, :primary_channel_id, :preferences
+  attr_accessible :email, :username, :password, :password_confirmation,
+    :authentications_attributes, :primary_channel, :primary_channel_id,
+    :preferences
 
-  validates :email, :presence => true, :uniqueness => { :case_sensitive => false }, :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create }
-  validates :username, :presence => true, :uniqueness => { :case_sensitive => false }, :format => {:with => /^[a-zA-Z0-9_]*[a-zA-Z][a-zA-Z0-9_]*$/}
+  validates :email,
+    :presence => true,
+    :uniqueness => { :case_sensitive => false },
+    :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :on => :create }
+
+  validates :username,
+    :presence => true,
+    :uniqueness => { :case_sensitive => false },
+    :format => {:with => /^[a-zA-Z0-9_]*[a-zA-Z][a-zA-Z0-9_]*$/}
 
   before_validation :downcase_attributes
 
-  validates_confirmation_of :password, :on => :create, :if => :password, :message => "should match confirmation"
+  validates_confirmation_of :password, :on => :create, :if => :password,
+    :message => "should match confirmation"
 
   acts_as_reader
 
@@ -32,6 +42,7 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :authentications
 
   belongs_to :primary_channel, class_name: "Channel"
+
   has_many :channels, :foreign_key => "creator_id", :order => "created_at ASC", :dependent => :destroy
   has_many :airings, through: :channels
 
@@ -49,6 +60,10 @@ class User < ActiveRecord::Base
 
   def unwatched_feed
     Airing.where(:channel_id => following_channels).unread_by(self).order("created_at DESC")
+  end
+
+  def all_feed
+    Airing.where(:channel_id => following_channels).order("created_at DESC")
   end
 
   def managing_channels
@@ -141,6 +156,10 @@ class User < ActiveRecord::Base
     preferences["email_likes"] = 1
     preferences["email_restreams"] = 1
     preferences["email_followers"] = 1
+  end
+
+  def feed_channel
+    @feed ||= UserFeed.new(self)
   end
 
   private

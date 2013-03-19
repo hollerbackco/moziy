@@ -1,4 +1,6 @@
 class VideosController < ApplicationController
+  include AiringsHelper
+
   before_filter :set_channel
 
   def first
@@ -39,42 +41,12 @@ class VideosController < ApplicationController
     render json: airing_json(video)
   end
 
-
   def notes
     video = @channel.airings.find(params[:id])
     render json: {notes: video.notes}
   end
 
   private
-
-  def mark_as_read(airing)
-    airing.mark_as_read! for: current_user
-
-    subscription = @channel.subscription_for(current_user)
-
-    if subscription
-      subscription.decrement_unread_count!
-      subscription.last_played = airing
-      subscription.save
-    end
-  end
-
-  def airing_json(video)
-    obj = {
-     :id => video.id,
-     :source_name => video.source_name,
-     :source_id => video.source_id,
-     :title => video.title,
-     :channel_id => video.channel_id,
-     :channel_slug => video.channel.slug,
-     :channel => video.channel,
-     :note_count => video.note_count,
-    }
-    if video.parent.present?
-      obj[:parent] = video.parent.channel.as_json
-    end
-    obj
-  end
 
   def set_channel
     @channel = Channel.includes(:airings => :video).find(params[:channel_id])

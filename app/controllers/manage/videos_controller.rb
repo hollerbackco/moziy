@@ -1,4 +1,6 @@
 class Manage::VideosController < Manage::BaseController
+  includes AiringsHelper
+
   before_filter :set_channel
   before_filter :set_default_title
   before_filter :set_my_channels
@@ -57,22 +59,6 @@ class Manage::VideosController < Manage::BaseController
   end
 
   private
-
-  def airing_json(video)
-    obj = {
-     :id => video.id,
-     :source_name => video.source_name,
-     :source_id => video.source_id,
-     :title => video.title,
-     :channel_id => video.channel_id,
-     :channel => video.channel,
-     :note_count => video.note_count
-    }
-    if video.parent.present?
-      obj[:parent] = video.parent.channel.as_json
-    end
-    obj
-  end
 
   def create_a_video(v_params)
     video = Video.find_by_source_name_and_source_id(v_params[:source_name], v_params[:source_id])

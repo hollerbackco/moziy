@@ -13,14 +13,14 @@ class Manage::AiringsController < Manage::BaseController
       from = Airing.find(params[:video_id])
       video = from.video
 
-      if !Airing.exists?(:channel_id => @channel.id, :video_id => video.id)
-        airing = Airing.create({
-          :user_id => current_user.id,
-          :channel_id => @channel.id,
-          :video_id => video.id,
-          :parent_id => from.id,
-          :position => 0
-        })
+      if !Airing.exists?(channel_id: @channel.id, video_id: video.id)
+        airing = Airing.create(
+          user_id:    current_user.id,
+          channel_id: @channel.id,
+          video_id:   video.id,
+          parent_id:  from.id,
+          position:   0
+        )
 
         ChannelMailer.reaired(@channel, from.channel, video.title).deliver
 

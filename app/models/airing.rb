@@ -23,6 +23,7 @@ class Airing < ActiveRecord::Base
   after_create :increment_counts
   after_destroy :decrement_counts
 
+  scope :next, lambda { |airing| where("airings.created_at < ?", airing.created_at).first }
   scope :since, lambda { |since| where("airings.created_at > ?", since) }
 
   state_machine :initial => :live do

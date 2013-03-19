@@ -1,4 +1,0 @@
-module VideosHelper
-  
-  
-end
