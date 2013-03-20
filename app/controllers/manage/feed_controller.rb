@@ -1,4 +1,4 @@
-class FeedController < ApplicationController
+class Manage::FeedController < Manage::BaseController
   include AiringsHelper
 
   before_filter :require_login
