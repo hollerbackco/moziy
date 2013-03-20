@@ -1,0 +1,40 @@
+- if @first_airing
+  - content_for :meta do
+    = render :partial => "layouts/meta_video", :locals => { :og_type => "video.other",
+      :og_title => "#{@first_airing.title} on moziy",
+      :og_description => @first_airing.description,
+      :og_url => start_video_path(@first_airing.channel.slug, v: @first_airing.id),
+      :og_image => @first_airing.video.video_image_url(:thumb_list)}
+
+#alert{style: "display:none"}
+- if @first_airing
+  %img{style: "position: absolute; top: -9999px", src: @first_airing.video.video_image_url }
+#channel-modal.modal
+#notes-modal.modal
+#sharing-modal.modal
+#restream-modal.modal
+#add-modal.modal
+#login-modal.modal
+#invite-modal.modal
+
+#player
+  .mask-affordance
+  .mask
+  #youtube-player.player
+    .mask
+  #vimeo-player.player
+    .mask
+    #vimeo-dummy
+
+#remote-control-pane.clearfix
+#controls-pane
+#actions-pane
+#current-pane-target-zone
+  - if @channel
+    .mark= image_tag @channel.cover_art_url(:thumb_list), width: 24, height: 24
+  - else
+    .mark= image_tag "/", width: 24, height: 24
+  #current-pane
+    #current-video
+    #current-channel
+    -##current-sharing.clearfix

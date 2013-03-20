@@ -1,6 +1,7 @@
 class App.PlayerManager
   constructor:  ->
     _.bindAll(this, '_play', '_playerPing')
+
     @volumeState = 1
     @playState = 1 #0 is paused
 
@@ -10,14 +11,19 @@ class App.PlayerManager
     Backbone.Events.bind("player:finished", @next, this)
     Backbone.Events.bind("player:error", @errorPlayNext, this)
 
-    App.vent.on("channel:watch", @changeChannel, this)
+    App.vent.on("channel:watch", @watchChannel, this)
+    App.vent.on("feed:watch", @watchFeed, this)
 
-  changeChannel: (channel, airing_id) ->
-    @channel = channel
-    @channel.startWatching(airing_id).done @_play
+  watchFeed: ->
+    @stream = new App.FeedStreamer()
+    @stream.start().done @_play
+
+  watchChannel: (channel, airing_id=null) ->
+    @stream = new App.SingleStreamer channel
+    @stream.start(airing_id).done @_play
 
   next: ->
-    @_play @channel.watchNext()
+    @_play @stream.next()
 
   errorPlayNext: (msg) =>
     App.controller.notice "Couldn't play #{@getCurrentVideoTitle()}. Moving on."
@@ -40,18 +46,21 @@ class App.PlayerManager
       Backbone.Events.trigger("player:unMute")
 
   getCurrentAiring: ->
-    @channel.watching
+    @stream.current.airing
 
   getCurrentChannelID: ->
-    @channel.id
+    @stream.current.channel.id
 
   getCurrentVideoID: ->
-    @channel.watching.id
+    @stream.current.channel.id
 
   getCurrentVideoTitle: ->
-    @channel.watching.get "title"
+    @stream.current.channel.get "title"
 
-  _play: (airing) ->
+  _play: (obj) ->
+    console.log obj.airing
+    airing = obj.airing
+    channel = obj.channel
     try
       switch airing.get "source_name"
         when 'youtube'
@@ -62,7 +71,9 @@ class App.PlayerManager
 
         else
           @next()
+
     catch error
+      console.log "error"
       @next()
 
   _playerPlay: (@player, @airing) ->
@@ -81,11 +92,11 @@ class App.PlayerManager
     @timer = setInterval @_playerPing, 10000
 
   _playerPing: ->
-    App.analytics.vent.trigger "player:ping", @airing, @channel
+    App.analytics.vent.trigger "player:ping", @airing, @stream.current.channel
 
   _stopPlayers: ->
     Backbone.Events.trigger("player:stop")
 
   _notifyPlayers: (airing) ->
-    App.vent.trigger "airings:play", airing, @channel
+    App.vent.trigger "airings:play", airing, @stream.current.channel
     Backbone.Events.trigger("player:update")

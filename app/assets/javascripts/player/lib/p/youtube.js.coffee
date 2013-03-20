@@ -1,4 +1,4 @@
-#= require player/p/base_player
+#= require player/lib/p/base_player
 
 class App.YouTubePlayer extends App.Player
   # @state

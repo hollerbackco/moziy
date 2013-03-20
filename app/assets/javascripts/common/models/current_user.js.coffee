@@ -24,6 +24,12 @@ App.Models.CurrentUser = Backbone.Model.extend
     @channelList = new App.Models.Channels(channels)
     @channelList.url = "/me/streams/following.json"
 
+  feed: ->
+    if @feed
+      @feed
+    else
+      @feed = new App.FeedStreamer()
+
   follow: (channel) ->
     get = $.ajax
       url: "/channels/#{channel.id}/subscribe"

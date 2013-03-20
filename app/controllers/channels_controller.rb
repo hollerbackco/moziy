@@ -11,6 +11,23 @@ class ChannelsController < ApplicationController
     end
   end
 
+  def feed
+    unless logged_in?
+      redirect_to login_path
+      return
+    end
+
+    @channel_list = current_user.subscriptions
+    @my_channels = current_user.channels
+    @explore_channels = logged_in? ?
+      Channel.publik.explore_for(current_user) :
+      Channel.publik.explore
+
+    set_title "Moziy Feed"
+
+    render :layout => "player"
+  end
+
   def show
     @channel = params.key?(:name) ?
       Channel.find_by_slug!(params[:name]) : nil
@@ -30,9 +47,11 @@ class ChannelsController < ApplicationController
       Channel.publik.explore
 
     set_title @first_airing ? @first_airing.title : @channel.title
+
     if @first_airing
       set_description @first_airing.description
     end
+
     render :layout => "player"
 
   rescue ActiveRecord::RecordNotFound

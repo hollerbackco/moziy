@@ -93,6 +93,8 @@ Puretv::Application.routes.draw do
     resources :comments, :only => [:create, :destroy]
   end
 
+  match :feed, :to => "channels#feed"
+
   scope ":name" do
     match :chromeless, :to => "channels#show_chromeless", as: :chromeless
     match "video", :to => "channels#show", as: :start_video

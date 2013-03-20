@@ -66,7 +66,11 @@ $ ->
         root: '/'
 
       App.vent.on "channel:watch", (channel) ->
+        App.navigate "/feed"
+
+      App.vent.on "channel:watch", (channel) ->
         App.navigate "#{channel.get "slug"}"
+
       App.vent.on "airings:play", (airing, channel) ->
         App.navigate "#{channel.get "slug"}/video?v=#{airing.id}", true
 
@@ -95,4 +99,8 @@ $ ->
 
     setupPlayer: (channel, airing_id) ->
       @playerManager = new App.PlayerManager()
-      App.vent.trigger "channel:watch", channel, airing_id
+      if channel?
+        App.vent.trigger "channel:watch", channel, airing_id
+      else
+        App.vent.trigger "feed:watch"
+
