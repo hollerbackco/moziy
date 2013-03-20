@@ -1,5 +1,5 @@
 class Manage::VideosController < Manage::BaseController
-  includes AiringsHelper
+  include AiringsHelper
 
   before_filter :set_channel
   before_filter :set_default_title
