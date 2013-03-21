@@ -5,7 +5,7 @@ App.Views.SharingModal = Backbone.View.extend
     "click #share-twitter": "shareTw"
 
   initialize: ->
-    _.bindAll this, "show", "close", "_showErrors", "_success", "_validateForm"
+    _.bindAll this, "show", "close", "_success"
 
     @listenTo App.vent, "modals:close", @close
 
@@ -47,24 +47,6 @@ App.Views.SharingModal = Backbone.View.extend
   _success: ->
     @$("form").addClass "submitted"
     App.analytics.vent.trigger "airings:share"
-
-  _showErrors: (errors) ->
-    @$("form").addClass "has-errors"
-
-    @$errors.empty()
-
-    if errors?
-      _.each errors, (error) =>
-        div = $("<div />").addClass("error").html(error)
-        @$errors.append div
-
-  _validateForm: (callback) ->
-    value = @$("input[name=email]").val()
-
-    if errors? and errors.length == 0
-      callback(value)
-    else
-      @showErrors()
 
   _airingUrl: ->
     "http://www.moziy.com/#{@model.get('channel_slug')}/video?v=" + "#{@model.id}"

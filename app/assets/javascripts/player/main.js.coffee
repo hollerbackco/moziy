@@ -82,7 +82,7 @@ $ ->
 
       App.controlsPane = new App.Views.ControlsPane(el: "#controls-pane")
 
-      App.actionsPane = new App.Views.ActionsPane(el: "#actions-pane")
+      #App.actionsPane = new App.Views.ActionsPane(el: "#actions-pane")
 
       App.modals =
         channel:  new App.Views.ChannelModal(el: "#channel-modal")

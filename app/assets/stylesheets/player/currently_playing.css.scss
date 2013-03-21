@@ -1,9 +1,11 @@
+$gray: #ddd;
+
 #stage {
   #current-pane-target-zone {
     position: absolute;
-    width: 470px;
-    height: 200px;
-    top: 0;
+    width: 100%;
+    height: 60px;
+    bottom: 0;
     left: 0;
 
     .mark {
@@ -23,6 +25,7 @@
         #current-video {
           display: block;
         }
+
         #current-channel {
           display: block;
 
@@ -37,14 +40,12 @@
 
   #current-pane {
     position: absolute;
-    margin: 10px;
-    width: 450px;
+    margin: 0;
     bottom: 0;
     left: 0;
     right: 0;
     top: 0;
 
-    #current-video {display: none;}
     #current-channel {
       display: block;
 
@@ -73,10 +74,7 @@
   }
 
   #current-video {
-    float: right;
     background: #fff;
-    width: 299px;
-    border-left: 1px solid #ccc;
   }
 
   #current-sharing {
@@ -103,29 +101,84 @@
 
   #currently-playing {
 
+    #video-share {
+      float: left;
+      position: relative;
+      z-index: 1;
+
+      .share-button {
+        float: left;
+        margin: 10px;
+        margin-right: 0;
+        width: 174px;
+        height: 43px;
+        cursor: pointer;
+
+        &:hover {
+          position: relative;
+          top: 1px;
+        }
+      }
+
+      .share-twitter {
+        background: image-url('share-tw.png');
+      }
+
+      .share-facebook {
+        background: image-url('share-fb.png');
+      }
+
+      .share-link {
+        float: left;
+        cursor: pointer;
+        margin: 17px 10px;
+        height: 29px;
+        width: 29px;
+        background: image-url('share-link.png');
+
+        &:hover {
+          position: relative;
+          top: 1px;
+        }
+      }
+    }
+
     #video-info {
+      margin-right: 307px;
       font-size: 14px;
-      height: 199px;
       position: relative;
     }
 
     #video-title {
-      padding: 15px;
+      padding: 8px;
+      height: 46px;
+      line-height: 46px;
 
       .heading {
         font-style: italic;
       }
     }
 
-
     #video-header {
-      padding: 5px 15px 7px;
-      border-bottom: 1px solid #eee;
+      position: relative;
+      z-index: 1;
+      width: 290px;
+      float: right;
+      padding: 8px;
+      border-left: 1px solid $gray;
+
+      img {
+        float: left;
+        margin-right: 8px;
+      }
     }
 
     #video-parent {
       cursor: pointer;
       color: #666;
+      font-size: 16px;
+      line-height: 44px;
+      height: 44px;
 
       .channel-from,
       .restream-from {
@@ -165,11 +218,32 @@
     }
 
     .meta {
-      position: absolute;
-      bottom: 0;
-      width: 270px;
-      padding: 0 15px 10px;
       font-size: 13px;
+      float: right;
+
+      .video-actions {
+        .video-action {
+          float: left;
+          cursor: pointer;
+          display: block;
+          margin: 12px 12px 12px 0;
+          width: 36px;
+          height: 36px;
+
+          &:hover {
+            position: relative;
+            top: 1px;
+          }
+        }
+
+        .video-restream {
+          background: image-url('large-restream-icon.png');
+        }
+
+        .video-like {
+          background: image-url('large-heart-icon.png');
+        }
+      }
 
 
       #video-notes, #video-share {

@@ -4,7 +4,6 @@
     top: 0px;
     right: 0px;
     width: 250px;
-    bottom: 0px;
 
     &.logged-in {
       #top-banner {
@@ -123,6 +122,7 @@
     }
 
     #channel-menu {
+      display: none;
       margin: 0;
       padding: 0;
       background: #fff;

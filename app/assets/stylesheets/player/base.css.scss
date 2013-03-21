@@ -136,7 +136,7 @@ html,body {
     top: 0px;
     left: 0px;
     right: 0px;
-    bottom: 0px;
+    bottom: 60px;
     z-index: 0;
     overflow:hidden;
   }
@@ -236,14 +236,11 @@ html,body {
 
   #controls-pane {
     position: absolute;
-    bottom: 0;
-    left: 50%;
-    margin-left: -150px;
-    width: 300px;
-    height: 250px;
+    top: 0;
+    left: 0;
+    background: #fff;
 
     .keys {
-      padding: 50px 0;
       display: none;
     }
 
@@ -255,21 +252,21 @@ html,body {
 
     .row {
       text-align: center;
+      margin: 10px;
 
       .key {
         display: inline-block;
         cursor: pointer;
-        width: 73px;
-        height: 73px;
+        width: 45px;
+        height: 45px;
         opacity: .8;
 
         &:hover { opacity: 1}
       }
 
-      #controls-left { background: image-url("keyboard/left.png") center center no-repeat; }
-      #controls-up { background: image-url("keyboard/up.png") center center no-repeat; }
-      #controls-down { background: image-url("keyboard/down.png") center center no-repeat; }
-      #controls-right { background: image-url("keyboard/right.png") center center no-repeat; }
+      #controls-left { background: image-url("icon-full.png") center center no-repeat; }
+      #controls-down { background: image-url("icon-pause.png") center center no-repeat; }
+      #controls-right { background: image-url("icon-next.png") center center no-repeat; }
     }
   }
 }

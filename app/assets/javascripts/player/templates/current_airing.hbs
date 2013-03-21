@@ -1,24 +1,31 @@
 <div id="currently-playing" class="clearfix">
-  <div id="video-info">
-    <div id="video-header" class="clearfix">
-      <div id="video-parent">
-        <a class="channel-from">{{ channel.slug }}</a>
-        {{#parent}}
-          <i class="restream" />
-          <a class="restream-from" href="{{url}}"> {{ title }} </a>
-        {{/parent}}
+  <div id="video-share">
+    <div class="share-button share-twitter"></div>
+    <div class="share-button share-facebook"></div>
+    <div class="share-link"></div>
+  </div>
+  <div id="video-header" class="clearfix">
+    <div id="video-parent">
+      <img src="{{ channel.cover_art.thumb_player.url }}" width=44 height=44 />
+      <a class="channel-from">/{{ channel.slug }}</a>
+      {{#parent}}
+        <i class="restream" />
+        <a class="restream-from" href="{{url}}">/{{ slug }}</a>
+      {{/parent}}
+    </div>
+  </div>
+  <div id="video-info" class="clearfix">
+    <div class="meta">
+      <div class="video-actions">
+        <div class="video-restream video-action restream"></div>
+        <div class="video-like video-action like"></div>
+      </div>
+      <div id="video-notes">
+        {{note_count}}
       </div>
     </div>
     <div id="video-title" class="title">
       {{title}}
-    </div>
-    <div class="meta">
-      <div id="video-share" class="blue">
-        share
-      </div>
-      <div id="video-notes">
-        {{note_count}} attachments
-      </div>
     </div>
   </div>
 </div>

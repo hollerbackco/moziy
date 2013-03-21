@@ -19,6 +19,7 @@ App.Views.CurrentAiring = Backbone.View.extend
 
   render: ->
     @$el.html @template @model.toJSON()
+    @currentSharingPane = new App.Views.CurrentSharing(el: @$("#video-share"))
 
   notes: ->
     App.vent.trigger "airing:notes", @model

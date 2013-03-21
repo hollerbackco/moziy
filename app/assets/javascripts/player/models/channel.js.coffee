@@ -32,5 +32,3 @@ App.Models.Channel = Backbone.Model.extend
       .pipe (results) ->
         airing = new App.Models.Airing results
     promise
-
-

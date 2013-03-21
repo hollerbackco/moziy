@@ -3,7 +3,7 @@ App.Views.ControlsPane = Backbone.View.extend
   events:
     "click #controls-right": "nextVideo"
     "click #controls-down": "pause"
-    "click #controls-up": "fullscreen"
+    "click #controls-left": "fullscreen"
 
   initialize: ->
     @render()
