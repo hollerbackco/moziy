@@ -22,7 +22,7 @@ class User < ActiveRecord::Base
     def get_next_from_offset
       begin
         airing = Airing.find(offset_id)
-        all_feed.next(airing)
+        all.next(airing)
       rescue ActiveRecord::RecordNotFound
         nil
       end
