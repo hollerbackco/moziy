@@ -121,16 +121,6 @@ html,body {
     }
   }
 
-  #player {
-    background: image-url('moziy-logo-2.png') black no-repeat center center;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
-
   #player, .player {
     position: absolute;
     top: 0;
@@ -140,6 +130,18 @@ html,body {
     z-index: 0;
     overflow:hidden;
   }
+
+  #player {
+    background: image-url('moziy-logo-2.png') black no-repeat center center;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    bottom: 60px;
+  }
+
 
   .player {
     display: none;
