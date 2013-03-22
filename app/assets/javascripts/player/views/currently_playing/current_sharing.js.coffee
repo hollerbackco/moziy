@@ -7,7 +7,7 @@ App.Views.CurrentSharing = Backbone.View.extend
     "click .share-facebook": "shareFb"
 
   initialize: ->
-    _.bindAll this, "share", "shareFb", "shareTw"
+    _.bindAll this, "share", "shareFb", "shareTw", "_jsPopup"
     @listenTo App.vent, "airings:play", @show
 
   show: (airing) ->
@@ -20,7 +20,8 @@ App.Views.CurrentSharing = Backbone.View.extend
   share: ->
     App.vent.trigger "modals:share", @model
 
-  shareTw: ->
+  shareTw: (event) ->
+    event.preventDefault()
     href = @$(".share-tw").attr("href")
     @_jsPopup href
     false
