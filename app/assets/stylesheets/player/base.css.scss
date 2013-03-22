@@ -133,10 +133,10 @@ html,body {
 
   #player, .player {
     position: absolute;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    bottom: 60px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     z-index: 0;
     overflow:hidden;
   }
@@ -147,9 +147,9 @@ html,body {
 
   .mask-affordance {
     position: absolute;
-    top: 20%;
-    right: 20%;
-    left: 20%;
+    top: 0;
+    left: 0;
+    width: 300px;
     bottom: 0;
     z-index: 2;
   }
@@ -252,10 +252,10 @@ html,body {
 
     .row {
       text-align: center;
-      margin: 10px;
 
       .key {
-        display: inline-block;
+        display: block;
+        float: left;
         cursor: pointer;
         width: 45px;
         height: 45px;

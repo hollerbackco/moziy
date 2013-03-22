@@ -13,6 +13,7 @@ class App.Controllers.MainController
     App.vent.on "player:mute", @playerMute, this
     App.vent.on "player:next", @playerNext, this
     App.vent.on "player:pause", @playerTogglePause, this
+    App.vent.on "modals:channels", @showChannelsModal, this
     App.vent.on "modals:restream", @showRestreamModal, this
     App.vent.on "modals:share", @showSharingModal, this
     App.vent.on "modals:login", @showLoginModal, this
@@ -51,6 +52,10 @@ class App.Controllers.MainController
   showRestreamModal: (airing) ->
     @authenticate =>
       App.modals.restream.show(airing)
+
+  showChannelsModal: ->
+    @authenticate =>
+      App.modals.channels.show()
 
   showSharingModal: (airing) ->
     App.modals.sharing.show airing

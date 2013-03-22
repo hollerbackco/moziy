@@ -161,27 +161,25 @@
     }
   }
 
-  #restream-modal {
-    .channel-item {
-      cursor: pointer;
-      border: 1px solid #eee;
+  .channel-item {
+    cursor: pointer;
+    border: 1px solid #eee;
 
-      &:hover {
-        background: #efefef;
-      }
+    &:hover {
+      background: #efefef;
+    }
 
-      img {
-        width: 48px;
-        height: 48px;
-        float: left;
-        margin-right: 10px;
-      }
+    img {
+      width: 48px;
+      height: 48px;
+      float: left;
+      margin-right: 10px;
+    }
 
-      .channel-title {
-        font-size: 16px;
-        line-height: 48px;
+    .channel-title {
+      font-size: 16px;
+      line-height: 48px;
 
-      }
     }
   }
 

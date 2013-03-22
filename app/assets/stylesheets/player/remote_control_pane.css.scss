@@ -3,26 +3,37 @@
     position: absolute;
     top: 0px;
     right: 0px;
-    width: 250px;
+    width: 200px;
 
     &.logged-in {
-      #top-banner {
-        .signup {
-          display: none;
-        }
-        .login {
-          display: none;
-        }
-        .user {
-          display: block;
-        }
+      .signup {
+        display: none;
+      }
+      .login {
+        display: none;
+      }
+      .user {
+        display: block;
       }
     }
 
+    nav.menu {
+      display: none;
+    }
+
     &.hover {
+      background: white;
+      border-right: 1px solid #ccc;
+
+      nav.menu {
+        display: block;
+      }
+
       #mosey {
         a {
-          float: left;
+          float: none;
+          width: 100px;
+          margin: 10px auto;
           background: image-url('moziy-logo.png') transparent top left no-repeat;
         }
       }
@@ -53,17 +64,33 @@
       }
     }
 
-    nav.menu {
-      display: none;
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+    .top-menu {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        display: block;
+        width: 100%;
+        margin: 0;
+      }
+
+      a {
+        display: block;
+        padding: 10px;
+        text-align: right;
+        border-top: 1px solid #eee;
+        font-weight: bold;
+        font-size: 16px;
+
+        i {
+          opacity: .6;
+          float: left;
+        }
+      }
     }
 
     #top-banner {
-      height: 48px;
       padding: 0;
       position: relative;
 
@@ -81,6 +108,7 @@
           padding: 10px 20px 14px;
         }
       }
+
 
       .user {
         display: none;
@@ -159,6 +187,7 @@
     }
 
     #channels-container {
+      display: none;
       position: absolute;
       top: 99px;
       left: 0;
@@ -183,14 +212,6 @@
       }
     }
 
-    &.hover {
-      background: white;
-      border-right: 1px solid #ccc;
-
-      nav.menu {
-        display: block;
-      }
-    }
 
     h2 {
       clear: both;

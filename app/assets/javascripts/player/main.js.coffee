@@ -65,14 +65,14 @@ $ ->
         pushState: true
         root: '/'
 
-      App.vent.on "channel:watch", (channel) ->
-        App.navigate "/feed"
+      #App.vent.on "channel:watch", (channel) ->
+        #App.navigate "/feed"
 
       App.vent.on "channel:watch", (channel) ->
         App.navigate "#{channel.get "slug"}"
 
-      App.vent.on "airings:play", (airing, channel) ->
-        App.navigate "#{channel.get "slug"}/video?v=#{airing.id}", true
+      #App.vent.on "airings:play", (airing, channel) ->
+        #App.navigate "#{channel.get "slug"}/video?v=#{airing.id}", true
 
     setupViews: ->
       App.currentlyPlayingPane = new App.Views.CurrentlyPlayingPane
@@ -92,6 +92,7 @@ $ ->
         add:      new App.Views.AddModal(el: "#add-modal")
         login:    new App.Views.LoginModal(el: "#login-modal")
         invite:   new App.Views.InviteModal(el: "#invite-modal")
+        channels:   new App.Views.ChannelListModal(el: "#channels-modal")
 
     setupInvite: ->
       App.invitePane = new App.Views.InvitePane()

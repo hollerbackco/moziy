@@ -5,7 +5,7 @@ App.Views.CurrentAiring = Backbone.View.extend
     "click .like" : "like"
     "click .restream" : "restream"
     "click #video-notes" : "notes"
-    "click #video-share" : "share"
+    "click .share-link" : "share"
     "click .channel-from" : "showChannelFrom"
     "click .restream-from" : "showRestreamFrom"
 
@@ -19,7 +19,14 @@ App.Views.CurrentAiring = Backbone.View.extend
 
   render: ->
     @$el.html @template @model.toJSON()
-    @currentSharingPane = new App.Views.CurrentSharing(el: @$("#video-share"))
+    @currentSharingPane = new App.Views.CurrentSharing
+      el: @$("#video-share")
+      model: @model
+
+    if @model.get "liked"
+      @$(".like").addClass "on"
+    else
+      @$(".like").removeClass "on"
 
   notes: ->
     App.vent.trigger "airing:notes", @model
@@ -29,10 +36,12 @@ App.Views.CurrentAiring = Backbone.View.extend
 
   like: ->
     App.vent.trigger "airing:like", @model
+    @$(".like").addClass "on"
 
   restream: ->
     # this should have a controller
     App.vent.trigger "modals:restream", @model
+    @$(".restream").addClass "on"
 
   showChannelFrom: (e) ->
     e.preventDefault()

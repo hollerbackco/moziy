@@ -66,6 +66,12 @@ class Airing < ActiveRecord::Base
     channels.as_json
   end
 
+  def liked_by?(user)
+    like = likes.find_by_user_id(user.id)
+
+    like.present?
+  end
+
   def liked_by(user)
     like = likes.find_by_user_id(user.id)
 

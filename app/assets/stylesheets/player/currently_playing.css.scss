@@ -237,11 +237,19 @@ $gray: #ddd;
         }
 
         .video-restream {
-          background: image-url('large-restream-icon.png');
+          background: image-url('player/moziy-restream-grey-36.png');
+
+          &.on {
+            background: image-url('player/moziy-restream-green-36.png');
+          }
         }
 
         .video-like {
-          background: image-url('large-heart-icon.png');
+          background: image-url('player/moziy-heart-grey-36.png');
+
+          &.on {
+            background: image-url('player/moziy-heart-red-36.png');
+          }
         }
       }
 

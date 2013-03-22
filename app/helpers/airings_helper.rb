@@ -20,7 +20,9 @@ module AiringsHelper
       channel_id:  video.channel_id,
       channel_slug: video.channel.slug,
       channel:     video.channel,
-      note_count:  video.note_count
+      note_count:  video.note_count,
+      url: start_video_url(video.channel.slug, v: video),
+      liked: liked_by_user(video, current_user)
     }
     if video.parent.present?
       obj[:parent] = video.parent.channel.as_json
@@ -32,5 +34,9 @@ module AiringsHelper
     link_to start_video_path(a.channel.slug, v: a.video.id), class: "permalink" do
       txt.nil? ? yield : txt
     end
+  end
+
+  def liked_by_user(airing, user=nil)
+    user.present? ? airing.liked_by?(user) : false
   end
 end
