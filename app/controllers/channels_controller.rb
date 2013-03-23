@@ -28,13 +28,14 @@ class ChannelsController < ApplicationController
 
     @channel_list = current_user.subscriptions
     @my_channels = current_user.channels
+
     @explore_channels = logged_in? ?
       Channel.publik.explore_for(current_user) :
       Channel.publik.explore
 
     set_title "Feed"
 
-    render :layout => "player"
+    render action: "show", layout: "player"
   end
 
   def show

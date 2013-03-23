@@ -2,12 +2,12 @@
 
 :javascript
   $(document).ready(function() {
-    var current_user = #{logged_in? ? current_user.as_json.merge({channel_list: @channel_list.as_json, channels: @my_channels.as_json, loggedIn: true}).to_json : "null"}
+    var current_user = #{current_user_json(@channel_list, @my_channels)}
 
     var bootstrap = {
-      channel: #{@channel.to_json || "null"},
+      channel: #{@channel.to_json},
       current_user: current_user,
-      first_airing_id: #{@first_airing_id || "null"}
+      first_airing_id: #{@first_airing_id.to_json}
     };
 
 
