@@ -10,7 +10,7 @@ App.Views.SharingModal = Backbone.View.extend
 
   render: ->
     @$el.html @template
-      url: @model.get "url"
+      url: decodeURIComponent(@model.get "url")
       title: @model.get "title"
 
   show: (model) ->
