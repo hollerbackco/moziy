@@ -4,6 +4,7 @@ class App.PlayerManager
 
     @volumeState = 1
     @playState = 1 #0 is paused
+    @isFeed = 0
 
     @vimeoPlayer = new App.VimeoPlayer('vimeo-player')
     @youtubePlayer = new App.YouTubePlayer('youtube-player')
@@ -14,11 +15,13 @@ class App.PlayerManager
     App.vent.on("channel:watch", @watchChannel, this)
     App.vent.on("feed:watch", @watchFeed, this)
 
-  watchFeed: ->
+  watchFeed: (airing_id=null) ->
+    @isFeed = true
     @stream = new App.FeedStreamer()
-    @stream.start().done @_play
+    @stream.start(airing_id).done @_play
 
   watchChannel: (channel, airing_id=null) ->
+    @isFeed = false
     @stream = new App.SingleStreamer channel
     @stream.start(airing_id).done @_play
 
@@ -98,5 +101,5 @@ class App.PlayerManager
     Backbone.Events.trigger("player:stop")
 
   _notifyPlayers: (airing) ->
-    App.vent.trigger "airings:play", airing, @stream.current.channel
+    App.vent.trigger "airings:play", airing, @stream.current.channel, @isFeed
     Backbone.Events.trigger("player:update")

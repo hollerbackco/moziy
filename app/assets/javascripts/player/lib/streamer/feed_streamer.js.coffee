@@ -6,8 +6,8 @@ class App.FeedStreamer extends App.BaseStreamer
     _.bindAll this, "start", "next", "_watch", "_getFirst", "_getNextAiring", "_get"
 
   # returns promise with {channel: .., airing: ..}
-  start: ->
-    @_get().done @_watch
+  start: (airing_id) ->
+    @_get(airing_id).done @_watch
 
   # returns App.Models.Airing
   next: ->
@@ -17,8 +17,11 @@ class App.FeedStreamer extends App.BaseStreamer
     @current
 
   # returns promise with App.Models.Airing
-  _get: ->
-    @_getFirst()
+  _get: (airing_id) ->
+    if airing_id?
+      @_getAiring airing_id
+    else
+      @_getFirst()
 
   _watch: (obj) ->
     @current = obj
@@ -29,6 +32,12 @@ class App.FeedStreamer extends App.BaseStreamer
 
   _getFirst: ->
     get = $.ajax({url: "#{@urlPrefix}/first"})
+      .pipe @_parseJSONfromAPI
+
+    get
+
+  _getAiring: (airing_id) ->
+    get = $.ajax({url: "#{@urlPrefix}/first?airing_id=#{airing_id}"})
       .pipe @_parseJSONfromAPI
 
     get

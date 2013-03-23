@@ -59,11 +59,11 @@ class User < ActiveRecord::Base
     order: "likes.created_at DESC"
 
   def unwatched_feed
-    Airing.where(:channel_id => following_channels).unread_by(self).order("created_at DESC")
+    Airing.where(:channel_id => following_channels).unread_by(self).reorder("airings.created_at DESC")
   end
 
   def all_feed
-    Airing.where(:channel_id => following_channels).order("created_at DESC")
+    Airing.where(:channel_id => following_channels).reorder("airings.created_at DESC")
   end
 
   def managing_channels

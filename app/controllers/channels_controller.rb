@@ -12,8 +12,17 @@ class ChannelsController < ApplicationController
   end
 
   def feed
+    if params[:v]
+      @first_airing_id = params[:v]
+    end
+
     unless logged_in?
-      redirect_to login_path
+      if @first_airing_id.present?
+        @first_airing = Airing.find @first_airing_id
+        redirect_to start_video_path(@first_airing.channel.slug, v: @first_airing_id)
+      else
+        redirect_to login_path
+      end
       return
     end
 
@@ -23,7 +32,7 @@ class ChannelsController < ApplicationController
       Channel.publik.explore_for(current_user) :
       Channel.publik.explore
 
-    set_title "Moziy Feed"
+    set_title "Feed"
 
     render :layout => "player"
   end
@@ -41,10 +50,6 @@ class ChannelsController < ApplicationController
       @channel_list = current_user.subscriptions
       @my_channels = current_user.channels
     end
-
-    @explore_channels = logged_in? ?
-      Channel.publik.explore_for(current_user) :
-      Channel.publik.explore
 
     set_title @first_airing ? @first_airing.title : @channel.title
 

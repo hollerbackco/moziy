@@ -4,10 +4,13 @@ $ ->
 
     initialize: (bootstrap) ->
       current_user = if bootstrap.current_user? then bootstrap.current_user else {loggedIn:false}
-      App.currentUser = new App.Models.CurrentUser current_user
 
-      if bootstrap.explore?
-        @setupExplore(bootstrap.explore)
+      channel = if bootstrap.channel?
+        new App.Models.Channel bootstrap.channel
+      else
+        null
+
+      App.currentUser = new App.Models.CurrentUser current_user
 
       @setupTitleChanger()
       @setupViews()
@@ -25,7 +28,7 @@ $ ->
         else
           @setupInvite()
 
-      @setupPlayer bootstrap.channel, bootstrap.first_airing_id
+      @setupPlayer channel, bootstrap.first_airing_id
 
     navigate: (href, replace=false) ->
       if @navigateEnabled
@@ -71,8 +74,11 @@ $ ->
       App.vent.on "channel:watch", (channel) ->
         App.navigate "#{channel.get "slug"}"
 
-      #App.vent.on "airings:play", (airing, channel) ->
-        #App.navigate "#{channel.get "slug"}/video?v=#{airing.id}", true
+      App.vent.on "airings:play", (airing, channel, isFeed=false) ->
+        if isFeed
+          App.navigate "feed/video?v=#{airing.id}", true
+        else
+          App.navigate "#{channel.get "slug"}/video?v=#{airing.id}", true
 
     setupViews: ->
       App.currentlyPlayingPane = new App.Views.CurrentlyPlayingPane
@@ -103,5 +109,5 @@ $ ->
       if channel?
         App.vent.trigger "channel:watch", channel, airing_id
       else
-        App.vent.trigger "feed:watch"
+        App.vent.trigger "feed:watch", airing_id
 

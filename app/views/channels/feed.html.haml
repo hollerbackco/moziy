@@ -2,14 +2,13 @@
 
 :javascript
   $(document).ready(function() {
-    var explore = #{@explore_channels.as_json.to_json};
     var current_user = #{logged_in? ? current_user.as_json.merge({channel_list: @channel_list.as_json, channels: @my_channels.as_json, loggedIn: true}).to_json : "null"}
 
     var bootstrap = {
-      channel: null,
       current_user: current_user,
-      explore: explore
+      first_airing_id: #{@first_airing_id || "null"}
     };
+
 
     App.initialize(bootstrap);
   });
