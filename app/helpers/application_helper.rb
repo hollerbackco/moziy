@@ -15,7 +15,7 @@ module ApplicationHelper
     "#{controller_name}-#{action_name}"
   end
 
-  def current_user_json(channel_list, my_channels)
+  def current_user_json(channel_list=[], my_channels=[])
     if logged_in?
       current_user.as_json.merge({
         channel_list: channel_list.as_json,
