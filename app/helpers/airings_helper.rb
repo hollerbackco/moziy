@@ -21,7 +21,7 @@ module AiringsHelper
       channel_slug: video.channel.slug,
       channel:     video.channel,
       note_count:  video.note_count,
-      url: start_video_url(video.channel.slug, v: video),
+      url: Rack::Utils.escape(start_video_url(video.channel.slug, v: video)),
       liked: liked_by_user(video, current_user)
     }
     if video.parent.present?

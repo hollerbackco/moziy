@@ -254,21 +254,23 @@ html,body {
 
     .row {
       text-align: center;
+      margin: 0 10px;
 
       .key {
+        padding: 5px;
         display: block;
         float: left;
         cursor: pointer;
-        width: 45px;
-        height: 45px;
+        width: 36px;
+        height: 36px;
         opacity: .8;
 
         &:hover { opacity: 1}
       }
 
-      #controls-left { background: image-url("icon-full.png") center center no-repeat; }
-      #controls-down { background: image-url("icon-pause.png") center center no-repeat; }
-      #controls-right { background: image-url("icon-next.png") center center no-repeat; }
+      #controls-left { background: image-url("player/moziy-fullscreen-48.png") center center no-repeat; }
+      #controls-down { background: image-url("player/moziy-pause-48.png") center center no-repeat; }
+      #controls-right { background: image-url("player/moziy-next-48.png") center center no-repeat; }
     }
   }
 }

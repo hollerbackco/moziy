@@ -37,7 +37,7 @@ App.Views.ChannelModal = Backbone.View.extend
     @_followClicked()
 
   unfollow: ->
-    App.vent.trigger "channel:follow", @model
+    App.vent.trigger "channel:follow", @channel
     @_unfollowClicked()
 
   watch: ->
@@ -48,7 +48,7 @@ App.Views.ChannelModal = Backbone.View.extend
     App.vent.trigger "channel:followers", @channel
 
   _updateButton: ->
-    if App.currentUser.isFollowing @model
+    if App.currentUser.isFollowing @channel
       @_followClicked()
     else
 

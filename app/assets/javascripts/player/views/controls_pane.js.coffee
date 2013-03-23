@@ -20,7 +20,7 @@ App.Views.ControlsPane = Backbone.View.extend
 
     timer = 0
 
-    $("#player .mask-affordance").mousemove =>
+    $("body").mousemove =>
       if timer
         clearTimeout timer
         timer = 0
@@ -32,7 +32,7 @@ App.Views.ControlsPane = Backbone.View.extend
           @$el.fadeOut(200)
           #@$el.removeClass("hover")
 
-      timer = setTimeout callback, 600
+      timer = setTimeout callback, 1000
 
     #@$(".dropdown-toggle").dropdown()
 

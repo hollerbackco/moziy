@@ -334,8 +334,8 @@
 
     .action-bar {
       &>div {position: relative; height: 57px}
-      .part1 {float: left; width: 30%; border-right: 1px solid #eee; margin-right: -1px;}
-      .part2 {float: left; width: 45%; border-right: 1px solid #eee; margin-right: -1px;}
+      .part1 {float: left; width: 30%; border-right: 1px solid #ddd; margin-left: -1px;}
+      .part2 {float: left; width: 45%; border-right: 1px solid #ddd; margin-left: -1px;}
       .part3 {float: left; width: 25%;}
     }
 
@@ -383,7 +383,7 @@
 
   .modal-overflow.modal.in {
     margin-top: 10px;
-    top: 1%;
+    top: 10%;
   }
 
   .modal-scrollable {
@@ -439,7 +439,7 @@
 }
 
 .modal-overflow.modal.fade.in {
-	top: 1%;
+	top: 10%;
 }
 
 .modal-overflow .modal-body {

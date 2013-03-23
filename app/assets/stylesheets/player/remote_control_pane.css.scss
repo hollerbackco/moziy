@@ -4,6 +4,9 @@
     top: 0px;
     right: 0px;
     width: 200px;
+    height: 211px;
+    margin-bottom: 20px;
+    margin-left: 20px;
 
     &.logged-in {
       .signup {
@@ -22,7 +25,7 @@
     }
 
     &.hover {
-      background: white;
+      background: #fff;
       border-right: 1px solid #ccc;
 
       nav.menu {
@@ -38,6 +41,7 @@
         }
       }
       .channels {
+        background: white;
         display: block;
       }
     }
@@ -81,11 +85,16 @@
         text-align: right;
         border-top: 1px solid #eee;
         font-weight: bold;
-        font-size: 16px;
+        font-size: 14px;
+        text-decoration: none;
 
         i {
           opacity: .6;
           float: left;
+        }
+
+        &:hover {
+          background: #fafafa;
         }
       }
     }

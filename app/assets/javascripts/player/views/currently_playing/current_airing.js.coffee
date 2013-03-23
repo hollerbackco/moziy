@@ -7,6 +7,7 @@ App.Views.CurrentAiring = Backbone.View.extend
     "click #video-notes" : "notes"
     "click .share-link" : "share"
     "click .channel-from" : "showChannelFrom"
+    "click #video-parent img" : "showChannelFrom"
     "click .restream-from" : "showRestreamFrom"
 
   initialize: ->
