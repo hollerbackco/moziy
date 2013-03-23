@@ -168,18 +168,25 @@ html,body {
   #invite-pane {
     position: absolute;
     bottom: 0;
+    left: 0;
     right: 0;
-    padding: 100px 20px 20px 0;
+    height: 60px;
     z-index: 100;
-    text-align: right;
+    background: #fff;
 
     .tagline {
+      float: left;
+      font-size: 16px;
       background: rgba(255,255,255,.7);
       text-align: center;
       padding: 5px 20px;
       margin-top: 15px;
     }
 
+    .action-buttons {
+      margin-top: 12px;
+      float: right;
+    }
     .button {
       line-height: 36px;
       padding: 0 20px;
