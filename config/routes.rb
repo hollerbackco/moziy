@@ -94,7 +94,7 @@ Puretv::Application.routes.draw do
 
   scope "feed" do
     match "video", :to => "channels#feed", as: :feed_video
-    match "/", :to => "channels#feed"
+    match "/", :to => "channels#feed", as: :feed
   end
 
   scope ":name" do
