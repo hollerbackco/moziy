@@ -6,7 +6,6 @@ Puretv::Application.routes.draw do
 
   match :terms, to: "pages#terms"
   match :welcome, to: "pages#welcome"
-  match :home_beta, to: "pages#home_beta"
 
   post :invite, to: "invites#create"
 

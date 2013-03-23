@@ -5,13 +5,6 @@ class PagesController < ApplicationController
     redirect_to Channel.order("subscriptions_count DESC, updated_at DESC").first
   end
 
-  def home_beta
-    slugs = ["devour", "theonion", "dudefood", "thrashermagazine", "jayz", "vice", "grantlandnetwork", "complexmagazine", "coolhunting", "iamother"]
-    best = Channel.where(:slug => slugs)
-
-    @channels = (best + Channel.order("airings_count DESC").limit(30)).uniq
-  end
-
   def terms
   end
 
@@ -19,12 +12,14 @@ class PagesController < ApplicationController
   end
 
   def welcome
-    slugs = ["devour", "theonion", "dudefood", "thrashermagazine", "jayz", "vice", "grantlandnetwork", "complexmagazine", "coolhunting", "iamother"]
-    best = Channel.where(:slug => slugs)
+    best = Channel.best.omit_following current_user
 
-    @explore = (best + Channel.publik.order("airings_count DESC").limit(30)).uniq
+    if logged_in?
+      explore = Channel.explore_for(current_user).publik.limit(30)
+    end
 
-    #@explore = Channel.publik.explore_for(current_user).limit(20)
+    @explore = (best + explore).uniq
+
     render :layout => "noheader"
   end
 end

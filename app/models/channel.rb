@@ -1,6 +1,10 @@
 class Channel < ActiveRecord::Base
   acts_as_paranoid
 
+  BEST_SLUGS = [ "devour", "theonion", "dudefood",
+            "thrashermagazine", "jayz", "vice",
+            "grantlandnetwork", "complexmagazine",
+            "coolhunting", "iamother"]
   belongs_to :creator, :class_name => "User"
 
   # airings
@@ -34,6 +38,12 @@ class Channel < ActiveRecord::Base
   scope :publik, where("private IS NULL").where("channels.airings_count > ?", 0)
   scope :explore, reorder("channels.airings_count DESC")
   scope :explore_for, lambda {|user| not_in = user.following_channels + user.channels; where("channels.id NOT IN (?)", not_in).explore}
+  scope :omit_following, lambda {|user| not_in = user.following_channels + user.channels; where("channels.id NOT IN (?)", not_in)}
+
+
+  def self.best
+    best = Channel.where(:slug => BEST_SLUGS)
+  end
 
   def downcase_slug
     self.slug = self.slug.downcase if self.slug.present?
