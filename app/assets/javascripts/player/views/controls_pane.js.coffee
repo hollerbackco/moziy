@@ -4,19 +4,13 @@ App.Views.ControlsPane = Backbone.View.extend
     "click #controls-right": "nextVideo"
     "click #controls-down": "pause"
     "click #controls-left": "fullscreen"
+    "click .keyboard": "keyboardModal"
 
   initialize: ->
     @render()
 
   render: ->
     @$el.html @template()
-
-    #@$el.hoverIntent
-      #over: =>
-      #sensitivity: 12
-      #timeout: 100
-      #out: =>
-        #@$el.removeClass("hover")
 
     timer = 0
 
@@ -30,11 +24,9 @@ App.Views.ControlsPane = Backbone.View.extend
       callback = =>
         if !@$el.is(":hover")
           @$el.fadeOut(200)
-          #@$el.removeClass("hover")
 
       timer = setTimeout callback, 1000
 
-    #@$(".dropdown-toggle").dropdown()
 
   fullscreen: ->
     App.vent.trigger "fullscreen"
@@ -47,3 +39,7 @@ App.Views.ControlsPane = Backbone.View.extend
     App.vent.trigger "player:pause"
     mixpanel.track "Player:Pause"
 
+  keyboardModal: ->
+    App.vent.trigger "modals:keyboard",
+      "Keyboard Controls",
+      "/assets/keyboard/help.gif"

@@ -99,6 +99,7 @@ $ ->
         login:    new App.Views.LoginModal(el: "#login-modal")
         invite:   new App.Views.InviteModal(el: "#invite-modal")
         channels:   new App.Views.ChannelListModal(el: "#channels-modal")
+        image:   new App.Views.ImageModal(el: "#image-modal")
 
     setupInvite: ->
       App.invitePane = new App.Views.InvitePane()
