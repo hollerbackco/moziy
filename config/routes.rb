@@ -58,6 +58,7 @@ Puretv::Application.routes.draw do
           put :unarchive, :to => "airings#archive"
         end
       end
+
       resources :videos do
         collection do
           match :archived
@@ -92,8 +93,8 @@ Puretv::Application.routes.draw do
     resources :comments, :only => [:create, :destroy]
   end
 
-  scope "feed" do
-    match "video", :to => "channels#feed", as: :feed_video
+  scope "f" do
+    match ":name/video", :to => "channels#feed", as: :feed_video
     match "/", :to => "channels#feed", as: :feed
   end
 
