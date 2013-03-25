@@ -31,7 +31,7 @@ App.Views.CurrentSharing = Backbone.View.extend
       method: 'feed'
       name: @model.get("title")
       caption: @model.get("description")
-      link: @model.get("url")
+      link: decodeURIComponent(@model.get("url"))
 
     FB.ui obj, (response) =>
       if response and response.post_id
