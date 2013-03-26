@@ -1,0 +1,21 @@
+!!!
+%html
+  %head
+    %title= title
+    %meta{"http-equiv"=>"Content-Type", :content=>"text/html; charset=utf-8"}/
+    %meta{:name => "viewport", :content => "width=device-width, initial-scale=1, maximum-scale=1"}/
+    %link{ :rel => "shortcut icon", :href => "/assets/fallback/thumb_favicon_default.jpg", :type => "image/x-icon"}
+    = render "layouts/meta"
+    = csrf_meta_tags
+    = stylesheet_link_tag    "mobile"
+    = render "layouts/analytics"
+
+  %body#stage{:class => body_id}
+    = render "layouts/facebook"
+    %header#header
+      = image_tag "moziy-logo-2.png"
+      %span.tagline where videos come to play
+    = yield
+    %footer#footer
+      shared via moziy
+      = link_to "sign up", register_path

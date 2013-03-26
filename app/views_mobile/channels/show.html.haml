@@ -1,0 +1,11 @@
+#stage.video
+  = raw @first_airing.video.body
+.title
+  = @first_airing.title
+.share-items.clearfix
+  .share-item.facebook-share
+    = link_to "http://m.facebook.com/sharer.php?u=#{start_video_url(@first_airing.channel.slug, v: @first_airing.id)}" do
+      = image_tag "share-fb.png"
+  .share-item.twitter-share
+    = link_to "https://twitter.com/intent/tweet?text=#{@first_airing.title}&url=#{start_video_url(@first_airing.channel.slug, v: @first_airing.id)}" do
+      = image_tag "share-tw.png"

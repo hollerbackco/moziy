@@ -1,6 +1,9 @@
 class ChannelsController < ApplicationController
   before_filter :require_login, :only => [:subscribe]
 
+  # Render mobile or desktop depending on User-Agent for these actions.
+  before_filter :check_for_mobile, :only => [:feed, :show]
+
   def index
     @channels = logged_in? ?
       Channel.publik.explore_for(current_user) :
