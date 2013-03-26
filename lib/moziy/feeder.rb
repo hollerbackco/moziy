@@ -40,8 +40,7 @@ module Moziy
 
     def entries
       feed = ::Feedzirra::Feed.fetch_and_parse(source)
-      @entries ||= feed.is_a?(Fixnum) ? feed.entries : []
-
+      @entries ||= feed.is_a?(Fixnum) ? [] : feed.entries
     end
   end
 end
