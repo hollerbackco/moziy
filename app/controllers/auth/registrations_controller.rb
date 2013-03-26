@@ -1,5 +1,6 @@
 class Auth::RegistrationsController < ApplicationController
   before_filter :check_not_logged_in
+  before_filter :check_for_mobile, :only => [:new]
 
   # GET /users/new
   # GET /users/new.xml

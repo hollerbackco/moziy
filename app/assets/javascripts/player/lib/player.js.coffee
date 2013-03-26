@@ -61,7 +61,6 @@ class App.PlayerManager
     @stream.current.channel.get "title"
 
   _play: (obj) ->
-    console.log obj.airing
     airing = obj.airing
     channel = obj.channel
     try
@@ -76,7 +75,6 @@ class App.PlayerManager
           @next()
 
     catch error
-      console.log "error"
       @next()
 
   _playerPlay: (@player, @airing) ->
