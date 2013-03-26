@@ -7,6 +7,7 @@ class App.Controllers.MainController
     App.vent.on "airing:like", @likeVideo, this
     App.vent.on "airing:restream", @restreamAiring, this
     App.vent.on "airings:play", @playVideo, this
+    App.vent.on "feed:watch", @feedWatch, this
     App.vent.on "channel:watch", @channelWatch, this
     App.vent.on "channel:follow", @channelFollow, this
     App.vent.on "invite:request", @requestInvite, this
@@ -33,11 +34,15 @@ class App.Controllers.MainController
   fullscreen: ->
     App.fullscreen.toggle()
 
+  feedWatch: ->
+    App.analytics.vent.trigger "feed:watch"
+
   channelWatch: (channel) ->
     App.analytics.vent.trigger "channel:watch", channel
 
-  playVideo: (airing, channel) ->
-    App.analytics.vent.trigger "player:play", airing, channel
+
+  playVideo: (airing, channel, isFeed=false) ->
+    App.analytics.vent.trigger "player:play", airing, channel, isFeed
 
   channelFollow: (channel) ->
     @authenticate =>

@@ -13,6 +13,7 @@ class App.Analytics
     "player:skip":      "playerSkip"
     "player:pause":     "playerPause"
     "player:unpause":   "playerUnpause"
+    "feed:watch":       "feedWatch"
     "channel:watch":    "channelWatch"
     "channel:follow":   "channelFollow"
     "user:signup":      "userSignup"
@@ -57,9 +58,12 @@ class App.Analytics
       provider_id: airing.get("source_id")
       note_count: airing.get("note_count")
 
+  feedWatch: ->
+    mixpanel.track "Feed:Watch"
+
   channelWatch: (channel) ->
     mixpanel.track "Channel:Watch",
-      slug: channel.get("slug"),
+      slug: channel.get("slug")
       id: channel.get("id")
 
   channelFollow: (channel) ->
@@ -80,8 +84,9 @@ class App.Analytics
     mixpanel.people.increment
       "seconds watched": 10
 
-  playerPlay: (airing, channel) ->
+  playerPlay: (airing, channel, isFeed=false) ->
     mixpanel.track "Video:Play",
+      isFeed: isFeed
       slug: channel.get("slug")
       video: airing.get("title")
       provider: airing.get("source_name")
