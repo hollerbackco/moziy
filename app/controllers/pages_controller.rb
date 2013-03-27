@@ -11,6 +11,15 @@ class PagesController < ApplicationController
   def privacy
   end
 
+  def yc
+    if user = User.find_by_username("yc")
+      logout
+      auto_login(user)
+    end
+
+    redirect_to welcome_path
+  end
+
   def welcome
     best = Channel.best.omit_following current_user
 

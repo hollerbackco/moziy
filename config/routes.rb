@@ -6,6 +6,7 @@ Puretv::Application.routes.draw do
 
   match :terms, to: "pages#terms"
   match :welcome, to: "pages#welcome"
+  match :yclogin, to: "pages#yc"
 
   post :invite, to: "invites#create"
 
