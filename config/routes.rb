@@ -10,6 +10,8 @@ Puretv::Application.routes.draw do
 
   post :invite, to: "invites#create"
 
+  resource :invites, only: [:new, :create]
+
   match "join/:token", to: "channel_invites#show", as: :join_channel
   match "join/:token/accept", to: "channel_invites#accept", as: :accept_join_channel
 
@@ -102,7 +104,7 @@ Puretv::Application.routes.draw do
   scope ":name" do
     match :chromeless, :to => "channels#show_chromeless", as: :chromeless
     match "video", :to => "channels#show", as: :start_video
-    match ":v", :to => "channels#show"
+    #match ":v", :to => "channels#show"
     match "/", :to => "channels#show", as: :slug
   end
 

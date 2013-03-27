@@ -1,0 +1,14 @@
+%section
+  %h4 moziy is a fun new way to find and share the coolest videos in the world.
+  = form_for(@invite, :url => invites_path) do |f|
+    - if @invite.errors.any? or flash.key? :alert
+      %ul#error-explanation
+        - @invite.errors.full_messages.each do |msg|
+          %li= msg
+        - flash.each do |key,msg|
+          %li= msg
+    .field
+      = f.label :email
+      = f.text_field :email
+    .actions
+      = f.submit "Request Invite", :class => "button primary "

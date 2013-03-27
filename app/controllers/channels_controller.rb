@@ -2,7 +2,7 @@ class ChannelsController < ApplicationController
   before_filter :require_login, :only => [:subscribe]
 
   # Render mobile or desktop depending on User-Agent for these actions.
-  before_filter :check_for_mobile, :only => [:feed, :show]
+  before_filter :check_for_mobile, :only => [:feed, :show, :show_root]
 
   def index
     @channels = logged_in? ?
@@ -32,10 +32,6 @@ class ChannelsController < ApplicationController
     @channel_list = current_user.subscriptions
     @my_channels = current_user.channels
 
-    @explore_channels = logged_in? ?
-      Channel.publik.explore_for(current_user) :
-      Channel.publik.explore
-
     set_title "Feed"
 
     render action: "show", layout: "player"
@@ -48,6 +44,8 @@ class ChannelsController < ApplicationController
     if params[:v] and @channel.airings.exists? params[:v]
       @first_airing = Airing.find(params[:v])
       @first_airing_id = params[:v]
+    else
+      @first_airing = @channel.airings.first
     end
 
     if logged_in?
@@ -70,13 +68,10 @@ class ChannelsController < ApplicationController
   def show_root
     if logged_in?
       redirect_to feed_path
-      return
+    else
+      @channel = Channel.default
+      redirect_to slug_path @channel.slug
     end
-
-    @channel = Channel.default
-
-    set_title @channel.title
-    render :layout => "player"
   end
 
   def show_chromeless

@@ -21,6 +21,11 @@ en:
       instructions:  please follow a few streams you think you’ll like.
 
 
+  invites:
+    new:
+      title: "invite"
+    create:
+      title: "invite"
   likes:
     index:
       title:  "my likes"

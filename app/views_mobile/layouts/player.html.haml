@@ -7,15 +7,16 @@
     %link{ :rel => "shortcut icon", :href => "/assets/fallback/thumb_favicon_default.jpg", :type => "image/x-icon"}
     = render "layouts/meta"
     = csrf_meta_tags
+    = javascript_include_tag "mobile"
     = stylesheet_link_tag    "mobile"
     = render "layouts/analytics"
 
   %body#stage{:class => body_id}
     = render "layouts/facebook"
     %header#header
-      = image_tag "moziy-logo-2.png"
+      = image_tag "moziy-logo-2.png", "data-at2x" => image_path("moziy-logo-2@2x.png")
       %span.tagline where videos come to play
     = yield
     %footer#footer
       shared via moziy
-      = link_to "sign up", register_path
+      = link_to "sign up", new_invites_path

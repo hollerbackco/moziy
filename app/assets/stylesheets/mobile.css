@@ -44,11 +44,16 @@ footer { text-align: center; padding: 20px; border-top: 1px solid #eee; }
   float: left;
   display: block;
   padding: 10px;
-  width: 50%;
 }
 
-.share-item img {
-  width: 100%;
+.social-share-item {
+  width: 150px;
+  overflow: hidden;
+}
+
+.link-share {
+  width: 29px;
+  margin-top: 5px;
 }
 
 .clearfix:after {
