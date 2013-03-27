@@ -29,12 +29,12 @@ WelcomeApp.Views.SuggestChannels = Backbone.View.extend
 
     WelcomeApp.analytics.welcomeFollow()
 
-    if @counter > 2
+    if @counter > 4
       WelcomeApp.vent.trigger "follow:complete"
 
 
   removeOne: ->
     @counter--
 
-    if @counter < 3
+    if @counter < 5
       WelcomeApp.vent.trigger "follow:incomplete"
