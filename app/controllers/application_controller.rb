@@ -29,6 +29,7 @@ class ApplicationController < ActionController::Base
   end
 
   def prepare_for_mobile
+    logout
     prepend_view_path Rails.root + 'app' + 'views_mobile'
   end
 
