@@ -29,6 +29,7 @@ class ChannelsController < ApplicationController
       return
     end
 
+    @first_airing = current_user.unwatched_feed.first
     @channel_list = current_user.subscriptions
     @my_channels = current_user.channels
 
