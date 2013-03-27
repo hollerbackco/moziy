@@ -11,6 +11,17 @@
     = stylesheet_link_tag    "mobile"
     = render "layouts/analytics"
 
+    :javascript
+      window.addEventListener("load",function() {
+        // Set a timeout...
+        setTimeout(function(){
+          // Hide the address bar!
+          window.scrollTo(0, 1);
+        }, 0);
+      });
+
+
+
   %body#stage{:class => body_id}
     = render "layouts/facebook"
     %header#header
