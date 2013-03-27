@@ -11,8 +11,8 @@ class InvitesController < ApplicationController
     respond_to do |format|
       if @invite.save
         format.html do
-          flash[:notice] = "thanks"
-          redirect_to new_invite_path
+          flash[:alert] = "Thanks, we'll let you know when we're ready"
+          redirect_to new_invites_path
         end
         format.json { render json: {success: true} }
       else

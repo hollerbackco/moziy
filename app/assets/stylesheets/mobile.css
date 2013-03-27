@@ -15,6 +15,20 @@ a {
   color: #04BBF5 !important;
 }
 
+ul#error-explanation {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+
+}
+
+ul#error-explanation li {
+  padding: 0 0 10px;
+  margin: 0;
+  font-size: 16px;
+  color: #999;
+}
+
 iframe {
   width: 100%;
   max-height: 50%;
