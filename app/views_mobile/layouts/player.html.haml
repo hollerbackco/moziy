@@ -22,11 +22,14 @@
 
   %body#stage{:class => body_id}
     = render "layouts/facebook"
+
     %header#header
       = link_to new_invites_path do
         = image_tag "moziy-logo-2.png", "data-at2x" => image_path("moziy-logo-2@2x.png")
       %span.tagline where videos come to play
+
     = yield
+
     %footer#footer
       shared via moziy
       = link_to "sign up", new_invites_path
