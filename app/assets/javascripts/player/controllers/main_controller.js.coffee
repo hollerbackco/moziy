@@ -73,7 +73,7 @@ class App.Controllers.MainController
 
   requestInvite: (email,opts={}) ->
     post = $.ajax
-      url: "/invite"
+      url: "/invites.json"
       type: "POST"
       data:
         email: email

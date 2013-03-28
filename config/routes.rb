@@ -8,8 +8,6 @@ Puretv::Application.routes.draw do
   match :welcome, to: "pages#welcome"
   match :yclogin, to: "pages#yc"
 
-  post :invite, to: "invites#create"
-
   resource :invites, only: [:new, :create]
 
   match "join/:token", to: "channel_invites#show", as: :join_channel
