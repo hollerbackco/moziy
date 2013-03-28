@@ -6,16 +6,18 @@
 
 - if logged_in?
   - name_tag = "#{current_user.primary_channel.slug} #{current_user.email}"
+
   - if flash[:new_user]
     :javascript
       mixpanel.alias(#{current_user.id})
-      mixpanel.name_tag("#{name_tag}")
       mixpanel.track("User:Signup")
   - else
     :javascript
       mixpanel.identify(#{current_user.id})
-      mixpanel.name_tag("#{name_tag}")
+
   :javascript
+    mixpanel.name_tag("#{name_tag}")
+
     mixpanel.people.set({
       "$email": "#{current_user.email}",
       "$created": #{current_user.created_at.to_json},
