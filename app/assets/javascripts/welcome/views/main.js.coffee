@@ -9,48 +9,64 @@ WelcomeApp.Views.Main = Backbone.View.extend
 
     @render()
 
-    # @addVideosView = new WelcomeApp.Views.AddVideos
-    #   el: @$("#add-videos")
+    if WelcomeApp.config.followCount?
+      @listenTo WelcomeApp.vent, "follow:complete", @followComplete
+      @listenTo WelcomeApp.vent, "follow:incomplete", @followIncomplete
+      @listenTo WelcomeApp.vent, "next:message", @updateMessage
+      @updateMessage "welcome. please follow five streams below"
+      @$nextBtn.hide()
 
-    @suggestFollowersView = new WelcomeApp.Views.SuggestChannels
-      el: @$("#suggest-followers")
-      model: WelcomeApp.exploreChannels
-
-    # @listenTo WelcomeApp.vent, "add:complete", @addComplete
-    @listenTo WelcomeApp.vent, "follow:complete", @followComplete
-    @listenTo WelcomeApp.vent, "follow:incomplete", @followIncomplete
-
-    @$next = @$("#next").hide()
 
   addComplete: ->
     WelcomeApp.analytics.welcomeAddComplete()
     @showNext()
 
   followComplete: ->
+    @state = "done"
     WelcomeApp.analytics.welcomeFollowComplete()
-    @$next.find("h1").html ""
     @$next.find(".button").html "start watching"
-    @showNext()
+    @$nextMsg.hide()
+    @$nextBtn.show()
 
   followIncomplete: ->
-    @hideNext()
+    @state = "follow"
+    @$nextMsg.show()
+    @$nextBtn.hide()
+
+  updateMessage: (msg) ->
+    if @state != "done"
+      @$nextMsg.addClass "blue"
+      @$nextMsg.fadeOut 0, =>
+        @$nextMsg.html(msg).fadeIn 100, =>
+          @$nextMsg.removeClass "blue"
 
   render: ->
     @$el.html @template()
 
+    @$next = @$("#next")
+    @$nextMsg = @$("#next-message")
+    @$nextBtn = @$("#next-button")
+
+    @suggestFollowersView = new WelcomeApp.Views.SuggestChannels
+      el: @$("#suggest-followers")
+      model: WelcomeApp.exploreChannels
+
+    @$(".pin-top-container").waypoint (direction) =>
+      if direction == "down"
+        @$next.hide 0, =>
+          @$el.addClass("pin-top-bar")
+          @$next.fadeIn(200)
+      if direction == "up"
+        @$next.hide 0, =>
+          @$el.removeClass("pin-top-bar")
+          @$next.fadeIn(200)
+
   next: ->
-    if @state == "add"
-      @addVideosView.hide()
-      @suggestFollowersView.show()
-      @hideNext()
-      @state = "follow"
-
-    else
-      window.location = "/"
-
+    window.location = "/"
 
   showNext: ->
     @$next.fadeIn(100)
+    @$nextBtn.fadeIn(100)
 
   hideNext: ->
     @$next.hide()

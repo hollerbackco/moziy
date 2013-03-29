@@ -1,10 +1,19 @@
 - content_for :footer do
   :javascript
-    $(document).ready(function() {
-      var bootstrap = {
-        currentUser: #{current_user_json},
-        exploreChannels: #{@explore.as_json(methods: [:channel_subscribers_count]).to_json}
+    var bootstrap = {
+      currentUser: #{current_user_json},
+      exploreChannels: #{@explore.as_json(methods: [:channel_subscribers_count]).to_json}
+    };
+
+  - if current_user.following_channels.empty? or true
+    :javascript
+      bootstrap.config = {
+        followCount: 5
       };
+
+  :javascript
+    $(document).ready(function() {
+
 
       WelcomeApp.initialize(bootstrap);
     });

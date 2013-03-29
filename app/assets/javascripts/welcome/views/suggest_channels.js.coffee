@@ -10,10 +10,9 @@ WelcomeApp.Views.SuggestChannels = Backbone.View.extend
       el: @$("#channel-list")
       model: @model
 
-    #@$el.hide()
-
-    @listenTo WelcomeApp.vent, "channel:follow", @addOne
-    @listenTo WelcomeApp.vent, "channel:unfollow", @removeOne
+    if WelcomeApp.config.followCount?
+      @listenTo WelcomeApp.vent, "channel:follow", @addOne
+      @listenTo WelcomeApp.vent, "channel:unfollow", @removeOne
 
   render: ->
     @$el.html @template()
@@ -29,12 +28,22 @@ WelcomeApp.Views.SuggestChannels = Backbone.View.extend
 
     WelcomeApp.analytics.welcomeFollow()
 
-    if @counter > 4
+    if @counter > WelcomeApp.config.followCount - 1
       WelcomeApp.vent.trigger "follow:complete"
 
+    WelcomeApp.vent.trigger "next:message", @message()
 
   removeOne: ->
     @counter--
 
-    if @counter < 5
+    if @counter < WelcomeApp.config.followCount
       WelcomeApp.vent.trigger "follow:incomplete"
+
+    WelcomeApp.vent.trigger "next:message", @message()
+
+  followsLeft: ->
+    total = WelcomeApp.config.followCount || 0
+    total - @counter
+
+  message: ->
+    "follow at least #{@followsLeft()} more"

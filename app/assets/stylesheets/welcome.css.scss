@@ -2,114 +2,149 @@
   padding: 0;
   margin: 0;
 
+  .text-flash {
+    color: #000;
+    transition: color .75s linear;
+    -moz-transition: color .75s linear;    /* FF3.7+ */
+    -o-transition: color .75s linear;      /* Opera 10.5 */
+    -webkit-transition: color .75s linear; /* Saf3.2+, Chrome */
+
+    &.blue {
+      color: #04BBF5;
+    }
+  }
+
   form {
     margin: 20px 0;
   }
 
-  .container {
-    width: 960px;
-    margin: 0 auto;
-  }
 
   header {
-    padding: 50px 0 30px;
+    padding: 60px 0;
 
-    h1 {
-      text-align: center;
-      font-size: 30px;
+    .title > h1 {
+      padding: 0;
       margin: 0;
-    }
-
-    h2 {
+      margin-top: 20px;
       text-align: center;
-      width: 860px;
-      margin: 20px auto 0;
-    }
-  }
 
-  h3 {
-    font-size: 16px;
-    margin-top: 0;
-    font-weight: normal;
-    text-align: center;
+      img {
+        margin-right: 15px;
+      }
+    }
+
+    .title > h2 {
+      text-align: center;
+      font-weight: 400;
+      padding: 0;
+      margin: 0;
+      color: #777;
+    }
   }
 
   #next {
-    display: none;
+    text-align: center;
+
+    h1 {
+      display: none;
+    }
+
+    #next-message {
+      text-align: center;
+      font-weight: bold;
+      padding: 0 30px;
+      font-size: 24px;
+    }
+
+  }
+
+  .pin-top-container {
+    height: 48px;
+    padding: 60px 50px 20px;
+  }
+
+
+  .pin-top-bar #next {
+    text-align: left;
     position: fixed;
     width: 100%;
     left: 0;
-    bottom: 0;
-    background: #000;
-    color: #fff;
-    border-bottom: 1px solid #eee;
+    top: 0;
+    background: #fff;
+    color: #000;
+    border-bottom: 1px solid #ddd;
     z-index: 10;
+    text-align: center;
+    padding: 10px 0;
 
     h1 {
-      width: 960px;
+      position: absolute;
+      left: 0;
+      display: block;
       line-height: 48px;
-      margin: 20px auto;
+      margin: 10px 20px;
+    }
+
+    #next-message {
+      margin: 20px;
     }
 
     #next-button {
       float: right;
-      margin: 20px;
-      padding: 0 30px;
+      margin-right: 20px;
     }
   }
 
   #channel-list {
-    margin-right: -35px;
-    padding: 0 25px;
+    text-align: center;
+    padding: 0 20px;
+    width: 90%;
     padding-bottom: 35px;
+    margin: 0 auto;
 
     li {
-      float: left;
-      width: 430px;
-      margin-right: 35px;
-      margin-top: 35px;
-      border: 1px solid #eee;
+      display: inline-block;
+      width: 315px;
+      margin-right: 30px;
+      margin-bottom: 30px;
+      border: 1px solid #ddd;
 
       .header {
-        height: 150px;
-      }
-
-      .channel-slug {
-        padding-top: 15px;
-        padding-bottom: 5px;
+        height: 100px;
       }
 
       .follow-button {
-        border-top: 1px solid #ccc;
+        border-top: 1px solid #ddd;
         width: 100%;
         text-align: center;
         padding: 0;
+        color: #04BBF5;
 
         &.following {
+          background: #eee;
+        }
+
+        &:hover {
           background: #ddd;
         }
       }
 
-      .video-images {
-        margin-right: -30px;
-
-        img {
-          float: left;
-          margin-right: 30px;
-          display: block;
-        }
-      }
-
       .channel-info {
+        text-align: left;
         margin-right: 15px;
 
         .channel-slug {
-          font-size: 16px;
+          font-size: 14px;
           font-weight: bold;
+          margin-bottom: 0;
+          padding-top: 10px;
+          padding-bottom: 5px;
         }
 
         .channel-description {
-          color: #666;
+          color: #777;
+          font-size: 13px;
+          line-height: 18px;
         }
 
         img {

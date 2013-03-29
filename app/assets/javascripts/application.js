@@ -9,6 +9,7 @@
 //= require jquery_ujs
 //= require jquery.hoverIntent.min
 //= require jquery.embedly.min
+//= require waypoints.min
 //= require bootstrap-modal
 //= require bootstrap-dropdown
 //= require bootstrap-tooltip

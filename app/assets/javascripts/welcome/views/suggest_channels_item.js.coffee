@@ -28,12 +28,10 @@ WelcomeApp.Views.SuggestChannelItem = Backbone.View.extend
     @_unfollowClicked()
 
   _followClicked: ->
-    @$following.removeClass "primary"
     @$following.addClass "following"
     @$el.addClass "following"
 
   _unfollowClicked: ->
-    @$following.addClass "primary"
     @$following.removeClass "following"
     @$el.removeClass "following"
 
