@@ -50,7 +50,7 @@ namespace :db do
           #user.username = Anonymizer.random_username
           user.email = Anonymizer.random_email(user.username)
           puts "Saving #{user.username} (#{user.email})"
-          user.save!
+          user.save
         end
       end
     end

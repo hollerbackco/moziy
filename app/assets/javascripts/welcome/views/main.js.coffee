@@ -13,7 +13,7 @@ WelcomeApp.Views.Main = Backbone.View.extend
       @listenTo WelcomeApp.vent, "follow:complete", @followComplete
       @listenTo WelcomeApp.vent, "follow:incomplete", @followIncomplete
       @listenTo WelcomeApp.vent, "next:message", @updateMessage
-      @updateMessage "welcome. please follow five streams below"
+      @updateMessage "welcome. please follow 5 streams below"
       @$nextBtn.hide()
 
 
