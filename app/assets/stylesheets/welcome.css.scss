@@ -118,13 +118,14 @@
         width: 100%;
         text-align: center;
         padding: 0;
-        color: #04BBF5;
 
         &.following {
+          color: #04BBF5;
           background: #eee;
         }
 
         &:hover {
+          color: #000;
           background: #ddd;
         }
       }
