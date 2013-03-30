@@ -2,7 +2,7 @@
 # The default is nothing which will include only core features (password encryption, login/logout).
 # Available submodules are: :user_activation, :http_basic_auth, :remember_me,
 # :reset_password, :session_timeout, :brute_force_protection, :activity_logging, :external, :remember_me, :reset_password
-Rails.application.config.sorcery.submodules = [:external, :reset_password]
+Rails.application.config.sorcery.submodules = [:reset_password]
 
 # Here you can configure each submodule's features.
 Rails.application.config.sorcery.configure do |config|
@@ -199,7 +199,7 @@ Rails.application.config.sorcery.configure do |config|
                                                                                       # the user defined logged out?
 
     # -- external --
-    user.authentications_class = Authentication                                                # class which holds the various
+    #user.authentications_class = Authentication                                                # class which holds the various
                                                                                       # external provider data for this
                                                                                       # user.
 
@@ -214,18 +214,6 @@ Rails.application.config.sorcery.configure do |config|
                                                                                       # class.
   end
 
-  config.external_providers = [:twitter, :facebook]
-
-  config.twitter.key = "kdS4VwxPOmL64MgX2qpHnw"
-  config.twitter.secret = "O2W0a3sJnDX4s4p3orDxEsDcYfQ77Nj6IFrJrkDY2x8"
-  config.twitter.callback_url = "http://outlaw.mosey.tv/oauth/callback?provider=twitter"
-  config.twitter.user_info_mapping = {:username => "screen_name"}
-
-  config.facebook.key = "304863259537484"
-  config.facebook.secret = "30e8702ae5e99484e998cbcfc840eff0"
-  config.facebook.scope = "email,read_stream,publish_stream"
-  config.facebook.callback_url = "http://outlaw.mosey.tv/oauth/callback?provider=facebook"
-  config.facebook.user_info_mapping = {:username => "username", :token => "access_token"}
 
   # This line must come after the 'user config' block.
   config.user_class = "User"                                       # define which model authenticates

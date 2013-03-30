@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :username, :password, :password_confirmation,
-    :authentications_attributes, :primary_channel, :primary_channel_id,
-    :preferences
+    :primary_channel, :primary_channel_id, :preferences
 
   validates :email,
     :presence => true,
@@ -109,22 +108,6 @@ class User < ActiveRecord::Base
         facebook_channel.crawl(50)
       end
     end
-  end
-
-  def social_channel?(provider)
-    case provider
-      when :twitter
-      when :facebook
-        ! facebook_channel.nil?
-    end
-  end
-
-  def facebook_channel_title
-    "fb-#{self.username}"
-  end
-
-  def twitter_channel_title
-    "tw-#{self.username}"
   end
 
   def primary_channel_slug

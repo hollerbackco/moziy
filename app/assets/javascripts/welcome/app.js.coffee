@@ -24,15 +24,11 @@ $ ->
       WelcomeApp.analytics = new App.Analytics()
 
     setupViews: ->
-
       wizard = new WelcomeApp.Views.Wizard( el: $(".container") )
 
       wizard.registerStep(new WelcomeApp.Views.SuggestChannelsStep())
 
       wizard.start()
-
-
-
 
     follow: (channel) ->
       @currentUser.follow channel
