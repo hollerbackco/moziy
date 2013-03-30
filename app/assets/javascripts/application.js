@@ -27,3 +27,4 @@
 
 //= require welcome/app
 //= require_tree ./welcome/views
+//= require_tree ./welcome/models
