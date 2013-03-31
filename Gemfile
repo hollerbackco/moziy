@@ -29,6 +29,9 @@ gem 'fog'
 gem 'carrierwave'
 
 # Utils
+gem 'omniauth'
+gem 'omniauth-google-oauth2'
+
 gem 'embedly'
 gem 'mini_fb'
 gem 'delayed_job_active_record'

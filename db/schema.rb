@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130308200630) do
+ActiveRecord::Schema.define(:version => 20130330053042) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -88,16 +88,17 @@ ActiveRecord::Schema.define(:version => 20130308200630) do
   add_index "airings", ["channel_id"], :name => "index_airings_on_channel_id"
   add_index "airings", ["position"], :name => "index_airings_on_position"
 
-  create_table "authentications", :force => true do |t|
-    t.integer  "user_id",    :null => false
-    t.string   "provider",   :null => false
-    t.string   "uid",        :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-    t.string   "token"
+  create_table "authorizations", :force => true do |t|
+    t.string   "provider"
+    t.string   "uid"
+    t.integer  "user_id"
+    t.string   "access_token"
+    t.text     "meta"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
   end
 
-  add_index "authentications", ["user_id"], :name => "index_authentications_on_user_id"
+  add_index "authorizations", ["user_id"], :name => "index_authorizations_on_user_id"
 
   create_table "channel_invites", :force => true do |t|
     t.integer  "sender_id"

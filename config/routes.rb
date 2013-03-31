@@ -22,8 +22,8 @@ Puretv::Application.routes.draw do
     get :register,  to: "registrations#new"
     post :register, to: "registrations#create"
 
-    match "oauth/callback" => "oauths#callback"
-    match "oauth/:provider" => "oauths#oauth", :as => :auth_at_provider
+    match "auth/:provider/check"    => "oauths#check"
+    match "auth/:provider/callback" => "oauths#callback", :as => :auth_at_provider
 
     resources :password_resets do
       collection do
