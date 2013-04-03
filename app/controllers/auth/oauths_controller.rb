@@ -5,7 +5,10 @@ class Auth::OauthsController < ApplicationController
 
   def check
     if authorization = authorization_for(params[:provider])
-      authorization.refresh
+      if authorization.expired?
+        authorization.destroy
+        authorization = nil
+      end
     end
 
     msg = {
@@ -25,9 +28,6 @@ class Auth::OauthsController < ApplicationController
 
     authorization.access_token  = auth[:credentials][:token]
     authorization.expires_at    = DateTime.strptime(auth[:credentials][:expires_at].to_s, "%s")
-    authorization.meta          = get_emails(authorization)
-
-    authorization.save
 
     render text: nil
   end
@@ -38,20 +38,4 @@ class Auth::OauthsController < ApplicationController
     @auth_response ||= request.env['omniauth.auth']
   end
 
-  def get_emails(authorization)
-    # contacts
-    client = GContacts::Client.new(:access_token => authorization.access_token)
-
-    all_emails = []
-
-    client.paginate_all do |person|
-      data = person.data["gd:email"] || []
-
-      data.each do |email|
-        all_emails.push email["@address"]
-      end
-    end
-
-    all_emails
-  end
 end

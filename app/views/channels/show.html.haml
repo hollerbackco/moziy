@@ -7,9 +7,9 @@
     var bootstrap = {
       channel: #{@channel.to_json},
       current_user: current_user,
-      first_airing_id: #{@first_airing_id.to_json}
+      first_airing_id: #{@first_airing_id.to_json},
+      showWelcome: #{@show_welcome || false}
     };
-
 
     App.initialize(bootstrap);
   });

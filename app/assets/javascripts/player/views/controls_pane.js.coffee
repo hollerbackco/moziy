@@ -27,7 +27,6 @@ App.Views.ControlsPane = Backbone.View.extend
 
       timer = setTimeout callback, 1000
 
-
   fullscreen: ->
     App.vent.trigger "fullscreen"
 
@@ -40,6 +39,6 @@ App.Views.ControlsPane = Backbone.View.extend
     mixpanel.track "Player:Pause"
 
   keyboardModal: ->
-    App.vent.trigger "modals:keyboard",
+    App.vent.trigger "modals:image",
       "Keyboard Controls",
       "/assets/keyboard/help.gif"

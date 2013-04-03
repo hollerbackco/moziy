@@ -6,7 +6,7 @@ App.Views.ImageModal = Backbone.View.extend
 
     @$el.modal().modal("hide")
 
-    @listenTo App.vent, "modals:keyboard", @show
+    @listenTo App.vent, "modals:image", @show
     @listenTo App.vent, "modals:close", @close
 
   show: (title, image_url) ->
@@ -17,7 +17,6 @@ App.Views.ImageModal = Backbone.View.extend
       image_url: image_url
 
     @$el.modal("show")
-
 
   close: ->
     @$el.modal("hide")

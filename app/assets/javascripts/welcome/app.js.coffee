@@ -36,4 +36,4 @@ $ ->
       @currentUser.follow channel
 
     complete: ->
-      window.location = "/"
+      window.location = "/f?welcome=1"

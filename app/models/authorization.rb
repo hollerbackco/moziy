@@ -4,7 +4,7 @@ class Authorization < ActiveRecord::Base
 
   belongs_to :user
 
-  def refresh
-    destroy if Time.now > expires_at
+  def expired?
+    Time.now > expires_at
   end
 end

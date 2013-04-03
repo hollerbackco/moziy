@@ -19,6 +19,10 @@ class ChannelsController < ApplicationController
       @first_airing_id = params[:v]
     end
 
+    if params[:welcome]
+      @show_welcome = true
+    end
+
     unless logged_in?
       if @first_airing_id.present?
         @first_airing = Airing.find @first_airing_id

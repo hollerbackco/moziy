@@ -28,6 +28,9 @@ $ ->
         else
           @setupInvite()
 
+      if bootstrap.showWelcome? and bootstrap.showWelcome
+        App.modals.image.show("moziy is a nonstop feed of videos", "/assets/player/welcome.gif")
+
       @setupPlayer channel, bootstrap.first_airing_id
 
     navigate: (href, replace=false) ->
@@ -97,6 +100,7 @@ $ ->
         invite:   new App.Views.InviteModal(el: "#invite-modal")
         channels:   new App.Views.ChannelListModal(el: "#channels-modal")
         image:   new App.Views.ImageModal(el: "#image-modal")
+
 
     setupInvite: ->
       App.invitePane = new App.Views.InvitePane()
