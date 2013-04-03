@@ -5,6 +5,6 @@ class Authorization < ActiveRecord::Base
   belongs_to :user
 
   def expired?
-    Time.now > expires_at
+    DateTime.now > self.expires_at
   end
 end
