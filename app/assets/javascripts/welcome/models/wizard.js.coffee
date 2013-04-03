@@ -10,9 +10,6 @@ WelcomeApp.Models.Wizard = Backbone.Model.extend
     ++@currentStep
     @currentStep = @modIndex @currentStep
 
-    if @currentStep == 0
-      @trigger "done"
-
     @current()
 
   back: ->
@@ -29,3 +26,6 @@ WelcomeApp.Models.Wizard = Backbone.Model.extend
 
   length: ->
     @steps.length
+
+  isComplete: ->
+    @currentStep >= (@length() - 1)

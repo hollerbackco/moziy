@@ -2,7 +2,6 @@ WelcomeApp.Views.Wizard = Backbone.View.extend
   initialize: ->
     @model = new WelcomeApp.Models.Wizard()
 
-    @listenTo @model, "done", @complete
     @listenTo WelcomeApp.vent, "wizard:back", @back
     @listenTo WelcomeApp.vent, "wizard:next", @next
 
@@ -10,7 +9,10 @@ WelcomeApp.Views.Wizard = Backbone.View.extend
     @$el.html @model.current().render()
 
   next: ->
-    @$el.html @model.next().render()
+    if @model.isComplete()
+      @complete()
+    else
+      @$el.html @model.next().render()
 
   back: ->
     @$el.html @model.back().render()
@@ -18,5 +20,5 @@ WelcomeApp.Views.Wizard = Backbone.View.extend
   registerStep: (step) ->
     @model.register step
 
-  complete: (step) ->
+  complete: ->
     WelcomeApp.vent.trigger "wizard:done"

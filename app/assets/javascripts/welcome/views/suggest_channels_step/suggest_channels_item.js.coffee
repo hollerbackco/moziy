@@ -26,10 +26,12 @@ WelcomeApp.Views.SuggestChannelItem = Backbone.View.extend
 
   follow: ->
     WelcomeApp.vent.trigger "channel:follow", @model
+    @trigger "channel:follow", @model
     @_followClicked()
 
   unfollow: ->
     WelcomeApp.vent.trigger "channel:unfollow", @model
+    @trigger "channel:unfollow", @model
     @_unfollowClicked()
 
   _followClicked: ->

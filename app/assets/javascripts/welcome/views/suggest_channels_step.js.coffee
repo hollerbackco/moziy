@@ -8,9 +8,6 @@ WelcomeApp.Views.SuggestChannelsStep = Backbone.View.extend
     @counter = 0
     @state = "follow"
 
-    @listenTo WelcomeApp.vent, "channel:follow", @followOne
-    @listenTo WelcomeApp.vent, "channel:unfollow", @unfollowOne
-
   render: ->
     @$el.html @template()
 
@@ -21,6 +18,10 @@ WelcomeApp.Views.SuggestChannelsStep = Backbone.View.extend
     @suggestChannelsList = new WelcomeApp.Views.SuggestChannelsList
       el: @$(".welcome-channel-list")
       model: WelcomeApp.exploreChannels
+
+    @listenTo @suggestChannelsList, "channel:follow", @followOne
+    @listenTo @suggestChannelsList, "channel:unfollow", @unfollowOne
+
 
     @$(".pin-top-container").waypoint (direction) =>
       scroll =  $("body").scrollTop()

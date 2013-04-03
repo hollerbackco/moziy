@@ -9,4 +9,10 @@ WelcomeApp.Views.SuggestChannelsList = Backbone.View.extend
         model: channel
         withEmail: @withEmail
 
+      @listenTo subview, "channel:follow", (model) =>
+        @trigger "channel:follow", model
+
+      @listenTo subview, "channel:unfollow", (model) =>
+        @trigger "channel:unfollow", model
+
       @$el.append subview.el
