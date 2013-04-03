@@ -32,6 +32,7 @@ gem 'carrierwave'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
 
+gem 'google-contacts', git: "https://github.com/jnoh/google-contacts.git"
 gem 'embedly'
 gem 'mini_fb'
 gem 'delayed_job_active_record'

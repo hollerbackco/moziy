@@ -24,6 +24,22 @@ App.Models.CurrentUser = Backbone.Model.extend
     @channelList = new App.Models.Channels(channels)
     @channelList.url = "/me/streams/following.json"
 
+  getGmailContacts: ->
+    get = $.ajax
+      url: "/me/lookup/google_oauth2.json"
+      type: "GET"
+
+    get.pipe (results) ->
+      new App.Models.Channels(results.channels)
+
+  checkGmail: ->
+    get = $.ajax
+      url: "/auth/google_oauth2/check.json"
+      type: "GET"
+
+    get.pipe (results) ->
+      results.authorized
+
   feed: ->
     if @feed
       @feed
@@ -61,3 +77,4 @@ App.Models.CurrentUser = Backbone.Model.extend
       success: (results) =>
         if callback?
           callback results
+

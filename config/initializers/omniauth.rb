@@ -8,5 +8,5 @@ end
 
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :developer unless Rails.env.production?
-  provider :google_oauth2, ENV['GOOGLE_KEY'], ENV['GOOGLE_SECRET'], options
+  provider :google_oauth2, ENV['GOOGLE_KEY'], ENV['GOOGLE_SECRET'], options.merge({scope: "userinfo.email,userinfo.profile,https://www.google.com/m8/feeds"})
 end

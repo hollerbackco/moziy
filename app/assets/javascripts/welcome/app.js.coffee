@@ -16,6 +16,7 @@ $ ->
 
       WelcomeApp.vent.on "channel:follow", @follow, this
       WelcomeApp.vent.on "channel:unfollow", @follow, this
+      WelcomeApp.vent.on "wizard:done", @follow, this
 
     setupConfig: (options = {}) ->
       @config = options
@@ -27,8 +28,12 @@ $ ->
       wizard = new WelcomeApp.Views.Wizard( el: $(".container") )
 
       wizard.registerStep(new WelcomeApp.Views.SuggestChannelsStep())
+      wizard.registerStep(new WelcomeApp.Views.FindFriendsStep())
 
       wizard.start()
 
     follow: (channel) ->
       @currentUser.follow channel
+
+    complete: ->
+      window.location = "/"

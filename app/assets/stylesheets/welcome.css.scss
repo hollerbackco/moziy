@@ -14,8 +14,9 @@
     }
   }
 
-  form {
-    margin: 20px 0;
+
+  #main-content.pin-top-bar {
+    margin-top: 81px;
   }
 
 
@@ -44,6 +45,12 @@
 
   #next {
     text-align: center;
+
+    .action-button {
+      padding-left: 30px;
+      padding-right: 30px;
+      font-size: 16px;
+    }
 
     h1 {
       display: none;
@@ -95,7 +102,12 @@
     }
   }
 
-  #channel-list {
+  #find-friends {
+    text-align: center;
+  }
+
+  #channel-list,
+  .welcome-channel-list {
     text-align: center;
     padding: 0 20px;
     width: 90%;
@@ -128,6 +140,15 @@
           color: #000;
           background: #ddd;
         }
+      }
+
+      .email {
+        text-align: left;
+        font-size: 12px;
+        padding: 5px 10px;
+        color: #999;
+        border-bottom: #ccc;
+        background: #fafafa;
       }
 
       .channel-info {
@@ -175,6 +196,27 @@
         }
 
       }
+    }
+  }
+
+  .welcome-loader {
+    text-align: center;
+
+    .loader {
+      display: inline-block;
+      width: 150px;
+      height: 14px;
+      background: image-url("welcome/loader.gif") no-repeat center;
+    }
+
+    .loader-caption {
+      margin: 30px;
+      font-size: 24px;
+    }
+
+    .loader-actions {
+      text-align: center;
+      margin: 20px 0;
     }
   }
 

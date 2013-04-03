@@ -7,14 +7,13 @@ WelcomeApp.Views.Wizard = Backbone.View.extend
     @listenTo WelcomeApp.vent, "wizard:next", @next
 
   start: ->
-    console.log @model
     @$el.html @model.current().render()
 
   next: ->
-    @$el.html @model.next().el
+    @$el.html @model.next().render()
 
   back: ->
-    @$el.html @model.back().el
+    @$el.html @model.back().render()
 
   registerStep: (step) ->
     @model.register step

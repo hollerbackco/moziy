@@ -15,11 +15,11 @@ class AddVideoFromFeedJob < Struct.new(:entries)
       video = create_a_video v_params
 
       airing = Airing.new(
-        :user_id => channel.creator.id,
+        :user_id    => channel.creator.id,
         :channel_id => channel.id,
-        :video_id => video.id,
-        :content => content,
-        :position => 0)
+        :video_id   => video.id,
+        :content    => content,
+        :position   => 0)
 
       if created_at
         class << airing

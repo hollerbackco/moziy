@@ -1,4 +1,6 @@
 Puretv::Application.routes.draw do
+  get "contacts/lookup"
+
   ActiveAdmin.routes(self)
   devise_for :admin_users, ActiveAdmin::Devise.config
 
@@ -19,8 +21,8 @@ Puretv::Application.routes.draw do
     post  :login,   to: "sessions#create"
     match :logout,  to: "sessions#destroy"
 
-    get :register,  to: "registrations#new"
-    post :register, to: "registrations#create"
+    get  :register,  to: "registrations#new"
+    post :register,  to: "registrations#create"
 
     match "auth/:provider/check"    => "oauths#check"
     match "auth/:provider/callback" => "oauths#callback", :as => :auth_at_provider
@@ -43,6 +45,8 @@ Puretv::Application.routes.draw do
 
     get "feed/first", :to => "feed#first"
     get "feed/:id/next", :to => "feed#next"
+
+    get "lookup/:provider", :to => "contacts#lookup"
 
     resources :channels, :path => "streams" do
       collection do

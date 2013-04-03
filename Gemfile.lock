@@ -8,6 +8,14 @@ GIT
       nokogiri (~> 1.5.3)
       sax-machine (~> 0.2.0.rc1)
 
+GIT
+  remote: https://github.com/jnoh/google-contacts.git
+  revision: 18c1027303425a08a5db75ac027e8546d7b030fd
+  specs:
+    google-contacts (0.0.1)
+      nokogiri (~> 1.5.0)
+      nori (~> 1.1.0)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -176,6 +184,7 @@ GEM
       net-ssh (>= 1.99.1)
     net-ssh (2.5.2)
     nokogiri (1.5.5)
+    nori (1.1.5)
     oauth (0.4.7)
     oauth2 (0.8.1)
       faraday (~> 0.8)
@@ -313,6 +322,7 @@ DEPENDENCIES
   embedly
   feedzirra!
   fog
+  google-contacts!
   haml
   handlebars_assets
   honeybadger

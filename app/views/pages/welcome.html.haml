@@ -8,12 +8,10 @@
   - if current_user.following_channels.empty? or true
     :javascript
       bootstrap.config = {
-        followCount: 5
+        followCount: 1
       };
 
   :javascript
     $(document).ready(function() {
-
-
       WelcomeApp.initialize(bootstrap);
     });

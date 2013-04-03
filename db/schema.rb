@@ -93,6 +93,7 @@ ActiveRecord::Schema.define(:version => 20130330053042) do
     t.string   "uid"
     t.integer  "user_id"
     t.string   "access_token"
+    t.datetime "expires_at"
     t.text     "meta"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false

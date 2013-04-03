@@ -9,12 +9,17 @@ WelcomeApp.Views.SuggestChannelItem = Backbone.View.extend
 
   initialize: ->
     _.bindAll this, "follow", "unfollow"
+    @withEmail = @options.withEmail
     @render()
 
   render: ->
     @$el.html @template @model.toJSON()
 
     @$following = @$(".follow-button")
+
+    if @withEmail
+      span = $("<div />").addClass("email").html @model.get("email")
+      @$el.prepend span
 
     if WelcomeApp.currentUser? and WelcomeApp.currentUser.isFollowing(@model)
       @_followClicked()
@@ -36,4 +41,3 @@ WelcomeApp.Views.SuggestChannelItem = Backbone.View.extend
     @$following.addClass "primary"
     @$following.removeClass "following"
     @$el.removeClass "following"
-

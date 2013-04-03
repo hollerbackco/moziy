@@ -19,7 +19,7 @@ WelcomeApp.Views.SuggestChannelsStep = Backbone.View.extend
     @$nextBtn = @$("#next-button")
 
     @suggestChannelsList = new WelcomeApp.Views.SuggestChannelsList
-      el: @$("#channel-list")
+      el: @$(".welcome-channel-list")
       model: WelcomeApp.exploreChannels
 
     @$(".pin-top-container").waypoint (direction) =>
@@ -35,13 +35,13 @@ WelcomeApp.Views.SuggestChannelsStep = Backbone.View.extend
             @$next.fadeIn(200)
 
     if WelcomeApp.config.followCount?
-      @updateMessage "welcome. please follow 5 streams below"
+      @updateMessage "welcome. please follow #{WelcomeApp.config.followCount} streams below"
       @$nextBtn.hide()
 
     @$el
 
   next: ->
-    window.location = "/"
+    WelcomeApp.vent.trigger "wizard:next"
 
   hideNext: ->
     @$next.hide()
@@ -74,9 +74,8 @@ WelcomeApp.Views.SuggestChannelsStep = Backbone.View.extend
   onComplete: ->
     @state = "done"
     WelcomeApp.analytics.welcomeFollowComplete()
-    @$next.find(".button").html "start watching"
     @$nextMsg.hide()
-    @$nextBtn.show()
+    @$nextBtn.css("display", "inline-block")
 
   onIncomplete: ->
     @state = "follow"

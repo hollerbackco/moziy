@@ -1,2 +1,0 @@
-module Manage::AttachmentsHelper
-end
