@@ -28,9 +28,11 @@ class Auth::OauthsController < ApplicationController
 
     authorization.access_token  = auth[:credentials][:token]
     authorization.expires_at    = DateTime.strptime(auth[:credentials][:expires_at].to_s, "%s")
+    authorization.save
 
     render text: nil
   end
+
 
   private
 
