@@ -50,7 +50,6 @@ class App.FeedStreamer extends App.BaseStreamer
       .pipe @_parseJSONfromAPI
 
     get.done (obj) =>
-      console.log obj
       @nextup = obj
 
     get

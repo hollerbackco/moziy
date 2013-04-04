@@ -28,10 +28,13 @@ $ ->
         else
           @setupInvite()
 
-      if bootstrap.showWelcome? and bootstrap.showWelcome
-        App.modals.image.show("moziy is a nonstop feed of videos", "/assets/player/welcome.gif")
-
       @setupPlayer channel, bootstrap.first_airing_id
+
+      if bootstrap.showWelcome? and bootstrap.showWelcome
+        App.modals.multiImage.show()
+        Backbone.Events.on "player:ready", =>
+          App.vent.trigger "player:pause"
+          Backbone.Events.off "player:ready"
 
     navigate: (href, replace=false) ->
       if @navigateEnabled
@@ -100,6 +103,18 @@ $ ->
         invite:   new App.Views.InviteModal(el: "#invite-modal")
         channels:   new App.Views.ChannelListModal(el: "#channels-modal")
         image:   new App.Views.ImageModal(el: "#image-modal")
+
+      App.modals.multiImage = new App.Views.MultiimageModal
+        el: "#multiimage-modal",
+        title: "moziy is a nonstop feed of videos"
+        images: [
+          "/assets/player/welcome/1.gif"
+          "/assets/player/welcome/2.gif"
+          "/assets/player/welcome/3.gif"
+          "/assets/player/welcome/4.gif"
+          "/assets/player/welcome/5.gif"
+          "/assets/player/welcome/6.gif"
+        ]
 
 
     setupInvite: ->

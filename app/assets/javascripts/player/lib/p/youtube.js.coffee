@@ -55,6 +55,7 @@ class App.YouTubePlayer extends App.Player
     super()
 
   _onReady: =>
+    Backbone.Events.trigger "player:ready"
     if @volumeState
       @_player.unMute()
     else
@@ -68,9 +69,9 @@ class App.YouTubePlayer extends App.Player
       playerVars:
         'rel': 0,
         'controls': 0,
+        'autoplay': 1,
         'disablekb': 1,
         'enablejsapi': 1,
-        'autoplay': 1,
         'showinfo': 0,
         'modestbranding': 1,
         'fs': 0,

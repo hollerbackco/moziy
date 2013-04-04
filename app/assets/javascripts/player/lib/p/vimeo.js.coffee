@@ -52,12 +52,13 @@ class App.VimeoPlayer extends App.Player
     @_player.api_loadVideo @current_playing_id
 
   _onReady: =>
+    Backbone.Events.trigger "player:ready"
     @_player = $("#vimeo-dummy")[0]
     @_mute unless @volumeState
     @_player.api_addEventListener 'onFinish', "function(){App.playerManager.vimeoPlayer._onEnd()}"
 
   _bootstrap: ->
-    params = 
+    params =
       allowScriptAccess: "always"
       wmode: "transparent"
 

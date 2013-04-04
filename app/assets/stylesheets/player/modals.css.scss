@@ -257,15 +257,14 @@
     overflow: hidden;
     .close {
       float: right;
-      padding: 8px 10px;
-      font-size: 14px;
+      padding: 14px 14px;
+      font-size: 20px;
       font-weight: bold;
       cursor: pointer;
       position: absolute;
       color: #666;
       top: 0;
       right: 0;
-      background: #fff;
       border: 0;
       -webkit-box-shadow: inset 1px 0 0 rgba(255, 255, 255, .5);
       -moz-box-shadow: inset 1px 0 0 rgba(255,255,255,.5);
@@ -313,10 +312,16 @@
     }
   }
 
-  #image-modal {
+  #multiimage-modal {
     width: 800px;
     margin-left: -400px;
     top: 15%;
+
+
+    .footer {
+      padding: 10px;
+      text-align: right;
+    }
   }
 
   #channel-modal {
