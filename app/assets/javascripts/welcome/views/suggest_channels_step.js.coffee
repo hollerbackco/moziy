@@ -17,11 +17,12 @@ WelcomeApp.Views.SuggestChannelsStep = Backbone.View.extend
 
     @suggestChannelsList = new WelcomeApp.Views.SuggestChannelsList
       el: @$(".welcome-channel-list")
-      model: WelcomeApp.exploreChannels
+
+    _.each WelcomeApp.exploreChannels, (value, key) =>
+      @suggestChannelsList.append value, key
 
     @listenTo @suggestChannelsList, "channel:follow", @followOne
     @listenTo @suggestChannelsList, "channel:unfollow", @unfollowOne
-
 
     @$(".pin-top-container").waypoint (direction) =>
       scroll =  $("body").scrollTop()

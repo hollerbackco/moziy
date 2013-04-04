@@ -1,13 +1,19 @@
 class Channel < ActiveRecord::Base
   acts_as_paranoid
 
-  BEST_SLUGS = [ "devour", "theonion", "dudefood",
-            "thrashermagazine", "jayz", "vice",
-            "grantlandnetwork", "complexmagazine",
-            "coolhunting", "iamother", "ap", "aljazeeraenglish",
-            "theyoungturks", "lonelyplanet", "bbcearth", "networka",
-            "epicmealtime", "ellen", "teamcoco", "funnyordie", "collegehumor", "mentalfloss",
-            "bbc", "tedtalks", "asapscience", "minutephysics", "vsauce"]
+  BEST_SLUGS = {
+    news: ["ap", "aljazeeraenglish", "theyoungturks"],
+    travel: ["lonelyplanet", "bbcearth", "natgeo"],
+    sports: ["grantlandnetwork", "redbull", "networka", "thrashermagazine"],
+    culture: ["vice", "booooooom", "jayz", "coolhunting", "complexmagazine", "iamother"],
+    food: ["foodwishes", "dudefood", "epicmealtime", "bbcfood"],
+    science: ["vsauce", "minutephysics", "asapscience"],
+    knowledge: ["tedtalks", "bbc", "mentalfloss"],
+    music: ["pitchforktv", "noisey", "lablogotheque"],
+    humor: ["theonion", "collegehumor", "funnyordie"],
+    tv: ["jimmykimmellive", "teamcoco", "ellen"]
+  }
+
   belongs_to :creator, :class_name => "User"
 
   # airings
@@ -45,7 +51,11 @@ class Channel < ActiveRecord::Base
 
 
   def self.best
-    best = Channel.where(:slug => BEST_SLUGS)
+    channels = {}
+    BEST_SLUGS.each do |key, value|
+      channels[key] = Channel.where(:slug => value)
+    end
+    channels
   end
 
   def downcase_slug

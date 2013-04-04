@@ -21,13 +21,13 @@ class PagesController < ApplicationController
   end
 
   def welcome
-    best = Channel.best.omit_following current_user
+    #best = Channel.best.omit_following current_user
 
-    if logged_in?
-      explore = Channel.explore_for(current_user).publik.limit(30)
-    end
+    #if logged_in?
+      #explore = Channel.explore_for(current_user).publik.limit(30)
+    #end
 
-    @explore = (best + explore).uniq
+    @explore = Channel.best
 
     render :layout => "noheader"
   end

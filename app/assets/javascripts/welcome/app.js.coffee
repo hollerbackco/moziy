@@ -11,7 +11,10 @@ $ ->
       @setupConfig bootstrap.config
       @setupAnalytics()
       @currentUser = new App.Models.CurrentUser bootstrap.currentUser
-      @exploreChannels = new App.Models.Channels bootstrap.exploreChannels
+      @exploreChannels = {}
+      _.map bootstrap.exploreChannels, (channels, key) =>
+        @exploreChannels[key] = new App.Models.Channels(channels)
+      #@exploreChannels = new App.Models.Channels bootstrap.exploreChannels
       @setupViews()
 
       WelcomeApp.vent.on "channel:follow", @follow, this

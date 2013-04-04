@@ -60,12 +60,15 @@ WelcomeApp.Views.FindFriendsStep = Backbone.View.extend
 
     promise.done (channels) =>
       @$findingLoader.hide()
-      @showChannels channels, @$(".welcome-channel-list").hide()
+      if channels.length > 0
+        @showChannels channels, @$(".welcome-channel-list").hide()
+      else
+        @$("#find-friends").append "<p>it looks like you're the first to join moziy. invite your friends!</p>"
 
   openJsWindow: ->
     url    = "/auth/google_oauth2"
     width  = 575
-    height = 400
+    height = 500
     left   = ($(window).width()  - width)  / 2
     top    = ($(window).height() - height) / 2
     opts   = 'status=1' +
