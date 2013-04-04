@@ -7,7 +7,7 @@
 
   :javascript
     bootstrap.config = {
-      followCount: #{(current_user.following_channels.count < 5) ? (5 - current_user.following_channels.count) : 0}
+      followCount: #{5 - current_user.following_channels.count}
     };
 
   :javascript
