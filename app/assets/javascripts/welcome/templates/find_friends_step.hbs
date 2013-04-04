@@ -32,7 +32,7 @@
     </div>
   </div>
   <div id="find-friends">
-    <div class="from-gmail button primary">connect to gmail</div>
+    <div class="from-gmail button primary" onclick="WelcomeApp.jsWindow = window.open('/auth/google_oauth2'); WelcomeApp.vent.trigger('gmail:connect'); false">connect to gmail</div>
     <ul class="welcome-channel-list list clearfix">
     </ul>
   </div>

@@ -9,9 +9,10 @@ WelcomeApp.Views.FindFriendsStep = Backbone.View.extend
     _.bindAll this, "gmail", "openJsWindow"
     @render()
 
+    @listenTo WelcomeApp.vent, "gmail:connect", @gmail
+
   events:
     "click #next-button":  "next"
-    "click .from-gmail":   "gmail"
     "click .cancel":       "reset"
 
   render: ->
@@ -28,9 +29,9 @@ WelcomeApp.Views.FindFriendsStep = Backbone.View.extend
 
   reset: ->
     clearTimeout @polling
-    if @jsWindow?
-      @jsWindow.close()
-      @jsWindow = null
+    if WelcomeApp.jsWindow?
+      WelcomeApp.jsWindow.close()
+      WelcomeApp.jsWindow = null
     @$authenticatingLoader.hide()
     @$findingLoader.hide()
     @$connectButton.show()
@@ -42,14 +43,12 @@ WelcomeApp.Views.FindFriendsStep = Backbone.View.extend
         @$findingLoader.show()
         @$connectButton.hide()
 
-        if @jsWindow?
-          @jsWindow.close()
-          @jsWindow = null
+        if WelcomeApp.jsWindow?
+          WelcomeApp.jsWindow.close()
+          WelcomeApp.jsWindow = null
 
         @getContacts()
       else
-        if !@jsWindow?
-          @openJsWindow()
         @$authenticatingLoader.show()
         @$connectButton.hide()
 
@@ -67,17 +66,8 @@ WelcomeApp.Views.FindFriendsStep = Backbone.View.extend
 
   openJsWindow: ->
     url    = "/auth/google_oauth2"
-    width  = 575
-    height = 500
-    left   = ($(window).width()  - width)  / 2
-    top    = ($(window).height() - height) / 2
-    opts   = 'status=1' +
-      ',width='  + width  +
-      ',height=' + height +
-      ',top='    + top    +
-      ',left='   + left
 
-    @jsWindow = window.open(url, 'twitter', opts)
+    WelcomeApp.jsWindow = window.open(url)
 
     false
 

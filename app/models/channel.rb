@@ -2,16 +2,17 @@ class Channel < ActiveRecord::Base
   acts_as_paranoid
 
   BEST_SLUGS = {
-    news: ["ap", "aljazeeraenglish", "theyoungturks"],
-    travel: ["lonelyplanet", "bbcearth", "natgeo"],
-    sports: ["grantlandnetwork", "redbull", "networka", "thrashermagazine"],
-    culture: ["vice", "booooooom", "jayz", "coolhunting", "complexmagazine", "iamother"],
-    food: ["foodwishes", "dudefood", "epicmealtime", "bbcfood"],
-    science: ["vsauce", "minutephysics", "asapscience"],
-    knowledge: ["tedtalks", "bbc", "mentalfloss"],
-    music: ["pitchforktv", "noisey", "lablogotheque"],
-    humor: ["theonion", "collegehumor", "funnyordie"],
-    tv: ["jimmykimmellive", "teamcoco", "ellen"]
+    :news => ["ap", "aljazeeraenglish", "theyoungturks"],
+    "best of the web" => ["devour", "laughingsquid"],
+    :travel => ["lonelyplanet", "bbcearth", "natgeo"],
+    :sports => ["grantlandnetwork", "redbull", "networka", "thrashermagazine"],
+    :culture => ["vice", "booooooom", "jayz", "coolhunting", "complexmagazine", "iamother"],
+    :food => ["foodwishes", "dudefood", "epicmealtime", "bbcfood"],
+    :science => ["vsauce", "minutephysics", "asapscience"],
+    :knowledge => ["tedtalks", "bbc", "mentalfloss"],
+    :music => ["pitchforktv", "noisey", "lablogotheque"],
+    :humor => ["theonion", "collegehumor", "funnyordie"],
+    :tv => ["jimmykimmellive", "teamcoco", "ellen"]
   }
 
   belongs_to :creator, :class_name => "User"
