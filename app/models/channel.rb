@@ -6,7 +6,7 @@ class Channel < ActiveRecord::Base
             "grantlandnetwork", "complexmagazine",
             "coolhunting", "iamother", "ap", "aljazeeraenglish",
             "theyoungturks", "lonelyplanet", "bbcearth", "networka",
-            "epicmealtime", "ellen", "teamcoco", "funnyordie", "collegehumor", "mentalfloss"
+            "epicmealtime", "ellen", "teamcoco", "funnyordie", "collegehumor", "mentalfloss",
             "bbc", "tedtalks", "asapscience", "minutephysics", "vsauce"]
   belongs_to :creator, :class_name => "User"
 
