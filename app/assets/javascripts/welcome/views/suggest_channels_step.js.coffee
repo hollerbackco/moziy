@@ -55,16 +55,18 @@ WelcomeApp.Views.SuggestChannelsStep = Backbone.View.extend
 
     if @counter > WelcomeApp.config.followCount - 1
       @onComplete()
-
-    @updateMessage @message()
+      @updateMessage ""
+    else
+      @updateMessage @message()
 
   unfollowOne: ->
     @counter--
 
     if @counter < WelcomeApp.config.followCount
       @onIncomplete()
-
-    @updateMessage @message()
+      @updateMessage @message()
+    else
+      @updateMessage ""
 
   _followsLeft: ->
     total = WelcomeApp.config.followCount || 0

@@ -106,7 +106,7 @@ $ ->
 
       App.modals.multiImage = new App.Views.MultiimageModal
         el: "#multiimage-modal",
-        title: "moziy is a nonstop feed of videos"
+        title: "welcome. moziy is a nonstop feed of videos curated by streams you follow."
         images: [
           "/assets/player/welcome/1.gif"
           "/assets/player/welcome/2.gif"
