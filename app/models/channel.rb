@@ -4,7 +4,10 @@ class Channel < ActiveRecord::Base
   BEST_SLUGS = [ "devour", "theonion", "dudefood",
             "thrashermagazine", "jayz", "vice",
             "grantlandnetwork", "complexmagazine",
-            "coolhunting", "iamother"]
+            "coolhunting", "iamother", "ap", "aljazeeraenglish",
+            "theyoungturks", "lonelyplanet", "bbcearth", "networka",
+            "epicmealtime", "ellen", "teamcoco", "funnyordie", "collegehumor", "mentalfloss"
+            "bbc", "tedtalks", "asapscience", "minutephysics", "vsauce"]
   belongs_to :creator, :class_name => "User"
 
   # airings
