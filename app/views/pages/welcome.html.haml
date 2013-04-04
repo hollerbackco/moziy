@@ -5,11 +5,10 @@
       exploreChannels: #{@explore.as_json(methods: [:channel_subscribers_count]).to_json}
     };
 
-  - if current_user.following_channels.count < 5
-    :javascript
-      bootstrap.config = {
-        followCount: #{5 - current_user.following_channels.count}
-      };
+  :javascript
+    bootstrap.config = {
+      followCount: #{(current_user.following_channels.count < 5) ? (5 - current_user.following_channels.count) : 0}
+    };
 
   :javascript
     $(document).ready(function() {

@@ -22,7 +22,6 @@ WelcomeApp.Views.SuggestChannelItem = Backbone.View.extend
       @$el.prepend span
 
     if WelcomeApp.currentUser? and WelcomeApp.currentUser.isFollowing(@model)
-      console.log "hello"
       @_followClicked()
 
   follow: ->

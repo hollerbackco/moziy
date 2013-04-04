@@ -36,7 +36,7 @@ WelcomeApp.Views.SuggestChannelsStep = Backbone.View.extend
             @$el.removeClass("pin-top-bar")
             @$next.fadeIn(200)
 
-    if WelcomeApp.config.followCount?
+    if WelcomeApp.config.followCount? and WelcomeApp.config.followCount > 0
       @updateMessage "welcome. please follow #{WelcomeApp.config.followCount} streams below"
       @$nextBtn.hide()
 
