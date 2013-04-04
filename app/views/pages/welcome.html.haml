@@ -1,7 +1,7 @@
 - content_for :footer do
   :javascript
     var bootstrap = {
-      currentUser: #{current_user_json},
+      currentUser: #{current_user_json(current_user.following_channels)},
       exploreChannels: #{@explore.as_json(methods: [:channel_subscribers_count]).to_json}
     };
 
@@ -9,7 +9,6 @@
     :javascript
       bootstrap.config = {
         followCount: #{5 - current_user.following_channels.count}
-
       };
 
   :javascript
