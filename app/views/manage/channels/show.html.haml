@@ -14,5 +14,5 @@
 :javascript
   $(".videos").sortable({items: ".video", axis: "y", cursor: "move",
     update: function() {
-      $.post("/me/channels/#{@channel.id}/videos/sort", "_method=put&"+ $(this).sortable("serialize"))
+      $.post("/me/streams/#{@channel.id}/videos/sort", "_method=put&"+ $(this).sortable("serialize"))
     }})
