@@ -13,7 +13,6 @@
       mixpanel.track("User:Signup")
   - else
     :javascript
-      mixpanel.alias(#{current_user.id})
       mixpanel.identify(#{current_user.id})
 
   :javascript
