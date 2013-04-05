@@ -21,6 +21,7 @@ App.Views.CurrentSharing = Backbone.View.extend
     App.vent.trigger "modals:share", @model
 
   shareTw: (event) ->
+    App.analytics.vent.trigger "airing:share", @model, "twitter"
     event.preventDefault()
     href = @$(".share-tw").attr("href")
     @_jsPopup href
@@ -35,10 +36,10 @@ App.Views.CurrentSharing = Backbone.View.extend
 
     FB.ui obj, (response) =>
       if response and response.post_id
-        App.analytics.vent.trigger "airing:share", @model
+        App.analytics.vent.trigger "airing:share", @model, "facebook"
         App.vent.trigger "notice", "post was published"
       else
-        App.vent.trigger "error", 'Post was not published.'
+        App.vent.trigger "error", 'post was not published.'
 
 
   _jsPopup: (url) ->

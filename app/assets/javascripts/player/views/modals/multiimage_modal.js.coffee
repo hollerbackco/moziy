@@ -32,7 +32,6 @@ App.Views.MultiimageModal = App.Views.ImageModal.extend
     @$el.modal("show")
 
   onClose: ->
-    console.log "hello"
     App.vent.trigger "player:pause"
 
   next: ->
