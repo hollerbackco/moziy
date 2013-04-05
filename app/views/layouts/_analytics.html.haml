@@ -33,10 +33,10 @@
   _gaq.push(['_setAccount', "#{Rails.configuration.ga_key}"]);
   _gaq.push(['_trackPageview']);
 
-  _gaq.push(['_setCustomVar', 1, 'Logged in', <%= current_user.blank? ? "'no'" : "'yes'" %>, 2]);
-  _gaq.push(['_setCustomVar', 2, 'Member', <%= current_user.blank? ? "'no'" : "'yes'" %>, 1]);
-  _gaq.push(['_setCustomVar', 3, 'Join month', <%= current_user.blank? ? "'0'" : "'#{current_user.created_at.month}'" %>, 1]);
-  _gaq.push(['_setCustomVar', 4, 'Join year', <%= current_user.blank? ? "'0'" : "'#{current_user.created_at.year}'" %>, 1]);
+  _gaq.push(['_setCustomVar', 1, 'Logged in', #{ current_user.blank? ? "'no'" : "'yes'" }, 2]);
+  _gaq.push(['_setCustomVar', 2, 'Member', #{ current_user.blank? ? "'no'" : "'yes'" }, 1]);
+  _gaq.push(['_setCustomVar', 3, 'Join month', #{ current_user.blank? ? "'0'" : "'#{current_user.created_at.month}'" }, 1]);
+  _gaq.push(['_setCustomVar', 4, 'Join year', #{ current_user.blank? ? "'0'" : "'#{current_user.created_at.year}'" }, 1]);
 
   (function() {
     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
