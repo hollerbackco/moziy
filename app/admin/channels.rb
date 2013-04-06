@@ -13,5 +13,7 @@ ActiveAdmin.register Channel do
     column :channel_invites do |channel|
       channel.channel_invites.count
     end
+
+    default_actions
   end
 end

@@ -11,17 +11,14 @@ class Feed < ActiveRecord::Base
   validates :slug, presence: true, uniqueness: {scope: [:feed_type, :source_name, :source_url]}
   validates :feed_type, presence: true
 
-  before_create :channel
+  before_create :create_channel
 
   def user
     user = Channel.default.creator
   end
 
   def channel
-    @channel = user.channels.where(slug: slug).first_or_create do |channel|
-      channel.slug = slug
-      channel.title = slug
-    end
+    @channel = user.channels.where(slug: slug).first
   end
 
   def feed_performer
@@ -38,4 +35,13 @@ class Feed < ActiveRecord::Base
   end
 
   class InvalidFeedType < StandardError; end
+
+  def create_channel
+    if channel.blank?
+      @channel = user.channels.create do |channel|
+        channel.slug = slug
+        channel.title = slug
+      end
+    end
+  end
 end

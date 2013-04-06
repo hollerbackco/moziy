@@ -4,9 +4,11 @@ ActiveAdmin.register Feed do
     column :slug
     column :source_name
     column :source_url
-    column :channel_slug do |feed|
+    column :airings_count do |feed|
       feed.channel.airings.count
     end
+
+    default_actions
   end
   form do |f|
     f.inputs "Channel Slug" do
