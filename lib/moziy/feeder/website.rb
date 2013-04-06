@@ -11,17 +11,21 @@ module Moziy
 
       doc = Nokogiri::HTML(open(entry.url.to_s))
 
-      src = doc.search("iframe").attribute("src")
+      iframe = doc.search("iframe")
 
-      puts src.to_s
-      feed_params = {
-        :channel_slug => @channel.slug,
-        :url => src.to_s,
-        :content => entry.summary,
-        :created_at => entry.published
-      }
+      if iframe
+        src = iframe.attribute("src")
+        puts src.to_s
 
-      Delayed::Job.enqueue AddVideoFromFeedJob.new([feed_params])
+        feed_params = {
+          :channel_slug => @channel.slug,
+          :url => src.to_s,
+          :content => entry.summary,
+          :created_at => entry.published
+        }
+
+        Delayed::Job.enqueue AddVideoFromFeedJob.new([feed_params])
+      end
     end
 
     def source
