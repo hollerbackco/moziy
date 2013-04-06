@@ -5,7 +5,9 @@ App.Views.RemoteControlPane = Backbone.View.extend
     #"click .add"  : "showAdd"
     "click .login": "showLogin"
     "click .channels-modal": "showChannels"
+    "click .help-modal": "showHelp"
     "click .invite": "showInvite"
+    "click .remote-contro": "showInvite"
 
   initialize: ->
     @listenTo App.vent, "login", @login
@@ -32,6 +34,9 @@ App.Views.RemoteControlPane = Backbone.View.extend
 
   showChannels: ->
     App.vent.trigger "modals:channels"
+
+  showHelp: ->
+    App.vent.trigger "modals:multiimage"
 
   showAdd: ->
     App.vent.trigger "modals:add"

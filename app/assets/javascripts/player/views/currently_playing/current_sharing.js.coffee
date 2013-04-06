@@ -41,7 +41,6 @@ App.Views.CurrentSharing = Backbone.View.extend
       else
         App.vent.trigger "error", 'post was not published.'
 
-
   _jsPopup: (url) ->
     width  = 575
     height = 400
