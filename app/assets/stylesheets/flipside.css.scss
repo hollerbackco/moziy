@@ -9,12 +9,6 @@ html {
   margin: 0;
   height: 100%;
   width: 100%;
-  min-width: 1100px;
-
-  .header {
-    h1,h2 { text-align: center;}
-    h2 { font-size: 15px; font-weight: normal }
-  }
 
   .strong {
     font-weight: bold !important;
@@ -32,46 +26,12 @@ html {
     margin: 20px 0;
   }
 
-  #remote-control-pane {
-    position: absolute;
-    background: #fafafa;
-    top: 0;
-    width: 250px;
-    right: 0;
-    bottom: 0;
-    overflow-y: auto;
-
-    #my-channels {
-      position: absolute;
-      top: 0;
-      width: 100%;
-      bottom: 50px;
-      overflow: scroll;
-      margin-bottom: 0;
-    }
-
-    .explore {
-      position: absolute;
-      bottom: 0;
-      padding: 15px 0;
-      height: 20px;
-      text-align: center;
-      width: 100%;
-
-      a {
-        display: block;
-        font-weight: bold;
-      }
-    }
-  }
-
   #stage {
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
     left: 0;
-    margin-right: 250px;
     padding: 0 20px;
     border-right: 1px solid #ccc;
     overflow-y: scroll;
@@ -169,67 +129,15 @@ html {
     }
   }
 
-  .session {
-    float: right;
-
-    li {
-      margin-left: 20px;
-      margin-right: 0px;
-    }
-  }
 
   .container {
-    width: 860px;
+    width: 940px;
     margin: 0 auto;
-  }
-
-  header {
-    padding: 30px 0;
-
-    h1 {
-      float: left;
-      font-weight: bold;
-      font-size: 100%;
-      margin: 0;
-      margin-right: 20px;
-
-      a {
-        text-indent: -9999px;
-        display: block;
-        width: 100px;
-        padding-right: 0;
-        height: 23px;
-        background: image-url('moziy-logo.png');
-      }
-
-    }
-
-    nav {
-      float: left;
-
-      ul {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-
-        li {
-          float: left;
-          margin-left: 0px;
-          margin-right: 20px;
-
-          .button {
-            position: relative;
-            top: -4px;
-            text-decoration: none;
-          }
-        }
-      }
-    }
   }
 
   section#sidebar {
     float: left;
-    width: 200px;
+    width: 250px;
   }
 
   .sidebar-menu {
@@ -291,6 +199,7 @@ html {
         }
 
         .count {
+          font-weight: normal;
           color: #333;
           float: right;
         }
@@ -314,8 +223,8 @@ html {
 
   #cover-art {
     position: relative;
-    height: 200px;
-    width: 200px;
+    height: 120px;
+    width: 120px;
 
     .add-image-alert {
       display: block;
@@ -324,7 +233,7 @@ html {
       right: 0;
       margin: 10px;
       padding: 10px;
-      width: 160px;
+      width: 80px;
       text-align: center;
       font-weight: bold;
       background: rgba(255,255,255,.95);
@@ -333,9 +242,32 @@ html {
   }
 
   section#main-content {
-    margin-left: 200px;
+    margin-left: 250px;
     padding-left: 30px;
     overflow-y: hidden;
+
+    header.channel-header {
+      padding-top: 0;
+      padding-bottom: 0;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+
+      #cover-art {
+        float: left;
+        margin-right: 20px;
+      }
+
+      .name {
+        padding-top: 15px;
+        font-size: 36px;
+        a { font-weight: bold }
+      }
+      .address {
+        font-size: 16px;
+        a { color: #999; }
+      }
+
+    }
 
     form:not(.horizontal-form) {
       margin-top: 20px;

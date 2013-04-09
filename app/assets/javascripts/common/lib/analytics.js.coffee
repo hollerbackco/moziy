@@ -35,15 +35,18 @@ class App.Analytics
     mixpanel.track "UI:MyChannels"
 
   airingAdd: (airing) ->
+    _gaq.push ['_trackEvent', 'Videos', 'Add']
     mixpanel.track "Add:Video"
 
   airingShare: (airing, shareType) ->
+    _gaq.push ['_trackEvent', 'Videos', 'Share', shareType]
     mixpanel.track "Video:Share",
       slug: airing.get("channel").slug
       video: airing.get("title")
       share_type: shareType
 
   airingLike: (airing) ->
+    _gaq.push ['_trackEvent', 'Videos', 'Like']
     mixpanel.track "Video:Like",
       slug: airing.get("channel").slug
       video: airing.get("title")
@@ -52,6 +55,7 @@ class App.Analytics
       note_count: airing.get("note_count")
 
   airingRestream: (airing) ->
+    _gaq.push ['_trackEvent', 'Videos', 'Restream']
     mixpanel.track "Video:Restream",
       slug: airing.get("channel").slug
       video: airing.get("title")
@@ -60,6 +64,7 @@ class App.Analytics
       note_count: airing.get("note_count")
 
   feedWatch: ->
+    _gaq.push ['_trackEvent', 'Videos', 'Watching']
     mixpanel.track "Feed:Watch"
 
   channelWatch: (channel) ->
@@ -73,8 +78,8 @@ class App.Analytics
       id: channel.get("id")
 
   userSignup: ->
-    mixpanel.track "User:Signup"
     _gaq.push ['_trackEvent', 'User', 'Signup']
+    mixpanel.track "User:Signup"
 
   inviteRequest: ->
     mixpanel.track "Invite:Request"

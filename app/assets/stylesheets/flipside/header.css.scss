@@ -1,0 +1,86 @@
+#flipside {
+  .header {
+    h1,h2 { text-align: center;}
+    h2 { font-size: 15px; font-weight: normal }
+  }
+
+  header {
+    padding: 30px 0;
+
+    h1 {
+      float: left;
+      font-weight: bold;
+      font-size: 100%;
+      margin: 0;
+      margin-right: 20px;
+
+      a {
+        text-indent: -9999px;
+        display: block;
+        width: 100px;
+        padding-right: 0;
+        height: 23px;
+        background: image-url('moziy-logo.png');
+      }
+
+    }
+
+    .session {
+      float: right;
+
+      li {
+        margin-left: 5px;
+        margin-right: 0px;
+
+        a {
+          display: block;
+        }
+      }
+
+      li.stream-selector {
+        border: 1px solid #ddd;
+        white-space: nowrap;
+        position: relative;
+        padding-right: 49px;
+        height: 48px;
+
+        .stream-name {
+          padding: 0 20px;
+          line-height: 48px;
+          font-size: 16px;
+          font-weight: bold;
+          color: #888;
+        }
+
+        i {
+          position: absolute;
+          border-left: 1px solid #eee;
+          right: 0;
+          top: 0;
+        }
+      }
+    }
+
+    nav {
+      float: left;
+
+      ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+
+        li {
+          float: left;
+          margin-left: 0px;
+          margin-right: 10px;
+
+          .button {
+            position: relative;
+            top: -4px;
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+}

@@ -12,13 +12,6 @@
 
   %body#flipside{:class => body_id}
     = render "layouts/facebook"
-    #remote-control-pane
-      %ul#my-channels.sidebar-menu.light
-        %li.title.menu-item.strong= "Watch Streams"
-        = render partial: "layouts/application/sidebar_channel_item",
-            collection: @channels,
-            as: :channel
-      .explore= link_to "discover more streams", welcome_path, class: "blue"
     #stage
       .container
         %header.clearfix
@@ -26,8 +19,24 @@
           %nav.session
             %ul
               - if logged_in?
-                %li= link_to 'Settings', manage_settings_path
-                %li= link_to 'Log out', logout_path
+                %li.stream-selector.clearfix
+                  %i.header-more
+                  = link_to manage_settings_path, class: "stream-name" do
+                    = "/more"
+                  %ul#menu-options.sidebar-menu{style: "display: none"}
+                    %li.menu-item
+                      = link_to manage_likes_path do
+                        %i.like
+                        = "Liked #{current_user.likes.count} Videos"
+                    %li.menu-item= link_to "Create a New Stream", new_manage_channel_path
+                %li
+                  = link_to manage_settings_path do
+                    -#Settings
+                    %i.header-settings
+                %li
+                  = link_to logout_path do
+                    -#Log out
+                    %i.header-logout
               - else
                 %li= link_to 'Log in', login_path
                 %li= link_to 'Join', root_path
@@ -35,17 +44,5 @@
           %section#sidebar
             - if content_for? :sidebar
               = content_for :sidebar
-            %ul#menu-options.sidebar-menu
-              %li.menu-item
-                = link_to manage_likes_path do
-                  %i.like
-                  = "Liked #{current_user.likes.count} Videos"
-            %ul.sidebar-menu
-              - for channel in (current_user.managing_channels - [@channel])
-                %li.menu-item
-                  = link_to manage_channel_activities_path(channel) do
-                    = image_tag channel.cover_art_url(:thumb_favicon), width: 18, height: 18
-                    = "/#{channel.slug}"
-              %li.menu-item= link_to "Create a New Stream", new_manage_channel_path
           %section#main-content
             = yield

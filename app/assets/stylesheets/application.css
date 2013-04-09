@@ -3,6 +3,7 @@
  *= require grid
  *= require typo
  *= require common
+ *= require_tree ./flipside
  *= require flipside
  *= require remote_control
  *= require welcome

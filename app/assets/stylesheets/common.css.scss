@@ -247,6 +247,24 @@ height: 18px;
   height: 36px;
 }
 
+&.header-logout {
+  width: 48px;
+  height: 48px;
+  background: transparent image-url("icons/header/icon-logout-48.png") top center no-repeat;
+}
+
+&.header-more {
+  width: 48px;
+  height: 48px;
+  background: transparent image-url("icons/header/icon-more-48.png") top center no-repeat;
+}
+
+&.header-settings {
+  width: 48px;
+  height: 48px;
+  background: transparent image-url("icons/header/icon-settings-48.png") top center no-repeat;
+}
+
 &.restream {
   background: transparent image-url("icons/left_sprite.png") top center no-repeat;
 }
