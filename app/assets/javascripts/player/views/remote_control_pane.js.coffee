@@ -12,7 +12,7 @@ App.Views.RemoteControlPane = Backbone.View.extend
   initialize: ->
     @listenTo App.vent, "login", @login
 
-    @$el.html "<div class=\"logo-moziy invite\">mosey</div>"
+    @$el.html "<h1 id=\"mosey\" class=\"invite\"><a href=\"http://www.moziy.com\">mosey</a></div>"
 
   render: ->
     @$el.html @template()
