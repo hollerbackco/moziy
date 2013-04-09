@@ -3,6 +3,7 @@ App.Views.InviteModal = Backbone.View.extend
 
   events:
     "submit form": "invite"
+    "click .no-thanks": "close"
 
   initialize: ->
     _.bindAll this, "show", "close", "invite", "_showErrors", "_success", "_validateForm"

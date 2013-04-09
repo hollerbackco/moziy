@@ -239,6 +239,17 @@
       label {
         margin-top: 0;
       }
+
+      .no-thanks {
+        float: left;
+        padding-top: 8px;
+        color: #999;
+        cursor:pointer;
+
+        &:hover {
+          color: #333;
+        }
+      }
     }
   }
 
