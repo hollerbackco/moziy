@@ -15,13 +15,18 @@ App.Views.InviteModal = Backbone.View.extend
 
     @$el.html @template()
     @$errors = @$("#request-invite-errors")
+    @$el.on "hidden", @onClose
 
   show: ->
+    App.vent.trigger "player:pause"
     App.vent.trigger "modals:close"
     @$el.modal("show")
 
   close: ->
     @$el.modal("hide")
+
+  onClose: ->
+    App.vent.trigger "player:pause"
 
   invite:(e) ->
     e.preventDefault()

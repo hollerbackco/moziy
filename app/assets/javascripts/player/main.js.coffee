@@ -20,6 +20,7 @@ $ ->
       @setupKeyboard()
 
       App.controller = new App.Controllers.MainController()
+      @setupPlayer channel, bootstrap.first_airing_id
 
       if App.currentUser? and App.currentUser.loggedIn()
         App.vent.trigger "login", App.currentUser
@@ -27,8 +28,11 @@ $ ->
         if bootstrap.noInvite? and bootstrap.noInvite
         else
           @setupInvite()
+          App.modals.invite.show()
+          Backbone.Events.on "player:ready", =>
+            App.vent.trigger "player:pause"
+            Backbone.Events.off "player:ready"
 
-      @setupPlayer channel, bootstrap.first_airing_id
 
       if bootstrap.showWelcome? and bootstrap.showWelcome
         App.modals.multiImage.show()

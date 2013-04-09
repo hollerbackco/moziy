@@ -34,7 +34,8 @@ class App.VimeoPlayer extends App.Player
     @_player.api_play() if @_player?
 
   _pause: ->
-    @_player.api_pause() if @_player?
+    if @_player?
+      @_player.api_pause()
 
   _stop: ->
     @_player.api_unload() if @_player?
@@ -52,7 +53,6 @@ class App.VimeoPlayer extends App.Player
     @_player.api_loadVideo @current_playing_id
 
   _onReady: =>
-    Backbone.Events.trigger "player:ready"
     @_player = $("#vimeo-dummy")[0]
     @_mute unless @volumeState
     @_player.api_addEventListener 'onFinish', "function(){App.playerManager.vimeoPlayer._onEnd()}"
@@ -66,7 +66,7 @@ class App.VimeoPlayer extends App.Player
       clip_id: @current_playing_id
       color: "000000"
       portrait: 0
-      autoplay: 1
+      autoplay: 0
       byline: 0
       title: 0
       fullscreen: 0
@@ -78,3 +78,8 @@ class App.VimeoPlayer extends App.Player
     window.onVimeoPlayerLoaded = =>
       @_onReady()
       @_unMute()
+      @_play()
+      #todo dont use interval
+      window.setInterval ->
+        Backbone.Events.trigger "player:ready"
+      , 1000

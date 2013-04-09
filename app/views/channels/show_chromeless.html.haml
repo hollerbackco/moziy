@@ -1,6 +1,6 @@
 #mute.on.chromeless
-#invite-modal.modal
-#player
+-##invite-modal.modal
+#player.chromeless
   #youtube-player.player
     .mask
   #vimeo-player.player
@@ -9,12 +9,11 @@
 
 :javascript
   $(document).ready(function() {
-    var channel = new App.Models.Channel(#{@channel.to_json})
 
     var bootstrap = {
-      channel: channel,
+      channel: #{@channel.to_json},
       noInvite: true
-    }
+    };
 
     App.initialize(bootstrap);
   });

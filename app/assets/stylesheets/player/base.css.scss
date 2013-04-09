@@ -142,6 +142,10 @@ html,body {
     bottom: 60px;
   }
 
+  #player.chromeless {
+    bottom: 0;
+  }
+
 
   .player {
     display: none;
