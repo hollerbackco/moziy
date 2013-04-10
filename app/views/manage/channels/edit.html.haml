@@ -1,5 +1,14 @@
 - content_for :sidebar do
-  = render :partial => 'manage/channels/channel_menu'
+  %ul#secondary-menu.sidebar-menu.clearfix
+    %li.channel-item.menu-item
+      = link_to manage_settings_path do
+        Account Settings
+  %ul#secondary-menu.sidebar-menu.clearfix
+    - current_user.channels.each do |channel|
+      %li.channel-item.menu-item
+        = link_to edit_manage_channel_path(channel) do
+          = image_tag channel.cover_art_url(:thumb_favicon), width: 16, height: 16
+          = "/#{channel.slug}"
 #video-manage
   #main-content
     = render 'form'

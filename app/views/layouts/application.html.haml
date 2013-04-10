@@ -21,8 +21,11 @@
               - if logged_in?
                 %li.stream-selector.dropdown.clearfix
                   %i.header-more.dropdown-toggle
-                  = link_to manage_settings_path, class: "stream-name" do
-                    = "/more"
+                  .stream-name
+                    - if @channel.present?
+                      = "/#{@channel.slug}"
+                    - else
+                      = "your channels"
                   %ul.submenu
                     - current_user.managing_channels.each do |channel|
                       %li.channel-item.menu-item
