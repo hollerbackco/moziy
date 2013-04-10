@@ -6,3 +6,5 @@
   %ul.members.items
     = render partial: "manage/memberships/member", locals: {member: @channel.creator}
     = render partial: "manage/memberships/member", collection: @members, as: :member
+:javascript
+  mixpanel.track("Manage:Channel:Members");

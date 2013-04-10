@@ -3,3 +3,5 @@
 - if @videos.blank?
   .nobody
     Go like some videos.
+:javascript
+  mixpanel.track("Manage:Likes");

@@ -30,3 +30,5 @@
           = check_box_tag "user[preferences][#{key}]", "1", value.to_i == 1
     .actions
       = f.submit :update, class: "button primary"
+:javascript
+  mixpanel.track("Manage:Settings");

@@ -2,13 +2,5 @@
   - if @channels.any?
     %ul.members.channels.items
       = render partial: "manage/followers/channel", collection: @channels, as: :channel
-  - else
-    %h1.empty
-      - if @channel.airings.any?
-        when someone follows this stream,
-        %br
-        you'll see it here
-      - else
-        0 followers
-        %br
-        add videos to get more followers
+:javascript
+  mixpanel.track("Manage:Following");

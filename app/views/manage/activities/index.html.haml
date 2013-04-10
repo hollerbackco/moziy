@@ -16,4 +16,5 @@
       - for activity in @activities
         = render partial: "manage/common/activities/#{activity.event_type}",
           locals: {activity: activity}
-
+:javascript
+  mixpanel.track("Manage:Channel:Activities");
