@@ -38,7 +38,7 @@
       }
 
       li.stream-selector {
-        pointer: cursor;
+        cursor: pointer;
         border: 1px solid #ddd;
         white-space: nowrap;
         position: relative;
@@ -58,6 +58,10 @@
           border-left: 1px solid #eee;
           right: 0;
           top: 0;
+        }
+
+        &:hover {
+          border: 1px solid #bbb;
         }
       }
     }
