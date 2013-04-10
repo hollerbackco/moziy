@@ -1,4 +1,5 @@
 #members-manage
+  %h1 Following
   - if @channels.any?
     %ul.members.channels.items
       = render partial: "manage/followers/channel", collection: @channels, as: :channel

@@ -18,5 +18,4 @@ class Manage::FollowersController < Manage::BaseController
   def channel
     @channel ||= Channel.find_by_slug!(params[:channel_id])
   end
-
 end
