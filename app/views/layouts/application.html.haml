@@ -21,7 +21,7 @@
               - if logged_in?
                 %li.stream-selector.dropdown.clearfix
                   %i.header-more.dropdown-toggle
-                  .stream-name
+                  .stream-name.dropdown-toggle
                     - if @channel.present?
                       = "/#{@channel.slug}"
                     - else
