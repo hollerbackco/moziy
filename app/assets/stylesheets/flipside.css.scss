@@ -26,6 +26,13 @@ html {
     margin: 20px 0;
   }
 
+  .watch-moziy-button {
+    display: block;
+    background: image-url('watch-button.png');
+    width: 187px;
+    height: 48px;
+  }
+
   #stage {
     position: absolute;
     top: 0;

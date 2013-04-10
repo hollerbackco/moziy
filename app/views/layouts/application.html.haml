@@ -18,6 +18,9 @@
           %h1= link_to "mosey", manage_channel_path(current_user.primary_channel)
           %nav.session
             %ul
+              %li
+                = link_to feed_path do
+                  %i.watch-moziy-button
               - if logged_in?
                 %li.stream-selector.dropdown.clearfix
                   %i.header-more.dropdown-toggle

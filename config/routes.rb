@@ -44,7 +44,7 @@ Puretv::Application.routes.draw do
     resources :likes, :only => [:index, :show, :create, :destroy]
     resources :airings, :only => [:show]
 
-    get "feed/first", :to => "feed#first"
+    get "feed/first",    :to => "feed#first"
     get "feed/:id/next", :to => "feed#next"
 
     get "lookup/:provider", :to => "contacts#lookup"
