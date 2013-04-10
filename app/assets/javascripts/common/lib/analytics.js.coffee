@@ -24,9 +24,19 @@ class App.Analytics
     "welcome:add:complete":    "welcomeAddComplete"
     "welcome:follow":          "welcomeFollow"
     "welcome:follow:complete": "welcomeFollowComplete"
+    "menu:open": "menuOpen"
 
   constructor: ->
     @_setupEvents @events
+
+    $(".moziy-track").each ->
+      mixpanel.track "UI:#{$(this).attr('id')}"
+      setTimeout(function() {
+        document.location.href = $(this).href
+      }, 100)
+
+  menuOpen: ->
+    mixpanel.track "UI:MenuOpen"
 
   whoToFollow: ->
     mixpanel.track "UI:Whotofollow"

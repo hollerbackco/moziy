@@ -19,6 +19,7 @@ App.Views.RemoteControlPane = Backbone.View.extend
 
     @$el.hoverIntent
       over: =>
+        App.analytics.vent.trigger "menu:open"
         @$el.addClass("hover")
         @channelListView.sort()
       sensitivity: 12
