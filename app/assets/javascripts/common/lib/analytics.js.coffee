@@ -31,9 +31,9 @@ class App.Analytics
 
     $(".moziy-track").each ->
       mixpanel.track "UI:#{$(this).attr('id')}"
-      setTimeout(function() {
+      setTimeout =>
         document.location.href = $(this).href
-      }, 100)
+      , 100
 
   menuOpen: ->
     mixpanel.track "UI:MenuOpen"
