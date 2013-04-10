@@ -25,6 +25,6 @@
             %span.value= @channel.subscriptions.count
             %span.label= "Followers"
         %li
-          = link_to manage_channel_videos_path(@channel) do
+          = link_to slug_url(@channel.slug) do
             %span.value= "/#{@channel.slug}"
             %span.label Watch
