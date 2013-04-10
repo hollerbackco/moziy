@@ -1,6 +1,7 @@
 - content_for :sidebar do
   = render :partial => 'manage/channels/channel_menu'
 #video-manage
+  = render :partial => 'manage/channels/channel_header'
   = render :partial => 'manage/videos/form'
   - if @activities.blank?
     %h1.empty

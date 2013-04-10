@@ -1,0 +1,30 @@
+%header.channel-header.clearfix
+  .channel-header-body
+    #cover-art.clearfix
+      = image_tag @channel.cover_art_url(:thumb_player),
+        class: "cover-art",
+        width: 120,
+        height: 120
+      - unless @channel.cover_art.present?
+        = link_to "add image", edit_manage_channel_path(@channel), class: "add-image-alert alert"
+    .name
+      = link_to manage_channel_path(@channel), class: "home" do
+        = "#{@channel.title}"
+    .address
+      = link_to slug_url(@channel.slug), class: "slug" do
+        = slug_url(@channel.slug)
+  .channel-header-menu
+    %nav.menu
+      %ul.clearfix
+        %li
+          = link_to manage_channel_videos_path(@channel) do
+            %span.value= @channel.airings.count
+            %span.label Videos
+        %li
+          = link_to manage_channel_followers_path(@channel) do
+            %span.value= @channel.subscriptions.count
+            %span.label= "Followers"
+        %li
+          = link_to manage_channel_videos_path(@channel) do
+            %span.value= "/#{@channel.slug}"
+            %span.label Watch

@@ -1,11 +1,11 @@
 %ul#secondary-menu.sidebar-menu.clearfix
   %li{:class => current_page?(manage_channel_path(@channel)) ? "active" : "" }
+    = link_to manage_channel_path(@channel), :class => "primary" do
+      Activity
+  %li{:class => current_page?(manage_channel_path(@channel)) ? "active" : "" }
     = link_to manage_channel_videos_path(@channel), :class => "primary" do
       %span.count= @channel.airings.count
       = "Videos"
-  %li{:class => current_page?(manage_channel_path(@channel)) ? "active" : "" }
-    = link_to manage_channel_path(@channel), :class => "primary" do
-      Activity
   - unless current_user.primary_channel? @channel
     %li{:class => current_page?(manage_channel_memberships_path(@channel)) ? "active" : "" }
       = link_to manage_channel_memberships_path(@channel) do
@@ -15,8 +15,3 @@
     = link_to manage_channel_followers_path(@channel) do
       %span.count= @channel.subscriptions.count
       = "Followers"
-
-  %li{:class => current_page?(manage_channel_followers_path(@channel)) ? "active" : "" }
-    = link_to manage_channel_followers_path(@channel) do
-      %span.count= current_user.following_channels.count
-      = "Following"

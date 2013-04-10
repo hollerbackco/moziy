@@ -19,15 +19,16 @@
           %nav.session
             %ul
               - if logged_in?
-                %li.stream-selector.clearfix
-                  %i.header-more
+                %li.stream-selector.dropdown.clearfix
+                  %i.header-more.dropdown-toggle
                   = link_to manage_settings_path, class: "stream-name" do
                     = "/more"
-                  %ul#menu-options.sidebar-menu{style: "display: none"}
-                    %li.menu-item
-                      = link_to manage_likes_path do
-                        %i.like
-                        = "Liked #{current_user.likes.count} Videos"
+                  %ul.submenu
+                    - current_user.managing_channels.each do |channel|
+                      %li.channel-item.menu-item
+                        = link_to manage_channel_path(channel) do
+                          = image_tag channel.cover_art_url(:thumb_favicon), width: 16, height: 16
+                          = "/#{channel.slug}"
                     %li.menu-item= link_to "Create a New Stream", new_manage_channel_path
                 %li
                   = link_to manage_settings_path do
@@ -44,5 +45,20 @@
           %section#sidebar
             - if content_for? :sidebar
               = content_for :sidebar
+            %ul.sidebar-menu.clearfix
+              %li{:class => current_page?(manage_likes_path) ? "active" : "" }
+                = link_to manage_likes_path, :class => "primary" do
+                  %span.count= current_user.likes.count
+                  = "Likes"
+              %li{:class => current_page?(manage_following_path) ? "active" : "" }
+                = link_to manage_following_path do
+                  %span.count= current_user.following_channels.count
+                  = "Following"
           %section#main-content
             = yield
+
+    :javascript
+      $(document).ready(function() {
+        $(".dropdown-toggle").dropdown();
+      });
+

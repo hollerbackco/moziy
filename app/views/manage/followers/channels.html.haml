@@ -1,7 +1,4 @@
-- content_for :sidebar do
-  = render :partial => 'manage/channels/channel_menu'
 #members-manage
-  = render :partial => 'manage/channels/channel_header'
   - if @channels.any?
     %ul.members.channels.items
       = render partial: "manage/followers/channel", collection: @channels, as: :channel

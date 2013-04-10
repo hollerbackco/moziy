@@ -1,8 +1,12 @@
 class Manage::FollowersController < Manage::BaseController
-
   def index
     authorize! :see_followers, channel
-    @members = channel.subscribers
+    @channels = channel.subscribers.map {|c| c.primary_channel }
+  end
+
+  def following
+    @channels = current_user.following_channels
+    render "channels"
   end
 
   private

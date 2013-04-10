@@ -69,8 +69,9 @@
         padding: 0;
         list-style: none;
 
-        li {
+        &> li {
           float: left;
+          position: relative;
           margin-left: 0px;
           margin-right: 10px;
 
@@ -78,6 +79,45 @@
             position: relative;
             top: -4px;
             text-decoration: none;
+          }
+        }
+
+        .dropdown.open .submenu {
+          display: block;
+        }
+        .submenu {
+          display: none;
+          border: 1px solid #ddd;
+          position: absolute;
+          top: 100%;
+          margin-top: 5px;
+          background: #fff;
+
+          li {
+            float: none;
+            display: block;
+            margin-left: 0;
+            border-top: 1px solid #ddd;
+
+            &:first-child {
+              border-top: 0;
+            }
+          }
+
+          a {
+            padding: 10px;
+            text-decoration: none;
+            line-height: 16px;
+
+            img {
+              float: left;
+              display: block;
+              margin-right: 5px;
+            }
+
+            &:hover {
+              background: #eee;
+            }
           }
         }
       }

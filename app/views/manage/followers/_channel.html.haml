@@ -1,0 +1,4 @@
+%li.channel.member.item.clearfix{:id => "channel_#{channel.id.to_s}"}
+  = image_tag channel.cover_art_url(:thumb_list), class: :image, width: 48, height: 48
+  .title
+    = link_to "/#{channel.slug}", slug_path(channel.slug)

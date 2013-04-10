@@ -1,6 +1,7 @@
 - content_for :sidebar do
   = render :partial => 'manage/channels/channel_menu'
 #members-manage
+  = render :partial => 'manage/channels/channel_header'
   = render :partial => 'manage/memberships/form'
   %ul.members.items
     = render partial: "manage/memberships/member", locals: {member: @channel.creator}

@@ -47,6 +47,7 @@ Puretv::Application.routes.draw do
     get "feed/:id/next", :to => "feed#next"
 
     get "lookup/:provider", :to => "contacts#lookup"
+    get "following",        :to => "followers#following"
 
     resources :channels, :path => "streams" do
       collection do

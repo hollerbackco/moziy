@@ -252,6 +252,10 @@ html {
       margin-bottom: 20px;
       border: 1px solid #ddd;
 
+      .channel-header-body {
+        height: 120px;
+      }
+
       #cover-art {
         float: left;
         margin-right: 20px;
@@ -265,6 +269,37 @@ html {
       .address {
         font-size: 16px;
         a { color: #999; }
+      }
+
+      .channel-header-menu {
+        border-top: 1px solid #eee;
+        nav {
+          float: none;
+        }
+        li {
+          float: left;
+          width: 219px;
+          margin-right: 0;
+        }
+        li > a {
+          display: block;
+          padding: 10px 20px;
+          border-right: 1px solid #ddd;
+        }
+        li:last-child > a {
+          border-right: none;
+        }
+        a > span.value {
+          display: block;
+          font-weight: bold;
+          line-height: 24px;
+          font-size: 24px;
+        }
+        a > span.label {
+          display: block;
+          font-weight: 300;
+          text-transform: uppercase;
+        }
       }
 
     }
